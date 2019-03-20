@@ -45,6 +45,7 @@ for node in graph :
 #print([elem.index for elem in node4.neighbors]) #the "[]"s are use to generate a list from the foreach statement
 
 from dijkstra import dijkstraOneToAll
+from dijkstra import dijkstraOneToOne
 
 #print([elem.minDistance for elem in graph])
 dijkstraOneToAll(graph, node1)
@@ -52,6 +53,11 @@ dijkstraOneToAll(graph, node1)
 for elem, distance in node1.shortestPaths.items() :
     print("from 1 ->", elem.index, "the weight of the path is", distance)
 
+dijkstraOneToOne(graph, node1, node5)
 
+pointer = node5
+while pointer != node1 :
+    print(pointer.index)
+    pointer = pointer.predecessor
 
 
