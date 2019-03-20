@@ -37,10 +37,11 @@ class Node(object):
     """
     shortestPaths is a dictonary with:
     Key -> the destination node
-    Value -> the total weight of all arches
+    Value -> the total weight of all arches -> then also the danger
     """
-    def addShortesPath(self, destination, totalWeight):
-        self.shortestPaths.update(destination, totalWeight[0])
+    def addShortestPath(self, destination, totalWeight):
+        # print("destination:", destination.index, "\n- total weight:", totalWeight)
+       self.shortestPaths[destination] = totalWeight
 
     """
     Update the predecessor of the current node

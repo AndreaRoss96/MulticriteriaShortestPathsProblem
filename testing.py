@@ -29,19 +29,29 @@ edgeList.sort(key = lambda elem : elem[0].index) #sorting arches for speed
 
 #looping every edge for creaate the list of neighbors
 for node in graph :
-    print("index = {0.index}\nTopOfEdgeList = {1[0][0].index}".format(node, edgeList))
+    #print("index = {0.index}\nTopOfEdgeList = {1[0][0].index}".format(node, edgeList))
     #for each arch find the destination and, if it is correct, it is added to the list of neighbor of the current node 
     while (len(edgeList) > 0) and (edgeList[0][0].index == node.index) :
-        elem = edgeList.pop(0)
-        print("the element popped:", elem[0].index, "->", elem[1].index, "w/", elem[2])
+        elem = edgeList.pop(0) #edgeList.pop() doesn't shift the list
+        #print("the element popped:", elem[0].index, "->", elem[1].index, "w/", elem[2])
         for v in graph :
-            print ("is next index {0.index}?" .format(v))
+        #    print ("is next index {0.index}?" .format(v))
             if elem[1].index == v.index :
                 found = True
-                print("*yes*\nStarting node: ", node.index,"\nNode of arrival: ", v.index,"\ndistance: ", elem[2],"\n*****")
+        #        print("*yes*\nStarting node: ", node.index,"\nNode of arrival: ", v.index,"\ndistance: ", elem[2],"\n*****")
                 node.neighbors.update({v : elem[2]})
                 break
 
-print(node3.neighbors)
+#print([elem.index for elem in node4.neighbors]) #the "[]"s are use to generate a list from the foreach statement
+
+from dijkstra import dijkstraOneToAll
+
+#print([elem.minDistance for elem in graph])
+dijkstraOneToAll(graph, node1)
+
+for elem, distance in node1.shortestPaths.items() :
+    print("from 1 ->", elem.index, "the weight of the path is", distance)
+
+
 
 

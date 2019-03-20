@@ -16,14 +16,19 @@ def _initSingleNode(graph, source) :
     return graph
 
 def dijkstraOneToAll(graph, source):
-    nodeSet = [_initSingleNode (graph, source)]
+    nodeSet = _initSingleNode (graph, source)
+    print(nodeSet)
     while (len(nodeSet) > 0) : 
-        actualNode = min(graph, key = lambda elem : elem.ḿinDistance)
+        actualNode = min(nodeSet, key = lambda elem : elem.minDistance)
         nodeSet.remove(actualNode)
         #actualNode.visited = True
-        for nextNode,distance in actualNode.neighbors :
+        # print("actual node: {0.index}".format(actualNode))
+        # for key, value in actualNode.neighbors.items() :
+        #         print(key.index, ":", value)
+        for nextNode,distance in actualNode.neighbors.items() :
             tmp = actualNode.minDistance + distance
             if tmp < nextNode.minDistance:
                 nextNode.minDistance = tmp
                 nextNode.predecessor = actualNode
-                #updateNode(...)
+                source.addShortestPath(nextNode, tmp)
+
