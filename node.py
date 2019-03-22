@@ -5,13 +5,15 @@ class Node(object):
     The current vertex represent a vertex of the graph
     """
 
-    def __init__(self, index, longitude, latitude):
+    def __init__(self, index, latitude, longitude):
         self.index = index                  #the index of the node
         self.longitude = longitude          
         self.latitude = latitude
+        self.y = longitude
+        self.x = latitude
        #TO DO --> X & Y
-        self.x = "latitude"                 #x and y are coordinates derivates by the alt & long
-        self.y = "longitude"
+        # self.x = "latitude"                 #x and y are coordinates derivates by the alt & long
+        # self.y = "longitude"
         self.neighbors = {}                 #dictionary with K->node & value->distance beetween two node next eachother
         self.visited = False                #to know if the node is already been visited
         self.predecessor = None             #the predecessor of this one node
@@ -21,7 +23,7 @@ class Node(object):
     """
     Reset the node
     """
-    def reset(self):
+    def resetValue(self):
         self.predecessor = None
         self.visited = False
         self.minDistance = sys.maxsize

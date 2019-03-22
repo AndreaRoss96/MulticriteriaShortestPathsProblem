@@ -1,11 +1,11 @@
 from node import Node
 
 #nodes of the graph
-node1 = Node(1, 11, 12)
-node2 = Node(2, 6, 6)
-node3 = Node(3, 6, 6)
-node4 = Node(4, 6, 6)
-node5 = Node(5, 6, 6)
+node1 = Node(1, 10, 60)
+node2 = Node(2, 20, 20)
+node3 = Node(3, 40, 80)
+node4 = Node(4, 40, 40)
+node5 = Node(5, 60, 15)
 
 graph = [node1,node2,node3,node4,node5]
 
@@ -46,13 +46,24 @@ for node in graph :
 
 from dijkstra import dijkstraOneToAll
 from dijkstra import dijkstraOneToOne
+from dijkstra import dijkstraListOfCandidate
+from A_Star import a_star
 
 #print([elem.minDistance for elem in graph])
-dijkstraOneToAll(graph, node1)
 
+"""++++++++++++++++++++++++++++++++++++++++++++++++
+************** ONE -> ALL ****************
+"""
+print("*"*40, "ONE TO ALL", "*"*40)
+dijkstraOneToAll(graph, node1)
+print("graph:", graph)
 for elem, distance in node1.shortestPaths.items() :
     print("from 1 ->", elem.index, "the weight of the path is", distance)
 
+"""+++++++++++++++++++++++++++++++++++++++++++++++++
+************** ONE -> ONE ****************
+"""
+print("*"*40, "ONE TO ONE", "*"*40)
 dijkstraOneToOne(graph, node1, node5)
 
 pointer = node5
@@ -60,4 +71,26 @@ while pointer != node1 :
     print(pointer.index)
     pointer = pointer.predecessor
 
+
+"""+++++++++++++++++++++++++++++++++++++++++++++++++
+************** LIST OF CANDIDATE ****************
+"""
+print("*"*40, "LIST OF CANDIDATE", "*"*40)
+dijkstraListOfCandidate(graph, node1, node5)
+
+pointer = node5
+while pointer != node1 :
+    print(pointer.index)
+    pointer = pointer.predecessor
+
+"""+++++++++++++++++++++++++++++++++++++++++++++++++
+************** A STAR ****************
+"""
+print("*"*40, "A STAR", "*"*40)
+a_star(graph, node1, node5)
+
+pointer = node5
+while pointer != node1 :
+    print(pointer.index)
+    pointer = pointer.predecessor
 
