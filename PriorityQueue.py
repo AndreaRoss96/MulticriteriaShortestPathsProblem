@@ -20,5 +20,6 @@ class PriorityQueue:
     def getMin(self):
         return heapq.heappop(self.elements)[1]
 
-    def slef(self):
-        return list(self.elements)
+    def print(self):
+        for elem in self.elements :
+            print("element:", elem[1].index)

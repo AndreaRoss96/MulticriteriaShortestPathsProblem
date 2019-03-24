@@ -1,7 +1,8 @@
 from node import Node
+import time
 
 #nodes of the graph
-node1 = Node(1, 10, 60)
+node1 = Node(1, 10, 20)
 node2 = Node(2, 20, 20)
 node3 = Node(3, 40, 80)
 node4 = Node(4, 40, 40)
@@ -10,7 +11,7 @@ node5 = Node(5, 60, 15)
 graph = [node1,node2,node3,node4,node5]
 
 #archs of the graph round-trip
-arch1 = (node1, node2, 5)
+arch1 = (node1, node2, 30)
 arch2 = (node2, node1, 3)
 arch3 = (node1, node3, 6)
 arch4 = (node3, node1, 2)
@@ -55,42 +56,63 @@ from A_Star import a_star
 ************** ONE -> ALL ****************
 """
 print("*"*40, "ONE TO ALL", "*"*40)
+
+start = time.time()
 dijkstraOneToAll(graph, node1)
-print("graph:", graph)
+end = time.time()
+
 for elem, distance in node1.shortestPaths.items() :
     print("from 1 ->", elem.index, "the weight of the path is", distance)
-
+print("time:", end-start)
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** ONE -> ONE ****************
 """
 print("*"*40, "ONE TO ONE", "*"*40)
+
+start = time.time()
 dijkstraOneToOne(graph, node1, node5)
+end = time.time()
 
 pointer = node5
 while pointer != node1 :
     print(pointer.index)
     pointer = pointer.predecessor
-
+print(pointer.index)
+print("time:", end-start)
 
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** LIST OF CANDIDATE ****************
 """
 print("*"*40, "LIST OF CANDIDATE", "*"*40)
+
+start = time.time()
 dijkstraListOfCandidate(graph, node1, node5)
+end = time.time()
 
 pointer = node5
 while pointer != node1 :
     print(pointer.index)
     pointer = pointer.predecessor
+print(pointer.index)
+print("time:", end-start)
 
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** A STAR ****************
 """
 print("*"*40, "A STAR", "*"*40)
-a_star(graph, node1, node5)
+
+tmp_list = []
+
+for n in range (0, 10000):
+    start = time.time()
+    a_star(graph, node1, node5)
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 pointer = node5
 while pointer != node1 :
     print(pointer.index)
     pointer = pointer.predecessor
+
 

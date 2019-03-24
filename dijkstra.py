@@ -11,7 +11,6 @@ Initialising all the the nodes for the dijkstra algorithm
 
 
 def initSingleNode(graph, source):
-    print("inizializzo")
     for v in graph:
         v.resetValue()  # reset the value of predecessor, visited and minDistance of all nodes
     source.minDistance = 0
@@ -28,18 +27,22 @@ def dijkstraOneToAll(graph, source):
         for nextNode, distance in actualNode.neighbors.items():
             tmp = actualNode.minDistance + distance
             if tmp < nextNode.minDistance:
+                #this is the better path, until now
                 nextNode.minDistance = tmp
                 nextNode.predecessor = actualNode
-                # all the path from the starting node are here
-                source.addShortestPath(nextNode, tmp)
+                source.addShortestPath(nextNode, tmp)   # all the path from the starting node are here
 
 
 def dijkstraOneToOne(graph, source, target):
     nodeSet = list()
     nodeSet.extend(initSingleNode(graph, source))
-    while (len(nodeSet) > 0) :
+    while len(nodeSet) > 0 :
         actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
         actualNode.visited = True
+
+        if target.visited :
+            break
+
         nodeSet.remove(actualNode)
         print("actual node:", actualNode.index)
         for nextNode, distance in actualNode.neighbors.items():
@@ -54,16 +57,15 @@ def dijkstraOneToOne(graph, source, target):
 
 def dijkstraListOfCandidate(graph, source, target):
     initSingleNode(graph, source)
-    listOfCand = set(source.neighbors.keys())
-    print("List of candidate of the", source.index)
+    listOfCand = set([source])
     while len(listOfCand) > 0:
-
-        print("printing LOC:")
-        for elem in listOfCand:
-            print("node:", elem.index)
         actualNode = min(listOfCand, key=lambda elem: elem.minDistance)
         print("actual node:", actualNode.index)
         actualNode.visited = True
+
+        if target.visited :
+            break
+
         listOfCand.remove(actualNode)
         for nextNode, distance in actualNode.neighbors.items():
             tmp = actualNode.minDistance + distance
@@ -72,11 +74,7 @@ def dijkstraListOfCandidate(graph, source, target):
                 nextNode.predecessor = actualNode    
             if not nextNode.visited :
                 listOfCand.add(nextNode)
-#riguarda l'algoritmo, problema con i vicini 
-#se ad esmpio vado nel nodo 2 dopo non mi accorgo che il 4 non è vantaggioso
-        if target.visited :
-            print ("maledetto dio")
-            break
+
 
 
 """ 

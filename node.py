@@ -19,6 +19,7 @@ class Node(object):
         self.predecessor = None             #the predecessor of this one node
         self.minDistance = sys.maxsize      #distance from the previous node
         self.shortestPaths = {}             #dictonary with K->node & value->total distance from the starting node
+        self.euclidean = None
 
     """
     Reset the node
@@ -27,6 +28,7 @@ class Node(object):
         self.predecessor = None
         self.visited = False
         self.minDistance = sys.maxsize
+        self.upToDate = False
 
     """ 
     Neighbors is a dictionary with:
