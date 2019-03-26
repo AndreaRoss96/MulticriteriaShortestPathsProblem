@@ -18,22 +18,19 @@ def a_star(graph, source, target) :
     while not listOfCand.empty() :
         actualNode = listOfCand.getMin()
         actualNode.visited = True
-        print("actual node:", actualNode.index)
+#        print("actual node:", actualNode.index)
         if target.visited :
             break
 
         for nextNode, distance in actualNode.neighbors.items():
 
             if not nextNode.visited :
-                ###############
                 if nextNode.euclidean == None :
                     nextNode.euclidean = euclideanDistance(nextNode, target)
 
                 tmp = actualNode.minDistance + distance + nextNode.euclidean
-                ###############
-                # tmp = actualNode.minDistance + distance + euclideanDistance(nextNode, target)
                 
-                print("distanza + dEuclidea:", tmp)
+#                print("distanza + dEuclidea:", tmp)
                 if tmp < nextNode.minDistance :
                     #this path is the best until now, let's record
                     nextNode.minDistance = tmp
@@ -48,7 +45,7 @@ def a_star(graph, source, target) :
 def euclideanDistance(source, destination) :
     dist = [(a-b)**2 for a, b in zip([source.x, source.y], [destination.x, destination.y])]
     res = math.sqrt(sum(dist))
-    print("dist {0.index}->{1.index}: {2}" .format(source, destination, res))
+#    print("dist {0.index}->{1.index}: {2}" .format(source, destination, res))
     return res
     
     #la prestazione è stata cacolata da https://stackoverflow.com/questions/37794849/efficient-and-precise-calculation-of-the-euclidean-distance#

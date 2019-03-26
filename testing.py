@@ -11,10 +11,11 @@ node5 = Node(5, 60, 15)
 graph = [node1,node2,node3,node4,node5]
 
 #archs of the graph round-trip
-arch1 = (node1, node2, 30)
+arch1 = (node1, node2, 300)
 arch2 = (node2, node1, 3)
 arch3 = (node1, node3, 6)
 arch4 = (node3, node1, 2)
+
 arch5 = (node2, node4, 10)
 arch6 = (node4, node2, 2)
 arch7 = (node3, node4, 1)
@@ -85,16 +86,20 @@ print("time:", end-start)
 """
 print("*"*40, "LIST OF CANDIDATE", "*"*40)
 
-start = time.time()
-dijkstraListOfCandidate(graph, node1, node5)
-end = time.time()
+tmp_list= []
+
+for n in range (0, 100000):
+    start = time.time()
+    dijkstraListOfCandidate(graph, node1, node5)
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 pointer = node5
 while pointer != node1 :
     print(pointer.index)
     pointer = pointer.predecessor
 print(pointer.index)
-print("time:", end-start)
 
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** A STAR ****************
@@ -103,7 +108,7 @@ print("*"*40, "A STAR", "*"*40)
 
 tmp_list = []
 
-for n in range (0, 10000):
+for n in range (0, 1):
     start = time.time()
     a_star(graph, node1, node5)
     end = time.time()

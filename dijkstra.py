@@ -8,6 +8,7 @@ Initialising all the the nodes for the dijkstra algorithm
 @param startingNode
         the starting node
 """
+from PriorityQueue import PriorityQueue
 
 
 def initSingleNode(graph, source):
@@ -19,18 +20,31 @@ def initSingleNode(graph, source):
 
 
 def dijkstraOneToAll(graph, source):
-    nodeSet = list()
-    nodeSet.extend(initSingleNode(graph, source))
-    while (len(nodeSet) > 0):
-        actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
-        nodeSet.remove(actualNode)
+    # nodeSet = list()
+    # nodeSet.extend(initSingleNode(graph, source))
+    #############################
+    initSingleNode(graph, source)
+    nodeSet = PriorityQueue()
+    nodeSet.put(source, 0)
+    #############################
+    # while (len(nodeSet) > 0):
+    while not nodeSet.empty() :
+        # actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
+        # nodeSet.remove(actualNode)
+        #############################
+        actualNode = nodeSet.getMin()
+       # print("actual",actualNode.index)
+        #############################
         for nextNode, distance in actualNode.neighbors.items():
             tmp = actualNode.minDistance + distance
-            if tmp < nextNode.minDistance:
+            if tmp < nextNode.minDistance :
                 #this is the better path, until now
+         #       print(nextNode.index)
                 nextNode.minDistance = tmp
                 nextNode.predecessor = actualNode
+                nodeSet.put(nextNode, tmp)
                 source.addShortestPath(nextNode, tmp)   # all the path from the starting node are here
+   
 
 
 def dijkstraOneToOne(graph, source, target):
@@ -44,7 +58,7 @@ def dijkstraOneToOne(graph, source, target):
             break
 
         nodeSet.remove(actualNode)
-        print("actual node:", actualNode.index)
+#        print("actual node:", actualNode.index)
         for nextNode, distance in actualNode.neighbors.items():
             tmp = actualNode.minDistance + distance
             if tmp < nextNode.minDistance:
@@ -57,24 +71,29 @@ def dijkstraOneToOne(graph, source, target):
 
 def dijkstraListOfCandidate(graph, source, target):
     initSingleNode(graph, source)
-    listOfCand = set([source])
-    while len(listOfCand) > 0:
-        actualNode = min(listOfCand, key=lambda elem: elem.minDistance)
-        print("actual node:", actualNode.index)
+    listOfCand = PriorityQueue()
+    # initSingleNode(graph, source)
+    # listOfCand = set([source])
+    listOfCand.put(source, 0)
+    while not listOfCand.empty() :
+        actualNode = listOfCand.getMin()
+        # actualNode = min(listOfCand, key=lambda elem: elem.minDistance)
+        # listOfCand.remove(actualNode)
+#        print("actual node:", actualNode.index)
         actualNode.visited = True
 
         if target.visited :
             break
 
-        listOfCand.remove(actualNode)
         for nextNode, distance in actualNode.neighbors.items():
-            tmp = actualNode.minDistance + distance
-            if tmp < nextNode.minDistance:
-                nextNode.minDistance = tmp
-                nextNode.predecessor = actualNode    
             if not nextNode.visited :
-                listOfCand.add(nextNode)
-
+                tmp = actualNode.minDistance + distance
+                if tmp < nextNode.minDistance:
+                    nextNode.minDistance = tmp
+                    nextNode.predecessor = actualNode    
+                    # listOfCand.add(nextNode)
+                    listOfCand.put(nextNode, tmp)
+#TODO: retry test with a lot of nodes
 
 
 """ 
