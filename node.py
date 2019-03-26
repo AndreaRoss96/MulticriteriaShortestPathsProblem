@@ -1,5 +1,7 @@
 import sys
 
+from utilities import wgsToEcef
+
 
 class Node(object):
     """
@@ -10,19 +12,13 @@ class Node(object):
         self.index = index  # the index of the node
         self.longitude = longitude
         self.latitude = latitude
-        self.y = longitude
-        self.x = latitude
-       # TO DO --> X & Y
-        # self.x = "latitude"                 #x and y are coordinates derivates by the alt & long
-        # self.y = "longitude"
-        # dictionary with K->node & value->distance beetween two node next eachother
-        self.neighbors = {}
+        self.x, self.y = wgsToEcef(latitude, longitude)
+        self.neighbors = {}  # dictionary with K->node & value->distance beetween two node next eachother
         self.visited = False  # to know if the node is already been visited
         self.predecessor = None  # the predecessor of this one node
         self.minDistance = sys.maxsize  # distance from the previous node
-        # dictonary with K->node & value->total distance from the starting node
-        self.shortestPaths = {}
-        self.euclidean = None  # Used in the A* algorithm to limitate the utilisation of sqrt
+        self.shortestPaths = {} # dictonary with K->node & value->total distance from this node
+        self.euclidean = None  # Used in the A* algorithm to limitate the heuristic calculation
 
     def resetValue(self):
         """
@@ -40,7 +36,7 @@ class Node(object):
         @param info -> Value -> the weight of the arch (in the bicriteria version it will contains also the danger)
         """
         self.neighbors.update(newNeighbor, info[0])
-    
+
     def addShortestPath(self, destination, totalWeight):
         """
         shortestPaths is a dictonary with:
@@ -58,4 +54,3 @@ class Node(object):
     def __lt__(self, other):
         return self.index < other.index
 
-    

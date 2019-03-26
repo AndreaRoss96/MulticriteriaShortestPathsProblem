@@ -1,0 +1,5 @@
+https://realpython.com/python-csv/
+Parsing CSV Files With the pandas Library
+Of course, the Python CSV library isn’t the only game in town. Reading CSV files is possible in pandas as well. It is highly recommended if you have a lot of data to analyze.
+
+pandas is an open-source Python library that provides high performance data analysis tools and easy to use data structures. pandas is available for all Python installations, but it is a key part of the Anaconda distribution and works extremely well in Jupyter notebooks to share data, code, analysis results, visualizations, and narrative text.

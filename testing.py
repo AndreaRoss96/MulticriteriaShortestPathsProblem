@@ -29,10 +29,12 @@ edgeList = [arch1, arch2, arch3, arch4, arch5, arch6, arch7, arch8, arch9, arch1
 
 edgeList.sort(key = lambda elem : elem[0].index) #sorting arches for speed
 
-#looping every edge for creaate the list of neighbors
+
+#looping every edge for create the list of neighbors
 for node in graph :
     #print("index = {0.index}\nTopOfEdgeList = {1[0][0].index}".format(node, edgeList))
-    #for each arch find the destination and, if it is correct, it is added to the list of neighbor of the current node 
+    #for each arch find the destination and, if it is correct, it is added to the list of neighbor of the current node
+    print("node {0.index}:\n-lat&long: {0.latitude} - {0.longitude}\n-x&y: {0.x} - {0.y}".format(node))
     while (len(edgeList) > 0) and (edgeList[0][0].index == node.index) :
         elem = edgeList.pop(0) #edgeList.pop() doesn't shift the list
         #print("the element popped:", elem[0].index, "->", elem[1].index, "w/", elem[2])
@@ -45,6 +47,11 @@ for node in graph :
                 break
 
 #print([elem.index for elem in node4.neighbors]) #the "[]"s are use to generate a list from the foreach statement
+
+
+#######################################
+### MONO CRITERIA ALGORITHM TESTING ###
+#######################################
 
 from dijkstra import dijkstraOneToAll
 from dijkstra import dijkstraOneToOne
