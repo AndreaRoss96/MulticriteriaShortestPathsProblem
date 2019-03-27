@@ -2,14 +2,14 @@
 """
 Initialising all the the nodes for the dijkstra algorithm
 
-@param graph
-        the set of all nodes
+graph : the set of all nodes
 
-@param startingNode
-        the starting node
+source : the starting node
+
+target : target node
+
 """
 from PriorityQueue import PriorityQueue
-
 
 def initSingleNode(graph, source):
     for v in graph:
@@ -97,11 +97,6 @@ def dijkstraListOfCandidate(graph, source, target):
 
 
 """ 
-Tutti gli algoritmi, in particolare quest'ultimo sono molto più efficaci
-se si utilizzano delle strutture dati con priorità secondo me (che saresti te)
-ad esempio list of candidate risparmi tempo se le metti in fila e fai pop all'inizio
-invece di fare il foreach e il min su actualNode
-
 Ho deciso di utilizzare la libreria di heapq, la quale implementa un classico binary heap, 
 invece di implementare una Fibonacci heap, perché nell'estrazione del minore 
 --> https://github.com/danielborowski/fibonacci-heap-python

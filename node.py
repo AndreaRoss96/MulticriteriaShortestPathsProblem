@@ -9,7 +9,7 @@ class Node(object):
     """
 
     def __init__(self, index, latitude, longitude):
-        self.index = index  # the index of the node
+        self.index = int(index)  # the index of the node
         self.longitude = longitude
         self.latitude = latitude
         self.x, self.y = wgsToEcef(latitude, longitude)
