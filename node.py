@@ -8,7 +8,7 @@ class Node(object):
     The current vertex represent a vertex of the graph
     """
 
-    def __init__(self, index, latitude, longitude):
+    def __init__(self, index, longitude, latitude):
         self.index = int(index)  # the index of the node
         self.longitude = longitude
         self.latitude = latitude
@@ -18,9 +18,11 @@ class Node(object):
         self.predecessor = None  # the predecessor of this one node
         self.minDistance = sys.maxsize  # distance from the previous node
         self.shortestPaths = {} # dictonary with K->node & value->total distance from this node
+        
         self.euclidean = None  # Used in the A* algorithm to limitate the heuristic calculation
+        self.distance = 0 # Used in A* for get the distance from the previous node, without euclidean distance
 
-    def resetValue(self):
+    def resetValue(self) :
         """
         Reset the node
         """
@@ -29,7 +31,7 @@ class Node(object):
         self.minDistance = sys.maxsize
         self.upToDate = False
 
-    def addNeighbor(self, newNeighbor, info):
+    def addNeighbor(self, newNeighbor, info) :
         """ 
         Neighbors is a dictionary with:
         @param newNeighbor -> Key -> the next node
@@ -37,7 +39,7 @@ class Node(object):
         """
         self.neighbors.update(newNeighbor, info[0])
 
-    def addShortestPath(self, destination, totalWeight):
+    def addShortestPath(self, destination, totalWeight) :
         """
         shortestPaths is a dictonary with:
         Key -> the destination node
@@ -45,7 +47,7 @@ class Node(object):
         """
         self.shortestPaths[destination] = totalWeight
 
-    def updatePredecessor(self, predecessor):
+    def updatePredecessor(self, predecessor) :
         """
         Update the predecessor of the current node
         """

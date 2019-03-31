@@ -22,7 +22,7 @@ def graphBuilder(nodes, arches):
         # when the first element of the arch list is the same of the actual node, it will move to the next node
         while len(arches) > 0 and arches[0][0] == node.index :
             arch = arches.pop(0)     # .pop() doesn't shift the list
-            endingNode = {graph[arch[1]] : arch[2]}
+            endingNode = {graph[arch[1]] : arch[2]} #take the ending node signed in the arch (the first node of the graph has index = 0, so ther's no problem)
             node.neighbors.update(endingNode)
 
     return graph

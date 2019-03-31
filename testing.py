@@ -1,6 +1,7 @@
 from node import Node
 from setup import graphBuilder
 import time
+import random 
 
 # In the following comment block are present only some testing and debugging variables
 ############################
@@ -58,7 +59,6 @@ import pandas as pds
 
 dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
-# print(dataA.values.tolist())
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 #######################################
@@ -68,9 +68,13 @@ graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 from dijkstra import dijkstraOneToAll
 from dijkstra import dijkstraOneToOne
 from dijkstra import dijkstraListOfCandidate
-from A_Star import a_star
+from a_star import a_star
+from graphPlotter import plotGraph
 
-#print([elem.minDistance for elem in graph])
+source = graph[0]
+target = graph[random.randint(0, 500)] # there's a problem with the 415th node
+
+
 
 """++++++++++++++++++++++++++++++++++++++++++++++++
 ************** ONE -> ALL ****************
@@ -78,27 +82,47 @@ from A_Star import a_star
 print("*"*40, "ONE TO ALL", "*"*40)
 
 start = time.time()
-dijkstraOneToAll(graph, graph[0])
+dijkstraOneToAll(graph, source)
 end = time.time()
 
-# for elem, distance in node1.shortestPaths.items() :
-    # print("from 1 ->", elem.index, "the weight of the path is", distance)
+# for elem, distance in source.shortestPaths.items() :
+#     if elem.index == 0 or elem.index == 1:
+#         print("from 1 ->", elem.index, "the weight of the path is", distance)
+#     print("from 1 ->", elem.index, "the weight of the path is", distance)
+
+
+elem = source.shortestPaths.get(target.index)
+
+print("from", source.index, "to", target.index, "the weight of the path is:", source.shortestPaths.get(target))
 print("time:", end-start)
+dbgList = []
+pointer = target
+while pointer != source :
+    dbgList.append(pointer.index)
+    pointer = pointer.predecessor
+dbgList.append(pointer.index)
+dbgList = reversed(dbgList)
+
+print(*dbgList, sep="->")
+
+
+
+
+
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** ONE -> ONE ****************
 """
 print("*"*40, "ONE TO ONE", "*"*40)
 
 start = time.time()
-dijkstraOneToOne(graph, graph[0], graph[100])
+# dijkstraOneToOne(graph, source, target)
 end = time.time()
 
-# pointer = node5
-# while pointer != node1 :
-#     print(pointer.index)
-#     pointer = pointer.predecessor
-# print(pointer.index)
 print("time:", end-start)
+
+
+
+
 
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** LIST OF CANDIDATE ****************
@@ -109,16 +133,27 @@ tmp_list= []
 
 for n in range (0, 1):
     start = time.time()
-    dijkstraListOfCandidate(graph, graph[0], graph[100])
+    dijkstraListOfCandidate(graph, source, target)
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
-# pointer = node5
-# while pointer != node1 :
-#     print(pointer.index)
-#     pointer = pointer.predecessor
-# print(pointer.index)
+print("from",source.index, "to", target.index, "the weight of the path is:", target.minDistance)
+
+dbgList = []
+pointer = target
+while pointer != source :
+    dbgList.append(pointer.index)
+    pointer = pointer.predecessor
+dbgList.append(pointer.index)
+dbgList = reversed(dbgList)
+print(*dbgList, sep="->")
+
+
+
+
+
+
 
 """+++++++++++++++++++++++++++++++++++++++++++++++++
 ************** A STAR ****************
@@ -129,14 +164,25 @@ tmp_list = []
 
 for n in range (0, 1):
     start = time.time()
-    a_star(graph, graph[0], graph[100])
+    a_star(graph, source, target)
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
-# pointer = node5
-# while pointer != node1 :
-#     print(pointer.index)
-#     pointer = pointer.predecessor
+print("from",source.index, "to", target.index, "the weight of the path is:", target.distance)
+
+dbgList = []
+graphList = []
+pointer = target
+while pointer != source :
+    dbgList.append(pointer.index)
+    graphList.append(pointer)
+    pointer = pointer.predecessor
+dbgList.append(pointer.index)
+dbgList = reversed(dbgList)
+
+print(*dbgList, sep="->")
+
+plotGraph(graph, reversed(graphList))
 
 

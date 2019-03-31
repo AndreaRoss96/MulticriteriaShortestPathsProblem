@@ -26,14 +26,14 @@ def dijkstraOneToAll(graph, source):
     initSingleNode(graph, source)
     nodeSet = PriorityQueue()
     nodeSet.put(source, 0)
+    counter = 0
     #############################
-    # while (len(nodeSet) > 0):
     while not nodeSet.empty() :
         # actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
         # nodeSet.remove(actualNode)
         #############################
         actualNode = nodeSet.getMin()
-       # print("actual",actualNode.index)
+        counter = counter + 1
         #############################
         for nextNode, distance in actualNode.neighbors.items():
             tmp = actualNode.minDistance + distance
@@ -44,6 +44,7 @@ def dijkstraOneToAll(graph, source):
                 nextNode.predecessor = actualNode
                 nodeSet.put(nextNode, tmp)
                 source.addShortestPath(nextNode, tmp)   # all the path from the starting node are here
+    print("loops:", counter)
    
 
 
@@ -72,14 +73,11 @@ def dijkstraOneToOne(graph, source, target):
 def dijkstraListOfCandidate(graph, source, target):
     initSingleNode(graph, source)
     listOfCand = PriorityQueue()
-    # initSingleNode(graph, source)
-    # listOfCand = set([source])
+    counter = 0
     listOfCand.put(source, 0)
     while not listOfCand.empty() :
         actualNode = listOfCand.getMin()
-        # actualNode = min(listOfCand, key=lambda elem: elem.minDistance)
-        # listOfCand.remove(actualNode)
-#        print("actual node:", actualNode.index)
+        counter = counter + 1
         actualNode.visited = True
 
         if target.visited :
@@ -91,9 +89,8 @@ def dijkstraListOfCandidate(graph, source, target):
                 if tmp < nextNode.minDistance:
                     nextNode.minDistance = tmp
                     nextNode.predecessor = actualNode    
-                    # listOfCand.add(nextNode)
                     listOfCand.put(nextNode, tmp)
-#TODO: retry test with a lot of nodes
+    print("loops:", counter)
 
 
 """ 

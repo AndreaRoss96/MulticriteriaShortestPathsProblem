@@ -4,7 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-A_Star.py	../A_Star.py	1;"	kind:file	line:1
+a_star.py	../a_star.py	1;"	kind:file	line:1
 DjikstraExample.py	../DjikstraExample.py	1;"	kind:file	line:1
 Edge	../DjikstraExample.py	/^Edge = namedtuple('Edge', 'start, end, cost')$/;"	kind:variable	line:7
 Graph	../DjikstraExample.py	/^class Graph:$/;"	kind:class	line:14
@@ -15,7 +15,7 @@ __init__	../DjikstraExample.py	/^    def __init__(self, edges):$/;"	kind:member	
 __init__	../PriorityQueue.py	/^    def __init__(self):$/;"	kind:member	line:6
 __init__	../node.py	/^    def __init__(self, index, longitude, latitude):$/;"	kind:member	line:8
 _initSingleNode	../dijkstra.py	/^def _initSingleNode(graph, source):$/;"	kind:function	line:13
-a_star	../A_Star.py	/^def a_star(graph, source, target) :$/;"	kind:function	line:13
+a_star	../a_star.py	/^def a_star(graph, source, target) :$/;"	kind:function	line:13
 addNeighbor	../node.py	/^    def addNeighbor(self, newNeighbor, info):$/;"	kind:member	line:34
 addShortestPath	../node.py	/^    def addShortestPath(self, destination, totalWeight):$/;"	kind:member	line:42
 add_edge	../DjikstraExample.py	/^    def add_edge(self, n1, n2, cost=1, both_ends=True):$/;"	kind:member	line:45
