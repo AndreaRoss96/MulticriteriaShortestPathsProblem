@@ -26,3 +26,20 @@ def wgsToEcef(lat, lon):
     # z = (v * (1 - e2) + alt) * math.sin(rad_lat)
 
     return x, y
+
+def initSingleNode(graph, source):
+    """
+    Initialising all the the nodes for the dijkstra algorithm
+
+    graph : the set of all nodes
+
+    source : the starting node
+
+    target : target node
+
+    """
+    for v in graph:
+        v.resetValue()  # reset the value of predecessor, visited and minDistance of all nodes
+    source.minDistance = 0
+    source.visited = True
+    return graph

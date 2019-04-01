@@ -13,15 +13,14 @@ class Node(object):
         self.longitude = longitude
         self.latitude = latitude
         self.x, self.y = wgsToEcef(latitude, longitude)
-        self.neighbors = {}  # dictionary with K->node & value->distance beetween two node next eachother
+        self.neighbors = []  # list of tuples with [(K, value), (K, value), ...]K->node & value->distance beetween two node next eachother]
         self.visited = False  # to know if the node is already been visited
         self.predecessor = None  # the predecessor of this one node
         self.minDistance = sys.maxsize  # distance from the previous node
         self.shortestPaths = {} # dictonary with K->node & value->total distance from this node
-        
-        self.euclidean = None  # Used in the A* algorithm to limitate the heuristic calculation
-        self.distance = 0 # Used in A* for get the distance from the previous node, without euclidean distance
 
+        self.euclidean = None # Used only by the A* algorithm to store the eucliedean distance between the target
+   
     def resetValue(self) :
         """
         Reset the node
@@ -30,6 +29,7 @@ class Node(object):
         self.visited = False
         self.minDistance = sys.maxsize
         self.upToDate = False
+        self.euclidean = None
 
     def addNeighbor(self, newNeighbor, info) :
         """ 

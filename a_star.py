@@ -7,11 +7,9 @@ In fact this algort
 Guarda nell'agenda, quello da scrivere è perfettamente riportato
 """
 import math
-from dijkstra import initSingleNode
 from PriorityQueue import PriorityQueue
 
 def a_star(graph, source, target) :
-    initSingleNode(graph, source)
     listOfCand = PriorityQueue()
     listOfCand.put(source, 0)
 
@@ -21,31 +19,30 @@ def a_star(graph, source, target) :
         actualNode = listOfCand.getMin()
         counter = counter + 1
         actualNode.visited = True
+
         if target.visited :
             break
 
-        for nextNode, distance in actualNode.neighbors.items():
+        for nextNode, distance in actualNode.neighbors :  
+            if not nextNode.visited :   
 
-            if not nextNode.visited :
-                #to calculate only one time the radq to get the euclidean distance, i will check if the node is visited or less,
-                #in case it isn't visited I will calculate the euclidean distance and use them in the queue
-                if nextNode.euclidean == None :
-                    nextNode.euclidean = euclideanDistance(nextNode, target)
-
-                tmp = actualNode.distance + distance + nextNode.euclidean
+                newDistance = actualNode.minDistance + distance
                 
-                if tmp < nextNode.minDistance :
+                if newDistance < nextNode.minDistance :
                     #this path is the best until now, let's record
-                    nextNode.minDistance = tmp
-                    nextNode.distance = tmp - nextNode.euclidean
+                    if nextNode.euclidean is None : # this check is to minimazie the calculation of the "euclidean distance"
+                        nextNode.euclidean = euclideanDistance(nextNode, target)
+                    
+                    nextNode.minDistance = newDistance
                     nextNode.predecessor = actualNode
-                    listOfCand.put(nextNode, tmp)
+                    priority = newDistance + nextNode.euclidean
+                    listOfCand.put(nextNode, priority)
     print("loops:", counter)
 
 
 def euclideanDistance(source, destination) :
     dist = [(a-b)**2 for a, b in zip([source.x, source.y], [destination.x, destination.y])]
-    # res = math.sqrt(sum(dist)) --> the square root is unnecessary
-    return sum(dist)
-    
+    res = math.sqrt(sum(dist))
+    return res
+
     #la prestazione è stata cacolata da https://stackoverflow.com/questions/37794849/efficient-and-precise-calculation-of-the-euclidean-distance#

@@ -2,65 +2,15 @@ from node import Node
 from setup import graphBuilder
 import time
 import random 
-
-# In the following comment block are present only some testing and debugging variables
-############################
-# #nodes of the graph
-# node1 = Node(1, 10, 20)
-# node2 = Node(2, 20, 20)
-# node3 = Node(3, 40, 80)
-# node4 = Node(4, 40, 40)
-# node5 = Node(5, 60, 15)
-
-# nodes = [node1,node2,node3,node4,node5]
-
-# #archs of the graph round-trip
-# arch1 = (1, 2, 300)
-# arch2 = (2, 1, 3)
-# arch3 = (1, 3, 6)
-# arch4 = (3, 1, 2)
-
-# arch5 = (2, 4, 10)
-# arch6 = (4, 2, 2)
-# arch7 = (3, 4, 1)
-# arch8 = (4, 3, 7)
-# arch9 = (3, 5, 4)
-# arch10 = (5, 3, 5)
-# arch11 = (4, 5, 2)
-# arch12 = (5, 4, 3)
-
-# arches = [arch1, arch2, arch3, arch4, arch5, arch6, arch7, arch8, arch9, arch10, arch11, arch12]
-
-#graph = graphBuilder(nodes, arches)
-
-# edgeList.sort(key = lambda elem : elem[0].index) #sorting arches for speed
-
-
-# #looping every edge for create the list of neighbors
-# for node in graph :
-#     #print("index = {0.index}\nTopOfEdgeList = {1[0][0].index}".format(node, edgeList))
-#     #for each arch find the destination and, if it is correct, it is added to the list of neighbor of the current node
-#     #print("node {0.index}:\n-lat&long: {0.latitude} - {0.longitude}\n-x&y: {0.x} - {0.y}".format(node))
-#     while (len(edgeList) > 0) and (edgeList[0][0].index == node.index) :
-#         elem = edgeList.pop(0) #edgeList.pop() doesn't shift the list
-#         #print("the element popped:", elem[0].index, "->", elem[1].index, "w/", elem[2])
-#         for v in graph :
-#         #    print ("is next index {0.index}?" .format(v))
-#             if elem[1].index == v.index :
-#                 found = True
-#         #        print("*yes*\nStarting node: ", node.index,"\nNode of arrival: ", v.index,"\ndistance: ", elem[2],"\n*****")
-#                 node.neighbors.update({v : elem[2]})
-#                 break
-
-# print(graph)
-#print([elem.index for elem in node4.neighbors]) #the "[]"s are use to generate a list from the foreach statement
-
 import pandas as pds
 
 dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
+
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
+
+
 #######################################
 ### MONO CRITERIA ALGORITHM TESTING ###
 #######################################
@@ -70,31 +20,31 @@ from dijkstra import dijkstraOneToOne
 from dijkstra import dijkstraListOfCandidate
 from a_star import a_star
 from graphPlotter import plotGraph
+from utilities import initSingleNode
 
-source = graph[0]
-target = graph[random.randint(0, 500)] # there's a problem with the 415th node
+"""
+for the right test start := 2000, target := 2689 the solution are like:
+    weight: 5847
+    2000->2040->1991->27892->2683->22019->2948->7997->4886->16084->28518->28735->28537->351->16139->15408->25604->15397->27113->25812->19731->19744->27891->26128->26104->26041->26096->28629->28874->1112->2886->19524->19560->19520->5142->13483->27078->29053->15119->27059->29039->28929->4636->18403->28348->1303->14605->18414->18505->4693->18413->18385->4694->18415->18400->18507->27047->27111->27107->27096->27068->27066->28919->27217->27191->27212->27240->27279->27278->27093->4508->9458->4738->27065->4646->4661->2689
 
-
+random.randint(0, 2689)
+"""
+source = graph[2000]
+target = graph[2689] # there's a problem with the 415th node
 
 """++++++++++++++++++++++++++++++++++++++++++++++++
 ************** ONE -> ALL ****************
 """
 print("*"*40, "ONE TO ALL", "*"*40)
+initSingleNode(graph, source)
 
 start = time.time()
 dijkstraOneToAll(graph, source)
 end = time.time()
 
-# for elem, distance in source.shortestPaths.items() :
-#     if elem.index == 0 or elem.index == 1:
-#         print("from 1 ->", elem.index, "the weight of the path is", distance)
-#     print("from 1 ->", elem.index, "the weight of the path is", distance)
-
-
-elem = source.shortestPaths.get(target.index)
-
-print("from", source.index, "to", target.index, "the weight of the path is:", source.shortestPaths.get(target))
 print("time:", end-start)
+print("from", source.index, "to", target.index, "the weight of the path is:", source.shortestPaths.get(target))
+
 dbgList = []
 pointer = target
 while pointer != source :
@@ -113,9 +63,10 @@ print(*dbgList, sep="->")
 ************** ONE -> ONE ****************
 """
 print("*"*40, "ONE TO ONE", "*"*40)
+initSingleNode(graph, source)
 
 start = time.time()
-# dijkstraOneToOne(graph, source, target)
+#dijkstraOneToOne(graph, source, target)
 end = time.time()
 
 print("time:", end-start)
@@ -128,6 +79,7 @@ print("time:", end-start)
 ************** LIST OF CANDIDATE ****************
 """
 print("*"*40, "LIST OF CANDIDATE", "*"*40)
+initSingleNode(graph, source)
 
 tmp_list= []
 
@@ -159,6 +111,7 @@ print(*dbgList, sep="->")
 ************** A STAR ****************
 """
 print("*"*40, "A STAR", "*"*40)
+initSingleNode(graph, source)
 
 tmp_list = []
 
@@ -169,7 +122,7 @@ for n in range (0, 1):
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
-print("from",source.index, "to", target.index, "the weight of the path is:", target.distance)
+print("from",source.index, "to", target.index, "the weight of the path is:", target.minDistance)
 
 dbgList = []
 graphList = []
@@ -183,6 +136,6 @@ dbgList = reversed(dbgList)
 
 print(*dbgList, sep="->")
 
-plotGraph(graph, reversed(graphList))
+#plotGraph(graph, reversed(graphList))
 
 

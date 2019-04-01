@@ -1,56 +1,28 @@
 
-"""
-Initialising all the the nodes for the dijkstra algorithm
-
-graph : the set of all nodes
-
-source : the starting node
-
-target : target node
-
-"""
 from PriorityQueue import PriorityQueue
 
-def initSingleNode(graph, source):
-    for v in graph:
-        v.resetValue()  # reset the value of predecessor, visited and minDistance of all nodes
-    source.minDistance = 0
-    source.visited = True
-    return graph
-
-
 def dijkstraOneToAll(graph, source):
-    # nodeSet = list()
-    # nodeSet.extend(initSingleNode(graph, source))
-    #############################
-    initSingleNode(graph, source)
     nodeSet = PriorityQueue()
     nodeSet.put(source, 0)
     counter = 0
-    #############################
     while not nodeSet.empty() :
-        # actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
-        # nodeSet.remove(actualNode)
-        #############################
         actualNode = nodeSet.getMin()
         counter = counter + 1
-        #############################
-        for nextNode, distance in actualNode.neighbors.items():
-            tmp = actualNode.minDistance + distance
-            if tmp < nextNode.minDistance :
+        for nextNode, distance in actualNode.neighbors :
+            newDistance = actualNode.minDistance + distance
+            if newDistance < nextNode.minDistance :
                 #this is the better path, until now
-         #       print(nextNode.index)
-                nextNode.minDistance = tmp
+                nextNode.minDistance = newDistance
                 nextNode.predecessor = actualNode
-                nodeSet.put(nextNode, tmp)
-                source.addShortestPath(nextNode, tmp)   # all the path from the starting node are here
+                nodeSet.put(nextNode, newDistance)
+                source.addShortestPath(nextNode, newDistance)   # all the path from the starting node are here
     print("loops:", counter)
    
 
 
 def dijkstraOneToOne(graph, source, target):
     nodeSet = list()
-    nodeSet.extend(initSingleNode(graph, source))
+    nodeSet.extend(graph)
     while len(nodeSet) > 0 :
         actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
         actualNode.visited = True
@@ -59,19 +31,17 @@ def dijkstraOneToOne(graph, source, target):
             break
 
         nodeSet.remove(actualNode)
-#        print("actual node:", actualNode.index)
-        for nextNode, distance in actualNode.neighbors.items():
-            tmp = actualNode.minDistance + distance
-            if tmp < nextNode.minDistance:
-                nextNode.minDistance = tmp
+        for nextNode, distance in actualNode.neighbors:
+            newDistance = actualNode.minDistance + distance
+            if newDistance < nextNode.minDistance:
+                nextNode.minDistance = newDistance
                 nextNode.predecessor = actualNode
-                # source.addShortestPath(nextNode, tmp) #all the path from the starting node are here
+                # source.addShortestPath(nextNode, newDistance) #all the path from the starting node are here
     if not target.visited:  # if the target is not been visited, it means that it wasn't in the set
         print("ERROR! the target is not in the list!")
 
 
 def dijkstraListOfCandidate(graph, source, target):
-    initSingleNode(graph, source)
     listOfCand = PriorityQueue()
     counter = 0
     listOfCand.put(source, 0)
@@ -83,13 +53,12 @@ def dijkstraListOfCandidate(graph, source, target):
         if target.visited :
             break
 
-        for nextNode, distance in actualNode.neighbors.items():
-            if not nextNode.visited :
-                tmp = actualNode.minDistance + distance
-                if tmp < nextNode.minDistance:
-                    nextNode.minDistance = tmp
-                    nextNode.predecessor = actualNode    
-                    listOfCand.put(nextNode, tmp)
+        for nextNode, distance in actualNode.neighbors:
+            newDistance = actualNode.minDistance + distance
+            if newDistance < nextNode.minDistance:
+                nextNode.minDistance = newDistance
+                nextNode.predecessor = actualNode    
+                listOfCand.put(nextNode, newDistance)
     print("loops:", counter)
 
 
