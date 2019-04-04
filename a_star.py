@@ -26,14 +26,14 @@ def a_star(graph, source, target) :
         for nextNode, distance in actualNode.neighbors :  
             if not nextNode.visited :   
 
-                newDistance = actualNode.minDistance + distance
+                newDistance = actualNode.minWeight + distance[0]
                 
-                if newDistance < nextNode.minDistance :
+                if newDistance < nextNode.minWeight :
                     #this path is the best until now, let's record
                     if nextNode.euclidean is None : # this check is to minimazie the calculation of the "euclidean distance"
                         nextNode.euclidean = euclideanDistance(nextNode, target)
                     
-                    nextNode.minDistance = newDistance
+                    nextNode.minWeight = newDistance
                     nextNode.predecessor = actualNode
                     priority = newDistance + nextNode.euclidean
                     listOfCand.put(nextNode, priority)

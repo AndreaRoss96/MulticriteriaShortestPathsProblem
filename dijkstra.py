@@ -9,10 +9,10 @@ def dijkstraOneToAll(graph, source):
         actualNode = nodeSet.getMin()
         counter = counter + 1
         for nextNode, distance in actualNode.neighbors :
-            newDistance = actualNode.minDistance + distance
-            if newDistance < nextNode.minDistance :
+            newDistance = actualNode.minWeight + distance[0]
+            if newDistance < nextNode.minWeight :
                 #this is the better path, until now
-                nextNode.minDistance = newDistance
+                nextNode.minWeight = newDistance
                 nextNode.predecessor = actualNode
                 nodeSet.put(nextNode, newDistance)
                 source.addShortestPath(nextNode, newDistance)   # all the path from the starting node are here
@@ -24,7 +24,7 @@ def dijkstraOneToOne(graph, source, target):
     nodeSet = list()
     nodeSet.extend(graph)
     while len(nodeSet) > 0 :
-        actualNode = min(nodeSet, key=lambda elem: elem.minDistance)
+        actualNode = min(nodeSet, key=lambda elem: elem.minWeight)
         actualNode.visited = True
 
         if target.visited :
@@ -32,11 +32,10 @@ def dijkstraOneToOne(graph, source, target):
 
         nodeSet.remove(actualNode)
         for nextNode, distance in actualNode.neighbors:
-            newDistance = actualNode.minDistance + distance
-            if newDistance < nextNode.minDistance:
-                nextNode.minDistance = newDistance
+            newDistance = actualNode.minWeight + distance[0]
+            if newDistance < nextNode.minWeight:
+                nextNode.minWeight = newDistance
                 nextNode.predecessor = actualNode
-                # source.addShortestPath(nextNode, newDistance) #all the path from the starting node are here
     if not target.visited:  # if the target is not been visited, it means that it wasn't in the set
         print("ERROR! the target is not in the list!")
 
@@ -53,10 +52,10 @@ def dijkstraListOfCandidate(graph, source, target):
         if target.visited :
             break
 
-        for nextNode, distance in actualNode.neighbors:
-            newDistance = actualNode.minDistance + distance
-            if newDistance < nextNode.minDistance:
-                nextNode.minDistance = newDistance
+        for nextNode, distance in actualNode.neighbors :
+            newDistance = actualNode.minWeight + distance[0]
+            if newDistance < nextNode.minWeight :
+                nextNode.minWeight = newDistance
                 nextNode.predecessor = actualNode    
                 listOfCand.put(nextNode, newDistance)
     print("loops:", counter)

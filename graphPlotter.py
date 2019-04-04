@@ -1,30 +1,34 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import sys
 import numpy as np
 
 nodeList = []
 
 def plotGraph(graph, nodes) :
-
-    nodeList.extend(nodes)
-    fig = plt.figure()
-
+    
     xdata = []
     ydata = []
+    vxdata = []
+    vydata = []
+    pxdata = []
+    pydata = []
 
-    for point in graph :
-        xdata.append(point.x)
-        ydata.append(point.y)
+    for node in graph :
+        if node.visited :
+            vxdata.append(node.latitude)
+            vydata.append(node.longitude)
+        else :
+            xdata.append(node.latitude)
+            ydata.append(node.longitude)
     
-    # plt.clear()
-    plt.plot(xdata, ydata, ',')
+    for node in nodes :
+        pxdata.append(node.latitude)
+        pydata.append(node.longitude)
+    
+    plt.plot(vydata, vxdata, 'y.', markersize=1)
+    plt.plot(ydata, xdata, '.', markersize=1)
+    plt.plot(pydata, pxdata, 'r.', markersize=1)
 
-    ani = animation.FuncAnimation(fig, animate, interval = 1)
     plt.show()
-
-def animate(i) :
-    if counter < len(nodeList) :
-        counter = counter + 1
-        plt.plot(nodeList[counter].x, nodeList[counter].y, 'ro')
-
 

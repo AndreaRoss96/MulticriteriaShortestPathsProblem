@@ -6,6 +6,22 @@ from utilities import wgsToEcef
 class Node(object):
     """
     The current vertex represent a vertex of the graph
+    
+    index : the index of the node
+    longitude, latitude : geographical coordinates of the node
+    x, y : cartesian coordinates of the node
+    neighbors : list of tuples with [(K, value), (K, value), ...], where: K->node & value->[distance, danger] beetween two node next eachother
+    visited : false if the node has not been visited, true otherwise
+    predecessor : the node predecessor of this node
+    minWeight : the total weight from the source node
+    
+    shortestPaths : dictonary with K->node & value->total distance from this node | used in oneToAll
+    
+    euclidean : misure the euclidean distance of the current node from the target | used in A* algorithm
+
+    || Bicriteria uses
+    distance : the distance from the source
+    danger : total danger from the source
     """
 
     def __init__(self, index, longitude, latitude):
@@ -13,13 +29,16 @@ class Node(object):
         self.longitude = longitude
         self.latitude = latitude
         self.x, self.y = wgsToEcef(latitude, longitude)
-        self.neighbors = []  # list of tuples with [(K, value), (K, value), ...]K->node & value->distance beetween two node next eachother]
-        self.visited = False  # to know if the node is already been visited
-        self.predecessor = None  # the predecessor of this one node
-        self.minDistance = sys.maxsize  # distance from the previous node
-        self.shortestPaths = {} # dictonary with K->node & value->total distance from this node
+        self.neighbors = []  
+        self.visited = False 
+        self.predecessor = None
+        self.minWeight = sys.maxsize
+        self.shortestPaths = {} 
 
-        self.euclidean = None # Used only by the A* algorithm to store the eucliedean distance between the target
+        self.euclidean = None
+
+        self.distance = 0
+        self.danger = 0
    
     def resetValue(self) :
         """
@@ -27,17 +46,13 @@ class Node(object):
         """
         self.predecessor = None
         self.visited = False
-        self.minDistance = sys.maxsize
+        self.minWeight = sys.maxsize
         self.upToDate = False
         self.euclidean = None
 
-    def addNeighbor(self, newNeighbor, info) :
-        """ 
-        Neighbors is a dictionary with:
-        @param newNeighbor -> Key -> the next node
-        @param info -> Value -> the weight of the arch (in the bicriteria version it will contains also the danger)
-        """
-        self.neighbors.update(newNeighbor, info[0])
+    """
+    the nexts functions are useless
+    """
 
     def addShortestPath(self, destination, totalWeight) :
         """
