@@ -103,6 +103,9 @@ dbgList.append(pointer.index)
 dbgList = reversed(dbgList)
 print(*dbgList, sep="->")
 
+from provaTkinter import createGraph
+createGraph(graph, reversed(graphList))
+
 plotGraph(graph, reversed(graphList))
 
 
@@ -144,7 +147,7 @@ plotGraph(graph, reversed(graphList))
 
 
 #######################################
-### BICRITERIA ALGORITHM TESTING ###
+### BICRITERIA ALGORITHM TESTING    ###
 #######################################
 from bicriteriaDijkstra import dijkstraBiCrit
 
@@ -162,7 +165,7 @@ while alpha <= 1 :
     end = time.time()
     tmp_list.append(end-start)
     print("from {0.index} to {1.index} the distance is {1.distance} and the danger is {1.danger} -- \u03B1 = {2}".format(source, target, alpha))
-    alpha = alpha+0.2
+    alpha = round((alpha+0.05), 2)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 # dbgList = []
