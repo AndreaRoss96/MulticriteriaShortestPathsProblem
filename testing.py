@@ -104,7 +104,7 @@ dbgList = reversed(dbgList)
 print(*dbgList, sep="->")
 
 from provaTkinter import createGraph
-createGraph(graph, reversed(graphList))
+# createGraph(graph, reversed(graphList))
 
 plotGraph(graph, reversed(graphList))
 
