@@ -21,5 +21,10 @@ class PriorityQueue:
         return heapq.heappop(self.elements)[1]
 
     def print(self):
+        print(self.elements)
         for elem in self.elements :
             print("element:", elem[1].index)
+
+    def containsNode(self, node) :
+        nodeList = list(map(lambda x : x[1], self.elements))
+        return node in nodeList

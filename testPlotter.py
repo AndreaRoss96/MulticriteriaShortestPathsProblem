@@ -8,7 +8,7 @@ nodes = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 
 # print(nodes[0].values.tolist())
 # print(arches.loc[(arches[0] == 2000) & (arches[1] == 2040)])
-# print(arches.loc[arches[0] == 26].values)
+print(arches.loc[arches[0] == 19907].values)
 
 # save = arches.values.tolist()
 # # print(save)
@@ -20,7 +20,7 @@ nodes = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 #     else :
 #         tmp = elem[1] 
 
-data = [(2010, 2), (2009, 4), (1989, 8), (2009, 7)]
+# data = [(2010, 2), (2009, 4), (1989, 8), (2009, 7)]
 
-for k, val in data:
-    print("k:", k, "val:", val)
+# for k, val in data:
+#     print("k:", k, "val:", val)

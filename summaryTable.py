@@ -1,23 +1,22 @@
 import tkinter as tk
 
-class ExampleApp(tk.Tk):
-    
-        
-    def __init__(self):
+class SummaryTable(tk.Tk):
+            
+    def __init__(self, listOfResult):
         tk.Tk.__init__(self)
-        t = SimpleTable(self)
+        t = SimpleTable(self, listOfResult)
         t.pack(side="top", fill="x")
 
 class SimpleTable(tk.Frame):
 
-    def __init__(self, parent):
+    def __init__(self, parent, listOfResult):
         global stdBgColor
         stdBgColor = "white"
 
         stdHeight = 1
         largeHeight = 2
-        smallWidth = 5
-        mediumWidth = 10
+        smallWidth = 7
+        mediumWidth = 11
         width = 15
         column = 0
 
@@ -26,38 +25,34 @@ class SimpleTable(tk.Frame):
 
 # TODO: remove v
 #valueList:
-#(start, target) : {100 : 1}
-        a, b = 10, 20
-        weight, time = 200, 2
-        listOfResult = {}
-        listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
+#{(start, target) : [(w, t), (w, t), (w, t), (w, t)]}
+#                     o->a    o->o     loc     a*
+        # a, b = 10, 20
+        # weight, time = 200, 2
+        # listOfResult = {}
+        # listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
+
+        # for x in range(0, 13) :
+        #     a = a + 1
+        #     b = b + 1
+        #     weight = weight + 600
+        #     time = weight/1000
+        #     listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
+        
         # a = a + 1
         # b = b + 1
-        # weight = weight + 100
+        # weight = 100
         # time = weight/1000
         # listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
 
-        for x in range(0, 13) :
-            a = a + 1
-            b = b + 1
-            weight = weight + 600
-            time = weight/1000
-            listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
-        
-        a = a + 1
-        b = b + 1
-        weight = 100
-        time = weight/1000
-        listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
-
+        # print("list of resu:", listOfResult)
 # TODO: remove ^
         # use black background so it "peeks through" to 
         # form grid lines
-        print("list of resu:", listOfResult)
         tk.Frame.__init__(self, parent, background="grey")
         self._widgets = []
 
-        listOfResult = dict(sorted(listOfResult.items(), key= lambda x : x[1]))
+        listOfResult = dict(sorted(listOfResult.items(), key= lambda x : x[1])) #sorting the dictonary in base of the weight
 
         #first column
         smallLabel = tk.Label(self, text="Small\n<=2000", borderwidth=0, width=width, height=largeHeight, bg=stdBgColor)
@@ -77,6 +72,8 @@ class SimpleTable(tk.Frame):
         avgb.grid(row=bigRow + 5, column=column, sticky="nsew", padx=1, pady=1, columnspan = colSpan)
         avgLabel.grid(row=bigRow + 6, column=column, sticky="nsew", padx=1, pady=1, columnspan = colSpan)
 
+        
+        #column dedicated to the nodes source -> target
         column = column + 1
         valueList = {"oneToAll" : [], "oneToOne" : [], "ListOfCand" : [], "aStar" : []}
         for indx, nodes in enumerate(listOfResult.keys()) :
@@ -97,25 +94,25 @@ class SimpleTable(tk.Frame):
             valueList.get("aStar").append(elem[3])
 
 
-        # second column
+        # oneToAll column
         column = column + 1
         dkOneToAll = tk.Label(self, text="Dijkstra\none->all", borderwidth=0, width=width, height=largeHeight, bg=stdBgColor)
         dkOneToAll.grid(row=0, column=column, sticky="nsew", padx=1, pady=1, rowspan=1, columnspan=2)
         self.fillColumn(valueList.get("oneToAll"), column)
         
-        # third column
+        # OneToOne column
         column = column + 2
         dkOneToOne = tk.Label(self, text="Dijkstra\none->one", borderwidth=0, width=width, height=largeHeight, bg=stdBgColor)
         dkOneToOne.grid(row=0, column=column, sticky="nsew", padx=1, pady=1, columnspan=2)
         self.fillColumn(valueList.get("oneToOne"), column)
 
-        # fourth column
+        # LoC column
         column = column + 2
         dkListOfCand = tk.Label(self, text="Dijkstra\nlist of candidate", borderwidth=0, width=width, height=largeHeight, bg=stdBgColor)
         dkListOfCand.grid(row=0, column=column, sticky="nsew", padx=1, pady=1, columnspan=2)
         self.fillColumn(valueList.get("ListOfCand"), column)
 
-        # fiveth column
+        # A* column
         column = column + 2
         aStar = tk.Label(self, text="A*", borderwidth=0, width=width, height=largeHeight, bg=stdBgColor)
         aStar.grid(row=0, column=column, sticky="nsew", padx=1, pady=1, columnspan=2)
@@ -129,9 +126,13 @@ class SimpleTable(tk.Frame):
             timeLabel.grid(row=1, column=(counter + 2), sticky="nsew", padx=1, pady=1)
 
     def fillColumn(self, valuesList, column) :
+        """
+        Fill the selected column with the value of weight and time passed by input
+        """
+
         aRow, bRow, cRow = 2, 8, 14
-        sDist, mDist, bDist = [], [], []
-        sTime, mTime, bTime = [], [], []
+        sDist, mDist, bDist = [], [], [] # Those list are used for calculating the average weigth of each group (small, medium, big)
+        sTime, mTime, bTime = [], [], [] # like above but fot the time
         
         for dist, time in valuesList :
             if dist <= 2000 :
@@ -165,6 +166,7 @@ class SimpleTable(tk.Frame):
                 bTime.append(time)
                 cRow += 1
         
+        # labels for the averages values
         avgsdLabel = tk.Label(self, text = self.avg(sDist), borderwidth=0, bg="light grey")
         avgmdLabel = tk.Label(self, text = self.avg(mDist), borderwidth=0, bg="light grey")
         avgbdLabel = tk.Label(self, text = self.avg(bDist), borderwidth=0, bg="light grey")
@@ -179,6 +181,7 @@ class SimpleTable(tk.Frame):
         avgmtLabel.grid(row = bRow, column = (column + 1), sticky="nsew", padx=1, pady=1)
         avgbtLabel.grid(row = cRow, column = (column + 1), sticky="nsew", padx=1, pady=1)
 
+        # total average of all values, so without considering small, medium and big
         totalDistList = [*sDist, *mDist, *bDist]
         totalTimeList = [*sTime, *mTime, *bTime]
 
@@ -189,9 +192,12 @@ class SimpleTable(tk.Frame):
         totalTime.grid(row = cRow + 1, column = column + 1, sticky="nsew", padx=1, pady=1)
 
     def avg(self, list) :
-        return round(sum(list)/len(list), 2)
+        """
+        Calculate the average value of a list
+        """
+        return sum(list)/len(list)
 
 
-if __name__ == "__main__":
-    app = ExampleApp()
-    app.mainloop()
+# if __name__ == "__main__":
+#     app = SummaryTable()
+#     app.mainloop()

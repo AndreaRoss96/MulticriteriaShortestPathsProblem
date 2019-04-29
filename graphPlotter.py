@@ -5,7 +5,7 @@ import numpy as np
 
 nodeList = []
 
-def plotGraph(graph, nodes) :
+def plotGraph(graph, nodes, title) :
     
     xdata = []
     ydata = []
@@ -29,6 +29,7 @@ def plotGraph(graph, nodes) :
     plt.plot(vydata, vxdata, 'y.', markersize=1)
     plt.plot(ydata, xdata, '.', markersize=1)
     plt.plot(pydata, pxdata, 'r-', markersize=1)
+    plt.title(title)
 
     plt.show()
 
