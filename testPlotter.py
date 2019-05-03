@@ -1,4 +1,5 @@
 #from mpl_toolkits.basemap import Basemap
+#TODO: DELETE THIS
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pds
@@ -8,7 +9,7 @@ nodes = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 
 # print(nodes[0].values.tolist())
 # print(arches.loc[(arches[0] == 2000) & (arches[1] == 2040)])
-print(arches.loc[arches[0] == 19907].values)
+print(arches.loc[arches[0] == 2683].values)
 
 # save = arches.values.tolist()
 # # print(save)

@@ -5,11 +5,13 @@ In fact this algort
 
 ***
 Guarda nell'agenda, quello da scrivere è perfettamente riportato
+
+TODO: remove graphs in the inouts, is useless
 """
 import math
 from PriorityQueue import PriorityQueue
 
-def a_star(graph, source, target) :
+def a_star(source, target) :
     listOfCand = PriorityQueue()
     listOfCand.put(source, 0)
 

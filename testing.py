@@ -34,7 +34,7 @@ debugger(graph[8620], 0)
 #default = 2000->2689
 #anomaly [14729, 14740] and [20023, 20050] and [17510, 17537] and so on
 source = graph[2000]
-target = graph[14729]
+target = graph[2229]
 
 
 """++++++++++++++++++++++++++++++++++++++++++++++++
@@ -44,7 +44,7 @@ print("*"*40, "ONE TO ALL", "*"*40)
 initSingleNode(graph, source)
 
 start = time.time()
-dijkstraOneToAll(graph, source)
+dijkstraOneToAll(source)
 end = time.time()
 
 print("time:", end-start)
@@ -70,27 +70,23 @@ print(*dbgList, sep="->")
 print("*"*40, "ONE TO ONE", "*"*40)
 initSingleNode(graph, source)
 
-print(target.visited)
-
 start = time.time()
-dijkstraOneToOne(graph, source, target)
+# dijkstraOneToOne(graph, source, target)
 end = time.time()
 
-print(target.visited)
+# print("time:", end-start)
+# print("from",source.index, "to", target.index, "the weight of the path is:", target.minWeight)
 
-print("time:", end-start)
-print("from",source.index, "to", target.index, "the weight of the path is:", target.minWeight)
-
-dbgList = []
-graphList = []
-pointer = target
-while pointer != source :
-    dbgList.append(pointer.index)
-    graphList.append(pointer)
-    pointer = pointer.predecessor
-dbgList.append(target.index)
-dbgList = reversed(dbgList)
-print(*dbgList, sep="->")
+# dbgList = []
+# graphList = []
+# pointer = target
+# while pointer != source :
+#     dbgList.append(pointer.index)
+#     graphList.append(pointer)
+#     pointer = pointer.predecessor
+# dbgList.append(target.index)
+# dbgList = reversed(dbgList)
+# print(*dbgList, sep="->")
 
 
 
@@ -104,7 +100,7 @@ tmp_list= []
 
 for n in range (0, 1):
     start = time.time()
-    dijkstraListOfCandidate(graph, source, target)
+    dijkstraListOfCandidate(source, target)
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -138,7 +134,7 @@ tmp_list = []
 
 for n in range (0, 1):
     start = time.time()
-    a_star(graph, source, target)
+    a_star(source, target)
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -169,18 +165,6 @@ from bicriteriaDijkstra import dijkstraBiCrit
 
 print("*"*40, "BICRITERIA DIJKSTRA", "*"*40)
 
-# WORKING SOLUTION
-# tmp_list= []
-# alpha = 0
-# while alpha <= 1 :
-#     initSingleNode(graph, source)
-#     start = time.time()
-#     dijkstraBiCrit(graph, source, target, alpha)
-#     end = time.time()
-#     tmp_list.append(end-start)
-#     print("from {0.index} to {1.index} the distance is {1.distance} and the danger is {1.danger} -- \u03B1 = {2}".format(source, target, alpha))
-#     alpha = round((alpha+0.05), 2)
-# print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 
 #MOST ACCURATE TESTING SOLUTION
@@ -188,6 +172,7 @@ print("*"*40, "BICRITERIA DIJKSTRA", "*"*40)
 Any time is found a different path (distance or danger), the value of α is halve
 else the value of α increase by an "increaseVal"
 """
+#TODO: make it a binary research: so try α = 0, then α = 1, then α = 0.5, if 0.5 is != from α = 0, try also α = 0.25 and so on and so on
 listDistDang = []
 tmp_list = []
 counter = 0
@@ -197,7 +182,7 @@ increaseVal = 0.02
 while alpha <=1 :
     initSingleNode(graph, source)
     start = time.time()
-    dijkstraBiCrit(graph, source, target, alpha)
+    dijkstraBiCrit(source, target, alpha)
     end = time.time()
     tmp_list.append(end-start)
 

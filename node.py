@@ -1,7 +1,5 @@
 import sys
-
 from utilities import wgsToEcef
-
 
 class Node(object):
     """
@@ -22,6 +20,9 @@ class Node(object):
     || Bicriteria uses
     distance : the distance from the source
     danger : total danger from the source
+
+    || Label setting algorithm uses
+    labelList : a list of all labels (not dominated), used to store information duringi the building of the paths [(dist, danger, owner, predecessor), (di, da, ow, pr), .... , (...)]
     """
 
     def __init__(self, index, longitude, latitude):
@@ -39,6 +40,8 @@ class Node(object):
 
         self.distance = 0
         self.danger = 0
+
+        self.labelList = []
    
     def resetValue(self) :
         """

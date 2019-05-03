@@ -30,7 +30,7 @@ def valuesCalculator(graph, source, target) :
     start = time.time()
     dijkstraOneToOne(graph, source, target)     #one to one
     end = time.time()
-    dist = target.minWeight  # provisory, obviously
+    dist = target.minWeight 
     times = end - start
     resList.append((dist, times))
     

@@ -23,30 +23,6 @@ class SimpleTable(tk.Frame):
         rowSpan = 5
         colSpan = 2
 
-# TODO: remove v
-#valueList:
-#{(start, target) : [(w, t), (w, t), (w, t), (w, t)]}
-#                     o->a    o->o     loc     a*
-        # a, b = 10, 20
-        # weight, time = 200, 2
-        # listOfResult = {}
-        # listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
-
-        # for x in range(0, 13) :
-        #     a = a + 1
-        #     b = b + 1
-        #     weight = weight + 600
-        #     time = weight/1000
-        #     listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
-        
-        # a = a + 1
-        # b = b + 1
-        # weight = 100
-        # time = weight/1000
-        # listOfResult.update({(a, b) : [(weight, time), (weight, time), (weight, time), (weight, time)]})
-
-        # print("list of resu:", listOfResult)
-# TODO: remove ^
         # use black background so it "peeks through" to 
         # form grid lines
         tk.Frame.__init__(self, parent, background="grey")
@@ -121,7 +97,7 @@ class SimpleTable(tk.Frame):
         # row with "weight and time" under the name of the algorithm
         for counter in range(1, column, 2) :
             weightLabel = tk.Label(self, text="weight", borderwidth=0, width=smallWidth, height=stdHeight, bg=stdBgColor)
-            timeLabel = tk.Label(self, text="time", borderwidth=0, width=smallWidth, height=stdHeight, bg=stdBgColor)
+            timeLabel = tk.Label(self, text="time (sec)", borderwidth=0, width=smallWidth, height=stdHeight, bg=stdBgColor)
             weightLabel.grid(row=1, column=counter + 1, sticky="nsew", padx=1, pady=1)
             timeLabel.grid(row=1, column=(counter + 2), sticky="nsew", padx=1, pady=1)
 
@@ -196,8 +172,3 @@ class SimpleTable(tk.Frame):
         Calculate the average value of a list
         """
         return sum(list)/len(list)
-
-
-# if __name__ == "__main__":
-#     app = SummaryTable()
-#     app.mainloop()

@@ -1,6 +1,6 @@
 from PriorityQueue import PriorityQueue
 
-def dijkstraBiCrit(graph, source, target, alpha) :
+def dijkstraBiCrit(source, target, alpha) :
     """
     With the bicriteria algorithm I decided to use the attribute "distance"
     of the node, because "minWeight" is used has comparator.

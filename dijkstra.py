@@ -1,6 +1,8 @@
 from PriorityQueue import PriorityQueue
 
-def dijkstraOneToAll(graph, source):
+#TODO: remove graph in the inputs, is useless
+
+def dijkstraOneToAll(source):
     nodeSet = PriorityQueue()
     nodeSet.put(source, 0)
     # counter = 0
@@ -39,7 +41,7 @@ def dijkstraOneToOne(graph, source, target):
         print("ERROR! impossible to reach the target")
 
 
-def dijkstraListOfCandidate(graph, source, target):
+def dijkstraListOfCandidate(source, target):
     listOfCand = PriorityQueue()
     # counter = 0
     listOfCand.put(source, 0)
