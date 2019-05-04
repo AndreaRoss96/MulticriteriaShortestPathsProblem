@@ -24,6 +24,7 @@ def labelSettingAlgorithm(source, target) :
     """
     labelQueue = PriorityQueue()
     sourceLabel = (0, 0, source, None)
+    source.labelList.append(sourceLabel)
     labelQueue.put(sourceLabel, sourceLabel[0])
     ending = False  # become True when a node is equal to the target
     while not labelQueue.empty() :
@@ -31,37 +32,44 @@ def labelSettingAlgorithm(source, target) :
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
         actualNode = actualLabel[2]
-
-        if target == actualNode : # if is considered a node equal to target the loop will restarted
-            ending = True
-            continue
         
         for nextNode, weight in actualNode.neighbors :
             distance, danger = weight
             newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode) # creating of a new label
             useLabel = True
 
-            if ending :     # if ending is True (a label has reached the target), check if the current label is dominated
-                restartWhile = False
-                for label in target.labelList : 
-                    if not __labelDoom(newLabel, label, target.labelList) : # if the actual label is dominated the while loop will restart
-                        restartWhile = True
-                        break
-                if restartWhile :
+            if ending :
+                if __isDominated(newLabel, target) :
                     break
 
             for label in nextNode.labelList :
-                if not __labelDoom(newLabel, label, nextNode.labelList) :
+                if not __usableLabel(newLabel, label, nextNode.labelList) :
                     useLabel = False
                     break # if a value is useless (1st case) the loop - label in labelList - is interrupt
             if useLabel :
                 nextNode.labelList.append(newLabel)
-                labelQueue.put(newLabel, newLabel[0])
+                if nextNode != target :
+                    labelQueue.put(newLabel, newLabel[0])
+                else :
+                    print("Uh, eccone uno!")
+                    ending = True
 
 
-def __labelDoom(newLabel, oldLabel, labelsList) :
-    if newLabel[0] > oldLabel[0] and newLabel[1] > oldLabel[1] :    # 1st case, this label is useless
+def __usableLabel(newLabel, oldLabel, labelsList) :
+    if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :    # 1st case, this label is useless
         return False
     elif newLabel[0] < oldLabel[0] and newLabel[1] < oldLabel[1] :  # 2nd case, this label dominate a label
         labelsList.remove(oldLabel)
     return True                                                     # 3rd case, this label can't/isn't dominate/d
+
+def __isDominated(newLabel, target) :
+    """
+    If the label is already dominated by a label in the target node
+    return True
+    else
+    return False
+    """
+    for oldLabel in target.labelList :
+        if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
+            return True
+    return False

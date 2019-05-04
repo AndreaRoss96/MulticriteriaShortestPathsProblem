@@ -12,7 +12,7 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 source = graph[2000]
-target = graph[2229]
+target = graph[2689]
 
 print("*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 initSingleNode(graph, source)

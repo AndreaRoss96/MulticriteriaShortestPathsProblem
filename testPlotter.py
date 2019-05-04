@@ -9,7 +9,7 @@ nodes = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 
 # print(nodes[0].values.tolist())
 # print(arches.loc[(arches[0] == 2000) & (arches[1] == 2040)])
-print(arches.loc[arches[0] == 2683].values)
+print(arches.loc[arches[0] == 29066].values)
 
 # save = arches.values.tolist()
 # # print(save)
