@@ -2,8 +2,8 @@ from PriorityQueue import PriorityQueue
 
 def labelSettingAlgorithm(source, target) :
     """
-    label = (dist, danger, owner, predecessor)
-              [0]    [1]    [2]       [3]
+    label = (dist, danger, owner, predecessor, index)
+              [0]    [1]    [2]       [3]       [4]
     Step 0 :
         create first label (0, 0, source, null)
         and put it in the labelSet (a priorityQueue)
@@ -23,19 +23,20 @@ def labelSettingAlgorithm(source, target) :
         End
     """
     labelQueue = PriorityQueue()
-    sourceLabel = (0, 0, source, None)
+    sourceLabel = (0, 0, source, None, 0)
     source.labelList.append(sourceLabel)
     labelQueue.put(sourceLabel, sourceLabel[0])
-    ending = False  # become True when a node is equal to the target
+    ending = False  # become True when a "nextNode" is equal to the target
     while not labelQueue.empty() :
         actualLabel = labelQueue.getMin()
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
         actualNode = actualLabel[2]
+        index = len(actualNode.labelList) - 1
         
         for nextNode, weight in actualNode.neighbors :
             distance, danger = weight
-            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode) # creating of a new label
+            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, index) # creating of a new label
             useLabel = True
 
             if ending :
@@ -45,13 +46,12 @@ def labelSettingAlgorithm(source, target) :
             for label in nextNode.labelList :
                 if not __usableLabel(newLabel, label, nextNode.labelList) :
                     useLabel = False
-                    break # if a value is useless (1st case) the loop - label in labelList - is interrupt
+                    break # if a value is useless (1st case) the loop - label in labelList - is interrupt, to jump some loops
             if useLabel :
                 nextNode.labelList.append(newLabel)
                 if nextNode != target :
                     labelQueue.put(newLabel, newLabel[0])
                 else :
-                    print("Uh, eccone uno!")
                     ending = True
 
 

@@ -34,7 +34,7 @@ debugger(graph[8620], 0)
 #default = 2000->2689
 #anomaly [14729, 14740] and [20023, 20050] and [17510, 17537] and so on
 source = graph[2000]
-target = graph[28537]
+target = graph[27891]
 
 
 """++++++++++++++++++++++++++++++++++++++++++++++++
@@ -179,12 +179,14 @@ counter = 0
 alpha = 0
 increaseVal = 0.02
 
+start = time.time()
 while alpha <=1 :
+    counter += 1
     initSingleNode(graph, source)
-    start = time.time()
+    # start = time.time()
     dijkstraBiCrit(source, target, alpha)
-    end = time.time()
-    tmp_list.append(end-start)
+    # end = time.time()
+    # tmp_list.append(end-start)
 
     distDang = (target.distance, target.danger)
 
@@ -194,4 +196,7 @@ while alpha <=1 :
         listDistDang.append(distDang)
         print("from {0.index} to {1.index} the distance is {1.distance} and the danger is {1.danger} -- \u03B1 = {2}".format(source, target, alpha)) 
         alpha = alpha / 2 
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
+# print("AVGtime:", sum(tmp_list) / len(tmp_list))
+end = time.time()
+print("totTime:", end - start)
+print("loops:", counter)
