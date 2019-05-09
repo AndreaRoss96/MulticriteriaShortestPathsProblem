@@ -34,7 +34,7 @@ debugger(graph[8620], 0)
 #default = 2000->2689
 #anomaly [14729, 14740] and [20023, 20050] and [17510, 17537] and so on
 source = graph[2000]
-target = graph[27891]
+target = graph[2689]
 
 
 """++++++++++++++++++++++++++++++++++++++++++++++++
@@ -154,49 +154,3 @@ dbgList = reversed(dbgList)
 print(*dbgList, sep="->")
 
 plotGraph(graph, reversed(graphList), "List of candidate")
-
-
-#######################################
-### BICRITERIA ALGORITHM TESTING    ###
-#######################################
-from bicriteriaDijkstra import dijkstraBiCrit
-
-
-
-print("*"*40, "BICRITERIA DIJKSTRA", "*"*40)
-
-
-
-#MOST ACCURATE TESTING SOLUTION
-"""
-Any time is found a different path (distance or danger), the value of α is halve
-else the value of α increase by an "increaseVal"
-"""
-#TODO: make it a binary research: so try α = 0, then α = 1, then α = 0.5, if 0.5 is != from α = 0, try also α = 0.25 and so on and so on
-listDistDang = []
-tmp_list = []
-counter = 0
-alpha = 0
-increaseVal = 0.02
-
-start = time.time()
-while alpha <=1 :
-    counter += 1
-    initSingleNode(graph, source)
-    # start = time.time()
-    dijkstraBiCrit(source, target, alpha)
-    # end = time.time()
-    # tmp_list.append(end-start)
-
-    distDang = (target.distance, target.danger)
-
-    if distDang in listDistDang :
-        alpha += increaseVal
-    else :
-        listDistDang.append(distDang)
-        print("from {0.index} to {1.index} the distance is {1.distance} and the danger is {1.danger} -- \u03B1 = {2}".format(source, target, alpha)) 
-        alpha = alpha / 2 
-# print("AVGtime:", sum(tmp_list) / len(tmp_list))
-end = time.time()
-print("totTime:", end - start)
-print("loops:", counter)

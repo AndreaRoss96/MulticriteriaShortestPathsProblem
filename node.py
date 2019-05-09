@@ -52,6 +52,7 @@ class Node(object):
         self.minWeight = sys.maxsize
         self.upToDate = False
         self.euclidean = None
+        self.labelList = []
 
     """
     the nexts functions are useless

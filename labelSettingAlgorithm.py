@@ -1,4 +1,6 @@
 from PriorityQueue import PriorityQueue
+from bicriteriaDijkstra import binarySearchDijkBiCr
+from utilities import initSingleNode
 
 def labelSettingAlgorithm(source, target) :
     """
@@ -40,7 +42,7 @@ def labelSettingAlgorithm(source, target) :
             useLabel = True
 
             if ending :
-                if __isDominated(newLabel, target) :
+                if __isDominated(newLabel, target.labelList) :
                     break
 
             for label in nextNode.labelList :
@@ -62,14 +64,28 @@ def __usableLabel(newLabel, oldLabel, labelsList) :
         labelsList.remove(oldLabel)
     return True                                                     # 3rd case, this label can't/isn't dominate/d
 
-def __isDominated(newLabel, target) :
+def __isDominated(newLabel, labelList) :
     """
     If the label is already dominated by a label in the target node
     return True
     else
     return False
     """
-    for oldLabel in target.labelList :
-        if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
+    for oldLabel in labelList :
+        if newLabel[0] > oldLabel[0] and newLabel[1] > oldLabel[1] :
             return True
     return False
+
+def lowerBoundImprovement(graph, source, target) :
+    preprocessing = binarySearchDijkBiCr(graph, source, target)
+    initSingleNode(graph, source)
+    for distdang in preprocessing.keys() :
+        target.labelList.append((distdang[0], distdang[1], target, None, None))
+    print(target.labelList)
+    labelSettingAlgorithm(source, target)
+    print(target.labelList)
+    for _ in range(0, len(preprocessing)) : 
+        target.labelList.pop(0)
+    
+
+
