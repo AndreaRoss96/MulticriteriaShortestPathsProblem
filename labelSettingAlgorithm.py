@@ -58,7 +58,7 @@ def labelSettingAlgorithm(source, target) :
 
 
 def __usableLabel(newLabel, oldLabel, labelsList) :
-    if oldLabel[3] == None :
+    if oldLabel[3] is None :
         return True
     if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :  # 1st case, this label is useless
         return False
@@ -68,7 +68,7 @@ def __usableLabel(newLabel, oldLabel, labelsList) :
 
 def __isDominated(newLabel, labelList) :
     """
-    If the label is already dominated by a label in the target node
+    If the label is already dominated by a label in the labelList
     return True
     else
     return False
@@ -80,6 +80,44 @@ def __isDominated(newLabel, labelList) :
 
 def lowerBoundImprovement(graph, source, target) :
     preprocessing = binarySearchDijkBiCr(graph, source, target)
+    
+    #####################################
+    # preprocessing = list(preprocessing.keys())
+
+    # labelQueue = PriorityQueue()
+    # sourceLabel = (0, 0, source, None, 0)
+    # source.labelList.append(sourceLabel)
+    # labelQueue.put(sourceLabel, sourceLabel[0])
+    # ending = False  # become True when a "nextNode" is equal to the target
+    # while not labelQueue.empty() :
+    #     actualLabel = labelQueue.getMin()
+    #     distSoFar = actualLabel[0]
+    #     dangSoFar = actualLabel[1]
+    #     actualNode = actualLabel[2]
+    #     index = len(actualNode.labelList) - 1
+        
+    #     for nextNode, weight in actualNode.neighbors :
+    #         distance, danger = weight
+    #         newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, index) # creating of a new label
+    #         useLabel = True
+
+    #         if not __isDominated(newLabel, preprocessing) :
+    #             if ending :
+    #                 if __isDominated(newLabel, target.labelList) :
+    #                     break
+
+    #             for label in nextNode.labelList :
+    #                 if not __usableLabel(newLabel, label, nextNode.labelList) :
+    #                     useLabel = False
+    #                     break # if a value is useless (1st case) the loop - label in labelList - is interrupt, to jump some loops
+    #             if useLabel :
+    #                 nextNode.labelList.append(newLabel)
+    #                 if nextNode != target :
+    #                     labelQueue.put(newLabel, newLabel[0])
+    #                 else :
+    #                     ending = True
+
+    #####################################
     initSingleNode(graph, source)
     for distdang in preprocessing.keys() :
         target.labelList.append((distdang[0], distdang[1], target, None, None))
