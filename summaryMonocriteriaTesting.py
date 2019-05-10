@@ -20,7 +20,7 @@ def valuesCalculator(graph, source, target) :
 
     initSingleNode(graph, source)
     start = time.time()
-    dijkstraOneToAll(graph, source)             #one to all
+    dijkstraOneToAll(source)             #one to all
     end = time.time()
     dist = source.shortestPaths.get(target)
     times = end - start    
@@ -36,7 +36,7 @@ def valuesCalculator(graph, source, target) :
     
     initSingleNode(graph, source)
     start = time.time()
-    dijkstraListOfCandidate(graph, source, target) #list of candiadate
+    dijkstraListOfCandidate(source, target) #list of candiadate
     end = time.time()
     dist = target.minWeight
     times = end - start
@@ -44,7 +44,7 @@ def valuesCalculator(graph, source, target) :
 
     initSingleNode(graph, source)
     start = time.time()
-    a_star(graph, source, target)                #a star
+    a_star(source, target)                #a star
     end = time.time()
     dist = target.minWeight
     times = end - start
@@ -66,7 +66,7 @@ while condition :
     target = graph[random.randint(0, 29085)]
 
     initSingleNode(graph, source)
-    dijkstraListOfCandidate(graph, source, target)
+    dijkstraListOfCandidate(source, target)
     dist = target.minWeight
 
     if not (0 < dist < sys.maxsize) :

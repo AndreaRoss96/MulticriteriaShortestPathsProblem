@@ -58,7 +58,9 @@ def labelSettingAlgorithm(source, target) :
 
 
 def __usableLabel(newLabel, oldLabel, labelsList) :
-    if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :    # 1st case, this label is useless
+    if oldLabel[3] == None :
+        return True
+    if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :  # 1st case, this label is useless
         return False
     elif newLabel[0] < oldLabel[0] and newLabel[1] < oldLabel[1] :  # 2nd case, this label dominate a label
         labelsList.remove(oldLabel)
@@ -81,9 +83,9 @@ def lowerBoundImprovement(graph, source, target) :
     initSingleNode(graph, source)
     for distdang in preprocessing.keys() :
         target.labelList.append((distdang[0], distdang[1], target, None, None))
-    print(target.labelList)
+    # print(target.labelList)
     labelSettingAlgorithm(source, target)
-    print(target.labelList)
+    # print(target.labelList)
     for _ in range(0, len(preprocessing)) : 
         target.labelList.pop(0)
     
