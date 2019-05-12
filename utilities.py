@@ -35,8 +35,8 @@ def initSingleNode(graph, source):
 
     source : the starting node
 
-    target : target node
-
+    @return
+        graph initilized
     """
     for v in graph:
         v.resetValue()  # reset the value of predecessor, visited and minWeight of all nodes

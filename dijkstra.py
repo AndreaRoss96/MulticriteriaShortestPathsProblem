@@ -1,7 +1,5 @@
 from PriorityQueue import PriorityQueue
 
-#TODO: remove graph in the inputs, is useless
-
 def dijkstraOneToAll(source):
     nodeSet = PriorityQueue()
     nodeSet.put(source, 0)

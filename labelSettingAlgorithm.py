@@ -4,8 +4,9 @@ from utilities import initSingleNode
 
 def labelSettingAlgorithm(source, target) :
     """
-    label = (dist, danger, owner, predecessor, index)
-              [0]    [1]    [2]       [3]       [4]
+    label = (dist, danger, owner, predecessor, ownerListPos, predListPos)
+              [0]    [1]    [2]       [3]           [4]          [5]
+    
     Step 0 :
         create first label (0, 0, source, null)
         and put it in the labelSet (a priorityQueue)
@@ -25,7 +26,7 @@ def labelSettingAlgorithm(source, target) :
         End
     """
     labelQueue = PriorityQueue()
-    sourceLabel = (0, 0, source, None, 0)
+    sourceLabel = (0, 0, source, None, 0, None)
     source.labelList.append(sourceLabel)
     labelQueue.put(sourceLabel, sourceLabel[0])
     ending = False  # become True when a "nextNode" is equal to the target
@@ -34,11 +35,11 @@ def labelSettingAlgorithm(source, target) :
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
         actualNode = actualLabel[2]
-        index = len(actualNode.labelList) - 1
+        index = actualLabel[4]
         
         for nextNode, weight in actualNode.neighbors :
             distance, danger = weight
-            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, index) # creating of a new label
+            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, len(nextNode.labelList) - 1, index) # creating of a new label
             useLabel = True
 
             if ending :
@@ -74,56 +75,19 @@ def __isDominated(newLabel, labelList) :
     return False
     """
     for oldLabel in labelList :
-        if newLabel[0] > oldLabel[0] and newLabel[1] > oldLabel[1] :
+        if oldLabel[3] != None and newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
             return True
     return False
 
 def lowerBoundImprovement(graph, source, target) :
+    """
+    Use the label setting algorithm to find the paths, but with a dijkstra preprocessing
+    """
     preprocessing = binarySearchDijkBiCr(graph, source, target)
-    
-    #####################################
-    # preprocessing = list(preprocessing.keys())
-
-    # labelQueue = PriorityQueue()
-    # sourceLabel = (0, 0, source, None, 0)
-    # source.labelList.append(sourceLabel)
-    # labelQueue.put(sourceLabel, sourceLabel[0])
-    # ending = False  # become True when a "nextNode" is equal to the target
-    # while not labelQueue.empty() :
-    #     actualLabel = labelQueue.getMin()
-    #     distSoFar = actualLabel[0]
-    #     dangSoFar = actualLabel[1]
-    #     actualNode = actualLabel[2]
-    #     index = len(actualNode.labelList) - 1
-        
-    #     for nextNode, weight in actualNode.neighbors :
-    #         distance, danger = weight
-    #         newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, index) # creating of a new label
-    #         useLabel = True
-
-    #         if not __isDominated(newLabel, preprocessing) :
-    #             if ending :
-    #                 if __isDominated(newLabel, target.labelList) :
-    #                     break
-
-    #             for label in nextNode.labelList :
-    #                 if not __usableLabel(newLabel, label, nextNode.labelList) :
-    #                     useLabel = False
-    #                     break # if a value is useless (1st case) the loop - label in labelList - is interrupt, to jump some loops
-    #             if useLabel :
-    #                 nextNode.labelList.append(newLabel)
-    #                 if nextNode != target :
-    #                     labelQueue.put(newLabel, newLabel[0])
-    #                 else :
-    #                     ending = True
-
-    #####################################
     initSingleNode(graph, source)
     for distdang in preprocessing.keys() :
         target.labelList.append((distdang[0], distdang[1], target, None, None))
-    # print(target.labelList)
     labelSettingAlgorithm(source, target)
-    # print(target.labelList)
     for _ in range(0, len(preprocessing)) : 
         target.labelList.pop(0)
     

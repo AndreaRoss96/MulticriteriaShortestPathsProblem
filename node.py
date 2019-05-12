@@ -22,7 +22,7 @@ class Node(object):
     danger : total danger from the source
 
     || Label setting algorithm uses
-    labelList : a list of all labels (not dominated), used to store information duringi the building of the paths [(dist, danger, owner, predecessor), (di, da, ow, pr), .... , (...)]
+    labelList : a list of all labels (not dominated), used to store information duringi the building of the paths [(dist, danger, owner, predecessor, listPosition, predListPos), (di, da, ow, pr, lp, plp), .... , (...)]
     """
 
     def __init__(self, index, longitude, latitude):
@@ -42,7 +42,7 @@ class Node(object):
         self.danger = 0
 
         self.labelList = []
-   
+           
     def resetValue(self) :
         """
         Reset the node

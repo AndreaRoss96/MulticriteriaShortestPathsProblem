@@ -6,7 +6,6 @@ In fact this algort
 ***
 Guarda nell'agenda, quello da scrivere è perfettamente riportato
 
-TODO: remove graphs in the inouts, is useless
 """
 import math
 from PriorityQueue import PriorityQueue

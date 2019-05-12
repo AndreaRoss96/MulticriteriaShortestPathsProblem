@@ -16,6 +16,9 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
 def valuesCalculator(graph, source, target) :
+    """
+    Function for calculate the value that will be shown in the summary table
+    """
     resList = []
 
     initSingleNode(graph, source)

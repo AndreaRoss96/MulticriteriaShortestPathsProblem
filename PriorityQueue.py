@@ -15,7 +15,7 @@ class PriorityQueue:
         simlar to heappush(thisQueue, (2, "example"))
                   heappush(thisQueue, (1, "example"))
                   heappop(thisQueue) >> (1, "example")
-        """
+        """      
     
     def getMin(self):
         return heapq.heappop(self.elements)[1]

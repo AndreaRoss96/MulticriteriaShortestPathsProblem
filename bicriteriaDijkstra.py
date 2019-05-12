@@ -70,7 +70,6 @@ def dijkstraBiCrIteration(graph, source, target, increaseVal) :
             alpha += increaseVal
         else :
             listDistDang.update({distDang : alpha})
-            # print("from {0.index} to {1.index} the distance is {1.distance} and the danger is {1.danger} -- \u03B1 = {2}".format(source, target, alpha)) 
             alpha = alpha / 2
     return listDistDang
 
@@ -125,11 +124,10 @@ def binarySearchDijkBiCr(graph, source, target) :
             elif res in rightList :
                 right = alpha
             else :
-                if res[0] < leftList[len(leftList) - 1][0] : # res è più piccolo del più piccolo valore di left?
+                if res[0] < leftList[len(leftList) - 1][0] : # is res the lower than the lowest value in leftList
                     leftList.append(res)
                     totList.update({res : alpha})
                     right = alpha
-                # elif res[0] > rightList[len(rightList) - 1][0] : # res è più grande del più grande volre di right?
                 else:
                     rightList.append(res)
                     totList.update({res : alpha})
