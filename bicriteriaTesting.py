@@ -16,7 +16,7 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 source = graph[2000]
-target = graph[2689]
+target = graph[2689] #5142
 
 
 print("*"*40, "BICRITERIA DIJKSTRA", "*"*40)
@@ -41,7 +41,7 @@ for distDang, alpha in infoList.items() :
     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
 print("time:", end - start)
 
- #########################################################################################
+#  #########################################################################################
 
 print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 initSingleNode(graph, source)
@@ -60,14 +60,17 @@ print("time:", end-start)
 graphList = []
 ########################
 # BACKTRACKING V
+# print(target.labelList)
 for label in target.labelList :
     printList = []
     nodeList = [label[2]]
     while label[3] != None :
-        index = label[5]
         node = label[3]
         nodeList.append(node)
+        lenList = len(node.labelList)
+        index = label[5] if label[5] < lenList else lenList - 1
         label = node.labelList[index]
+        # print(label)
         printList.append(node.index)
     # print(label[2].index)
     graphList.append(nodeList)

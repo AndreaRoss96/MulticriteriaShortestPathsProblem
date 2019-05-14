@@ -35,11 +35,12 @@ def labelSettingAlgorithm(source, target) :
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
         actualNode = actualLabel[2]
-        index = actualLabel[4]
+        parentIndex = actualLabel[4]
         
         for nextNode, weight in actualNode.neighbors :
             distance, danger = weight
-            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, len(nextNode.labelList) - 1, index) # creating of a new label
+            ownIndex = len(nextNode.labelList) - 1 #0 if len(nextNode.labelList) == 0 else 
+            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
 
             if ending :
