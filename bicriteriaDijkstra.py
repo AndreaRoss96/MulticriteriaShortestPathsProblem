@@ -9,7 +9,7 @@ def dijkstraBiCrit(source, target, alpha) :
     that the "weights" are distance and danger 
 
     alpha : to varying of this variable the algorithm can find different results
-                more α is near to 0, will be found the less dangerous path
+                more α is near to 0, will be found the safest path
                 more α is near to 1, will be found the shortest path
     """
     listOfCandidate = PriorityQueue()
@@ -31,6 +31,12 @@ def dijkstraBiCrit(source, target, alpha) :
                 nextNode.danger = actualNode.danger + danger
                 nextNode.predecessor = actualNode
                 listOfCandidate.put(nextNode, newWeight)
+                if alpha == 0 :         # Those ifs are useful only with the lowerBound Algorithm ()
+                    if nextNode.bestLabel[1] is None or nextNode.bestLabel[1] > nextNode.danger :
+                        nextNode.bestLabel[1] = nextNode.danger
+                elif alpha == 1 :
+                    if nextNode.bestLabel[0] is None or nextNode.bestLabel[0] > nextNode.danger :
+                        nextNode.bestLabel[0] = nextNode.distance
 
 
 def dijkstraBiCrIteration(graph, source, target, increaseVal) :

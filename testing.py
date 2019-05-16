@@ -4,8 +4,8 @@ import time
 import random 
 import pandas as pds
 
-dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
@@ -29,7 +29,7 @@ for the right test start := 2000, target := 2689 the solution are like:
 """
 #default = 2000->2689
 source = graph[2000]
-target = graph[2689]
+target = graph[1]
 
 
 """++++++++++++++++++++++++++++++++++++++++++++++++
@@ -148,4 +148,4 @@ dbgList = reversed(dbgList)
 
 print(*dbgList, sep="->")
 
-plotGraph(graph, reversed(graphList), "List of candidate")
+plotGraph(graph, reversed(graphList), "A *")

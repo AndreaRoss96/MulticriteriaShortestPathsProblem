@@ -42,6 +42,8 @@ class Node(object):
         self.danger = 0
 
         self.labelList = []
+
+        self.bestLabel = [None, None]
            
     def resetValue(self) :
         """
@@ -52,6 +54,8 @@ class Node(object):
         self.minWeight = sys.maxsize
         self.upToDate = False
         self.euclidean = None
+        self.distance = 0
+        self.danger = 0
         self.labelList = []
 
     """
