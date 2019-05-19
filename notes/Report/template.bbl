@@ -1,0 +1,9 @@
+\begin{thebibliography}{1}
+
+\bibitem{mersenne}
+M.~Matsumoto and T.~Nishimura.
+\newblock Mersenne twister: A 623-dimensionally equidistributed uniform
+  pseudo-random number generator.
+\newblock {\em ACM Trans. Model. Comput. Simul.}, 8(1):3--30, Jan. 1998.
+
+\end{thebibliography}

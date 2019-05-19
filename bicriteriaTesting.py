@@ -15,12 +15,13 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
-source = graph[6429]
-target = graph[6531] #5142 or 2886
+source = graph[3176]
+target = graph[2586] #5142 or 2886
 
 initSingleNode(graph, source)
 print("alpha = 1 shortest")
 dijkstraBiCrit(source, target, 1)
+print(target.distance)
 dbgList = []
 pointer = target
 while pointer != source :
