@@ -7,6 +7,8 @@
 %\usepackage{algorithmic}
 \usepackage[utf8]{inputenc}
 \usepackage{fontenc}
+\usepackage{amsthm}
+\usepackage[english]{babel}
 %stmaryrd,algorithm
 \usepackage{amsmath,mathtools}
 \usepackage{amssymb}
@@ -15,7 +17,7 @@
 \usepackage[english]{cleveref}
 
 
-\title{Supervised Project ``Bicriteria Shortest Path Problem''}
+\title{Supervised Project ``Bicriteria Paths Problem''}
  
 \author{Andrea Rossolini}
 \date{\today}
@@ -30,143 +32,90 @@ In this paper I analyze a \textit{pathfinding} problem starting from a classical
 
 As is known, Dijkstra's algorithm is most widely used to solve routing problems; in fact is very easy to create an implementation that attempts to find the best path in a classical weighted graph. So I will focus on the operations of optimization.
 %
-The most important part of the paper is the one that analyze the paths of a graph with two weights for each arches of it, one value represent the distance (also present in the monocriteria problem) and the other represent the danger of that arch. So the implementation will find not only the shortest and safest path, but also all the paths that take intermediate values.
-
-IO PARLEREI A CASO DI PYTHON, DEL FATTO CHE È LA PRIMA VOLTA CHE LO VEDI, LE RISORSE ONLINE ECC
-%
-La struttura della relazione non è indicativa ma \textit{obbligatoria}.
-%
-Gli studenti dovranno produrre un documento che abbia la medesima struttura, non saranno accettati progetti la cui relazione non risponda al requisito suddetto.
-%
-Lo studente attento dovrebbe sforzarsi di seguire le tappe suggerite in questa relazione anche per l'effettivo sviluppo del progetto: oltre ad una considerevole semplificazione del processo di redazione di questo documento, infatti, il gruppo beneficerà di un processo di sviluppo più solido e collaudato, di tipo top-down.
-
-La meta-relazione verrà fornita corredata di un template \LaTeX{} per coloro che volessero cimentarsi nell'uso.
-%
-L'uso di \LaTeX{} è vantaggioso per chi ama l'approccio ``what you mean is what you get'', ossia voglia disaccoppiare il contenuto dall'effettivo rendering del documento, accollando al motore \LaTeX{} l'onere di produrre un documento gradevole con la struttura ed il contenuto forniti.
-%
-L'eventuale utilizzo di \LaTeX{} non è fra i requisiti, non è parte del corso di Programmazione ad Oggetti, e non sarà ovviamente valutato. I docenti accetteranno qualunque relazione in formato standard Portable Document Format (pdf), indipendentemente dal software con cui tale documento sarà redatto.
+The most important part of the paper is the one that analyze the paths of a graph with two weights for each arches of it, one value represent the distance (also present in the monocriteria problem) and the other represent the danger of that arch. So the implementation will find not only the shortest and safest path, but also all the paths (not dominated) that take intermediate values. Two different algorithms will be shown for the analysis of the bicriteria problem.
 \end{abstract}
 
 \tableofcontents
 
-\chapter{Analisi}
-
-In questo capitolo andrà fatta l'analisi dei requisiti e quella del problema, ossia verranno elencate le cose che l'applicazione dovrà fare (requisiti) e verrà descritto l'ambito in cui si colloca (analisi del problema).
+\chapter{Introduction}
+Dijkstra's algorithm, as already mentioned above, is widely used to find shortest path in routing problems that's use graphs with not-negative, static values. But this algorithm takes into consideration only one "dimension" of costs; for example, to calculate a path from the source node to the destination, distance is the result of adding up the length between two nodes segment by segment.
 %
-In fase di analisi, è molto importante tenere a mente che non vi deve essere alcun riferimento al design e tantomeno alle tecnologie implementative.
-%
-La fase di analisi, infatti, \textit{precede} qualunque azione di design o di implementazione.
-
-\section{Requisiti}
-
-Nell'analisi dei requisiti si devono elencare i \emph{requisiti} dell'applicazione, ossia cosa l'applicazione dovrà fare.
-%
-Non ci si deve concentrare sui particolari problemi, ma esclusivamente su cosa si desidera che l'applicazione faccia.
-%
-È possibile descrivere separatamente i requisiti funzionali (quelli che descrivono l'effettivo comportamento dell'applicazione) da quelli non funzionali (requisiti che non riguardano direttamente aspetti comportamentali, come sicurezza, performance, eccetera).
-
-\subsection*{Elementi positivi}
-\begin{itemize}
-	\item Si fornisce una descrizione in linguaggio naturale di ciò che il software dovrà fare.
-	\item Gli obiettivi sono spiegati con chiarezza, per punti.
-	\item Se il software è stato commissionato o è destinato ad un utente o compagnia specifici, il committente viene nominato.
-	\item Se vi sono termini il cui significato non è immediatamente intuibile, essi vengono spiegati.
-	\item Vengono descritti separatamente requisiti funzionali e non funzionali.
-\end{itemize}
-
-\subsection*{Elementi negativi}
-\begin{itemize}
-	\item Si forniscono indicazioni circa le soluzioni che si vogliono adottare
-	\item Si forniscono dettagli di tipo tecnico o implementativo (parlando di classi, linguaggi di programmazione, librerie, eccetera)
-\end{itemize}
-
-\subsection*{Esempio}
-Il software, commissionato dal gestore del centro di ricerca ``Aperture Laboratories Inc.''\footnote{\url{http://aperturescience.com/}}, mira alla costruzione di una intelligenza artificiale di nome GLaDOS (Genetic Lifeform and Disk Operating System).
-%
-Per intelligenza artificiale si intende un software in grado di assumere decisioni complesse in maniera semi autonoma sugli argomenti di sua competenza, a partire dai vincoli e dagli obiettivi datigli dall'utente.
-
-\subsubsection{Requisiti funzionali}
-\begin{itemize}
-	\item La suddetta intelligenza artificiale dovrà occuparsi di coordinare le attività all'interno delle camere di test di Aperture, guidando l'utente attraverso un certo numero di sfide di difficoltà crescente. Una camera di test è un ambiente realizzato da Aperture Laboratories Inc. al fine di mettere alla prova le proprie tecnologie di manipolazione dell'ambiente. All'interno della camera di test, un soggetto qualificato è incaricato di sfruttarle per risolvere alcune sfide.
-	\item Il piano preciso ed il numero delle sfide sarà variabile, e GLaDOS dovrà essere in grado di adattarsi dinamicamente e di fornire indicazioni di guida.
-	\item La personalità di GLaDOS dovrà essere modificabile
-	\item GLaDOS dovrà essere in grado di comunicare col reparto cucina di Aperture, per ordinare torte da donare agli utenti che completassero l'ultima camera di test con successo.
-\end{itemize}
-
-\subsubsection{Requisiti non funzionali}
-\begin{itemize}
-	\item GLaDOS dovrà essere estremamente efficiente nell'uso delle risorse. Le specifiche tecniche parlano della possibilità di funzionare su dispositivi alimentati da una batteria a patata.
-\end{itemize}
-
-\section{Analisi e modello del dominio}
-
-In questa sezione si descrive il modello del dominio, descrivendo le entità in gioco ed i rapporti fra loro.
-%
-Si possono sollevare eventuali aspetti particolarmente impegnativi, descrivendo perché lo sono, senza inserire idee circa possibili soluzioni.
-
-È possibile, ed è anzi raccomandato, aiutarsi con uno schema UML del dominio, che diventerà anche lo scheletro della parte ``entity'' del modello dell'applicazione (in ottica ECB - Entity Control Boundary): se l'analisi è ben fatta, dovreste ottenere una gerarchia di concetti che rappresentano le entità che compongono il problema da risolvere.
-%
-Un'analisi ben svolta \textbf{prima} di cimentarsi con lo sviluppo rappresenta un notevole aiuto per le fasi successive: è sufficiente descrivere a parole il dominio, quindi estrarre i sostantivi utilizzati, capire il loro ruolo all'interno del problema, le relazioni che intercorrono fra loro, e mutarli in interfacce.
-
-\subsection*{Elementi positivi}
-\begin{itemize}
-	\item Viene descritto accuratamente il modello del dominio.
-	\item Alcuni problemi, se non risolubili in assoluto o nel monte ore, vengono dichiarati come problemi che non saranno risolti o sarano risolti in futuro.
-	\item Si modella il dominio in forma di UML.
-\end{itemize}
-
-\subsection*{Elementi negativi}
-\begin{itemize}
-	\item Manca una descrizione a parole del modello del dominio.
-	\item Manca una descrizione UML delle entità del dominio e delle relazioni che intercorrono fra loro.
-	\item Vengono elencate soluzioni ai problemi, invece della descrizione degli stessi.
-	\item Vengono presentati elementi di design, o peggio aspetti implementativi.
-	\item Viene mostrato uno schema UML che include elementi implementativi o non utili alla descrizione del dominio, ma volti alla soluzione (non devono vedersi, ad esempio, campi o metodi privati, o cose che non siano equivalenti ad interfacce).
-\end{itemize}
-
-\subsection*{Esempio}
-GLaDOS dovrà essere in grado di accedere ad un'insieme di camere di test.
-%
-Tale insieme di camere prende il nome di percorso.
-%
-Ciascuna camera è composta di challenge successivi.
-%
-GLaDOS è responsabile di associare a ciascun challenge un insieme di consigli (suggestions) destinati all'utente (subject), dipendenti da possibili eventi.
-%
-GLaDOS dovrà poter comunicare coi locali cucina per approntare le torte.
-%
-Le torte potranno essere dolci, oppure semplici promesse di dolci che verranno disattese.
-
-Gli elementi costitutivi il problema sono sintetizzati in \Cref{img:analysis}.
-
-La difficoltà primaria sarà quella di riuscire a correlare lo stato corrente dell'utente e gli eventi in modo tale da generare i corretti suggerimenti.
-%
-Questo richiederà di mettere in campo appropriate strategie di intelligenza artificiale.
-
-Data la complessità di elaborare consigli via AI senza intervento umano, la prima versione del software fornita prevederà una serie di consigli forniti dall'utente.
-
-Il requisito non funzionale riguardante il consumo energetico richiederà studi specifici sulle performance di GLaDOS che non potranno essere effettuati all'interno del monte ore previsto: tale feature sarà oggetto di futuri lavori.
+But the problem faced in our study considers two criteria for choosing the wanted path: the first cost defines the distance, while the second one represent the danger. So, the problem with Dijkstra is that we will found a path very short, but very dangerous, or vice versa. Concerning multicriteria shortest path problem is intended to determine a path that optimizes the costs from a source to the target, but, in general, there is no a single optimal solution, so the goal of this project is to determinate a set of feasible and not-dominated solution, founding different paths 
+based on the two criteria, so is not sufficient minimizing distance or danger, but the relations between this two values.
+\vspace{5mm}
 
 \begin{figure}
-\centering{}
-%\includegraphics{img/analysis}
-\caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
-\label{img:analysis}
+	\centering
+	\includegraphics[width=\linewidth]{img/exampleGraph1}
+	\caption{Graph example.}
+	\label{fig:graphExample}
 \end{figure}
 
-\chapter{Design}
+\begin{table}[]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$p1$ & $1\to2\to4\to6$ & (11, 25) \\ \hline
+		$p2$ & $1\to2\to5\to6$ & (13, 11)  \\ \hline
+		$p3$ & $1\to3\to5\to6$ & (21, 6)  \\ \hline
+		$p4$ & $1\to3\to4\to6$ & (13, 18)  \\ \hline
+	\end{tabular}
+	\caption{Graph's solution}
+	\label{tab:graphExample}
+\end{table}
 
-In questo capitolo si spiegano le strategie messe in campo per realizzare la soluzione ai problemi identificati nell'analisi.
+In fig.\ref{fig:graphExample} is shown an example of a double criterion's routing. The nodes are labeled with numbers $\{1,2, ..., 6\}$ and the weights of the arches are represented as a pair of value (\textit{a, b}), where \textit{a} is distance and \textit{b} is danger.
 
-Si parte da una visione architetturale, il cui scopo è informare il lettore di quale sia il funzionamento dell'applicativo realizzato ad alto livello.
-%
-In particolare, è necessario descrivere accuratamente in che modo i componenti principali del sistema si coordinano fra loro.
-%
-A seguire, si dettagliano alcune parti del design, quelle maggiormente rilevanti al fine di chiarificare la logica con cui sono stati risolti i problemi dell'applicazione.
+In the table \ref{tab:graphExample} are shown all the possible graph's iterations, $p1$ and $p3$ respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer, more dangerous then $p3$, but, in this case, shorter) and $p4$ is a dominated path, so is useless to us.
 
-\section{Architettura}
 
-Questa sezione spiega come le componenti principali del software interagiscono fra loro.
+ 
+\section{Mathematical formulation}
+
+Let $G(N,A)$ denotes direct network which is composed of a finite set $N=\{0,1, \dots, n\}$ of nodes and a finite set $A \subseteq N\times N $, that represents the set of directed edges. Each arc can be denoted as an order pair $(i,j)$, where $i\in N$, $j \in N$ and both are two different nodes in $G(N,A)$.\\
+Let define $c^k_{i,j}$ where $(i,j)\in A$ and $1\leq k \leq 2$ (because we are talking about a double criterion problem) represent the cost which we are referring to. We define two nodes in the graph: $s$ and $t$, where $s \in N$ and $t \in N$, these are respectively the \textit{source} and \textit{target} of which we want to find one or more paths.
+%dei quali noi vogliamo trovare uno o più percorsi
+We can qualify a path $p_{s,t}$ as a sequence  of  alternating nodes and arcs $p_{s,t} = \{s, (s, i_1), i_1, \dots, i_{l}, (i_l,t), t\}$.\\
+So we said that each $c^k_{i,j}$ refers to one of the two costs of each arch $(i,j)$, therefore the total cost of the entire path can be represented in this way:\\
+
+\begin{gather}(c^1(p_{s,t}), c^2(p_{s,t}))\end{gather}
+\begin{gather}c^1(p_{s,t})=\sum_{(i,j)\in p}c^1_{i,j}\end{gather}
+\begin{gather}c^2(p_{s,t})=\sum_{(i,j)\in p}c^2_{i,j}\end{gather}
+Our purpose is to \textbf{minimize} the $(1.2)$ to find the shortest path or the $(1.3)$ to find the safest one.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%SPOSTA LA DEFINIZIONE NELL'ANALISI DEL BICRITERIA ALGORITHM%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\begin{definition}{Definition}
+	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. We say $x$ \emph{dominates} $y$ if and only of $c^k(x) \leq c^k(y)$ $\forall$ $k \in [1,2]$
+\end{definition}
+%AGGINGI ANCHE QUELLA SU PARETO FRONT SE RIESCI
+%%%%%%%%%%%%%%%%%%%%
+
+%\subsection*{Elementi positivi}
+%\begin{itemize}
+%	\item Si fornisce una descrizione in linguaggio naturale di ciò che il software dovrà fare.
+%	\item Gli obiettivi sono spiegati con chiarezza, per punti.
+%	\item Se il software è stato commissionato o è destinato ad un utente o compagnia specifici, il committente viene nominato.
+%	\item Se vi sono termini il cui significato non è immediatamente intuibile, essi vengono spiegati.
+%	\item Vengono descritti separatamente requisiti funzionali e non funzionali.
+%\end{itemize} Inc.''\footnote{\url{http://aperturescience.com/}}
+
+
+
+
+\chapter{Mono-criteria algorithms}
+
+In this chapter will be explained the algorithms which concern the single criteria routing.
+The analysis focuses on the evolution and optimization of the following algorithm, explaining some implementation choices.
+
+\section{Dijkstra's algorithms}
+
+Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arches with positive weights
+
+=====================================
+Questa sezione spiega come le componenti principali del softwareh interagiscono fra loro.
 %
 In particolare, qui va spiegato se e come è stato utilizzato il pattern architetturale model-view-controller (e/o entity-control-boundary).
 %
@@ -178,7 +127,7 @@ Consigliamo anche di separare bene controller e model, facendo attenzione a non 
 %
 Infine, attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire in blocco la view non dovrebbe causare alcuna modifica nel controller.
 
-\subsection*{Elementi positivi}
+\subsection{Elementi positivi}
 \begin{itemize}
  \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.
  \item Si mette in evidenza se e come il pattern architetturale model-view-controller è stato applicato, anche con l'uso di un UML che mostri le interfacce principali ed i rapporti fra loro.
