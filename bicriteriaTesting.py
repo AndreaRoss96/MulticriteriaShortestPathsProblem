@@ -18,18 +18,19 @@ graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 source = graph[3176]
 target = graph[2586] #5142 or 2886
 
+# print("s:", source.index, "-> t:", target.index)
+
 initSingleNode(graph, source)
-print("alpha = 1 shortest")
 dijkstraBiCrit(source, target, 1)
-print(target.distance)
-dbgList = []
-pointer = target
-while pointer != source :
-    dbgList.append(pointer.index)
-    pointer = pointer.predecessor
-dbgList.append(pointer.index)
-dbgList = reversed(dbgList)
-print(*dbgList, sep="->")
+# print("Shortest paths:", target.distance)
+# dbgList = []
+# pointer = target
+# while pointer != source :
+#     dbgList.append(pointer.index)
+#     pointer = pointer.predecessor
+# dbgList.append(pointer.index)
+# dbgList = reversed(dbgList)
+# print(*dbgList, sep="->")
 
 # print("*"*40, "BICRITERIA DIJKSTRA", "*"*40)
 # start = time.time()
@@ -43,15 +44,29 @@ print(*dbgList, sep="->")
 
 # #########################################################################################
 
-print("\n", "*"*30, "BICRITERIA DIJKSTRA WITH BINARY SEARCH", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-infoList = binarySearchDijkBiCr(graph, source, target)
-end = time.time()
-print("From {0.index} to {1.index} the solutions are:".format(source, target))
+# print("\n", "*"*30, "BICRITERIA DIJKSTRA WITH BINARY SEARCH", "*"*30)
+print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+tmp_list = []
+for n in range (0, 1):
+    initSingleNode(graph, source)
+    start = time.time()
+
+
+    dijkstraBiCrit(source, target, 0) # safest path => uses the target as source
+    bestDanger = target.danger
+    initSingleNode(graph, source)
+    dijkstraBiCrit(source, target, 1) # shortest path => "
+    bestDistance = target.distance
+
+
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
+
+# print("From {0.index} to {1.index} the solutions are:".format(source, target))
 # for distDang, alpha in infoList.items() :
 #     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
-print("time:", end - start)
+# print("time:", end - start)
 
 #  #########################################################################################
 
@@ -59,18 +74,23 @@ print("time:", end - start)
 print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 initSingleNode(graph, source)
 
-start = time.time()
-labelSettingAlgorithm(source, target)
-end = time.time()
+tmp_list= []
+for n in range (0, 1):
+    initSingleNode(graph, source)
+    start = time.time()
+    #labelSettingAlgorithm(source, target)
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
-toPrint = []
+# toPrint = []
 
-print("all paths to target", target.index, ":")
+# print("all paths to target", target.index, ":")
 # for label in target.labelList :
 #     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
 #     stre = "(" + str(label[0]) + ', ' + str(label[1]) + ")"
 #     toPrint.append(stre)
-print("time:", end-start)
+# print("time:", end-start)
 print(len(target.labelList))
 # print(str(toPrint))
 
@@ -113,10 +133,9 @@ graphList = []
 
 print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 
-initSingleNode(graph, source)
-
 tmp_list= []
-for n in range (0, 1):
+for n in range (0, 10):
+    initSingleNode(graph, source)
     start = time.time()
     lowerBoundImprovement(graph, source, target)
     end = time.time()
@@ -126,5 +145,5 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 # print("all paths to target", target.index, ":")
 # for label in target.labelList :
 #     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
-print("time:", end-start)
+# print("time:", end-start)
 print(len(target.labelList))

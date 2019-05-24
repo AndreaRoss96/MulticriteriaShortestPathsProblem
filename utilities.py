@@ -31,7 +31,7 @@ def initSingleNode(graph, source):
     """
     Initialising all the the nodes for the dijkstra algorithm
 
-    graph : the set of all nodes
+    graph : the set of all nodes that must be reset
 
     source : the starting node
 

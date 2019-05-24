@@ -3,7 +3,8 @@
 \contentsline {section}{\numberline {1.1}Mathematical formulation}{3}
 \contentsline {chapter}{\numberline {2}Mono-criteria algorithms}{5}
 \contentsline {section}{\numberline {2.1}Dijkstra's algorithms}{5}
-\contentsline {subsection}{\numberline {2.1.1}Elementi positivi}{5}
+\contentsline {subsection}{\numberline {2.1.1}One to all}{5}
+\contentsline {subsection}{\numberline {2.1.2}One to one}{5}
 \contentsline {section}{\numberline {2.2}Design dettagliato}{7}
 \contentsline {chapter}{\numberline {3}Sviluppo}{11}
 \contentsline {section}{\numberline {3.1}Testing automatizzato}{11}

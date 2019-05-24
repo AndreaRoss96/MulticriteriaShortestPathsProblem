@@ -31,7 +31,9 @@ def labelSettingAlgorithm(source, target) :
     source.labelList.append(sourceLabel)
     labelQueue.put(sourceLabel, sourceLabel[0])
     ending = False  # become True when a "nextNode" is equal to the target
+    counter = 0
     while not labelQueue.empty() :
+        counter += 1
         actualLabel = labelQueue.getMin()
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
@@ -58,6 +60,7 @@ def labelSettingAlgorithm(source, target) :
                     labelQueue.put(newLabel, newLabel[0])
                 else :
                     ending = True
+    print("Loops:", counter)
 
 
 def __usableLabel(newLabel, oldLabel, labelsList) :
@@ -80,10 +83,11 @@ def __isDominated(newLabel, labelList) :
     return False
 
 def lowerBoundImprovement(graph, source, target) :
-    dijkstraBiCrit(source, target, 0) # safest path => uses the target as source
+    visitedNodes = dijkstraBiCrit(source, target, 0) # safest path => uses the target as source
     bestDanger = target.danger
+    
+    initSingleNode(visitedNodes, source)
 
-    initSingleNode(graph, source)
     dijkstraBiCrit(source, target, 1) # shortest path => "
     bestDistance = target.distance
 
@@ -91,7 +95,9 @@ def lowerBoundImprovement(graph, source, target) :
     sourceLabel = (0, 0, source, None, 0, None)
     source.labelList.append(sourceLabel)
     labelQueue.put(sourceLabel, sourceLabel[0])
+    counter = 0
     while not labelQueue.empty() :
+        counter += 1
         actualLabel = labelQueue.getMin()
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
@@ -104,18 +110,22 @@ def lowerBoundImprovement(graph, source, target) :
             newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
 
-            if nextNode.bestLabel[0] is not None and nextNode.bestLabel[1] is not None :
+            if nextNode.bestLabel[0] is not None and nextNode.bestLabel[1] is not None :    # if the best label is present in complete enter
                 checkDistance = bestDistance - nextNode.bestLabel[0]
                 checkDanger = bestDanger - nextNode.bestLabel[1]
-                if checkDanger > 0 and checkDistance > 0 :
+                if checkDanger > 0 and checkDistance > 0 :  # if the values are negative is useless to check
                     checkLabel = (newLabel[0] + checkDistance, newLabel[1] + checkDanger)
                 else :
-                    checkLabel = newLabel
+                    checkLabel = newLabel   
             else :
                 checkLabel = newLabel
 
             if __isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on
-                continue # restart for loop with another nextNode
+                    #print("porcodio")
+                continue # restart 'for' loop with another nextNode
+            # elif ending :
+            #     if __isDominated(newLabel, target.labelList) :
+            #         continue # restart 'for' loop if the new label is dominated
 
             for label in nextNode.labelList :
                 if not __usableLabel(newLabel, label, nextNode.labelList) :
@@ -125,6 +135,7 @@ def lowerBoundImprovement(graph, source, target) :
                 nextNode.labelList.append(newLabel)
                 if nextNode != target :
                     labelQueue.put(newLabel, newLabel[0])
+    print("Loops:", counter)
 
 
 

@@ -12,7 +12,6 @@
 %stmaryrd,algorithm
 \usepackage{amsmath,mathtools}
 \usepackage{amssymb}
-
 % Remove option to use English naming
 \usepackage[english]{cleveref}
 
@@ -66,7 +65,7 @@ based on the two criteria, so is not sufficient minimizing distance or danger, b
 
 In fig.\ref{fig:graphExample} is shown an example of a double criterion's routing. The nodes are labeled with numbers $\{1,2, ..., 6\}$ and the weights of the arches are represented as a pair of value (\textit{a, b}), where \textit{a} is distance and \textit{b} is danger.
 
-In the table \ref{tab:graphExample} are shown all the possible graph's iterations, $p1$ and $p3$ respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer, more dangerous then $p3$, but, in this case, shorter) and $p4$ is a dominated path, so is useless to us.
+In table \ref{tab:graphExample} are shown all the possible graph's iterations, $p1$ and $p3$ respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer, more dangerous then $p3$, but, in this case, shorter) and $p4$ is a dominated path, so is useless to us.
 
 
  
@@ -112,22 +111,18 @@ The analysis focuses on the evolution and optimization of the following algorith
 
 \section{Dijkstra's algorithms}
 
-Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arches with positive weights
+Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arches with positive weights.\\
+Different implementation of this algorithm are present in this paper, as follows are all explained.
 
-=====================================
-Questa sezione spiega come le componenti principali del softwareh interagiscono fra loro.
-%
-In particolare, qui va spiegato se e come è stato utilizzato il pattern architetturale model-view-controller (e/o entity-control-boundary).
-%
-Se non è stato utilizzato, va spiegata in maniera molto accurata l'architettura scelta, giustificandola in modo appropriato.
+\subsection{One to all}
+This implementation is useful to find all the shortest path from a source node to each other graph's nodes. The starting node will save a dictionary where there is a key for each reached node and the respective value of distance.
+It implement a \textit{pryority queue} so the complexity of this implementation is $O((|V|+|E|)\log(|V|))$ where $V$ is the number of vertices and $E$ the number of edges. In the worst case, so where $E>>V$, the time complexity is $(|E|\log(|V|))$.
+Implementation's details are explained in the dedicated section.
 
-Raccomandiamo di sfruttare la definizione del dominio fatta in fase di analisi per capire quale sia l'entry point del model, e di non realizzare un'unica macro-interfaccia che, spesso, finisce con l'essere il prodromo ad una ``God class''.
-%
-Consigliamo anche di separare bene controller e model, facendo attenzione a non includere nel secondo strategie d'uso che appartengono al primo.
-%
-Infine, attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire in blocco la view non dovrebbe causare alcuna modifica nel controller.
+\subsection{One to one}
 
-\subsection{Elementi positivi}
+
+
 \begin{itemize}
  \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.
  \item Si mette in evidenza se e come il pattern architetturale model-view-controller è stato applicato, anche con l'uso di un UML che mostri le interfacce principali ed i rapporti fra loro.

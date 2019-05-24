@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.14)  21 MAY 2019 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  24 MAY 2019 11:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **template.tex
 (./template.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -77,6 +77,11 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \c@lofdepth=\count92
 \c@subtable=\count93
 \c@lotdepth=\count94
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
 \subfig@top=\skip47
 \subfig@bottom=\skip48
 )
@@ -438,8 +443,6 @@ File: babel.def 2018/02/14 3.18 Babel common definitions
 (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@dirlevel=\count97
 )
-\l@british = a dialect from \language\l@english 
-\l@UKenglish = a dialect from \language\l@english 
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
@@ -551,18 +554,18 @@ Package cleveref Info: `amsthm' support loaded on input line 3026.
 ) (./template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -633,12 +636,12 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+LaTeX Font Info:    Try loading font information for U+msa on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 28.
+LaTeX Font Info:    Try loading font information for U+msb on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -657,16 +660,16 @@ Chapter 1.
 <img/exampleGraph1.png, id=16, 393.47pt x 228.855pt>
 File: img/exampleGraph1.png Graphic file (type png)
 <use img/exampleGraph1.png>
-Package pdftex.def Info: img/exampleGraph1.png  used on input line 49.
+Package pdftex.def Info: img/exampleGraph1.png  used on input line 48.
 (pdftex.def)             Requested size: 390.0pt x 226.83603pt.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 54.
+               Default added (so using `tbp') on input line 53.
 
 [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 75--80
+Underfull \hbox (badness 10000) in paragraph at lines 74--79
 
  []
 
@@ -674,24 +677,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 75--80
 \c@definition=\count120
  [4]
 Chapter 2.
-
-Overfull \hbox (4.33896pt too wide) in paragraph at lines 117--123
-[]\OT1/cmr/m/n/12 ===================================== Questa
- []
-
-
-Overfull \hbox (0.42233pt too wide) in paragraph at lines 124--129
-\OT1/cmr/m/n/12 anal-isi per capire quale sia l'entry point del model, e di non
- re-al-iz-zare un'unica
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 132.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 127.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 132.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 127.
  [5
 
 ] [6] [7] [8]
@@ -700,13 +692,13 @@ Chapter 3.
 [11
 
 ] [12]
-Overfull \hbox (10.43608pt too wide) in paragraph at lines 349--350
+Overfull \hbox (10.43608pt too wide) in paragraph at lines 344--345
 []\OT1/cmr/m/n/12 Uso di parti di li-bre-ria non sp-ie-gate a lezione (net-work
 -ing, JavaScript
  []
 
 [13]
-Overfull \hbox (80.77844pt too wide) in paragraph at lines 364--365
+Overfull \hbox (80.77844pt too wide) in paragraph at lines 359--360
 []\OT1/cmr/m/n/12 Si de-scrivono as-petti par-ti-co-lar-mente com-pli-cati o ri
 l-e-vanti rel-a-tivi all'implementazione,
  []
@@ -725,12 +717,12 @@ Appendix A.
 Package cleveref Info: loaded `english' language definitions on input line 2.
 ) ) 
 Here is how much of TeX's memory you used:
- 6399 strings out of 494923
- 101534 string characters out of 6180742
- 193512 words of memory out of 5000000
- 9603 multiletter control sequences out of 15000+600000
+ 6400 strings out of 492982
+ 101690 string characters out of 6134896
+ 198459 words of memory out of 5000000
+ 9851 multiletter control sequences out of 15000+600000
  13525 words of font info for 52 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  41i,8n,26p,756b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha
@@ -743,7 +735,7 @@ ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mtt12.pfb>
-Output written on template.pdf (21 pages, 162896 bytes).
+Output written on template.pdf (21 pages, 164167 bytes).
 PDF statistics:
  117 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream
