@@ -15,14 +15,38 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
-source = graph[3176]
-target = graph[2586] #5142 or 2886
+source = graph[15426]
+target = graph[2070] #5142 or 2886
 
 # print("s:", source.index, "-> t:", target.index)
 
 initSingleNode(graph, source)
 dijkstraBiCrit(source, target, 1)
-# print("Shortest paths:", target.distance)
+
+# #########################################################################################
+print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
+initSingleNode(graph, source)
+
+tmp_list= []
+for n in range (0, 1):
+    initSingleNode(graph, source)
+    start = time.time()
+    binarySearchDijkBiCr(graph, source, target)
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
+
+#####################
+#####  RESULTS  #####
+#####################
+# print("From {0.index} to {1.index} the solutions are:".format(source, target))
+# for distDang, alpha in infoList.items() :
+#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
+# print("time:", end - start)
+
+######################
+#### BACKTRACKING ####
+######################
 # dbgList = []
 # pointer = target
 # while pointer != source :
@@ -32,25 +56,58 @@ dijkstraBiCrit(source, target, 1)
 # dbgList = reversed(dbgList)
 # print(*dbgList, sep="->")
 
-# print("*"*40, "BICRITERIA DIJKSTRA", "*"*40)
-# start = time.time()
-# infoList = dijkstraBiCrIteration(graph, source, target, 0.02)
-# end = time.time()
+#  #########################################################################################
+print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
+initSingleNode(graph, source)
 
-# print("From {0.index} to {1.index} the solutions are:".format(source, target))
-# for distDang, alpha in infoList.items() :
-#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
-# print("time:", end - start)
+tmp_list= []
+for n in range (0, 1):
+    initSingleNode(graph, source)
+    start = time.time()
+    labelSettingAlgorithm(source, target)
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
-# #########################################################################################
+#####################
+#####  RESULTS  #####
+#####################
+# toPrint = []
+# print("all paths to target", target.index, ":")
+# for label in target.labelList :
+#     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
+#     stre = "(" + str(label[0]) + ', ' + str(label[1]) + ")"
+#     toPrint.append(stre)
+# print("time:", end-start)
+# print(len(target.labelList)) # print length of label list
+# print(str(toPrint))
 
-# print("\n", "*"*30, "BICRITERIA DIJKSTRA WITH BINARY SEARCH", "*"*30)
+########################
+##### BACKTRACKING #####
+# graphList = []
+# for label in target.labelList :
+#     printList = []
+#     nodeList = [label[2]]
+#     while label[3] != None :
+#         node = label[3]
+#         nodeList.append(node)
+#         lenList = len(node.labelList)
+#         index = label[5] if label[5] < lenList else lenList - 1
+#         label = node.labelList[index]
+#         printList.append(node.index)
+#     graphList.append(nodeList)
+    # print(*printList, sep="<-")
+
+from biCriteriaGraphPlotter import plotGraph
+plotGraph(graph, graphList, "Bicriteria", source, target)
+
+ #########################################################################################
+
 print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
 tmp_list = []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-
 
     dijkstraBiCrit(source, target, 0) # safest path => uses the target as source
     bestDanger = target.danger
@@ -63,78 +120,10 @@ for n in range (0, 1):
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
-# print("From {0.index} to {1.index} the solutions are:".format(source, target))
-# for distDang, alpha in infoList.items() :
-#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
-# print("time:", end - start)
-
-#  #########################################################################################
-
-
-print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
-initSingleNode(graph, source)
-
-tmp_list= []
-for n in range (0, 1):
-    initSingleNode(graph, source)
-    start = time.time()
-    #labelSettingAlgorithm(source, target)
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
-
-# toPrint = []
-
-# print("all paths to target", target.index, ":")
-# for label in target.labelList :
-#     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
-#     stre = "(" + str(label[0]) + ', ' + str(label[1]) + ")"
-#     toPrint.append(stre)
-# print("time:", end-start)
-print(len(target.labelList))
-# print(str(toPrint))
-
-########################
-# # ### BACKTRACKING V
-# label = target.labelList[0]
-# nodeList = [label[2].index]
-graphList = []
-# print(target.labelList)
-# for label in target.labelList :
-# label = target.labelList[len(target.labelList) - 1]
-# printList = []
-# nodeList = [label[2]]
-# # print(label[0])
-# summa = label[0]
-# sumList = []
-# while label[3] is not None :
-#     node = label[3]        # get predecessor
-#     nodeList.append(node)
-#     index = label[5] # if label[5] < lenList else lenList - 1
-#     # print(index)
-#     if label[2] != target :
-#         sumList.append(summa - label[0])
-#         summa = label[0]
-#     label = node.labelList[index] # get the label originator
-#     # print(label)
-#     printList.append(node.index)
-
-# Sum = sum(sumList)
-# # print("Value:", Sum)
-# nodeList.append(target)
-# graphList.append(nodeList)
-# printList = reversed(printList)
-# print(*printList, sep=", ")
-
-# from biCriteriaGraphPlotter import plotGraph
-# plotGraph(graph, graphList, "Bicriteria", source, target)
-
- #########################################################################################
-
 print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 
 tmp_list= []
-for n in range (0, 10):
+for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
     lowerBoundImprovement(graph, source, target)
@@ -142,8 +131,11 @@ for n in range (0, 10):
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
+#####################
+#####  RESULTS  #####
+#####################
 # print("all paths to target", target.index, ":")
 # for label in target.labelList :
 #     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
 # print("time:", end-start)
-print(len(target.labelList))
+# print(len(target.labelList))

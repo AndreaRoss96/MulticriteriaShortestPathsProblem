@@ -4,8 +4,8 @@ import time
 import random 
 import pandas as pds
 
-dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
@@ -32,9 +32,7 @@ source = graph[2000]
 target = graph[1]
 
 
-"""++++++++++++++++++++++++++++++++++++++++++++++++
-************** ONE -> ALL ****************
-"""
+########## ONE -> ALL ##########
 print("*"*40, "ONE TO ALL", "*"*40)
 initSingleNode(graph, source)
 
@@ -45,23 +43,21 @@ end = time.time()
 print("time:", end-start)
 print("from", source.index, "to", target.index, "the weight of the path is:", source.shortestPaths.get(target))
 
-dbgList = []
+######################
+#### BACKTRACKING ####
+######################
+# dbgList = []
 # pointer = target
 # while pointer != source :
 #     dbgList.append(pointer.index)
 #     pointer = pointer.predecessor
 # dbgList.append(pointer.index)
 # dbgList = reversed(dbgList)
+# print(*dbgList, sep="->")
 
-print(*dbgList, sep="->")
+################################
+########## ONE -> ONE ##########
 
-
-
-
-
-"""+++++++++++++++++++++++++++++++++++++++++++++++++
-************** ONE -> ONE ****************
-"""
 print("*"*40, "ONE TO ONE", "*"*40)
 initSingleNode(graph, source)
 
@@ -69,39 +65,36 @@ start = time.time()
 # dijkstraOneToOne(graph, source, target)
 end = time.time()
 
-# print("time:", end-start)
-# print("from",source.index, "to", target.index, "the weight of the path is:", target.minWeight)
+print("time:", end-start)
+print("from",source.index, "to", target.index, "the weight of the path is:", target.minWeight)
 
+######################
+#### BACKTRACKING ####
+######################
 # dbgList = []
-# graphList = []
 # pointer = target
 # while pointer != source :
 #     dbgList.append(pointer.index)
-#     graphList.append(pointer)
 #     pointer = pointer.predecessor
 # dbgList.append(target.index)
 # dbgList = reversed(dbgList)
 # print(*dbgList, sep="->")
 
-
-
-"""+++++++++++++++++++++++++++++++++++++++++++++++++
-************** LIST OF CANDIDATE ****************
-"""
+################################
+###### LIST OF CANDIDATE #######
 print("*"*40, "LIST OF CANDIDATE", "*"*40)
 initSingleNode(graph, source)
 
-tmp_list= []
+start = time.time()
+dijkstraListOfCandidate(source, target)
+end = time.time()
 
-for n in range (0, 1):
-    start = time.time()
-    dijkstraListOfCandidate(source, target)
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
-
+print("time:", end-start)
 print("from",source.index, "to", target.index, "the weight of the path is:", target.minWeight)
 
+######################
+#### BACKTRACKING ####
+######################
 dbgList = []
 graphList = []
 pointer = target
@@ -113,29 +106,24 @@ dbgList.append(pointer.index)
 dbgList = reversed(dbgList)
 print(*dbgList, sep="->")
 
-plotGraph(graph, reversed(graphList), "one to one")
+plotGraph(graph, reversed(graphList), "list of candidate", source, target)
 
 
-
-
-
-"""+++++++++++++++++++++++++++++++++++++++++++++++++
-************** A STAR ****************
-"""
+############################
+########## A STAR ##########
 print("*"*40, "A STAR", "*"*40)
 initSingleNode(graph, source)
 
-tmp_list = []
+start = time.time()
+a_star(source, target)
+end = time.time()
 
-for n in range (0, 1):
-    start = time.time()
-    a_star(source, target)
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
-
+print("time:", end-start)
 print("from",source.index, "to", target.index, "the weight of the path is:", target.minWeight)
 
+######################
+#### BACKTRACKING ####
+######################
 dbgList = []
 graphList = []
 pointer = target
@@ -148,4 +136,4 @@ dbgList = reversed(dbgList)
 
 print(*dbgList, sep="->")
 
-plotGraph(graph, reversed(graphList), "A *")
+plotGraph(graph, reversed(graphList), "A_Star", source, target)

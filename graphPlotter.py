@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 nodeList = []
 
-def plotGraph(graph, nodes, title) :
+def plotGraph(graph, nodes, title, source, target) :
     
     xdata = []
     ydata = []
@@ -26,6 +26,10 @@ def plotGraph(graph, nodes, title) :
     plt.plot(vydata, vxdata, 'y.', markersize=1)
     plt.plot(ydata, xdata, '.', markersize=1)
     plt.plot(pydata, pxdata, 'r-', markersize=1)
+
+    plt.plot(source.longitude, source.latitude, 'go')
+    plt.plot(target.longitude, target.latitude, 'ro')
+
     plt.title(title)
 
     plt.show()

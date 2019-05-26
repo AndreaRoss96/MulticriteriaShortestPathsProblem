@@ -31,15 +31,8 @@ def plotGraph(graph, resultsList, title, source, target) :
     plt.plot(vydata, vxdata, 'y.', markersize=1)
     plt.plot(ydata, xdata, '.', markersize=1)
 
-    # dim = len(totpxData) -1
-
-    # for i in range(0, len(totpyData)) :
     plt.plot(totpyData[0], totpxData[0], 'r-', markersize=1)
-    # miny, minx = list(totpyData[0]), list(totpxData[0])
-    # plt.plot(miny, minx, "r-")
-
-    # plt.plot(totpyData[dim], totpxData[dim], 'rs', markersize=1)
-
+    
     plt.plot(source.longitude, source.latitude, 'go')
     plt.plot(target.longitude, target.latitude, 'ro')
     plt.title(title)

@@ -114,14 +114,25 @@ The analysis focuses on the evolution and optimization of the following algorith
 Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arches with positive weights.\\
 Different implementation of this algorithm are present in this paper, as follows are all explained.
 
+%TODO: AGGIUNGI PSEUDOCODICE
+
 \subsection{One to all}
-This implementation is useful to find all the shortest path from a source node to each other graph's nodes. The starting node will save a dictionary where there is a key for each reached node and the respective value of distance.
-It implement a \textit{pryority queue} so the complexity of this implementation is $O((|V|+|E|)\log(|V|))$ where $V$ is the number of vertices and $E$ the number of edges. In the worst case, so where $E>>V$, the time complexity is $(|E|\log(|V|))$.
-Implementation's details are explained in the dedicated section.
+This implementation is useful to find \textbf{all the shortest path} from a source node to each other graph's nodes. The starting node will save a dictionary where there is a key for each reached node and the respective value of distance.
+It implement a \textit{priority queue} so the complexity of this implementation is $O((|V|+|E|)\log(|V|))$ where $V$ is the number of vertices and $E$ the number of edges. In the worst case, so where $E>>V$, the time complexity is $(|E|\log(|V|))$.
+\subsubsection*{implementation's details}
+%TODO; lunica cosa da dire qua mi sembra che sia soltanto che l'algoritmo cicla finché non finisce
 
 \subsection{One to one}
+This implementation focuses to find the shortest path between the node source and the target, using the classical implementation of Dijkstra's algorithm.\\
+The difference from this to the previous implementation is that this doesn't use a priority queue, but the algorithm will interrogate each not-visited node every loop; this is very time consuming, in fact the complexity of this implementation is $NON_LO_SO, MI_SA_O(|V^2|)$.
+%TODO: controlla la grammatica qua
+%la differenza tra questa e la precedente implementazione sta nel fatto che questa non implementa 
 
+\subsection{List of candidate}
+The last version of Dijkstra's algorithm is an implementation that uses a priority queue. The elements of this queue are insert by each new visited node, so the queue's elements are the neighbors of the visited node; in this way the algorithm needs to interrogate only some nodes and not all graphs.\\
+The list of candidate algorithm has the same \textit{worst-case complexity} of the \textit{One to all} algorithm: $O((|V|+|E|)\log(|V|))$
 
+This implementation is faster than the previous: details of miglioramento are visualized and studied in the dedicated section
 
 \begin{itemize}
  \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.

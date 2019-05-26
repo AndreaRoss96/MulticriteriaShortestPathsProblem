@@ -66,8 +66,6 @@ def labelSettingAlgorithm(source, target) :
 def __usableLabel(newLabel, oldLabel, labelsList) :
     if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :  # 1st case, this label is useless
         return False
-    # elif newLabel[0] < oldLabel[0] and newLabel[1] < oldLabel[1] :  # 2nd case, this label dominate a label
-    #     # labelsList.remove(oldLabel)
     return True                                                     # 3rd case, this label can't/isn't dominate/d
 
 def __isDominated(newLabel, labelList) :
@@ -120,13 +118,9 @@ def lowerBoundImprovement(graph, source, target) :
             else :
                 checkLabel = newLabel
 
-            if __isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on
-                    #print("porcodio")
+            if __isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on                
                 continue # restart 'for' loop with another nextNode
-            # elif ending :
-            #     if __isDominated(newLabel, target.labelList) :
-            #         continue # restart 'for' loop if the new label is dominated
-
+            
             for label in nextNode.labelList :
                 if not __usableLabel(newLabel, label, nextNode.labelList) :
                     useLabel = False

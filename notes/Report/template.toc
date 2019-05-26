@@ -5,12 +5,13 @@
 \contentsline {section}{\numberline {2.1}Dijkstra's algorithms}{5}
 \contentsline {subsection}{\numberline {2.1.1}One to all}{5}
 \contentsline {subsection}{\numberline {2.1.2}One to one}{5}
+\contentsline {subsection}{\numberline {2.1.3}List of candidate}{6}
 \contentsline {section}{\numberline {2.2}Design dettagliato}{7}
-\contentsline {chapter}{\numberline {3}Sviluppo}{11}
-\contentsline {section}{\numberline {3.1}Testing automatizzato}{11}
-\contentsline {section}{\numberline {3.2}Metodologia di lavoro}{12}
-\contentsline {section}{\numberline {3.3}Note di sviluppo}{13}
-\contentsline {chapter}{\numberline {4}Commenti finali}{16}
-\contentsline {section}{\numberline {4.1}Autovalutazione e lavori futuri}{16}
-\contentsline {section}{\numberline {4.2}Difficolt\IeC {\`a} incontrate e commenti per i docenti}{16}
-\contentsline {chapter}{\numberline {A}Guida utente}{18}
+\contentsline {chapter}{\numberline {3}Sviluppo}{12}
+\contentsline {section}{\numberline {3.1}Testing automatizzato}{12}
+\contentsline {section}{\numberline {3.2}Metodologia di lavoro}{13}
+\contentsline {section}{\numberline {3.3}Note di sviluppo}{14}
+\contentsline {chapter}{\numberline {4}Commenti finali}{17}
+\contentsline {section}{\numberline {4.1}Autovalutazione e lavori futuri}{17}
+\contentsline {section}{\numberline {4.2}Difficolt\IeC {\`a} incontrate e commenti per i docenti}{17}
+\contentsline {chapter}{\numberline {A}Guida utente}{19}
