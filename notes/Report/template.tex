@@ -14,7 +14,7 @@
 \usepackage{amssymb}
 % Remove option to use English naming
 \usepackage[english]{cleveref}
-
+\graphicspath{ {img/} }
 
 \title{Supervised Project ``Bicriteria Paths Problem''}
  
@@ -81,16 +81,7 @@ So we said that each $c^k_{i,j}$ refers to one of the two costs of each arch $(i
 \begin{gather}c^1(p_{s,t})=\sum_{(i,j)\in p}c^1_{i,j}\end{gather}
 \begin{gather}c^2(p_{s,t})=\sum_{(i,j)\in p}c^2_{i,j}\end{gather}
 Our purpose is to \textbf{minimize} the $(1.2)$ to find the shortest path or the $(1.3)$ to find the safest one.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%SPOSTA LA DEFINIZIONE NELL'ANALISI DEL BICRITERIA ALGORITHM%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\begin{definition}{Definition}
-	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. We say $x$ \emph{dominates} $y$ if and only of $c^k(x) \leq c^k(y)$ $\forall$ $k \in [1,2]$
-\end{definition}
-%AGGINGI ANCHE QUELLA SU PARETO FRONT SE RIESCI
-%%%%%%%%%%%%%%%%%%%%
+
 
 %\subsection*{Elementi positivi}
 %\begin{itemize}
@@ -132,94 +123,43 @@ The difference from this to the previous implementation is that this doesn't use
 The last version of Dijkstra's algorithm is an implementation that uses a priority queue. The elements of this queue are insert by each new visited node, so the queue's elements are the neighbors of the visited node; in this way the algorithm needs to interrogate only some nodes and not all graphs.\\
 The list of candidate algorithm has the same \textit{worst-case complexity} of the \textit{One to all} algorithm: $O((|V|+|E|)\log(|V|))$
 
-This implementation is faster than the previous: details of miglioramento are visualized and studied in the dedicated section
+This implementation is faster than the previous: details of improvement are visualized and studied in the dedicated section.
 
-\begin{itemize}
- \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.
- \item Si mette in evidenza se e come il pattern architetturale model-view-controller è stato applicato, anche con l'uso di un UML che mostri le interfacce principali ed i rapporti fra loro.
- \item Si discute se sia semplice o meno, con l'architettura scelta, sostituire in blocco la view senza toccare minimamente il controller. Va da sé che, se cambiare la UI si trasforma in un bagno di sangue che impatta controller o modello, il design architetturale non è stato fatto in modo adeguato.
-\end{itemize}
+\section{''A Star'' algorithm}
 
-\subsection*{Elementi negativi}
-\begin{itemize}
- \item L'architettura è fatta in modo che sia impossibile riusare il modello per un software diverso che affronta lo stesso problema.
- \item L'architettura è tale che l'aggiunta di una funzionalità sul controller impatta pesantemente su view e/o modello.
- \item L'architettura è tale che la sostituzione in blocco della view impatta sul controller o, peggio ancora, sul modello.
- \item Si presentano UML caotici, difficili da leggere.
- \item Si presentano UML in cui sono mostrati elementi di dettaglio non appartenenti all'architettura, ad esempio includenti campi o con metodi che non interessano la parte di interazione fra le componenti principali del software.
- \item Si presentano schemi UML con classi (nel senso UML del termine) che ``galleggiano'' nello schema, non connesse, ossia senza relazioni con il resto degli elementi inseriti.
- \item Si presentano elementi di design di dettaglio, ad esempio tutte le classi e interfacce del modello o della view.
- \item Si discutono aspetti implementativi, ad esempio eventuali librerie usate oppure dettagli di codice.
-\end{itemize}
-
-\subsection*{Esempio}
-L'architettura di GLaDOS segue il pattern architetturale ECB.
-GLaDOS implementa l'interfaccia AI, ed è l'effettivo controller del sistema.
-Essendo una intelligenza artificiale, è una classe attiva.
-GLaDOS accetta la registrazione di Input ed Output.
-Gli Input rappresentano delle nuove informazioni che vengono fornite all'IA, ad esempio delle modifiche nel valore di un sensore, oppure un comando da parte dell'operatore.
-Questi input infatti forniscono eventi.
-Ottenere un evento è un'operazione bloccante: chi la esegue resta in attesa di un effettivo evento.
-Ogni volta che c'è un cambio alla situazione del soggetto, GLaDOS notifica i suoi Output, informandoli su quale sia la situazione corrente.
-
-Con questa architettura, possono essere aggiunti un numero arbitrario di input ed output all'intelligenza artificiale.
-
-In \Cref{img:goodarch} è esemplificato il diagramma UML architetturale.
-
-\begin{figure}
-\centering{}
-%\includegraphics[width=\textwidth]{img/arch}
-\caption{Schema UML architetturale di GLaDOS}
-\label{img:goodarch}
+\section{Analysis of results}
+This paragraph shows the principal characteristics and results of each implementation.
+\subsection{Time consuming} 
+In the figure \ref{fig:monoCriteriaOutput} are shown some results, from 15 different iteration, classified in three "set" that groups different path's length.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{monoCriteriaOutput.png}
+	\caption{Performance of the mono-criteria algorithms}
+	\label{fig:monoCriteriaOutput}
 \end{figure}
+As possible to get from the table, we can recognize that the first column, '\textit{one$\to$all}', has a pretty much constant elaboration time (it comprehends the algorithm's work completion and the research in target node's attribute the distance from source). From the data of \textit{one$\to$one} algorithm is easily to recognize that the implementation without a priority queue is unsustainably slow, especially in the longest paths. From the latest two algorithm is possible to see that the \textit{A Star}'s implementation is more the 3 times faster than the \textit{List of candidate}, than from his part is near to be ten times more performing than the one to all implementation (which uses a priority queue).
 
+\subsection{Node visited}
 
-\section{Design dettagliato}
+All the implementation are going to find the same paths between nodes; in particular all the implementation (except for the \textit{A Star}'s algorithm) explore the same nodes, instead, the 'not-Dijkstra's algorithm', explores less number of nodes, this means that it makes less loops during the elaboration and research of the shortest path.
 
-In questa sezione si possono approfondire alcuni elementi del design con maggior dettaglio.
-%
-Mentre ci attendiamo principalmente (o solo) interfacce negli schemi UML delle sezioni precedenti, in questa sezione è necessario scendere in maggior dettaglio presentando la struttura di alcune sottoparti rilevanti dell'applicazione.
-%
-È molto importante che, descrivendo un problema, quando possibile si mostri che non si è re-inventata la ruota ma si è applicato un design pattern noto.
-%
-È assolutamente inutile, ed è anzi controproducente, descrivere classe-per-classe (o peggio ancora metodo-per-metodo) com'è fatto il vostro software: è un livello di dettaglio proprio della documentazione dell'API (deducibile dalla Javadoc).
+In the following images is shown how, researching the shortest path, the algorithms visit nodes in a different way:\\
+Dijkstra's algorithm (\textit{list of candidate}) makes a research more "circling" around the source (big green point), instead the 'A Star', for his nature, is more direct and it reaches the target exploring an "oval" between the starting nodes and the target. So is easy to see and understand how the last implementation is more efficient than the others.  
+%TODO: add images of paths
 
-\textbf{È necessario che ciascun membro del gruppo abbia una propria sezione di design dettagliato, di cui sarà responsabile}.
-%
-Ciascun autore dovrà spiegare in modo corretto e giustamente approfondito (non troppo in dettaglio, non superficialmente) il proprio contributo.
-%
-È importante focalizzarsi sulle scelte che hanno un impatto positivo sul riuso, sull'estensibilità, e sulla chiarezza dell'applicazione.
-%
-Usare correttamente i design pattern in questa sezione è molto importante: se vengono utilizzati, si ha la garanzia che quanto fatto sia conforme allo stato dell'arte.
+\chapter{Bicriteria algorithms}
 
-Esattamente come nessun ingegnere meccanico presenta un solo foglio con l'intero progetto di una vettura di Formula 1, ma molteplici fogli di progetto che mostrano a livelli di dettaglio differenti le varie parti della vettura e le modalità di connessione fra le parti, così ci aspettiamo che voi, futuri ingegneri informatici, ci presentiate prima una visione globale del progetto, e via via siate in grado di dettagliare le singole parti, scartando i componenti che non interessano quella in esame.
-%
-Per continuare il parallelo con la vettura di Formula 1, se nei fogli di progetto che mostrano il design delle sospensioni anteriori appaiono pezzi che appartengono al volante o al turbo, vuol dire che c'è qualche grosso problema di design.
+In this chapter are explained the algorithms implemented to studying the case of a graph with arches having two different weights.
+Keeping in mind the mathematical explanation made in the introduction, we can enunciate some definitions:
 
-\subsection*{Elementi positivi}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\begin{definition}{Definition}
+	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. We say $x$ \emph{dominates} $y$ if and only of $c^k(x) \leq c^k(y)$ $\forall$ $k \in [1,2]$
+\end{definition}
+%AGGINGI ANCHE QUELLA SU PARETO FRONT SE RIESCI
+%%%%%%%%%%%%%%%%%%%%
 
-\begin{itemize}
-	\item Ogni membro del gruppo discute le proprie decisioni di progettazione, ed in particolare le azioni volte ad anticipare possibili cambiamenti futuri (ad esempio l'aggiunta di una nuova funzionalità, o il miglioramento di una esistente).
-	\item Si identificano ed utilizzano numerosi design pattern.
-	\item Ogni membro del gruppo identifica i pattern utilizzati nella sua sottoparte.
-	\item Si mostrano gli aspetti di design più rilevanti dell'applicazione, mettendo in luce la maniera in cui si è costruita la soluzione ai problemi descritti nell'analisi.
-	\item Si tralasciano aspetti strettamente implementativi e quelli non rilevanti, non mostrandoli negli schemi UML (ad esempio, campi privati) e non descrivendoli.
-	\item Si mostrano le principali interazioni fra le varie componenti che collaborano alla soluzione di un determinato problema.
-	\item Ciascun design pattern identificato presenta una piccola descrizione del problema calato nell'applicazione, uno schema UML che ne mostri la concretizzazione nelle classi del progetto, ed una breve descrizione della motivazione per cui tale pattern è stato scelto.
-	\item La divisione in package rispecchia l'architettura e consente di navigare facilmente il sorgente, dando brevi giustificazione alle scelte fatte.
-\end{itemize}
-
-\subsection*{Elementi negativi}
-\begin{itemize}
-	\item Il design del modello risulta scorrelato dal problema descritto in analisi.
-	\item Si tratta in modo prolisso, classe per classe, il software realizzato.
-	\item Non si presentano schemi UML esemplificativi.
-	\item Non si individuano design pattern, o si individuano in modo errato (si spaccia per design pattern qualcosa che non lo è).
-	\item Si producono schemi UML caotici e difficili da leggere, che comprendono inutili elementi di dettaglio.
-	\item Si presentano schemi UML con classi (nel senso UML del termine) che ``galleggiano'' nello schema, non connesse, ossia senza relazioni con il resto degli elementi inseriti.
-	\item Si tratta in modo inutilmente prolisso la divisione in package, elencando ad esempio le classi una per una.
-	\item La divisione in package non rispecchia l'architettura, o è caotica.
-\end{itemize}
 
 % \subsection*{Esempio di buona suddivisione in package}
 % L'applicazione è stata divisa in tre sottoparti logiche, come descritto nell'architettura: Model, Controller e Boundary. Maggiori dettagli sulle scelte fatte:
