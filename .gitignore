@@ -1,3 +1,10 @@
 *.pyc
 *.txt
 *.ipynb
+*.pdf
+*.bbl
+*.pyg
+*.blg
+*.toc
+*.log
+*.gz

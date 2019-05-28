@@ -19,7 +19,6 @@ def dijkstraBiCrit(source, target, alpha) :
     while not listOfCandidate.empty() :
         actualNode = listOfCandidate.getMin()
         actualNode.visited = True
-        ##
         visitedNodes.append(actualNode)
 
         if target.visited :
@@ -41,8 +40,7 @@ def dijkstraBiCrit(source, target, alpha) :
                 elif alpha == 1 :
                     if nextNode.bestLabel[0] is None or nextNode.bestLabel[0] > nextNode.danger :
                         nextNode.bestLabel[0] = nextNode.distance
-    return visitedNodes # per risolvere questo problema potrei o far tornare la lista dei nodi visitati, o fare un'altra funzione
-
+    return visitedNodes
 
 def dijkstraBiCrIteration(graph, source, target, increaseVal) :
     """
