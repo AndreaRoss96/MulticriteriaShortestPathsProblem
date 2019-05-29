@@ -41,11 +41,9 @@ def dijkstraOneToOne(graph, source, target):
 
 def dijkstraListOfCandidate(source, target):
     listOfCand = PriorityQueue()
-    # counter = 0
     listOfCand.put(source, 0)
     while not listOfCand.empty() :
         actualNode = listOfCand.getMin()
-        # counter = counter + 1
         actualNode.visited = True
 
         if target.visited :

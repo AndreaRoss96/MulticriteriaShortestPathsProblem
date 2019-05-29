@@ -15,8 +15,8 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
-source = graph[15426]
-target = graph[2070] #5142 or 2886
+source = graph[2000]
+target = graph[2689] #5142 or 2886
 
 # print("s:", source.index, "-> t:", target.index)
 
@@ -31,7 +31,7 @@ tmp_list= []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    binarySearchDijkBiCr(graph, source, target)
+    infoList = binarySearchDijkBiCr(graph, source, target)
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -39,10 +39,19 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
-# print("From {0.index} to {1.index} the solutions are:".format(source, target))
-# for distDang, alpha in infoList.items() :
-#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
-# print("time:", end - start)
+print("From {0.index} to {1.index} the solutions are:".format(source, target))
+toPrint = []
+toGraph = []
+for distDang, alpha in infoList.items() :
+    # print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
+    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+    toPrint.append(stringa)
+    toGraph.append((distDang[0], distDang[1]))
+print("time:", end - start)
+print(*toPrint)
+from graphPlotter import paretoGraph
+paretoGraph(toGraph)
+
 
 ######################
 #### BACKTRACKING ####
@@ -72,8 +81,20 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
+toPrint = []
+toParetoGrap = []
+for label in target.labelList :
+    # print("distance:", label[0], "danger:", label[1], "predecessor:", label[3].index)
+    stringa = "({0}, {1}),".format(label[0], label[1])
+    toPrint.append(stringa)
+    toParetoGrap.append((label[0], label[1]))
+print("time:", end - start)
+print(*toPrint)
+
+from graphPlotter import doubleParetoGraph
+doubleParetoGraph(toGraph, toParetoGrap)
 # toPrint = []
-# print("all paths to target", target.index, ":")
+# print("From {0.index} to {1.index} the solutions are:".format(source, target))
 # for label in target.labelList :
 #     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
 #     stre = "(" + str(label[0]) + ', ' + str(label[1]) + ")"
@@ -98,8 +119,8 @@ for label in target.labelList :
     graphList.append(nodeList)
     # print(*printList, sep="<-")
 
-from biCriteriaGraphPlotter import plotGraph
-plotGraph(graph, graphList, "Bicriteria", source, target)
+from graphPlotter import bicriteriaPlotGraph
+bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
  #########################################################################################
 

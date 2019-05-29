@@ -93,13 +93,18 @@ The analysis focuses on the evolution and optimization of the following algorith
 Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arches with positive weights.\\
 Different implementation of this algorithm are present in this paper, as follows are all explained.
 
-%TODO: AGGIUNGI PSEUDOCODICE
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{img/dijkstraLoC.png}
+	\caption{Pseudocode - Dijkstra (List of Candidates)}
+	\label{fig:dijkstraLoC}
+\end{figure}
 
 \subsection{One to all}
 This implementation is useful to find \textbf{all the shortest path} from a source node to each other graph's nodes. The starting node will save a dictionary where there is a key for each reached node and the respective value of distance.
-It implement a \textit{priority queue} so the complexity of this implementation is $O((|N|+|A|)\log(|N|))$ where $N$ is the number of vertices and $A$ the number of edges. In the worst case, so where $A>>N$, the time complexity is $(|A|\log(|N|))$.
-\subsubsection*{implementation's details}
-%TODO; lunica cosa da dire qua mi sembra che sia soltanto che l'algoritmo cicla finché non finisce
+It implement a \textit{priority queue} so the complexity of this implementation is $O((|N|+|A|)\log_2(|N|))$ where $N$ is the number of vertices and $A$ the number of edges. In the worst case, so where $A>>N$, the time complexity is $(|A|\log_2(|N|))$.
+
+This implementation explores all the nodes reachable from the source; so it doesn't stop until the graph is totally explored.
 
 \subsection{One to one}
 This implementation focuses to find the shortest path between the node source and the target, using the classical implementation of Dijkstra's algorithm.\\
@@ -109,7 +114,7 @@ The difference from this to the previous implementation is that this doesn't use
 
 \subsection{List of candidate}
 The last version of Dijkstra's algorithm is an implementation that uses a priority queue. The elements of this queue are insert by each new visited node, so the queue's elements are the neighbors of the visited node; in this way the algorithm needs to interrogate only some nodes and not all graphs.\\
-The list of candidate algorithm has the same \textit{worst-case complexity} of the \textit{One to all} algorithm: $O((|N|+|A|)\log(|N|))$.
+The list of candidate algorithm has the same \textit{worst-case complexity} of the \textit{One to all} algorithm: $O((|N|+|A|)\log_2(|N|))$.
 
 This implementation is faster than the previous: details of improvement are visualized and studied in the dedicated section.
 
@@ -176,11 +181,42 @@ Keeping in mind the mathematical explanation made in the introduction, we can en
 \section{Dijkstra applied to bicriteria}
 So, by the fact that we have to deal with two criterion, it's possible to introduce another variable: $\alpha$.\\
 We also can now set the following variables: the distance $dist=c^1$ and the danger $dang=c^2$.\\
-According with the function: $$\alpha\ dist + (1-\alpha) dang = k $$ \begin{center}
+According with the function: 
+\begin{equation}\label{eq:pareto front}
+	\alpha*dist + (1-\alpha) dang = k
+\end{equation}
+\begin{center}
 	where $k$ is constant and $\alpha \in [0, 1]$.
 \end{center}
-We can say that the graph we have $G=(N,V,dist,dang)$ is reducible to $G=(N,V,\alpha\ dist + (1-\alpha) dang)$ and we can address the problem as the previous case, so using Dijkstra's algorithm (list of candidates) giving a value to $\alpha$.\\
-It is easy to deduce that more $\alpha$ is near to $0$ we are finding the safest paths, instead, more $\alpha$ is near to $1$ we are finding the shortest. 
+We can say that our graph $G=(N,V,dist,dang)$ is reducible to $G=(N,V,\alpha*dist + (1-\alpha) dang)$ and we can address the problem as the previous case, so using Dijkstra's algorithm (list of candidates) giving a value to $\alpha$.\\
+It is easy to deduce that plus the value of $\alpha$ approaches $0$ means to find safest paths, instead, more $\alpha$ is near to $1$ means that we'll found shortest paths.
+
+\vspace{5mm}
+
+The algorithm's implementation is similar to Dijkstra's list of candidate, but with the difference that this version needs in input, as well as the source and the target, the value of $\alpha$; then, using \eqref{eq:pareto front}, the algorithm will choose the optimal path.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{img/bicriteriaDijkstra.png}
+	\caption{Pseudocode - Dijkstra with two criterion}
+	\label{fig:bicriteriaDijkstra}
+\end{figure}
+\
+\subsection{Application of Bicrtieria Dijkstra}
+The aforementioned algorithm is able to identify the most of the solution 
+To use aforementioned algorithm, have been implemented two different functions.
+
+\subsubsection{Bicriteria Dijkstra iteration}
+This is a very raw version, its operation is based on recalling the pathfinding function, a lot of time, but every time with a different value for $\alpha$.
+
+It is very time consuming, because it has to call the same function a lot of time and probably with the same result, and its precision is related to the increasing value for $\alpha$.
+
+\subsubsection{Bicriteria Dijkstra with binary research}
+This version is an "evolution" of the last one, because it uses \textit{binary research}. It is based on calling the function at least two time: with $\alpha = 0$ and $\alpha=1$, then, if the result is different, with $\alpha=0.5$, again, if the result is different with $\alpha=\alpha/2$, and so on and so on; until there's no more solution.
+
+This version is more efficient and precise than the other one.
+
+%TODO: make a little proof of this
 
 % \subsection*{Esempio di buona suddivisione in package}
 % L'applicazione è stata divisa in tre sottoparti logiche, come descritto nell'architettura: Model, Controller e Boundary. Maggiori dettagli sulle scelte fatte:

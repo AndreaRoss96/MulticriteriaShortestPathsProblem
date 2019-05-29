@@ -33,6 +33,8 @@ take snap of
 Paris 2070->15426
 Paris 2000->2689
 Berlin 1000->1510
+also in bicriteria
+
 """
 source = graph[1000]
 target = graph[1510]
