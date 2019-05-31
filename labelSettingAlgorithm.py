@@ -9,12 +9,11 @@ def labelSettingAlgorithm(source, target) :
               [0]    [1]    [2]       [3]           [4]          [5]
     
     Step 0 :
-        create first label (0, 0, source, null)
+        create first label (0, 0, source, null, 0, null)
         and put it in the labelSet (a priorityQueue)
     Step 1 :
         if labelSet.empty() -> step 4
         else select the label w/ the less distance and calc the label of the neighbors
-        NO -> (if the current label == target -> step 4)
     Step 2 :
         foreach neighbor of the current label calc
             What to do when i found a new label for a node : - 3 possibility
@@ -81,12 +80,12 @@ def __isDominated(newLabel, labelList) :
     return False
 
 def lowerBoundImprovement(graph, source, target) :
-    visitedNodes = dijkstraBiCrit(source, target, 0) # safest path => uses the target as source
+    visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
     bestDanger = target.danger
     
     initSingleNode(visitedNodes, source)
 
-    dijkstraBiCrit(source, target, 1) # shortest path => "
+    dijkstraBiCrit(source, target, 1) # shortest path
     bestDistance = target.distance
 
     labelQueue = PriorityQueue()
@@ -108,7 +107,7 @@ def lowerBoundImprovement(graph, source, target) :
             newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
 
-            if nextNode.bestLabel[0] is not None and nextNode.bestLabel[1] is not None :    # if the best label is present in complete enter
+            if nextNode.bestLabel[0] is not None and nextNode.bestLabel[1] is not None :    # if the best label is present, enter
                 checkDistance = bestDistance - nextNode.bestLabel[0]
                 checkDanger = bestDanger - nextNode.bestLabel[1]
                 if checkDanger > 0 and checkDistance > 0 :  # if the values are negative is useless to check
