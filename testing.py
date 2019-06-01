@@ -1,4 +1,4 @@
-from node import Node
+from Node import Node
 from setup import graphBuilder
 import time
 import random 

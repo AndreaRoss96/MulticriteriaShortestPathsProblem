@@ -59,7 +59,7 @@ def labelSettingAlgorithm(source, target) :
                     labelQueue.put(newLabel, newLabel[0])
                 else :
                     ending = True
-    print("Loops:", counter)
+    #print("Loops:", counter)
 
 
 def __usableLabel(newLabel, oldLabel, labelsList) :
@@ -128,7 +128,7 @@ def lowerBoundImprovement(graph, source, target) :
                 nextNode.labelList.append(newLabel)
                 if nextNode != target :
                     labelQueue.put(newLabel, newLabel[0])
-    print("Loops:", counter)
+    #print("Loops:", counter)
 
 
 

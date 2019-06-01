@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  31 MAY 2019 12:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  1 JUN 2019 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -725,11 +725,11 @@ File: img/bicriteriaDijkstra.png Graphic file (type png)
 Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 207.
 (pdftex.def)             Requested size: 360.0pt x 153.00159pt.
  [10 <./img/bicriteriaDijkstra.png>]
-<img/biCriteriaOutput.png, id=58, 505.89pt x 482.80376pt>
+<img/biCriteriaOutput.png, id=58, 505.89pt x 507.8975pt>
 File: img/biCriteriaOutput.png Graphic file (type png)
 <use img/biCriteriaOutput.png>
 Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 228.
-(pdftex.def)             Requested size: 360.0pt x 343.57397pt.
+(pdftex.def)             Requested size: 360.0pt x 361.43124pt.
 <img/graphDijkstraBicrit.png, id=59, 462.528pt x 346.896pt>
 File: img/graphDijkstraBicrit.png Graphic file (type png)
 <use img/graphDijkstraBicrit.png>
@@ -746,7 +746,14 @@ Underfull \hbox (badness 1888) in paragraph at lines 246--246
  []
 
 [11 <./img/biCriteriaOutput.png>] [12 <./img/graphDijkstraBicrit.png> <./img/gr
-aphLabelsetting.png>] [13] [14]
+aphLabelsetting.png>] [13]
+<img/labelSettingComplexity.png, id=79, 581.17125pt x 224.84pt>
+File: img/labelSettingComplexity.png Graphic file (type png)
+<use img/labelSettingComplexity.png>
+Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 303
+.
+(pdftex.def)             Requested size: 360.0pt x 139.27585pt.
+ [14 <./img/labelSettingComplexity.png>]
 Chapter 4.
 [15
 
@@ -754,25 +761,25 @@ Chapter 4.
 Chapter 5.
 [16
 
-]
+] [17]
 Chapter 6.
-(./template.bbl [17
+(./template.bbl [18
 
 ]
 Underfull \hbox (badness 1888) in paragraph at lines 4--8
 []\OT1/cmr/m/n/10.95 M. Mat-sumoto and T. Nishimura.  Mersenne twister: A 623-
  []
 
-) [18
+) [19
 
 ] (./template.aux
 Package cleveref Info: loaded `english' language definitions on input line 2.
 ) ) 
 Here is how much of TeX's memory you used:
- 6782 strings out of 492982
- 108266 string characters out of 6134896
- 208924 words of memory out of 5000000
- 10210 multiletter control sequences out of 15000+600000
+ 6789 strings out of 492982
+ 108488 string characters out of 6134896
+ 207924 words of memory out of 5000000
+ 10216 multiletter control sequences out of 15000+600000
  15616 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,26p,751b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -790,10 +797,10 @@ y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on template.pdf (20 pages, 566014 bytes).
+Output written on template.pdf (21 pages, 573381 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
+ 147 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

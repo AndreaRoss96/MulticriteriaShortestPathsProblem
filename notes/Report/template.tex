@@ -45,7 +45,7 @@ The most important part of the paper is the one that analyze the paths of a grap
 \tableofcontents
 
 \chapter{Introduction}
-Dijkstra's algorithm, as already mentioned above, is widely used to find shortest path in routing problems that's use graphs with not-negative, static values. But this algorithm takes into consideration only one "dimension" of costs; for example, to calculate a path from the source node to the destination, distance is the result of adding up the length between two nodes segment by segment.
+Dijkstra's algorithm, as already mentioned above, is widely used to find shortest path in routing problems that's use graphs with not-negative, static values. But this algorithm takes into consideration only one ``dimension'' of costs; for example, to calculate a path from the source node to the destination, distance is the result of adding up the length between two nodes segment by segment.
 %
 But the problem faced in our study considers two criteria for choosing the wanted path: the first cost defines the distance, while the second one represent the danger. So, the problem with Dijkstra is that we will found a path very short, but very dangerous, or vice versa. Concerning multicriteria shortest path problem is intended to determine a path that optimizes the costs from a source to the target, but, in general, there is no a single optimal solution, so the goal of this project is to determinate a set of feasible and not-dominated solution, founding different paths 
 based on the two criteria, so is not sufficient minimizing distance or danger, but the relations between this two values.
@@ -125,8 +125,8 @@ The list of candidate algorithm has the same \textit{worst-case complexity} of t
 
 This implementation is faster than the previous: details of improvement are visualized and studied in the dedicated section.
 
-\section{''A Star'' algorithm}
-The A Star algorithm (or 'A*') is almost an extension of Dijkstra's algorithm, but it achieves better performance and accuracy by using (generically) heuristics. To determinate which of its paths to extend, A* does so based on the cost of the path and an estimate of the cost required to expand the path to the goal.
+\section{``A Star'' algorithm}
+The A Star algorithm (or `A*') is almost an extension of Dijkstra's algorithm, but it achieves better performance and accuracy by using (generically) heuristics. To determinate which of its paths to extend, A* does so based on the cost of the path and an estimate of the cost required to expand the path to the goal.
 
 So A* select nodes that minimize:
 $$ f(n) = g(n) + h(n)$$
@@ -152,7 +152,7 @@ where $i$ is a node of the graph and $t$ the target, $x$ and $y$ are latitude an
 \section{Analysis of the results}
 This paragraph shows the principal characteristics and results of each implementation.
 \subsection{Time consuming} 
-In the figure \ref{fig:monoCriteriaOutput} are shown some results, from 15 different iteration, classified in three "set" that groups different path's length.
+In the figure \ref{fig:monoCriteriaOutput} are shown some results, from 15 different iteration, classified in three ``set" that groups different path's length.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{monoCriteriaOutput.png}
@@ -166,7 +166,7 @@ As possible to get from the table, we can recognize that the first column, '\tex
 All the implementation are going to find the same paths between nodes; in particular all the implementation (except for the \textit{A Star}'s algorithm) explore the same nodes, instead, the 'not-Dijkstra's algorithm', explores less number of nodes, this means that it makes less loops during the elaboration and research of the shortest path.
 
 In the following images is shown how, researching the shortest path, the algorithms visit nodes in a different way:\\
-Dijkstra's algorithm (\textit{list of candidate}) makes a research more "circling" around the source (big green point), instead the 'A Star', for his nature, is more direct and it reaches the target exploring an "oval" between the starting nodes and the target. So is easy to see and understand how the last implementation is more efficient than the others.  
+Dijkstra's algorithm (\textit{list of candidate}) makes a research more ``circling" around the source (big green point), instead the 'A Star', for his nature, is more direct and it reaches the target exploring an ``oval" between the starting nodes and the target. So is easy to see and understand how the last implementation is more efficient than the others.  
 %TODO: add images of paths
 
 \chapter{Bicriteria algorithms}
@@ -219,7 +219,7 @@ This is a very raw version, its operation is based on recalling the pathfinding 
 The time consuming is related to the chosen precision (the increasing value of $\alpha$), because it has to call the same function a lot of time and probably with the same result. So more precision means more results, but with a large waste of time.
 
 \subsubsection{Bicriteria Dijkstra with binary research}
-This version is an "evolution" of the last one, because it uses \textit{binary research}. It is based on calling the function at least two time: with $\alpha = 0$ and $\alpha=1$, then, if the result is different, with $\alpha=0.5$, again, if the result is different with $\alpha=\alpha/2$, and so on and so on; until there's no more solution.
+This version is an ``evolution" of the last one, because it uses \textit{binary research}. It is based on calling the function at least two time: with $\alpha = 0$ and $\alpha=1$, then, if the result is different, with $\alpha=0.5$, again, if the result is different with $\alpha=\alpha/2$, and so on and so on; until there's no more solution.
 
 This version generally is more efficient and precise than the other one. The output on figure \ref{fig:dijkstraBiCriteriaSimple} shown that with a precision of (e.g.) $0.2$ the \textit{Bicriteria iteration} is pretty faster than the binary research; while, with a smallest value for precision (little value means more precision), the \textit{Bicriteria iteration} becomes slowest and with less results than the \textit{binary search}.
 
@@ -254,7 +254,7 @@ In the graph \ref{fig:graphBiDi} are present only some point of the \textit{Pare
 
 
 \subsection{Implementation}
-Each node of the graph store a set of label with all the useful information "inside" his; the structure of label is as follow:
+Each node of the graph store a set of label with all the useful information ``inside" his; the structure of label is as follow:
 $$(distance, danger, owner, predecessor, ownerIndex, predIndex)$$
 As it is deductible the first two parameter are the costs of the path from the source, the third and four elements indicate the node that own the label and from which node it comes, the fifth element is the label's position inside the label set of the owner node, the sixth indicate the position of parent's label inside his label set (used for backtracking).
 As always the algorithm uses a priority queue where labels are stored and then chosen in function of the distance's value. The algorithm works in this way:
@@ -272,17 +272,17 @@ We can study the graph in figure \ref{fig:graphExample} starting from node 1, so
 
 \subsection{Lower bound improvement}
 \begin{center}
-	\noindent\rule{8cm}{0.1em}
+	\noindent\rule{8cm}{0.1pt}
 \end{center}
 {\small The original thought was to make a preprocessing phase that would have retraced the path backwards and, in this way, calculates the distance (and danger) from the target to each visited node, to know in advice which would have been the lowest value for each of them. But i noticed that this thought doesn't work with graphs with edges between nodes oriented in more directions with different values for each direction. So I implemented a different solution, below there's the explanation.}
 \begin{center}
 	\noindent\rule{8cm}{0.1pt}
 \end{center}
-This algorithm use a technique to improve the speed, especially when it has to find paths between nodes far from each other. This technique consist in a \textit{preprocessing phase}, where, with Bicriteria Dijkstra algorithm, is possible to calculate the safest and the shortest path from the source to the target node and, for each visited node, store information about the distance of the visited node from the source, when we calculate the shortest path ($\alpha = 1$), and, in the same way, the danger counted from the beginning ($\alpha = 0$).
+This algorithm use a technique to improve the speed, especially when it has to find paths between nodes far from each other. This technique consist in a \textit{preprocessing phase}, where, with Bicriteria Dijkstra algorithm, is possible to calculate the safest and the shortest path from the source to the target node and, for each visited node, store information about the distance and the danger of the visited node from the source. To calculate those values it uses Bicriteria Dijkstra with $\alpha = 1$ to find the optimal values for distance, and $\alpha = 0$ for the danger.
 
 How it can be useful?
 \\
-We know that the research of the shortest and the safest path will generate the better value for distance and danger in any case and for each visited node. So, once calculated the value of distance of the shortest path and the value of danger for the safest, we also know, for a node elaborated in preprocessing phase, this information: the total value of the full path's distance (and danger), node's better value of distance (and danger), actual value of distance (and danger) calculated during the running of label-setting algorithm. 
+We know that the research of the shortest and the safest path will generate the better value for distance and danger for each visited node. So, once calculated the shortest path and the safest, during the elaboration of label-setting algorithm, we will know the following information: the total value of the full path's distance (and danger), \textit{preprocessing-visited node}'s better value of distance (and danger), the value of distance (and danger) calculated during the running of the algorithm. 
 
 Is possible to do this evaluation:
 \begin{itemize}
@@ -296,13 +296,36 @@ $$ td = pd - nd$$
 $$res = td + ad$$
 Doing the same thing with danger is possible to find the projection of the final label of that specific node and valuate if it is dominated or less.
 \subsection{Complexity}
-%TODO: nell'analisi mettici la complessità
+The worst-case example is represented in the graph below, where there is the remote possibility to find always feasible node for each iteration, that is when one weight is zero and the other is bigger than the last one, for each edge:
 
-\chapter{Analyse the results}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{img/labelSettingComplexity.png}
+	\caption{Worst-case label-setting algorithm's example}
+	\label{fig:worstCaseLabelSettin}
+\end{figure}
+Is now possible to say that the complexity is $O(2^{n-1})$ where $n$ is the number of nodes. 
+
+
+\chapter{Analyze the results}
 
 \chapter{Implementation choices}
+This chapter explains some of the main implementation choices made during the project.
+\subsection{Python}
+I've decide to choose this language (also because recommended by the professor) because it is a modern and constantly growing language, used in many IT fields. it is very versatile and is incredibly supported by the community, so is possible to find different guides, libraries and tips on the internet.
+\subsubsection{Binary queue}
+Theoretically the best implementation of Dijkstra's algorithm is with a \textit{Fibonacci heap} ($O(|N|\log_2|N|+|A|)$), but according with \footnote{\url{https://dnshane.wordpress.com/2017/02/14/benchmarking-python-heaps/}} and after some verification I noticed that using a priority queue, implemented thanks to the \textit{heapq} included in the python standard library, was faster in the extractions and insertions; This because it uses a C implementation if available.
+
 \subsection{Nodes as objects}
-\subsection{Pandas \& MatPlotLib}
+I decided to use the object paradigm for the nodes of the graph, because, due to the nature of the study, it was more convenient to add and remove attributes or functions to the object ``node" and simplified my work. Also because it resulted in a clearer and more readable code.
+\subsection{Pandas \& Matplotlib}
+For parsing the ``.CSV" files I decided to use \textit{Pandas} library. It is not the only library that can interact with CSV files, but it is very recommended for deal with a large amount of data.
+Pandas is an open-source Python library that provides high performance data analysis tools and easy to use data structures. It is also a key part of the Anaconda distribution and works extremely well in Jupyter notebooks to share data, code, analysis results, visualizations, and narrative text. For more information about \textit{Panda} read this article \footnote{\url{https://realpython.com/python-csv/}}.
+\vspace{5mm}
+
+Matplotlib is another open-source Python library for 2D graphs based on the famous math library NumPy. Matplotlib has a lot of documentation on the web and it pretty simple to make graphs (I used this library to make the figures: ).
+%TODO: METTI LE ref DELLE FIGURE
+Provides object-oriented APIs that allow you to insert graphics into applications using the generic GUI toolkit, so is possible to re-use the graphs for other implementations \footnote{\url{https://matplotlib.org/}}.
 \subsection{Testing}
 
 \chapter{Personal considerations}

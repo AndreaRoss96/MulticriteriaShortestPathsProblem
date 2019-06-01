@@ -1,4 +1,4 @@
-from node import Node
+from Node import Node
 from setup import graphBuilder
 import time
 import pandas as pds
@@ -13,10 +13,10 @@ from bicriteriaDijkstra import dijkstraBiCrIteration
 dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
-
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
-source = graph[7642]
-target = graph[8365] #5142 or 2886
+
+source = graph[22474]
+target = graph[18289] #5142 or 2886
 
 # print("s:", source.index, "-> t:", target.index)
 
@@ -111,6 +111,7 @@ for label in target.labelList :
     toParetoGrap.append((label[0], label[1]))
 print("time:", end - start)
 print(*toPrint)
+print(len(target.labelList))
 
 from graphPlotter import doubleParetoGraph
 # doubleParetoGraph(toGraph, toParetoGrap)
@@ -152,10 +153,8 @@ for n in range (0, 1):
     start = time.time()
 
     dijkstraBiCrit(source, target, 0) # safest path => uses the target as source
-    bestDanger = target.danger
     initSingleNode(graph, source)
     dijkstraBiCrit(source, target, 1) # shortest path => "
-    bestDistance = target.distance
 
 
     end = time.time()
@@ -176,8 +175,8 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
-# print("all paths to target", target.index, ":")
-# for label in target.labelList :
-#     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
-# print("time:", end-start)
-# print(len(target.labelList))
+print("all paths to target", target.index, ":")
+for label in target.labelList :
+    print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
+print("time:", end-start)
+print(len(target.labelList))

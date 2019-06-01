@@ -67,8 +67,10 @@ def dijkstraBiCrIteration(graph, source, target, increaseVal) :
     listDistDang = {}
     counter = 0
     alpha = 0
+    ending = False
 
-    while alpha <=1 :
+
+    while alpha <= 1 :
         counter += 1
         initSingleNode(graph, source)
         dijkstraBiCrit(source, target, alpha)
@@ -77,6 +79,9 @@ def dijkstraBiCrIteration(graph, source, target, increaseVal) :
 
         if distDang in list(listDistDang.keys()) :
             alpha += increaseVal
+            if not ending and alpha >= 1 :
+                alpha = 1
+                ending = True
         else :
             listDistDang.update({distDang : alpha})
             alpha = alpha / 2
