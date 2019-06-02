@@ -45,9 +45,12 @@ class Node(object):
 
         self.bestLabel = [None, None]
            
-    def resetValue(self) :
+    def resetValue(self, needBestLabel) :
         """
         Reset the node
+
+        needBestLabel : Bool
+            false if you need to reset bestLabel, True otherwise
         """
         self.predecessor = None
         self.visited = False
@@ -57,6 +60,9 @@ class Node(object):
         self.distance = 0
         self.danger = 0
         self.labelList = []
+
+        if not needBestLabel :
+            self.bestLabel = [None, None]
 
     """
     the nexts functions are useless

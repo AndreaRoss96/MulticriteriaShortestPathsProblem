@@ -39,7 +39,7 @@ def initSingleNode(graph, source):
         graph initilized
     """
     for v in graph:
-        v.resetValue()  # reset the value of predecessor, visited and minWeight of all nodes
+        v.resetValue(False)  # reset the value of predecessor, visited and minWeight of all nodes
     source.minWeight = 0
     source.visited = True
     return graph

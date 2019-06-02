@@ -19,7 +19,7 @@
 \contentsline {subsection}{\numberline {3.2.1}Implementation}{12}
 \contentsline {subsection}{\numberline {3.2.2}Lower bound improvement}{13}
 \contentsline {subsection}{\numberline {3.2.3}Complexity}{14}
-\contentsline {chapter}{\numberline {4}Analyze the results}{15}
+\contentsline {chapter}{\numberline {4}Analysis of results}{15}
 \contentsline {chapter}{\numberline {5}Implementation choices}{16}
 \contentsline {subsection}{\numberline {5.0.1}Python}{16}
 \contentsline {subsubsection}{Binary queue}{16}
@@ -27,5 +27,4 @@
 \contentsline {subsection}{\numberline {5.0.3}Pandas \& Matplotlib}{16}
 \contentsline {subsection}{\numberline {5.0.4}Testing}{17}
 \contentsline {chapter}{\numberline {6}Personal considerations}{18}
-\contentsline {subsection}{\numberline {6.0.1}Genetic algorithm}{18}
-\contentsline {subsection}{\numberline {6.0.2}Difficulties encountered}{18}
+\contentsline {subsection}{\numberline {6.0.1}Difficulties encountered}{18}

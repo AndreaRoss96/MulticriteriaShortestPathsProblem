@@ -307,14 +307,19 @@ The worst-case example is represented in the graph below, where there is the rem
 Is now possible to say that the complexity is $O(2^{n-1})$ where $n$ is the number of nodes. 
 
 
-\chapter{Analyze the results}
-
+\chapter{Analysis of results}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4, angle=0, origin=c]{img/biCriteriaExcelOutput.png}
+	\caption{Output of all relevant algorithms in terms of number of solution and time spent}
+	\label{fig:worstCaseLabelSetting}
+\end{figure}
 \chapter{Implementation choices}
 This chapter explains some of the main implementation choices made during the project.
 \subsection{Python}
 I've decide to choose this language (also because recommended by the professor) because it is a modern and constantly growing language, used in many IT fields. it is very versatile and is incredibly supported by the community, so is possible to find different guides, libraries and tips on the internet.
 \subsubsection{Binary queue}
-Theoretically the best implementation of Dijkstra's algorithm is with a \textit{Fibonacci heap} ($O(|N|\log_2|N|+|A|)$), but according with \footnote{\url{https://dnshane.wordpress.com/2017/02/14/benchmarking-python-heaps/}} and after some verification I noticed that using a priority queue, implemented thanks to the \textit{heapq} included in the python standard library, was faster in the extractions and insertions; This because it uses a C implementation if available.
+Theoretically the best implementation of Dijkstra's algorithm is with a \textit{Fibonacci heap} ($O(|N|\log_2|N|+|A|)$), but according with \footnote{\url{https://dnshane.wordpress.com/2017/02/14/benchmarking-python-heaps/}} and after some verification I noticed that using a priority queue, implemented thanks to the \textit{heapq} included in the python standard library, was faster in the extractions and insertions; this because it uses a C implementation if available.
 
 \subsection{Nodes as objects}
 I decided to use the object paradigm for the nodes of the graph, because, due to the nature of the study, it was more convenient to add and remove attributes or functions to the object ``node" and simplified my work. Also because it resulted in a clearer and more readable code.
@@ -327,14 +332,23 @@ Matplotlib is another open-source Python library for 2D graphs based on the famo
 %TODO: METTI LE ref DELLE FIGURE
 Provides object-oriented APIs that allow you to insert graphics into applications using the generic GUI toolkit, so is possible to re-use the graphs for other implementations \footnote{\url{https://matplotlib.org/}}.
 \subsection{Testing}
-
+I realized two files for testing in the small the code, using simple terminal output; one is for the monocriteria algorithms and the other is for the bicriterias. This two files have a lot of commented code, used for show different information, like, for example, the number of results, backtracking, time and so on. For a global test and for a good visualization of data I used matplotlib to generate tables (like the one in figure \ref{fig:monoCriteriaOutput}) and graphs, but also the library \textit{xlsxwriter} to make a rapid visaulization table on an e-paper.
 \chapter{Personal considerations}
-\subsection{Genetic algorithm}
+%\subsection{Genetic algorithm}
+%\textit{The following is a personal and unimplemented possible solution, maybe interesting to see and with a possible application or study for the future.
+%It has to be taken only like a conjecture made for pure self-interest.}
+\vspace{10mm}
+%This conjecture will try to find a solution in not-polynomial time.
+
+%The \textbf{first population}, generated with random genes, will travel, starting from the source node, trough the graph guided by the genes. Not all genotype will get to the target, but the ones which arrived at the destination have accumulated a value for the distance and for the danger.
+%Removing by the set of solution those dominated and, using a \textbf{fitness function}, associate to all the remaining solution one or more parameter, based on distance, danger and travel time.
+%It is not granted that from two good solutions a third one is also good and neither that from two solutions with a certain fitness values a it is generated a third one with the same fitness value. To solve these problems generally is used a criteria to chose a set from all the solution and use that for the crossover phase (for example )
+%crossover nuova popolazione
 \subsection{Difficulties encountered}
 
 
 
 \bibliographystyle{abbrv}
-\bibliography{template}
+%\bibliography{template}
 
 \end{document}

@@ -3,6 +3,8 @@ from setup import graphBuilder
 import time
 import pandas as pds
 
+print(pds.__file__)
+
 from utilities import initSingleNode
 from labelSettingAlgorithm import labelSettingAlgorithm
 from labelSettingAlgorithm import lowerBoundImprovement
@@ -10,13 +12,13 @@ from bicriteriaDijkstra import dijkstraBiCrit
 from bicriteriaDijkstra import binarySearchDijkBiCr
 from bicriteriaDijkstra import dijkstraBiCrIteration
 
-dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[22474]
-target = graph[18289] #5142 or 2886
+source = graph[6660]
+target = graph[33083] #5142 or 2886
 
 # print("s:", source.index, "-> t:", target.index)
 
@@ -38,8 +40,8 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
 # toPrint = []
 # toGraph = []
-for distDang, alpha in infoList.items() :
-    print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
+# for distDang, alpha in infoList.items() :
+#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
     # stringa = "({0}, {1}),".format(distDang[0], distDang[1])
     # toPrint.append(stringa)
     # toGraph.append((distDang[0], distDang[1]))
@@ -63,8 +65,8 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 print("From {0.index} to {1.index} the solutions are:".format(source, target))
 # toPrint = []
 # toGraph = []
-for distDang, alpha in infoList.items() :
-    print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
+# for distDang, alpha in infoList.items() :
+#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
     # stringa = "({0}, {1}),".format(distDang[0], distDang[1])
     # toPrint.append(stringa)
     # toGraph.append((distDang[0], distDang[1]))
@@ -104,13 +106,13 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 toPrint = []
 toParetoGrap = []
-for label in target.labelList :
-    # print("distance:", label[0], "danger:", label[1], "predecessor:", label[3].index)
-    stringa = "({0}, {1}),".format(label[0], label[1])
-    toPrint.append(stringa)
-    toParetoGrap.append((label[0], label[1]))
+# for label in target.labelList :
+#     # print("distance:", label[0], "danger:", label[1], "predecessor:", label[3].index)
+#     stringa = "({0}, {1}),".format(label[0], label[1])
+#     toPrint.append(stringa)
+#     toParetoGrap.append((label[0], label[1]))
 print("time:", end - start)
-print(*toPrint)
+# print(*toPrint)
 print(len(target.labelList))
 
 from graphPlotter import doubleParetoGraph
@@ -127,22 +129,22 @@ from graphPlotter import doubleParetoGraph
 
 ########################
 ##### BACKTRACKING #####
-graphList = []
-for label in target.labelList :
-    printList = []
-    nodeList = [label[2]]
-    while label[3] != None :
-        node = label[3]
-        nodeList.append(node)
-        lenList = len(node.labelList)
-        index = label[5] if label[5] < lenList else lenList - 1
-        label = node.labelList[index]
-        printList.append(node.index)
-    graphList.append(nodeList)
+# graphList = []
+# for label in target.labelList :
+#     printList = []
+#     nodeList = [label[2]]
+#     while label[3] != None :
+#         node = label[3]
+#         nodeList.append(node)
+#         lenList = len(node.labelList)
+#         index = label[5] if label[5] < lenList else lenList - 1
+#         label = node.labelList[index]
+#         printList.append(node.index)
+#     graphList.append(nodeList)
     # print(*printList, sep="<-")
 
-from graphPlotter import bicriteriaPlotGraph
-bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+# from graphPlotter import bicriteriaPlotGraph
+# bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
  #########################################################################################
 
@@ -176,7 +178,7 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####  RESULTS  #####
 #####################
 print("all paths to target", target.index, ":")
-for label in target.labelList :
-    print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
+# for label in target.labelList :
+#     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
 print("time:", end-start)
 print(len(target.labelList))

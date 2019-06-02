@@ -10,8 +10,9 @@ import random
 import sys
 from summaryTable import SummaryTable
 
-dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
+maxNodes = 59672#29085 for Paris
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
@@ -34,7 +35,7 @@ def valuesCalculator(graph, source, target) :
     dijkstraOneToOne(graph, source, target)     #one to one
     end = time.time()
     dist = target.minWeight 
-    times = end - start
+    times = 0
     resList.append((dist, times))
     
     initSingleNode(graph, source)
@@ -65,8 +66,8 @@ listMedium = {}
 listBig = {}
 while condition :
     start = end = 0
-    source = graph[random.randint(0, 29085)]
-    target = graph[random.randint(0, 29085)]
+    source = graph[random.randint(0, maxNodes)]
+    target = graph[random.randint(0, maxNodes)]
 
     initSingleNode(graph, source)
     dijkstraListOfCandidate(source, target)
