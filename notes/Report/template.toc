@@ -27,4 +27,5 @@
 \contentsline {subsection}{\numberline {5.0.3}Pandas \& Matplotlib}{16}
 \contentsline {subsection}{\numberline {5.0.4}Testing}{17}
 \contentsline {chapter}{\numberline {6}Personal considerations}{18}
-\contentsline {subsection}{\numberline {6.0.1}Difficulties encountered}{18}
+\contentsline {subsection}{\numberline {6.0.1}Other possible solution}{18}
+\contentsline {subsection}{\numberline {6.0.2}Difficulties encountered}{19}

@@ -1,10 +1,14 @@
 \begin{thebibliography}{1}
 
-\bibitem{Tarapata}
-Z.~Tarapata.
-\newblock Selected multicriteria shortest path problems: An analysis of
-  complexity, models and adaptation of standard algorithms.
-\newblock {\em International Journal of Applied Mathematics and Computer
-  Science}, 17(2):269--287, June 2007.
+\bibitem{GAArticle}
+O.~Castillo, L.~Trujillo, and P.~Melin.
+\newblock Multiple objective genetic algorithms for path-planning optimization
+  in autonomous mobile robots.
+\newblock {\em Soft Comput.}, 11:269--279, 02 2007.
+
+\bibitem{GAWikipedia}
+Wikipedia.
+\newblock Genetic algorithm.
+\newblock may 2019.
 
 \end{thebibliography}

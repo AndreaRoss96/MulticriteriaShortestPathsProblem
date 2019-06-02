@@ -24,9 +24,13 @@
 	\textup{\lowercase\expandafter{\romannumeral#1}}%
 }
 
-\title{Supervised Project ``Bicriteria Paths Problem''}
+\title{Supervised Project ``Bicriteria Paths Problem''
+\\
+	}
  
-\author{Andrea Rossolini}
+\author{Andrea Rossolini\\
+	\includegraphics[scale=0.9]{img/univToursLogo.png}
+	\includegraphics[scale=0.6, trim= 0 8mm 0 0, clip]{img/uniboLogo.png}}
 \date{\today}
 
 
@@ -156,7 +160,7 @@ In the figure \ref{fig:monoCriteriaOutput} are shown some results, from 15 diffe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{monoCriteriaOutput.png}
-	\caption{Performance of the mono-criteria algorithms}
+	\caption{Performance of the mono-criteria algorithms (generate with tkinter library)}
 	\label{fig:monoCriteriaOutput}
 \end{figure}
 As possible to get from the table, we can recognize that the first column, '\textit{one$\to$all}', has a pretty much constant elaboration time (it comprehends the algorithm's work completion and the research in target node's attribute the distance from source). From the data of \textit{one$\to$one} algorithm is easily to recognize that the implementation without a priority queue is unsustainably slow, especially in the longest paths. From the latest two algorithm is possible to see that the \textit{A Star}'s implementation is more the 3 times faster than the \textit{List of candidate}, than from his part is near to be ten times more performing than the one to all implementation (which uses a priority queue).
@@ -310,8 +314,8 @@ Is now possible to say that the complexity is $O(2^{n-1})$ where $n$ is the numb
 \chapter{Analysis of results}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4, angle=0, origin=c]{img/biCriteriaExcelOutput.png}
-	\caption{Output of all relevant algorithms in terms of number of solution and time spent}
+	\includegraphics[scale=0.4, angle=0, origin=c, trim=0.5mm 0 0 0, clip]{img/biCriteriaExcelOutput.png}
+	\caption{Output of all relevant algorithms in terms of number of solution and time spent (excel table generated with \textit{xlsxwriter} library)}
 	\label{fig:worstCaseLabelSetting}
 \end{figure}
 \chapter{Implementation choices}
@@ -334,21 +338,38 @@ Provides object-oriented APIs that allow you to insert graphics into application
 \subsection{Testing}
 I realized two files for testing in the small the code, using simple terminal output; one is for the monocriteria algorithms and the other is for the bicriterias. This two files have a lot of commented code, used for show different information, like, for example, the number of results, backtracking, time and so on. For a global test and for a good visualization of data I used matplotlib to generate tables (like the one in figure \ref{fig:monoCriteriaOutput}) and graphs, but also the library \textit{xlsxwriter} to make a rapid visaulization table on an e-paper.
 \chapter{Personal considerations}
-%\subsection{Genetic algorithm}
-%\textit{The following is a personal and unimplemented possible solution, maybe interesting to see and with a possible application or study for the future.
-%It has to be taken only like a conjecture made for pure self-interest.}
-\vspace{10mm}
-%This conjecture will try to find a solution in not-polynomial time.
+\subsection{Other possible solution}
+\subsubsection*{Genetic algorithm}
+\textit{The following is a personal and unimplemented possible solution, maybe interesting to see and with a possible application or study for the future.
+It has to be taken only like a conjecture made for pure passion and self-interest.}
+\vspace{10mm}\\
+This conjecture will try to find a solution in not-polynomial time.
 
-%The \textbf{first population}, generated with random genes, will travel, starting from the source node, trough the graph guided by the genes. Not all genotype will get to the target, but the ones which arrived at the destination have accumulated a value for the distance and for the danger.
-%Removing by the set of solution those dominated and, using a \textbf{fitness function}, associate to all the remaining solution one or more parameter, based on distance, danger and travel time.
-%It is not granted that from two good solutions a third one is also good and neither that from two solutions with a certain fitness values a it is generated a third one with the same fitness value. To solve these problems generally is used a criteria to chose a set from all the solution and use that for the crossover phase (for example )
-%crossover nuova popolazione
+The \textbf{first population}, generated with random genes, will travel, starting from the source node, trough the graph guided by the genes. Not all genotype will get to the target, but the ones which arrived at the destination have accumulated a value for the distance and for the danger.
+We can store the solution that are arrived to the target, but, unlike what has been done so far, we don't have to remove the dominated solution; in this way we are able to avoid \textit{local optima} (a set of solutions that seems to be optimal only within a set of neighbors), it will be the task of the \textit{\textbf{fitness functions}} and the \textit{selection} to "clean" solutions. 
+We could therefor implement two \textit{fitness functions}, one for valuate the distance and one for the danger, associating to all the remaining solution some parameters, based on the results of the fitness and the travel time.
+Anyway it is not granted that from two good solutions a third one is good too and neither that from two solutions with a certain fitness values a it is generated a third one with the same fitness values. To solve these problems generally is used some criteria to chose a set from all the solution and use that for the crossover phase.
+For example I saw many selection that attribute a "probability of extraction", based on the fitness function, to some result and then select some of them considering the probability.
+For time reasons I prefer to chose two or more solution based only on the best fitness, pay attention to chose the shortest and the safest paths.
+Using methods of \textbf{\textit{crossovers}} and \textbf{\textit{mutation}} (random changes inside the genotype, useful to improve the fitness function or to improve the research; usually a mutation has a probability value with which it can happen) a new population (generation 2) is generated; now is possible to restart the algorithm with the new population. 
+
+Going over with this method, after some iteration, is possible to get a certain number of optimal solutions, which will compose a sort of \textit{Pareto front}.\\
+For terminate the process is possible to put some condition, for example:
+\begin{itemize}
+	\item Reached a certain number of solution that satisfied a minimum criteria (e.g. a set of solution reach a certain fitness value).
+	\item Reached a certain number of generations (useful to limit the time consuming).
+	\item  Solution too similar for each iteration.
+\end{itemize}
+
+
+for further information \cite{GAWikipedia} and \cite{GAArticle}. 
+
+
 \subsection{Difficulties encountered}
 
 
 
 \bibliographystyle{abbrv}
-%\bibliography{template}
+\bibliography{template}
 
 \end{document}

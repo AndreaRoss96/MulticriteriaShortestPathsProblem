@@ -1,8 +1,17 @@
+import random
+import sys
+import time
+
+sys.path.append("algorithms/")
+
+import lib.pandas as pds
+from algorithms.a_star import a_star
+from algorithms.dijkstra import (dijkstraListOfCandidate, dijkstraOneToAll,
+                                 dijkstraOneToOne)
+from graphPlotter import plotGraph
 from Node import Node
 from setup import graphBuilder
-import time
-import random 
-import pandas as pds
+from utilities import initSingleNode
 
 dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
@@ -14,13 +23,6 @@ graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 #######################################
 ### MONO CRITERIA ALGORITHM TESTING ###
 #######################################
-
-from dijkstra import dijkstraOneToAll
-from dijkstra import dijkstraOneToOne
-from dijkstra import dijkstraListOfCandidate
-from a_star import a_star
-from graphPlotter import plotGraph
-from utilities import initSingleNode
 
 """
 for the right test start := 2000, target := 2689 the solution are like:
@@ -103,18 +105,22 @@ print("from",source.index, "to", target.index, "the weight of the path is:", tar
 ######################
 #### BACKTRACKING ####
 ######################
-dbgList = []
-graphList = []
-pointer = target
-while pointer != source :
-    dbgList.append(pointer.index)
-    graphList.append(pointer)
-    pointer = pointer.predecessor
-dbgList.append(pointer.index)
-dbgList = reversed(dbgList)
-print(*dbgList, sep="->")
+# dbgList = []
+# graphList = []
+# pointer = target
+# while pointer != source :
+#     dbgList.append(pointer.index)
+#     graphList.append(pointer)
+#     pointer = pointer.predecessor
+# dbgList.append(pointer.index)
+# dbgList = reversed(dbgList)
+# print(*dbgList, sep="->")
 
-plotGraph(graph, reversed(graphList), "list of candidate", source, target)
+#####################
+#### MAP'S GRAPH ####
+#####################
+## Need graphList in BACKTRACKING ^ ##
+# plotGraph(graph, reversed(graphList), "list of candidate", source, target)
 
 
 ############################
@@ -132,16 +138,19 @@ print("from",source.index, "to", target.index, "the weight of the path is:", tar
 ######################
 #### BACKTRACKING ####
 ######################
-dbgList = []
-graphList = []
-pointer = target
-while pointer != source :
-    dbgList.append(pointer.index)
-    graphList.append(pointer)
-    pointer = pointer.predecessor
-dbgList.append(pointer.index)
-dbgList = reversed(dbgList)
+# dbgList = []
+# graphList = []
+# pointer = target
+# while pointer != source :
+#     dbgList.append(pointer.index)
+#     graphList.append(pointer)
+#     pointer = pointer.predecessor
+# dbgList.append(pointer.index)
+# dbgList = reversed(dbgList)
+# print(*dbgList, sep="->")
 
-print(*dbgList, sep="->")
-
-plotGraph(graph, reversed(graphList), "A_Star", source, target)
+#####################
+#### MAP'S GRAPH ####
+#####################
+## Need graphList in BACKTRACKING ^ ##
+# plotGraph(graph, reversed(graphList), "A_Star", source, target)

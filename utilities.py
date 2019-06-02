@@ -8,7 +8,7 @@ def wgsToEcef(lat, lon):
     to EarthCenteredEarthFixed coordinates.
     For semplicity the geodetic height is approximated to 0
 
-    this version is little more performaning than pyProj.trasform
+    this version is little more performaning than using pyProj.trasform
     --> to prove it check https://gis.stackexchange.com/questions/230160/converting-wgs84-to-ecef-in-python
     """
     rad_lat = lat * (math.pi / 180.0)

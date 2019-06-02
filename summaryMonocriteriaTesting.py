@@ -1,14 +1,21 @@
-from setup import graphBuilder
-from dijkstra import dijkstraOneToAll
-from dijkstra import dijkstraOneToOne
-from dijkstra import dijkstraListOfCandidate
-from a_star import a_star
-from utilities import initSingleNode
-import pandas as pds
-import time
+"""
+Module for the cration of the table used to visualize all monocriteria solution.
+"""
+
 import random
 import sys
+import time
+
+import lib.pandas as pds
+from algorithms.a_star import a_star
+from algorithms.dijkstra import (dijkstraListOfCandidate, dijkstraOneToAll,
+                      dijkstraOneToOne)
+from setup import graphBuilder
 from summaryTable import SummaryTable
+from utilities import initSingleNode
+
+sys.path.append("algorithms/")
+
 
 dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)

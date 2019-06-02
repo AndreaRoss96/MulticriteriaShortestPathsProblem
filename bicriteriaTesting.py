@@ -1,16 +1,18 @@
+import sys
+import time
+
+import lib.pandas as pds
+sys.path.append("algorithms/") # Has to be here to import the module in algorithms/
+from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr,
+                                           dijkstraBiCrit,
+                                           dijkstraBiCrIteration)
+from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundImprovement
 from Node import Node
 from setup import graphBuilder
-import time
-import pandas as pds
-
-print(pds.__file__)
-
 from utilities import initSingleNode
-from labelSettingAlgorithm import labelSettingAlgorithm
-from labelSettingAlgorithm import lowerBoundImprovement
-from bicriteriaDijkstra import dijkstraBiCrit
-from bicriteriaDijkstra import binarySearchDijkBiCr
-from bicriteriaDijkstra import dijkstraBiCrIteration
+
+
+
 
 dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
@@ -37,7 +39,11 @@ for n in range (0, 1):
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
-print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
+
+#################
+#### RESULTS ####
+#################
+# print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
 # toPrint = []
 # toGraph = []
 # for distDang, alpha in infoList.items() :
@@ -46,7 +52,8 @@ print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:"
     # toPrint.append(stringa)
     # toGraph.append((distDang[0], distDang[1]))
 
-# #########################################################################################
+##########################################################################################
+##########################################################################################
 print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
 initSingleNode(graph, source)
 
@@ -62,7 +69,7 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
-print("From {0.index} to {1.index} the solutions are:".format(source, target))
+# print("From {0.index} to {1.index} the solutions are:".format(source, target))
 # toPrint = []
 # toGraph = []
 # for distDang, alpha in infoList.items() :
@@ -70,9 +77,10 @@ print("From {0.index} to {1.index} the solutions are:".format(source, target))
     # stringa = "({0}, {1}),".format(distDang[0], distDang[1])
     # toPrint.append(stringa)
     # toGraph.append((distDang[0], distDang[1]))
-print("time:", end - start)
-# print(*toPrint)
-from graphPlotter import paretoGraph
+# print("time:", end - start) # Print time
+# print(*toPrint) # Print all the final results
+
+# from graphPlotter import paretoGraph
 # paretoGraph(toGraph)
 
 
@@ -86,9 +94,10 @@ from graphPlotter import paretoGraph
 #     pointer = pointer.predecessor
 # dbgList.append(pointer.index)
 # dbgList = reversed(dbgList)
-# print(*dbgList, sep="->")
+# print(*dbgList, sep="->") # Print all the path in the form of node->node
 
-#  #########################################################################################
+##########################################################################################
+##########################################################################################
 print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 initSingleNode(graph, source)
 
@@ -104,31 +113,26 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
-toPrint = []
-toParetoGrap = []
+# toPrint = []
+# toParetoGrap = []
 # for label in target.labelList :
 #     # print("distance:", label[0], "danger:", label[1], "predecessor:", label[3].index)
 #     stringa = "({0}, {1}),".format(label[0], label[1])
 #     toPrint.append(stringa)
 #     toParetoGrap.append((label[0], label[1]))
-print("time:", end - start)
-# print(*toPrint)
-print(len(target.labelList))
+# print("time:", end - start)  # Print time
+# print(*toPrint)              # Print all the final results
+# print(len(target.labelList)) # Length of the labelList 
 
-from graphPlotter import doubleParetoGraph
+#####################
+### PARETO GRAPH #### Need the variable toGraph made in binary search algorithm
+#####################
+# from graphPlotter import doubleParetoGraph
 # doubleParetoGraph(toGraph, toParetoGrap)
-# toPrint = []
-# print("From {0.index} to {1.index} the solutions are:".format(source, target))
-# for label in target.labelList :
-#     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
-#     stre = "(" + str(label[0]) + ', ' + str(label[1]) + ")"
-#     toPrint.append(stre)
-# print("time:", end-start)
-# print(len(target.labelList)) # print length of label list
-# print(str(toPrint))
 
 ########################
 ##### BACKTRACKING #####
+########################
 # graphList = []
 # for label in target.labelList :
 #     printList = []
@@ -141,13 +145,16 @@ from graphPlotter import doubleParetoGraph
 #         label = node.labelList[index]
 #         printList.append(node.index)
 #     graphList.append(nodeList)
-    # print(*printList, sep="<-")
+# print(*printList, sep="<-")
 
+###################
+### MAP'S GRAPH ###
+###################
 # from graphPlotter import bicriteriaPlotGraph
 # bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
- #########################################################################################
-
+#########################################################################################
+#########################################################################################
 print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
 tmp_list = []
 for n in range (0, 1):
@@ -177,8 +184,8 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
-print("all paths to target", target.index, ":")
+# print("all paths to target", target.index, ":")
 # for label in target.labelList :
 #     print("dist:", label[0], "\ndang:", label[1], "\npredecessor:",label[3].index, "\n============")
-print("time:", end-start)
-print(len(target.labelList))
+# print("time:", end-start)
+# print(len(target.labelList))

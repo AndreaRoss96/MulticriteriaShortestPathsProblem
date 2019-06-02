@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  1 JUN 2019 21:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  2 JUN 2019 20:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -570,18 +570,18 @@ Package cleveref Info: `amsthm' support loaded on input line 3026.
 ) (./template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -652,18 +652,35 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 35.
+LaTeX Font Info:    Try loading font information for U+msa on input line 39.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 35.
+LaTeX Font Info:    Try loading font information for U+msb on input line 39.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+<img/univToursLogo.png, id=1, 135.3858pt x 93.951pt>
+File: img/univToursLogo.png Graphic file (type png)
+<use img/univToursLogo.png>
+Package pdftex.def Info: img/univToursLogo.png  used on input line 39.
+(pdftex.def)             Requested size: 121.84608pt x 84.55511pt.
+<img/uniboLogo.png, id=3, 376.40625pt x 196.48407pt>
+File: img/uniboLogo.png Graphic file (type png)
+<use img/uniboLogo.png>
+Package pdftex.def Info: img/uniboLogo.png  used on input line 39.
+(pdftex.def)             Requested size: 225.84547pt x 104.23392pt.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] (./template.toc
+Overfull \hbox (3.60818pt too wide) in paragraph at lines 39--39
+ [][] 
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./img/uniboLogo.png> <./im
+g/univToursLogo.png>] [1] (./template.toc
 Package cleveref Info: loaded `english' language definitions on input line 1.
 )
 \tf@toc=\write4
@@ -673,17 +690,17 @@ Package cleveref Info: loaded `english' language definitions on input line 1.
 
 ]
 Chapter 1.
-<img/exampleGraph1.png, id=18, 393.47pt x 228.855pt>
+<img/exampleGraph1.png, id=25, 393.47pt x 228.855pt>
 File: img/exampleGraph1.png Graphic file (type png)
 <use img/exampleGraph1.png>
-Package pdftex.def Info: img/exampleGraph1.png  used on input line 56.
+Package pdftex.def Info: img/exampleGraph1.png  used on input line 60.
 (pdftex.def)             Requested size: 360.0pt x 209.38629pt.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 61.
+               Default added (so using `tbp') on input line 65.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--87
+Underfull \hbox (badness 10000) in paragraph at lines 86--91
 
  []
 
@@ -691,27 +708,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--87
 
 ] [3 <./img/exampleGraph1.png>] [4]
 Chapter 2.
-<img/dijkstraLoC.png, id=34, 724.7075pt x 286.06876pt>
+<img/dijkstraLoC.png, id=41, 724.7075pt x 286.06876pt>
 File: img/dijkstraLoC.png Graphic file (type png)
 <use img/dijkstraLoC.png>
-Package pdftex.def Info: img/dijkstraLoC.png  used on input line 105.
+Package pdftex.def Info: img/dijkstraLoC.png  used on input line 109.
 (pdftex.def)             Requested size: 360.0pt x 142.10863pt.
 [5
 
  <./img/dijkstraLoC.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 134.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 138.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
  [6]
-<img/monoCriteriaOutput.png, id=42, 1059.96pt x 549.55313pt>
+<img/monoCriteriaOutput.png, id=49, 1059.96pt x 549.55313pt>
 File: img/monoCriteriaOutput.png Graphic file (type png)
 <use img/monoCriteriaOutput.png>
-Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 158.
+Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 162.
 (pdftex.def)             Requested size: 360.0pt x 186.64433pt.
  [7] [8 <./img/monoCriteriaOutput.png (PNG copy)>]
 Chapter 3.
@@ -719,50 +736,50 @@ Chapter 3.
 [9
 
 ]
-<img/bicriteriaDijkstra.png, id=54, 722.7pt x 307.1475pt>
+<img/bicriteriaDijkstra.png, id=61, 722.7pt x 307.1475pt>
 File: img/bicriteriaDijkstra.png Graphic file (type png)
 <use img/bicriteriaDijkstra.png>
-Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 207.
+Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 211.
 (pdftex.def)             Requested size: 360.0pt x 153.00159pt.
  [10 <./img/bicriteriaDijkstra.png>]
-<img/biCriteriaOutput.png, id=58, 505.89pt x 507.8975pt>
+<img/biCriteriaOutput.png, id=65, 505.89pt x 507.8975pt>
 File: img/biCriteriaOutput.png Graphic file (type png)
 <use img/biCriteriaOutput.png>
-Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 228.
+Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 232.
 (pdftex.def)             Requested size: 360.0pt x 361.43124pt.
-<img/graphDijkstraBicrit.png, id=59, 462.528pt x 346.896pt>
+<img/graphDijkstraBicrit.png, id=66, 462.528pt x 346.896pt>
 File: img/graphDijkstraBicrit.png Graphic file (type png)
 <use img/graphDijkstraBicrit.png>
-Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 239.
+Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 243.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
-<img/graphLabelsetting.png, id=62, 462.528pt x 346.896pt>
+<img/graphLabelsetting.png, id=68, 462.528pt x 346.896pt>
 File: img/graphLabelsetting.png Graphic file (type png)
 <use img/graphLabelsetting.png>
-Package pdftex.def Info: img/graphLabelsetting.png  used on input line 245.
+Package pdftex.def Info: img/graphLabelsetting.png  used on input line 249.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 
-Underfull \hbox (badness 1888) in paragraph at lines 246--246
+Underfull \hbox (badness 1888) in paragraph at lines 250--250
 []\OT1/cmr/m/n/10.95 Figure 3.4: Graph gen-er-ated by
  []
 
 [11 <./img/biCriteriaOutput.png>] [12 <./img/graphDijkstraBicrit.png> <./img/gr
 aphLabelsetting.png>] [13]
-<img/labelSettingComplexity.png, id=79, 581.17125pt x 224.84pt>
+<img/labelSettingComplexity.png, id=85, 581.17125pt x 224.84pt>
 File: img/labelSettingComplexity.png Graphic file (type png)
 <use img/labelSettingComplexity.png>
-Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 303
+Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 307
 .
 (pdftex.def)             Requested size: 360.0pt x 139.27585pt.
  [14 <./img/labelSettingComplexity.png>]
 Chapter 4.
-<img/biCriteriaExcelOutput.png, id=83, 1098.1025pt x 424.58624pt>
+<img/biCriteriaExcelOutput.png, id=89, 1098.1025pt x 424.58624pt>
 File: img/biCriteriaExcelOutput.png Graphic file (type png)
 <use img/biCriteriaExcelOutput.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput.png  used on input line 313.
+Package pdftex.def Info: img/biCriteriaExcelOutput.png  used on input line 317.
 
-(pdftex.def)             Requested size: 439.23322pt x 169.83148pt.
+(pdftex.def)             Requested size: 438.66418pt x 169.83148pt.
 
-Overfull \hbox (79.23322pt too wide) in paragraph at lines 313--314
+Overfull \hbox (78.66418pt too wide) in paragraph at lines 317--318
  [][] 
  []
 
@@ -776,35 +793,38 @@ Chapter 5.
 Chapter 6.
 [18
 
+] (./template.bbl [19]) [20
+
 ] (./template.aux
 Package cleveref Info: loaded `english' language definitions on input line 2.
 ) ) 
 Here is how much of TeX's memory you used:
- 6787 strings out of 492982
- 108604 string characters out of 6134896
+ 6809 strings out of 492982
+ 108968 string characters out of 6134896
  207924 words of memory out of 5000000
- 10216 multiletter control sequences out of 15000+600000
- 15616 words of font info for 59 fonts, out of 8000000 for 9000
+ 10232 multiletter control sequences out of 15000+600000
+ 15975 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,26p,751b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,26p,751b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on template.pdf (20 pages, 745047 bytes).
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on template.pdf (22 pages, 798314 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
+ 164 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 80 words of extra memory for PDF output out of 10000 (max. 10000000)
 

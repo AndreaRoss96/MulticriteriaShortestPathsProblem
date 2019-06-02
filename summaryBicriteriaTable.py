@@ -1,14 +1,18 @@
-import xlsxwriter
+import sys
+import time
+
+sys.path.append("algorithms/")
+
+import lib.pandas as pds
+import lib.xlsxwriter as xls 
+from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr, dijkstraBiCrit,
+                                dijkstraBiCrIteration)
+from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundImprovement
 from Node import Node
 from setup import graphBuilder
-import time
-import pandas as pds
 from utilities import initSingleNode
-from labelSettingAlgorithm import labelSettingAlgorithm
-from labelSettingAlgorithm import lowerBoundImprovement
-from bicriteriaDijkstra import dijkstraBiCrit
-from bicriteriaDijkstra import binarySearchDijkBiCr
-from bicriteriaDijkstra import dijkstraBiCrIteration
+
+
 
 dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
@@ -19,7 +23,7 @@ test = [(23755, 27268), (15513, 13984), (14591, 26905), (7642, 8365), (5456, 276
 (27257, 23843), (6429, 6531), (234, 14318), (776, 17207), (8678, 5881),
 (15426, 2070), (26045, 16486), (3176, 2586), (22474, 18289), (22066,9174)]
 
-workbook = xlsxwriter.Workbook('bicriteriaTable.xlsx')
+workbook = xls.Workbook('bicriteriaTable.xlsx')
 worksheet = workbook.add_worksheet()
 merge_format = workbook.add_format({
     'bold': 1,

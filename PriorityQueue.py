@@ -1,6 +1,6 @@
 import heapq
 
-# took from https://www.redblobgames.com/pathfinding/a-star/implementation.html
+# inspired by https://www.redblobgames.com/pathfinding/a-star/implementation.html
 
 class PriorityQueue:
     def __init__(self):

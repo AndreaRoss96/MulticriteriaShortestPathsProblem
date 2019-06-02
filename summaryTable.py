@@ -1,6 +1,11 @@
 import tkinter as tk
 
 class SummaryTable(tk.Tk):
+    """
+    This class use the library tkinter to make a visualization of a list of result.
+
+    !!! Will only show 15 solution for each dimension (small, medium, large)
+    """
             
     def __init__(self, listOfResult):
         tk.Tk.__init__(self)
