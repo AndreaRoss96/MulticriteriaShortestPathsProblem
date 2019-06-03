@@ -1,7 +1,7 @@
 import sys
 import time
 
-import lib.pandas as pds
+import pandas as pds
 sys.path.append("algorithms/") # Has to be here to import the module in algorithms/
 from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr,
                                            dijkstraBiCrit,
@@ -19,8 +19,8 @@ dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[6660]
-target = graph[33083] #5142 or 2886
+source = graph[1278]
+target = graph[27207] #5142 or 2886
 
 # print("s:", source.index, "-> t:", target.index)
 

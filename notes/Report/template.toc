@@ -20,12 +20,14 @@
 \contentsline {subsection}{\numberline {3.2.2}Lower bound improvement}{13}
 \contentsline {subsection}{\numberline {3.2.3}Complexity}{14}
 \contentsline {chapter}{\numberline {4}Analysis of results}{15}
-\contentsline {chapter}{\numberline {5}Implementation choices}{16}
-\contentsline {subsection}{\numberline {5.0.1}Python}{16}
-\contentsline {subsubsection}{Binary queue}{16}
-\contentsline {subsection}{\numberline {5.0.2}Nodes as objects}{16}
-\contentsline {subsection}{\numberline {5.0.3}Pandas \& Matplotlib}{16}
-\contentsline {subsection}{\numberline {5.0.4}Testing}{17}
-\contentsline {chapter}{\numberline {6}Personal considerations}{18}
-\contentsline {subsection}{\numberline {6.0.1}Other possible solution}{18}
-\contentsline {subsection}{\numberline {6.0.2}Difficulties encountered}{19}
+\contentsline {subsection}{\numberline {4.0.1}Time consuming}{15}
+\contentsline {subsection}{\numberline {4.0.2}Node visited}{16}
+\contentsline {chapter}{\numberline {5}Implementation choices}{17}
+\contentsline {subsection}{\numberline {5.0.1}Python}{17}
+\contentsline {subsubsection}{Binary queue}{17}
+\contentsline {subsection}{\numberline {5.0.2}Nodes as objects}{17}
+\contentsline {subsection}{\numberline {5.0.3}Pandas \& Matplotlib}{17}
+\contentsline {subsection}{\numberline {5.0.4}Testing}{18}
+\contentsline {chapter}{\numberline {6}Personal considerations}{19}
+\contentsline {subsection}{\numberline {6.0.1}Other possible solution}{19}
+\contentsline {subsection}{\numberline {6.0.2}Difficulties encountered}{20}

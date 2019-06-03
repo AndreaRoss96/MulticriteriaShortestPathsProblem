@@ -3,8 +3,8 @@ import time
 
 sys.path.append("algorithms/")
 
-import lib.pandas as pds
-import lib.xlsxwriter as xls 
+import pandas as pds
+import xlsxwriter as xls 
 from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr, dijkstraBiCrit,
                                 dijkstraBiCrIteration)
 from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundImprovement

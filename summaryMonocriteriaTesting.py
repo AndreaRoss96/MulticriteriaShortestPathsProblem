@@ -6,7 +6,7 @@ import random
 import sys
 import time
 
-import lib.pandas as pds
+import pandas as pds
 from algorithms.a_star import a_star
 from algorithms.dijkstra import (dijkstraListOfCandidate, dijkstraOneToAll,
                       dijkstraOneToOne)
