@@ -23,10 +23,10 @@ def plotGraph(graph, nodes, title, source, target) :
     
     plt.plot(vydata, vxdata, 'y.', markersize=1)
     plt.plot(ydata, xdata, '.', markersize=1)
-    plt.plot(pydata, pxdata, 'r-', markersize=1)
+    plt.plot(pydata, pxdata, 'r-')
 
     plt.plot(source.longitude, source.latitude, 'go')
-    plt.plot(target.longitude, target.latitude, 'ro')
+    plt.plot(target.longitude, target.latitude, 'ko')
 
     plt.title(title)
     plt.xlabel('Latitude', fontsize=15)
@@ -50,7 +50,8 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
         else :
             xdata.append(node.latitude)
             ydata.append(node.longitude)
-
+    
+    print(len(vxdata))
     totpxData = []
     totpyData = []
     for nodeList in resultsList :
@@ -60,14 +61,14 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
         totpxData.append(pxdata)
         totpyData.append(pydata)
     
-    plt.plot(vydata, vxdata, 'y.', markersize=1)
-    plt.plot(ydata, xdata, '.', markersize=1)
+    plt.plot(vydata, vxdata, 'y.', markersize=2)
+    plt.plot(ydata, xdata, '.', markersize=2)
 
-    plt.plot(totpyData[0], totpxData[0], 'r-', markersize=1)
+    plt.plot(totpyData[0], totpxData[0], 'r-')
     
     plt.plot(source.longitude, source.latitude, 'go')
-    plt.plot(target.longitude, target.latitude, 'ro')
-    plt.title(title)
+    plt.plot(target.longitude, target.latitude, 'ko')
+    plt.title(title, fontsize=15)
     plt.xlabel('Latitude', fontsize=15)
     plt.ylabel('Longitude', fontsize=15)
 

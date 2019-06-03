@@ -114,7 +114,7 @@ print("from",source.index, "to", target.index, "the weight of the path is:", tar
 #     pointer = pointer.predecessor
 # dbgList.append(pointer.index)
 # dbgList = reversed(dbgList)
-# print(*dbgList, sep="->")
+# print(*dbgList, sep="->") # Print all path from source to target
 
 #####################
 #### MAP'S GRAPH ####
@@ -147,7 +147,7 @@ print("from",source.index, "to", target.index, "the weight of the path is:", tar
 #     pointer = pointer.predecessor
 # dbgList.append(pointer.index)
 # dbgList = reversed(dbgList)
-# print(*dbgList, sep="->")
+# print(*dbgList, sep="->") # Print all path from source to target
 
 #####################
 #### MAP'S GRAPH ####

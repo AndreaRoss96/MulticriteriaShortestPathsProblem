@@ -39,23 +39,22 @@
 \maketitle
 
 \begin{abstract}
-In this paper I analyze a \textit{pathfinding} problem starting from a classical shortest path problem and then, after several optimization, going to resolve a graph that utilizes two static weights on his arches, considering the most full satisfying set of solutions.
+In this paper I analyze a \textit{pathfinding} problem starting from a classical shortest path problem and then, after several optimization, going to resolve a graph that utilizes two static weights on his arcs, considering the most full satisfying set of solutions.
 
 As is known, Dijkstra's algorithm is most widely used to solve routing problems; in fact is very easy to create an implementation that attempts to find the best path in a classical weighted graph. So I will focus on the operations of optimization.
 %
-The most important part of the paper is the one that analyze the paths of a graph with two weights for each arches of it, one value represent the distance (also present in the monocriteria problem) and the other represent the danger of that arch. So the implementation will find not only the shortest and safest path, but also all the paths (not dominated) that take intermediate values. Two different algorithms will be shown for the analysis of the bicriteria problem.
+The most important part of the paper is the one that analyze the paths of a graph with two weights for each arc, one value represent the distance (also present in the mono-criteria problem) and the other represent the danger of that arc. So the implementation will not only find the shortest and safest path, but also all the paths (not dominated) that take intermediate values.
 \end{abstract}
 
 \tableofcontents
 
 \chapter{Introduction}
-Dijkstra's algorithm, as already mentioned above, is widely used to find shortest path in routing problems that's use graphs with not-negative, static values. But this algorithm takes into consideration only one ``dimension'' of costs; for example, to calculate a path from the source node to the destination, distance is the result of adding up the length between two nodes segment by segment.
+Dijkstra's algorithm, as already mentioned above, is widely used to find shortest path in routing problems that use graphs with not-negative and static values. But this algorithm takes into consideration only one ``dimension'' of costs; for example, to calculate a path from the source node to the destination, distance is the result of adding up the length between two nodes segment by segment.
 %
-But the problem faced in our study considers two criteria for choosing the wanted path: the first cost defines the distance, while the second one represent the danger. So, the problem with Dijkstra is that we will found a path very short, but very dangerous, or vice versa. Concerning multicriteria shortest path problem is intended to determine a path that optimizes the costs from a source to the target, but, in general, there is no a single optimal solution, so the goal of this project is to determinate a set of feasible and not-dominated solution, founding different paths 
-based on the two criteria, so is not sufficient minimizing distance or danger, but the relations between this two values.
+But the problem faced in this study considers two criteria for choosing the wanted path: the first cost defines the distance, while the second one represent the danger. So, the problem with Dijkstra is that we will found a path very short, but it might be very dangerous, or vice versa. Concerning multicriteria shortest path problem is intended to determine a path that optimizes the costs from a source to the target, but, in general, there is no only one single optimal solution, so the goal of this project is to determinate a set of feasible and not-dominated solution, founding different paths based on the two criteria, so is not sufficient minimizing distance or danger, but the relations between this two values.
 \vspace{5mm}
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{img/exampleGraph1}
 	\caption{Graph example.}
@@ -75,9 +74,9 @@ based on the two criteria, so is not sufficient minimizing distance or danger, b
 	\label{tab:graphExample}
 \end{table}
 
-In fig.\ref{fig:graphExample} is shown an example of a double criterion's routing. The nodes are labeled with numbers $\{1,2, ..., 6\}$ and the weights of the arches are represented as a pair of value (\textit{a, b}), where \textit{a} is distance and \textit{b} is danger.
+In fig.\ref{fig:graphExample} is shown an example of a double criterion's routing. The nodes are labeled with numbers $\{1,2, ..., 6\}$ and the weights of the arcs are represented as a pair of value (\textit{a, b}), where \textit{a} is distance and \textit{b} is danger.
 
-In table \ref{tab:graphExample} are shown all the possible graph's iterations, $p1$ and $p3$ respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer, more dangerous then $p3$, but, in this case, shorter) and $p4$ is a dominated path, so is useless to us.
+In table \ref{tab:graphExample} are shown all the possible graph's iterations, $p1$ and $p3$ respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer, more dangerous then $p3$, but, in this case, shorter) and $p4$ is a dominated path, so it is useless to us.
 
 
  
@@ -87,7 +86,7 @@ Let $G(N,A)$ denotes direct network which is composed of a finite set $N=\{0,1, 
 Let define $c^k_{i,j}$ where $(i,j)\in A$ and $1\leq k \leq 2$ (because we are talking about a double criterion problem) represent the cost which we are referring to. We define two nodes in the graph: $s$ and $t$, where $s \in N$ and $t \in N$, these are respectively the \textit{source} and \textit{target} of which we want to find one or more paths.
 %dei quali noi vogliamo trovare uno o più percorsi
 We can qualify a path $p_{s,t}$ as a sequence  of  alternating nodes and arcs $p_{s,t} = \{s, (s, i_1), i_1, \dots, i_{l}, (i_l,t), t\}$.\\
-So we said that each $c^k_{i,j}$ refers to one of the two costs of each arch $(i,j)$, therefore the total cost of the entire path can be represented in this way:\\
+So we said that each $c^k_{i,j}$ refers to one of the two costs of each arc $(i,j)$, therefore the total cost of the entire path can be represented in this way:\\
 
 \begin{gather}(c^1(p_{s,t}), c^2(p_{s,t}))\end{gather}
 \begin{gather}c^1(p_{s,t})=\sum_{(i,j)\in p}c^1_{i,j}\end{gather}
@@ -101,7 +100,7 @@ The analysis focuses on the evolution and optimization of the following algorith
 
 \section{Dijkstra's algorithms}
 
-Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arches with positive weights.\\
+Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arcs with positive weights.\\
 Different implementation of this algorithm are present in this paper, as follows are all explained.
 
 \begin{figure}[h]
@@ -169,9 +168,56 @@ As possible to get from the table, we can recognize that the first column, '\tex
 
 All the implementation are going to find the same paths between nodes; in particular all the implementation (except for the \textit{A Star}'s algorithm) explore the same nodes, instead, the 'not-Dijkstra's algorithm', explores less number of nodes, this means that it makes less loops during the elaboration and research of the shortest path.
 
-In the following images is shown how, researching the shortest path, the algorithms visit nodes in a different way:\\
-Dijkstra's algorithm (\textit{list of candidate}) makes a research more ``circling" around the source (big green point), instead the 'A Star', for his nature, is more direct and it reaches the target exploring an ``oval" between the starting nodes and the target. So is easy to see and understand how the last implementation is more efficient than the others.  
-%TODO: add images of paths
+In the following images below is shown how, researching the shortest path, the algorithms visit nodes in a different way:\\
+Dijkstra's algorithm (\textit{list of candidate}) makes a research more ``circling" around the source (big green point), instead the 'A Star', for his nature, is more direct and it reaches the target exploring an ``oval" between the starting nodes and the target. So it's easy to see and understand how the last implementation is more efficient than the other.\\
+  
+\begin{figure}[H]
+	\textbf{\textit{Legend}:}
+	\begin{itemize}
+{\small 		\item \textbf{Blue}: Nodes of graphs.
+		\item \textbf{Yellow}: Nodes visited.
+		\item \textbf{Green}: Source node.
+		\item \textbf{Black}: Target node.
+		\item \textbf{Red line}: Path.}
+	\end{itemize}
+	\centering
+%	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{img/mapOutput/2070->15426LoC.png}
+		\label{fig:ListOfCandidate1}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{img/mapOutput/2070->15426A_Star.png}
+		\label{fig:A_Start1}
+%	\end{minipage}
+	Source: 2070 $\to$ Target: 15426\\Map: Paris
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{img/mapOutput/2000->2689LoC.png}
+		\label{fig:ListOfCandidate2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{img/mapOutput/2000->2689A_Star.png}
+		\label{fig:A_Start2}
+	\end{minipage}
+	Source: 2000 $\to$ Target: 2689\\Map: Paris
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{img/mapOutput/1000->1510BerlinLoC.png}
+		\label{fig:ListOfCandidate3}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{img/mapOutput/1000->1510BerlinA_Star.png}
+		\label{fig:A_Start3}
+	\end{minipage}
+	Source: 1000 $\to$ Target: 1510\\Map: Berlin
+\end{figure}
 
 \chapter{Bicriteria algorithms}
 
@@ -311,20 +357,36 @@ The worst-case example is represented in the graph below, where there is the rem
 Is now possible to say that the complexity is $O(2^{n-1})$ where $n$ is the number of nodes. 
 
 
-\chapter{Analysis of results}
+\section{Analysis of results}
 As was done for the other algorithms we can analyze the results. In the figure below (\ref{fig:worstCaseLabelSetting}) is possible to see an extract generated by the execution of the three algorithms explained before.
 Is possible to notice that the node used for the execution are the same used in monocriteria's execution (randomly generated), in this way is possible to make some comparison, but is obvious that the monocriteria is faster than bicriteria. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4, angle=0, origin=c, trim=0.5mm 0 0 0, clip]{img/biCriteriaExcelOutput.png}
-	\caption{Output of all relevant algorithms in terms of number of solution and time spent (excel table generated with \textit{xlsxwriter} library)}
-	\label{fig:worstCaseLabelSetting}
+	\includegraphics[scale=0.6, trim=0.2mm 0 0 0, clip]{img/biCriteriaExcelOutput1.png}
+	\label{fig:worstCaseLabelSetting1}
 \end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth, trim=0.2mm 0 0 0.1mm, clip]{img/biCriteriaExcelOutput2.png}
+	\caption{Output of all relevant algorithms in terms of number of solution and time spent (excel table generated with \textit{xlsxwriter} library)}
+	\label{fig:worstCaseLabelSetting2}
+\end{figure}
+\textit{\begin{center}
+		{\small The tables have been slightly modified to make reading easier, but the values are original}
+\end{center}}
 \subsection{Time consuming}
-Excluding the first, which results to be advantageous only with nodes very far from each other, however, at the expense of the number of solution, the two different implementation results to be very similar; in fact \textit{lower bound improvement} algorithm seems to advantageous only with nodes in a medium-large distant from each other, in others case is pretty in line with the normal \textit{label setting} algorithm.
+Excluding the first, which results to be advantageous only with nodes very far from each other, however, at the expense of the number of solution, the other two different implementation results to be very similar; in fact \textit{lower bound improvement} algorithm seems to advantageous only with nodes in a medium-large distant from each other, in others case is pretty in line with the normal label setting algorithm. It is possible also to see that the lower bound improvements makes less loops that the other algorithm, but as the distance between the nodes increases, this difference becomes increasingly irrelevant.
 \subsection{Node visited}
-As theorized by theory, is possible to see in this graphs that the last implemented algorithm visits less node than the other one, in fact, as we have said before, it makes less loops to reach find all the solutions.
-%TODO: ADD GRAPHS
+Despite the lower bound algorithm does less loops, the visited nodes are less but almost the same than the label-setting algorithm, so only one image is shown for both algorithms, since the difference is almost imperceptible.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/mapOutput/2000->2689Bicriteria.png}
+	\label{fig:Bicriteria2}
+	\hfill
+	\begin{center}
+		Source: 2000 $\to$ Target: 2689\\Map: Paris
+	\end{center}
+\end{figure}
 
 \chapter{Implementation choices}
 This chapter explains some of the main implementation choices made during the making of the project.
@@ -344,8 +406,9 @@ Matplotlib is another open-source Python library for 2D graphs based on the famo
 %TODO: METTI LE ref DELLE FIGURE
 Provides object-oriented APIs that allow you to insert graphics into applications using the generic GUI toolkit, so is possible to re-use the graphs for other implementations \footnote{\url{https://matplotlib.org/}}.
 \subsection{Testing}
-I realized two files for testing in the small the code, using simple terminal output; one is for the monocriteria algorithms and the other is for the bicriterias. This two files have a lot of commented code, used for show different information, like, for example, the number of results, backtracking, time and so on. For a global test and for a good visualization of data I used matplotlib to generate tables (like the one in figure \ref{fig:monoCriteriaOutput}) and graphs, but also the library \textit{xlsxwriter} to make a rapid visaulization table on an e-paper.
+I realized two files for testing in the small the code, using simple terminal output; one is for the monocriteria algorithms and the other is for the bicriterias. This two files have a lot of commented code, used for show different information, like, for example, the number of results, backtracking, time and so on. For a global test and for a good visualization of data I used matplotlib to generate tables (like the one in figure \ref{fig:monoCriteriaOutput}) and graphs, but also the library \textit{xlsxwriter} to make a rapid visualization table on a spreadsheet.
 \chapter{Personal considerations}
+I have developed this project during my Erasmus period, I have hocked spirit and time in order to best meet the requested objective. It was the first time that I did a study of this kind.
 \subsection{Other possible solution}
 \subsubsection*{Genetic algorithm}
 \textit{The following is a personal and unimplemented possible solution, maybe interesting to see and with a possible application or study for the future.
@@ -372,8 +435,21 @@ For terminate the process is possible to put some condition, for example:
 
 for further information \cite{GAWikipedia} and \cite{GAArticle}. 
 
+\subsection{Other possible application}
+It would be interesting to see also the same algorithm used to study a path that 
+
 
 \subsection{Difficulties encountered}
+The main difficulties encountered were, not so much the implementations, but the optimizations of the algorithms to obtain better performance. As well the study behind the developing of the label-setting algorithm, in particular to implement it in order to obtain an efficient backtraking. 
+
+\subsection*{Computer info}
+All tests were performed on a PC with the following characteristics:\\
+\textbf{-- CPU\\}
+product:\hspace{17mm}        Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz\\
+Architecture:\hspace{9mm}   x86\_64\\
+CPU op-mode(s):\hspace{2mm}  32-bit, 64-bit\\
+Byte Order:\hspace{11mm}     Little Endian\\
+CPU(s):\hspace{18mm}         4\\
 
 
 

@@ -10,24 +10,25 @@
 \contentsline {section}{\numberline {2.3}Analysis of the results}{7}
 \contentsline {subsection}{\numberline {2.3.1}Time consuming}{7}
 \contentsline {subsection}{\numberline {2.3.2}Node visited}{8}
-\contentsline {chapter}{\numberline {3}Bicriteria algorithms}{9}
-\contentsline {section}{\numberline {3.1}Dijkstra applied to bicriteria}{9}
-\contentsline {subsection}{\numberline {3.1.1}Application of Bicrtieria Dijkstra}{10}
-\contentsline {subsubsection}{Bicriteria Dijkstra iteration}{10}
-\contentsline {subsubsection}{Bicriteria Dijkstra with binary research}{10}
-\contentsline {section}{\numberline {3.2}Label-setting algorithm}{11}
-\contentsline {subsection}{\numberline {3.2.1}Implementation}{12}
-\contentsline {subsection}{\numberline {3.2.2}Lower bound improvement}{13}
-\contentsline {subsection}{\numberline {3.2.3}Complexity}{14}
-\contentsline {chapter}{\numberline {4}Analysis of results}{15}
-\contentsline {subsection}{\numberline {4.0.1}Time consuming}{15}
-\contentsline {subsection}{\numberline {4.0.2}Node visited}{16}
-\contentsline {chapter}{\numberline {5}Implementation choices}{17}
-\contentsline {subsection}{\numberline {5.0.1}Python}{17}
-\contentsline {subsubsection}{Binary queue}{17}
-\contentsline {subsection}{\numberline {5.0.2}Nodes as objects}{17}
-\contentsline {subsection}{\numberline {5.0.3}Pandas \& Matplotlib}{17}
-\contentsline {subsection}{\numberline {5.0.4}Testing}{18}
-\contentsline {chapter}{\numberline {6}Personal considerations}{19}
-\contentsline {subsection}{\numberline {6.0.1}Other possible solution}{19}
-\contentsline {subsection}{\numberline {6.0.2}Difficulties encountered}{20}
+\contentsline {chapter}{\numberline {3}Bicriteria algorithms}{12}
+\contentsline {section}{\numberline {3.1}Dijkstra applied to bicriteria}{12}
+\contentsline {subsection}{\numberline {3.1.1}Application of Bicrtieria Dijkstra}{13}
+\contentsline {subsubsection}{Bicriteria Dijkstra iteration}{13}
+\contentsline {subsubsection}{Bicriteria Dijkstra with binary research}{13}
+\contentsline {section}{\numberline {3.2}Label-setting algorithm}{14}
+\contentsline {subsection}{\numberline {3.2.1}Implementation}{15}
+\contentsline {subsection}{\numberline {3.2.2}Lower bound improvement}{16}
+\contentsline {subsection}{\numberline {3.2.3}Complexity}{17}
+\contentsline {section}{\numberline {3.3}Analysis of results}{18}
+\contentsline {subsection}{\numberline {3.3.1}Time consuming}{19}
+\contentsline {subsection}{\numberline {3.3.2}Node visited}{19}
+\contentsline {chapter}{\numberline {4}Implementation choices}{20}
+\contentsline {subsection}{\numberline {4.0.1}Python}{20}
+\contentsline {subsubsection}{Binary queue}{20}
+\contentsline {subsection}{\numberline {4.0.2}Nodes as objects}{20}
+\contentsline {subsection}{\numberline {4.0.3}Pandas \& Matplotlib}{20}
+\contentsline {subsection}{\numberline {4.0.4}Testing}{21}
+\contentsline {chapter}{\numberline {5}Personal considerations}{22}
+\contentsline {subsection}{\numberline {5.0.1}Other possible solution}{22}
+\contentsline {subsection}{\numberline {5.0.2}Other possible application}{23}
+\contentsline {subsection}{\numberline {5.0.3}Difficulties encountered}{23}

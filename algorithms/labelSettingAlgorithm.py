@@ -24,6 +24,9 @@ def labelSettingAlgorithm(source, target) :
         return to Step 1
     Step 4:
         End
+
+    @return
+        number of loops
     """
     labelQueue = PriorityQueue()
     sourceLabel = (0, 0, source, None, 0, None)
@@ -59,7 +62,7 @@ def labelSettingAlgorithm(source, target) :
                     labelQueue.put(newLabel, newLabel[0])
                 else :
                     ending = True
-    #print("Loops:", counter)
+    return counter
 
 
 def __usableLabel(newLabel, oldLabel, labelsList) :
@@ -80,10 +83,20 @@ def __isDominated(newLabel, labelList) :
     return False
 
 def lowerBoundImprovement(graph, source, target) :
+    """
+    Evolution of the normal label-setting algorithm, with a preprocessing that uses
+    Dijkstra bicriteria algorithm
+
+    @return
+        number of loops
+    """
     visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
     bestDanger = target.danger
     
-    initSingleNode(visitedNodes, source)
+    for v in visitedNodes:
+        v.resetValue(True)  # reset the value of predecessor, visited and minWeight of all nodes
+    source.minWeight = 0
+    source.visited = True
 
     dijkstraBiCrit(source, target, 1) # shortest path
     bestDistance = target.distance
@@ -128,7 +141,7 @@ def lowerBoundImprovement(graph, source, target) :
                 nextNode.labelList.append(newLabel)
                 if nextNode != target :
                     labelQueue.put(newLabel, newLabel[0])
-    #print("Loops:", counter)
+    return counter
 
 
 
