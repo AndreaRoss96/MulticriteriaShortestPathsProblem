@@ -15,14 +15,7 @@ dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
-"""
-take snap of
-Paris 2070->15426
-Paris 2000->2689
-Berlin 1000->1510
-also in bicriteria
 
-"""
 source = graph[2070]
 target = graph[15426] #5142 or 2886
 

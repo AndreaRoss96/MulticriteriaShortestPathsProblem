@@ -13,8 +13,8 @@ from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
@@ -30,14 +30,7 @@ for the right test start := 2000, target := 2689 the solution are like:
     2000->2040->1991->27892->2683->22019->2948->7997->4886->16084->28518->28735->28537->351->16139->15408->25604->15397->27113->25812->19731->19744->27891->26128->26104->26041->26096->28629->28874->1112->2886->19524->19560->19520->5142->13483->27078->29053->15119->27059->29039->28929->4636->18403->28348->1303->14605->18414->18505->4693->18413->18385->4694->18415->18400->18507->27047->27111->27107->27096->27068->27066->28919->27217->27191->27212->27240->27279->27278->27093->4508->9458->4738->27065->4646->4661->2689
 """
 #default = 2000->2689
-"""
-take snap of
-Paris 2070->15426
-Paris 2000->2689
-Berlin 1000->1510
-also in bicriteria
 
-"""
 source = graph[1000]
 target = graph[1510]
 
