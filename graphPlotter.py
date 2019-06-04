@@ -64,7 +64,7 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
     plt.plot(vydata, vxdata, 'y.', markersize=2)
     plt.plot(ydata, xdata, '.', markersize=2)
 
-    plt.plot(totpyData[0], totpxData[0], 'r-')
+    plt.plot(pydata, pxdata, 'r-')
     
     plt.plot(source.longitude, source.latitude, 'go')
     plt.plot(target.longitude, target.latitude, 'ko')

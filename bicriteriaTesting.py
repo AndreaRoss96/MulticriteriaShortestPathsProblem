@@ -16,8 +16,8 @@ dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[2070]
-target = graph[15426] #5142 or 2886
+source = graph[2000]
+target = graph[2689] #5142 or 2886
 
 # print("s:", source.index, "-> t:", target.index)
 
