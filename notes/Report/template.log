@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  5 JUN 2019 12:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  6 JUN 2019 20:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,14 +702,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 64.
 
+[2
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 85--90
 
  []
 
-[2
-
-] [3 <./img/exampleGraph1.png>] [4]
+[3 <./img/exampleGraph1.png>] [4]
 Chapter 2.
 <img/dijkstraLoC.png, id=41, 724.7075pt x 286.06876pt>
 File: img/dijkstraLoC.png Graphic file (type png)
@@ -719,50 +719,50 @@ Package pdftex.def Info: img/dijkstraLoC.png  used on input line 108.
 [5
 
  <./img/dijkstraLoC.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 137.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 134.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 137.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
  [6]
-<img/monoCriteriaOutput.png, id=49, 1059.96pt x 549.55313pt>
+<img/monoCriteriaOutput.png, id=51, 1059.96pt x 549.55313pt>
 File: img/monoCriteriaOutput.png Graphic file (type png)
 <use img/monoCriteriaOutput.png>
-Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 161.
+Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 158.
 (pdftex.def)             Requested size: 360.0pt x 186.64433pt.
  [7]
-Underfull \hbox (badness 10000) in paragraph at lines 171--173
+Underfull \hbox (badness 10000) in paragraph at lines 168--170
 
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 177.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 174.
 <img/mapOutput/2070-15426LoC.png, id=55, 1452.42625pt x 848.16875pt>
 File: img/mapOutput/2070-15426LoC.png Graphic file (type png)
 <use img/mapOutput/2070-15426LoC.png>
 Package pdftex.def Info: img/mapOutput/2070-15426LoC.png  used on input line 18
-5.
+2.
 (pdftex.def)             Requested size: 360.0pt x 210.22978pt.
 <img/mapOutput/2070-15426A_Star.png, id=56, 1422.31375pt x 865.2325pt>
 File: img/mapOutput/2070-15426A_Star.png Graphic file (type png)
 <use img/mapOutput/2070-15426A_Star.png>
 Package pdftex.def Info: img/mapOutput/2070-15426A_Star.png  used on input line
- 190.
+ 187.
 (pdftex.def)             Requested size: 360.0pt x 219.00087pt.
 <img/mapOutput/2000-2689LoC.png, id=57, 1426.32875pt x 850.17625pt>
 File: img/mapOutput/2000-2689LoC.png Graphic file (type png)
 <use img/mapOutput/2000-2689LoC.png>
-Package pdftex.def Info: img/mapOutput/2000-2689LoC.png  used on input line 198
+Package pdftex.def Info: img/mapOutput/2000-2689LoC.png  used on input line 195
 .
 (pdftex.def)             Requested size: 360.0pt x 214.58025pt.
 <img/mapOutput/2000-2689A_Star.png, id=58, 1423.3175pt x 859.21pt>
 File: img/mapOutput/2000-2689A_Star.png Graphic file (type png)
 <use img/mapOutput/2000-2689A_Star.png>
 Package pdftex.def Info: img/mapOutput/2000-2689A_Star.png  used on input line 
-203.
+200.
 (pdftex.def)             Requested size: 360.0pt x 217.31918pt.
 [8 <./img/monoCriteriaOutput.png (PNG copy)>]
 Overfull \vbox (1.56374pt too high) has occurred while \output is active []
@@ -773,13 +773,13 @@ Overfull \vbox (1.56374pt too high) has occurred while \output is active []
 File: img/mapOutput/1000-1510BerlinLoC.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinLoC.png>
 Package pdftex.def Info: img/mapOutput/1000-1510BerlinLoC.png  used on input li
-ne 211.
+ne 208.
 (pdftex.def)             Requested size: 360.0pt x 217.5303pt.
 <img/mapOutput/1000-1510BerlinA_Star.png, id=67, 1419.3025pt x 850.17625pt>
 File: img/mapOutput/1000-1510BerlinA_Star.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinA_Star.png>
 Package pdftex.def Info: img/mapOutput/1000-1510BerlinA_Star.png  used on input
- line 216.
+ line 213.
 (pdftex.def)             Requested size: 360.0pt x 215.644pt.
 
 [10 <./img/mapOutput/2000-2689LoC.png> <./img/mapOutput/2000-2689A_Star.png>]
@@ -799,20 +799,20 @@ Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 257.
 <img/biCriteriaOutput.png, id=82, 505.89pt x 507.8975pt>
 File: img/biCriteriaOutput.png Graphic file (type png)
 <use img/biCriteriaOutput.png>
-Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 278.
+Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 277.
 (pdftex.def)             Requested size: 360.0pt x 361.43124pt.
 <img/graphDijkstraBicrit.png, id=83, 462.528pt x 346.896pt>
 File: img/graphDijkstraBicrit.png Graphic file (type png)
 <use img/graphDijkstraBicrit.png>
-Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 289.
+Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 287.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 <img/graphLabelsetting.png, id=85, 462.528pt x 346.896pt>
 File: img/graphLabelsetting.png Graphic file (type png)
 <use img/graphLabelsetting.png>
-Package pdftex.def Info: img/graphLabelsetting.png  used on input line 295.
+Package pdftex.def Info: img/graphLabelsetting.png  used on input line 293.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 
-Underfull \hbox (badness 1888) in paragraph at lines 296--296
+Underfull \hbox (badness 1888) in paragraph at lines 294--294
 []\OT1/cmr/m/n/10.95 Figure 3.4: Graph gen-er-ated by
  []
 
@@ -821,25 +821,20 @@ aphLabelsetting.png>] [16]
 <img/labelSettingComplexity.png, id=101, 581.17125pt x 224.84pt>
 File: img/labelSettingComplexity.png Graphic file (type png)
 <use img/labelSettingComplexity.png>
-Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 353
+Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 350
 .
 (pdftex.def)             Requested size: 360.0pt x 139.27585pt.
-
-
-LaTeX Warning: Reference `fig:worstCaseLabelSetting' on page 17 undefined on in
-put line 361.
-
 <img/biCriteriaExcelOutput1.png, id=102, 379.4175pt x 382.42876pt>
 File: img/biCriteriaExcelOutput1.png Graphic file (type png)
 <use img/biCriteriaExcelOutput1.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 365
+Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 362
 .
 (pdftex.def)             Requested size: 227.31082pt x 229.45901pt.
-[17 <./img/labelSettingComplexity.png>]
+ [17 <./img/labelSettingComplexity.png>]
 <img/biCriteriaExcelOutput2.png, id=108, 942.52126pt x 398.48875pt>
 File: img/biCriteriaExcelOutput2.png Graphic file (type png)
 <use img/biCriteriaExcelOutput2.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 370
+Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 367
 .
 (pdftex.def)             Requested size: 360.0pt x 152.18805pt.
  [18 <./img/biCriteriaExcelOutput1.png> <./img/biCriteriaExcelOutput2.png>]
@@ -847,20 +842,20 @@ Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 370
 File: img/mapOutput/2070-15426Bicriteria.png Graphic file (type png)
 <use img/mapOutput/2070-15426Bicriteria.png>
 Package pdftex.def Info: img/mapOutput/2070-15426Bicriteria.png  used on input 
-line 383.
+line 380.
 (pdftex.def)             Requested size: 360.0pt x 199.91496pt.
 <img/mapOutput/2000-2689Bicriteria.png, id=116, 1444.39626pt x 865.2325pt>
 File: img/mapOutput/2000-2689Bicriteria.png Graphic file (type png)
 <use img/mapOutput/2000-2689Bicriteria.png>
 Package pdftex.def Info: img/mapOutput/2000-2689Bicriteria.png  used on input l
-ine 392.
+ine 389.
 (pdftex.def)             Requested size: 360.0pt x 215.64748pt.
 <img/mapOutput/1000-1510BerlinBicriteria.png, id=117, 1165.35374pt x 645.41125p
 t>
 File: img/mapOutput/1000-1510BerlinBicriteria.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinBicriteria.png>
 Package pdftex.def Info: img/mapOutput/1000-1510BerlinBicriteria.png  used on i
-nput line 401.
+nput line 398.
 (pdftex.def)             Requested size: 360.0pt x 199.3762pt.
  [19 <./img/mapOutput/2070-15426Bicriteria.png>] [20 <./img/mapOutput/2000-2689
 Bicriteria.png> <./img/mapOutput/1000-1510BerlinBicriteria.png>]
@@ -872,7 +867,7 @@ Chapter 5.
 [23
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 467--474
+Underfull \hbox (badness 10000) in paragraph at lines 465--472
 
  []
 
@@ -880,35 +875,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 467--474
 
 ] (./template.aux
 Package cleveref Info: loaded `english' language definitions on input line 2.
-)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+) ) 
 Here is how much of TeX's memory you used:
- 6885 strings out of 492982
- 111317 string characters out of 6134896
+ 6884 strings out of 492982
+ 111288 string characters out of 6134896
  207924 words of memory out of 5000000
- 10297 multiletter control sequences out of 15000+600000
+ 10296 multiletter control sequences out of 15000+600000
  16629 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,26p,751b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on template.pdf (28 pages, 2197256 bytes).
+ 41i,12n,26p,746b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on template.pdf (28 pages, 2199914 bytes).
 PDF statistics:
  195 PDF objects out of 1000 (max. 8388607)
  117 compressed objects within 2 object streams
