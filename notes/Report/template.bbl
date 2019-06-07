@@ -6,9 +6,39 @@ O.~Castillo, L.~Trujillo, and P.~Melin.
   in autonomous mobile robots.
 \newblock {\em Soft Comput.}, 11:269--279, 02 2007.
 
-\bibitem{GAWikipedia}
-Wikipedia.
-\newblock Genetic algorithm.
-\newblock may 2019.
+\bibitem{eranki2002pathfinding}
+R.~Eranki.
+\newblock Pathfinding using a*(a.
+\newblock {\em Star}, pages 1--5, 2002.
+
+\bibitem{approximating}
+J.~Legriel, C.~Le~Guernic, S.~Cotton, and O.~Maler.
+\newblock Approximating the pareto front of multi-criteria optimization
+  problems.
+\newblock pages 69--83, 2010.
+
+\bibitem{meyer2003map}
+J.-A. Meyer and D.~Filliat.
+\newblock Map-based navigation in mobile robots:: Ii. a review of map-learning
+  and path-planning strategies.
+\newblock {\em Cognitive Systems Research}, 4(4):283--317, 2003.
+
+\bibitem{samadi2013global}
+M.~Samadi and M.~F. Othman.
+\newblock Global path planning for autonomous mobile robot using genetic
+  algorithm.
+\newblock pages 726--730, 2013.
+
+\bibitem{stentz1997optimal}
+A.~Stentz.
+\newblock Optimal and efficient path planning for partially known environments.
+\newblock pages 203--220, 1997.
+
+\bibitem{Tarapata}
+Z.~Tarapata.
+\newblock Selected multicriteria shortest path problems: An analysis of
+  complexity, models and adaptation of standard algorithms.
+\newblock {\em International Journal of Applied Mathematics and Computer
+  Science}, 17(2):269--287, June 2007.
 
 \end{thebibliography}

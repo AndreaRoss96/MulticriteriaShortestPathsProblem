@@ -51,17 +51,17 @@ The main part of the paper is the one that analyzes the paths of a graph with tw
 \chapter{Introduction}
 Dijkstra's algorithm is widely used to find shortest path in routing problems that use graphs with not-negative and static values. But this algorithm takes into consideration only one ``dimension'' of costs; for example, to calculate a path from the source node to the destination, distance is the result of adding up the length between two nodes segment by segment.
 %
-But the problem faced in this study considers two criteria for choosing the wanted path: the first cost defines the distance, while the second one represents the danger. Simply applying Dijkstra's algorithm we will found a path very short, but it might be very dangerous, or vice versa. Multicriteria shortest path problem aims to determine a path that optimizes the costs from a source to the target. In general, there is not a single optimal solution; the goal of this project is to determinate a set of feasible and not-dominated solutions, finding different paths based on two criteria, so not only minimizing either distance or danger, but the relations between this two values.
+But the problem faced in this study considers two criteria for choosing the wanted path: the first cost defines the distance, while the second one represents the danger. Simply applying Dijkstra's algorithm it is possible to found a path very short, but it might be very dangerous, or vice versa. Multicriteria shortest path problem aims to determine a path that optimizes the costs from a source to the target. In general, there is not a single optimal solution; the goal of this project is to determinate a set of feasible and not-dominated solutions, finding different paths based on two criteria, so not only minimizing either distance or danger, but the relations between this two values.
 \vspace{5mm}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{img/exampleGraph1}
 	\caption{Graph example.}
 	\label{fig:graphExample}
 \end{figure}
 
-\begin{table}[]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|c|}
 		\hline
@@ -76,17 +76,17 @@ But the problem faced in this study considers two criteria for choosing the want
 
 In fig.\ref{fig:graphExample} an example of a double criterion's routing is shown. The nodes are labeled with numbers $\{1,2, ..., 6\}$ and the weights of the arcs are represented as a pair of value (\textit{a, b}), where \textit{a} is distance and \textit{b} is danger.
 
-In table \ref{tab:graphExample} all the possible graph's iterations are shown: $p1$ and $p3$, respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer, more dangerous then $p3$, but shorter) and $p4$ is a dominated path (because it is longer and safest than $p1$, most dangerous and shorter than $p3$, but it has no advantage over $p2$ which has the same value of distance but is safer. \textit{the formal definition is given in chapter 3}), so it is useless to us.
+In table \ref{tab:graphExample} all the possible graph's iterations are shown: $p1$ and $p3$, respectively the shortest and the safest paths, $p2$ is a not-dominated solution (it is longer than $p1$ but safer and more dangerous then $p3$, but shorter) and $p4$ is a dominated path (because it is longer and safer than $p1$, most dangerous and shorter than $p3$, but it has no advantage over $p2$ which has the same value of distance but is safer) so it is useless to us (for the formal definition see ch.3).
 
 
  
 \section{Mathematical formulation}
 
 Let $G(N,A)$ denotes direct network which is composed of a finite set $N=\{0,1, \dots, n\}$ of nodes and a finite set $A \subseteq N\times N $, that represents the set of directed edges. Each arc can be denoted as an ordered pair $(i,j)$, where $i\in N$, $j \in N$ and both are two different nodes in $G(N,A)$.\\
-Let define $c^k_{i,j}$ where $(i,j)\in A$ and $1\leq k \leq 2$ (because we are talking about a double criterion problem) represent the cost which we are referring to. We define two nodes in the graph: $s$ and $t$, where $s \in N$ and $t \in N$, these are respectively the \textit{source} and \textit{target} of which we want to find one or more paths.
+Let define $c^k_{i,j}$ where $(i,j)\in A$ and $1\leq k \leq 2$ (because it is a double criterion problem) represent the cost which referring to. Let's define two nodes in the graph: $s$ and $t$, where $s \in N$ and $t \in N$, these are respectively the \textit{source} and \textit{target} of which one or more paths are searched.
 %dei quali noi vogliamo trovare uno o più percorsi
-We can qualify a path $p_{s,t}$ as a sequence  of  alternating nodes and arcs $p_{s,t} = \{s, (s, i_1), i_1, \dots, i_{l}, (i_l,t), t\}$.\\
-So we said that each $c^k_{i,j}$ refers to one of the two costs of each arc $(i,j)$, therefore the total cost of the entire path can be represented in this way:\\
+A path $p_{s,t}$ can be qualified as a sequence  of  alternating nodes and arcs: $p_{s,t} = \{s, (s, i_1), i_1, \dots, i_{l}, (i_l,t), t\}$.\\
+So it is possible to say that each $c^k_{i,j}$ refers to one of the two costs of each arc $(i,j)$, therefore the total cost of the entire path can be represented in this way:\\
 
 \begin{gather}(c^1(p_{s,t}), c^2(p_{s,t}))\end{gather}
 \begin{gather}c^1(p_{s,t})=\sum_{(i,j)\in p}c^1_{i,j}\end{gather}
@@ -96,7 +96,7 @@ Our purpose is to \textbf{minimize} the $(1.2)$ to find the shortest path or the
 \chapter{Mono-criteria algorithms}
 
 In this chapter the algorithms which concern the single criteria routing will be explained.
-The analysis focuses on the evolution and optimization of the following algorithm, explaining some implementation choices.
+The analysis focuses on the evolution and optimization of the Dijkstra's algorithm, explaining some implementation choices.
 
 \section{Dijkstra's algorithms}
 
@@ -122,7 +122,7 @@ The difference with "One to all" is that this doesn't use a priority queue, but 
 
 
 \subsection{List of candidate}
-The last version of Dijkstra's algorithm is another implementation that \textbf{uses} a priority queue. The elements of this queue are inserted time to time by each new visited node, using the value of distance as priority value; so the queue's elements are the neighbors of the visited nodes, each time a node is visited is is removed from the queue. In this way the algorithm needs to interrogate only some nodes and not all the graph.\\
+The last version of Dijkstra's algorithm is another implementation that uses a priority queue. The elements of this queue are inserted time to time by each new visited node, using the value of distance as priority value; so the queue's elements are the neighbors of the visited nodes, each time a node is visited it is removed from the queue. In this way the algorithm needs to interrogate only some nodes and not all the graph.\\
 The list of candidate algorithm has the same \textit{worst-case complexity} of the \textit{One to all} algorithm: $O((|N|+|A|)\log_2(|N|))$.
 
 \section{``A Star'' algorithm}
@@ -141,7 +141,7 @@ So the worst case is $O(|N|) \equiv O(b^d)$ where $b$ is the average number of s
 \subsubsection*{implementation's details}
 At each iteration:
 \begin{enumerate}
-	\item The node with the lowest $f(x)$ is popped by the queue (implemented as a priority queue).
+	\item The node with the lowest $f(n)$ is popped by the queue (implemented as a priority queue).
 	\item Update the values of the neighbors and then add them to the queue.
 	\item The algorithm repeat until the goal is reached.
 \end{enumerate}
@@ -159,11 +159,12 @@ In the figure \ref{fig:monoCriteriaOutput} are shown some results, from 15 diffe
 	\caption{Performance of the mono-criteria algorithms (generate with tkinter library)}
 	\label{fig:monoCriteriaOutput}
 \end{figure}
-From the table it's possible to recognize that the first column, '\textit{one$\to$all}', has a pretty much constant elaboration time (it comprehends the algorithm's work completion and the research in target node's attribute the distance from source). From the data of \textit{one$\to$one} algorithm is easily to recognize that the implementation without a priority queue is unsustainably slow, especially in the longest paths. Comparing the latest two algorithm is possible to see that the \textit{A Star}'s implementation is more the 3 times faster than the \textit{List of candidate}, than from its part is near to be ten times more performing than the one to all implementation (which uses a priority queue).
+From the table it's possible to recognize that the first column, '\textit{one to all}', has a pretty much constant elaboration time (it comprehends the algorithm's work completion and the research in target node's attribute the distance from source). From the data of \textit{one to one} algorithm is easily to recognize that of the implementation without a priority queue is unsustainably slow, especially in the longest paths. Comparing the total average times of the latest two algorithm is possible to see that the \textit{A Star}'s implementation is 3 times more faster than the \textit{List of candidate}'s implementation.
+\textit{Dijkstra's List of candidate}, in average, is near to be five times more performing than the \textit{one to all} implementation.
 
 \subsection{Node visited}
 
-All the implementation are going to find the same paths between nodes; in particular all the implementation (except for the \textit{A Star}'s algorithm) explore the same nodes, instead, the 'not-Dijkstra's algorithm', explores less number of nodes, this means that it makes less loops during the elaboration and research of the shortest path.
+All the implementation are going to find the same path between nodes; in particular all the implementation (except for the \textit{A Star}'s algorithm) explore the same nodes, instead, the \textit{A*}, explores less number of nodes, this means that it makes less loops during the elaboration and research of the shortest path.
 
 In the following pictures it is shown how, researching the shortest path, the algorithms visit nodes in a different way:\\
 Dijkstra's algorithm (\textit{list of candidate}) makes a research more ``circling" around the source (big green point), instead the 'A Star', for its nature, is more direct and it reaches the target exploring an ``oval" between the starting nodes and the target. So it's easy to see and understand how A* is more efficient than the others implementation.\\
@@ -219,12 +220,12 @@ Dijkstra's algorithm (\textit{list of candidate}) makes a research more ``circli
 \chapter{Bicriteria algorithms}
 
 In this chapter the algorithms implemented to studying the case of a graph with arches having two different weights are explained.
-Keeping in mind the mathematical explanation made in the introduction, we can enunciate some definitions:
+Keeping in mind the mathematical explanation made in the introduction, it is possible to enunciate some definitions:
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \begin{definition}{Feasible solution}\\
-	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. We say $x$ \emph{dominates} $y$ if and only if $c^k(x) \leq c^k(y)$ $\forall$ $k \in [1,2]$.
+	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. It is said that $x$ \emph{dominates} $y$ if and only if $c^k(x) \leq c^k(y)$ $\forall$ $k \in [1,2]$.
 \end{definition}
 
 \theoremstyle{definition}
@@ -240,13 +241,15 @@ Keeping in mind the mathematical explanation made in the introduction, we can en
 \end{definition}
 
 \begin{definition}{Pareto front}\\
-	The \textbf{Pareto front} is a set of optimal solutions, so consisting of a set of not-dominated points (there's no other point that has better values at the same time for each point's criteria). A point can be part of the Pareto front without dominate any other points.
+	The \textbf{Pareto front} is a set of optimal solutions, so consisting of a set of not-dominated points (there's no other point that has better values at the same time for each point's criteria).
+	\\A point can be part of the Pareto front without dominate any other points.
 \end{definition}
 {\small \textit{The figures \ref{fig:graphBiDi} and \ref{fig:graphLabSet} give a graphic representation of the definitions 2 and 3.}}
 
 \section{Dijkstra applied to bicriteria}
-According with the function \ref{eq:convex hull}, we can say that our ``bicriteria graph'' $G=(N,V,dist,dang)$ is reducible to $G=(N,V,\alpha*dist + (1-\alpha) dang)$ and we can address the problem as the previous case, so using Dijkstra's algorithm (list of candidates) giving a value to $\alpha$. \\
-It is easy to deduce that more value of $\alpha$ approaches $0$  the more we are finding safest paths. On the contrary the more $alpha$ is approaching $1$ the more we are finding shortest paths.
+According with the function \ref{eq:convex hull}, it is possible to say that ``bicriteria graph'' $G=(N,V,dist,dang)$, where \textit{dist} is $c^1$ and \textit{dang} is $c^2$, is reducible to $G=(N,V,\alpha*dist + (1-\alpha) dang)$  the problem can be addressed as the previous case, so using Dijkstra's algorithm (list of candidates) giving a value to $\alpha$. \\
+
+It is easy to deduce that the more value of $\alpha$ approaches $0$ the more it is possible to find the safest paths. On the contrary the more $\alpha$ is approaching 1 the more shortest paths will be found.
 
 \vspace{5mm}
 
@@ -259,18 +262,18 @@ The algorithm's implementation is similar to Dijkstra's list of candidate, but w
 	\label{fig:bicriteriaDijkstra}
 \end{figure}
 
-\subsection{Application of Bicrteria Dijkstra}
-To use the bicriteria Dijkstra's algorithm, we need to find a way to call the algorithm several times, with different values for $\alpha$
+\subsection{Application of Bicriteria Dijkstra}
+To use the bicriteria Dijkstra's algorithm, it is needed to find a way to call the algorithm several times, with different values for $\alpha$
 
 \subsubsection{Bicriteria Dijkstra iteration}
-This is a very raw version, its operation is based on recalling the bicriteria Dijkstra's function, several time with different values for $\alpha$, increasing its value by a constant factor (called ``precision").
+This is a very raw version, its operation is based on recalling the bicriteria Dijkstra's function, several time with different values for $\alpha$, increasing its value by a constant factor called ``\textbf{precision}".
 
-The required elaboration time is related to the chosen precision, because it has to call the same function a lot of time and probably with the same result. So more precision means more results (feasible paths), but with longer elaboration times.
+The required elaboration time is related to the chosen precision, because it has to call the same function a lot of time and probably with the same result. So more precision means more results (\textit{feasible paths}), but with longer elaboration times.
 
 \subsubsection{Bicriteria Dijkstra with binary research}
 This version is an ``evolution" of the Bicriteria Dijkstra iteration, because it uses a \textit{binary research} algorithm. It is based on calling the function at least two time: with $\alpha = 0$ and $\alpha=1$, then, if the results are different, with $\alpha=0.5$, again, if the result is different with $\alpha=\alpha/2$, and so on and so on; until there's no more solution.
 
-This version generally is more efficient and precise than the other one. The output on figure \ref{fig:dijkstraBiCriteriaSimple} shown that the Bicriteria Dijkstra iteration with a precision of (e.g.) $0.2$ is pretty faster than the binary search; while, with a smallest value for precision (little value means more paths), the \textit{Bicriteria iteration} becomes slower and it finds less results than binary search.
+This version generally is more efficient and precise than the \textit{iteration} algorithm. The output on figure \ref{fig:dijkstraBiCriteriaSimple} shown that the \textit{Bicriteria Dijkstra iteration} with a precision of (e.g.) $0.2$ is pretty faster than the binary search; while, with a smallest value for precision (little value means more paths), the \textit{Bicriteria iteration} becomes slower but finds more results, but anyway it finds less results than binary search.
 
 \begin{figure}[h]
 	\centering
@@ -280,7 +283,7 @@ This version generally is more efficient and precise than the other one. The out
 \end{figure}
 
 \section{Label-setting algorithm}
-We said that the algorithm using Dijkstra is not able to find all feasible solutions, but only those that make the \textit{Convex hull}; so this algorithm is useful if we want to know all the set of non-dominated solutions, hence the \textit{Pareto front}. Below a comparison of bicriteria Dijkstra and label-setting algorithm using two graphs for clarifying the concept.
+In the paper was told that the algorithm using Dijkstra is not able to find all feasible solutions, but only those that make the \textit{Convex hull}; so this algorithm is useful for finding all the set of non-dominated solutions, hence the \textit{Pareto front}. Below a comparison of bicriteria Dijkstra and label-setting algorithm using two graphs for clarifying the concept.
 \begin{figure}[H]
 	\centering
 	\begin{minipage}[b]{0.49\textwidth}
@@ -298,7 +301,7 @@ We said that the algorithm using Dijkstra is not able to find all feasible solut
 \end{figure}
 
 
-In the graph \ref{fig:graphBiDi} are present only some point of the \textit{Convex hull} (red squares) found using bicriteria Dijkstra, while the second graph (\ref{fig:graphLabSet}) has much more points (yellow points) and as it is possible to see, the label-setting algorithm has found also the points found by Bicriteria Dijkstra too (Convex hull). The solutions found by label-setting algorithm are all feasible, hence it is more complete.
+In the graph \ref{fig:graphBiDi} are present only some point of the \textit{Convex hull} (red squares) found using bicriteria Dijkstra, while the second graph (\ref{fig:graphLabSet}) has much more points (yellow points) and, as it is possible to see, the label-setting algorithm has found also the points found by Bicriteria Dijkstra too (\textit{Convex hull}). The solutions found by label-setting algorithm are all feasible, hence it is more complete.
 
 \subsection{Implementation}
 Each node of the graph store a set of label with all the useful information ``inside" its; the structure of label is as follow:
@@ -309,13 +312,18 @@ As always happens the algorithm uses a priority queue where labels are stored an
 \begin{enumerate}[label=\roman*.]
 	\item Create first label $(0,\ 0,\ s,\ null,\ 0,\ null)$ and put in the priority queue ($s$ represent the starting point).
 	\item If the queue is empty perform step (\RN{6}) otherwise get the label with smallest distance's value from the queue and calculate the label for all its owner's neighbors.
-	\item Check if the calculated label is or isn't a non-dominated label. There's can be three different solution: the calculated label is dominated, so the algorithm will discards it; the calculated label dominate other labels, so we can delete those labels; the calculated label doesn't dominate any other label, but it isn't dominated at all, so the algorithm will keep it.
+	\item Check if the calculated label is or isn't a non-dominated label. There's can be three different solution: 
+	\begin{enumerate}
+		\item The calculated label is dominated, so the algorithm will discards it.
+		\item The calculated label dominate other labels, so those labels can be removed.
+		\item The calculated label doesn't dominate any other label, but it isn't dominated at all, so the algorithm will keep it.
+	\end{enumerate}
 	\item If the calculated label is feasible is put in the queue, using the distance as a criteria for its priority.
 	\item Return to step (\RN{2}).
 	\item End.
 \end{enumerate}
 \subsubsection*{Example:}
-We can study the graph in figure \ref{fig:graphExample} starting from node 1, so this node will have the label $(0,\ 0,\ 1,\ null,\ 0,\ null)$ in its set. Then creating labels for its neighbors (2 and 3): $(3,\ 4,\ 2,\ 1,\ 0,\ 0)$ and $(5,\ 3,\ 3,\ 1,\ 0,\ 0)$ and put both in the queue. Extracting label owned by node 2 and do the same thing as before and so on, until we reach the target node. At any new label we have to study if it is feasible or not before put it in the queue.
+Is possible to study the graph in figure \ref{fig:graphExample} starting from node 1, so this node will have the label $(0,\ 0,\ 1,\ null,\ 0,\ null)$ in its set. Then creating labels for its neighbors (2 and 3): $(3,\ 4,\ 2,\ 1,\ 0,\ 0)$ and $(5,\ 3,\ 3,\ 1,\ 0,\ 0)$ and put both in the queue. Extracting label owned by node 2 and do the same thing as before and so on, until the target node is reached. At any new label should be studied if it is feasible or not before putting it in the queue.
 
 \subsection{Lower bound improvement}
 \begin{center}
@@ -329,7 +337,7 @@ This algorithm use a technique that try to improve the speed. This technique con
 
 How it can be useful?
 \\
-We know that the research of the shortest and the safest path will generate the best value for distance and danger for each visited node. So, once calculated the shortest path and the safest, during the elaboration of label-setting algorithm, we will know the following information: the total value of the full path's distance (and danger), \textit{preprocessing-visited node}'s best value of distance (and danger), the value of distance (and danger) calculated during the running of the algorithm. 
+Is known that the research of the shortest and the safest path will generate the best value for distance and danger for each visited node. So, once calculated the shortest path and the safest, during the elaboration of label-setting algorithm, will be known the following information: the total value of the full path's distance (and danger), \textit{preprocessing-visited node}'s best value of distance (and danger), the value of distance (and danger) calculated during the running of the algorithm. 
 
 Is possible to do this evaluation:
 \begin{itemize}
@@ -345,7 +353,7 @@ Doing the same thing with danger is possible to find the projection of the final
 \subsection{Complexity}
 The worst-case example is represented in the graph below, where there is the remote possibility to find always feasible node for each iteration, that is when one weight is zero and the other is bigger than the last one, for each arc:
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{img/labelSettingComplexity.png}
 	\caption{Worst-case label-setting algorithm's example}
@@ -355,24 +363,26 @@ Is now possible to say that the complexity is $O(2^{n-1})$ where $n$ is the numb
 
 
 \section{Analysis of results}
-As was done for the other algorithms we can analyze the results. In the figure below (\ref{fig:worstCaseLabelSetting2}) is possible to see an extract generated by the execution of the three algorithms explained before.
+Now it is possible to analyze the results. In the figure below (\ref{fig:worstCaseLabelSetting2}) is possible to see an extract generated by the execution of the three algorithms explained before.
 Is possible to note that the nodes used for the execution are the same used in monocriteria's execution (randomly generated), in this way is possible to make some comparison, but is obvious that the monocriteria is faster than bicriteria. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6, trim=0.2mm 0 0 0, clip]{img/biCriteriaExcelOutput1.png}
 	\label{fig:worstCaseLabelSetting1}
-\end{figure}
-\begin{figure}[H]
+	
+	\vspace{3mm}
+	
 	\centering
 	\includegraphics[width=\textwidth, trim=0.2mm 0 0 0.1mm, clip]{img/biCriteriaExcelOutput2.png}
 	\caption{Output of all relevant algorithms in terms of number of solution and time spent (excel table generated with \textit{xlsxwriter} library)}
 	\label{fig:worstCaseLabelSetting2}
+	\textit{\begin{center}
+			{\small The tables have been slightly modified to make reading easier, but the values are original}
+	\end{center}}
 \end{figure}
-\textit{\begin{center}
-		{\small The tables have been slightly modified to make reading easier, but the values are original}
-\end{center}}
+
 \subsection{Performance comparison}
-Excluding bicriteria Dijkstra's algorithm, which is advantageous only with nodes very far from each other, however, at the expense of the number of solution, the other two label-setting implementations results to be very similar; in fact \textit{lower bound improvement} algorithm seems to be advantageous only with nodes in a medium-large distant from each other, in others case is pretty in line with the normal label setting algorithm. It is possible also to see that the lower bound improvements makes less loops than the other algorithm, but as the distance between the nodes increases, this difference becomes increasingly irrelevant.
+Excluding bicriteria Dijkstra's algorithm, which is advantageous only with nodes very far from each other, at the expense of the number of solution; the other two label-setting implementations results to be very similar; in fact \textit{lower bound improvement} algorithm seems to be advantageous only with nodes in a medium-large distance from each other, in others case is pretty in line with the normal label setting algorithm. It is possible also to see that the \textit{lower bound improvement} makes less loops than the other algorithm, but this difference becomes increasingly irrelevant with the increasing distance between the nodes.
 \subsection{Node visited}
 Despite the lower bound algorithm does less loops, the visited nodes are less but almost the same than the label-setting algorithm, so only one image is shown for both algorithms, since the difference is almost imperceptible.
 \begin{figure}[H]
@@ -408,43 +418,43 @@ Despite the lower bound algorithm does less loops, the visited nodes are less bu
 
 \chapter{Implementation details}
 This chapter explains some of the main implementation choices made during the development of the project.
-\subsection{Python}
+\section{Python}
 I've decide to choose this language (also because recommended by the professor) because it is a modern and constantly growing language, used in many IT fields. it is very versatile and is incredibly supported by the community, so is possible to find different guides, libraries and tips on the internet.
-\subsubsection{Binary queue}
+\subsection{Binary queue}
 Theoretically the best implementation of Dijkstra's algorithm is with a \textit{Fibonacci heap} ($O(|N|\log_2|N|+|A|)$), but according with \footnote{\url{https://dnshane.wordpress.com/2017/02/14/benchmarking-python-heaps/}} and after some verification I noticed that using a priority queue, implemented thanks to the \textit{heapq} included in the python standard library, was faster in the extractions and insertions; this because it uses C implementations.
 
-\subsection{Nodes as objects}
+\section{Nodes as objects}
 I decided to use the object paradigm for the nodes of the graph, because, due to the nature of the study, it was more convenient to add and remove attributes or functions to the object ``node" and simplified my work. Also because it generates a clearer and more readable code.
-\subsection{Pandas \& Matplotlib}
+\section{Pandas \& Matplotlib}
 For parsing the ``.CSV" files I decided to use \textit{Pandas} library. It is not the only library that can interact with CSV files, but it is very recommended for deal with a large amount of data.
 Pandas is an open-source Python library that provides high performance data analysis tools and easy to use data structures. It is also a key part of the Anaconda distribution and works extremely well in Jupyter notebooks to share data, code, analysis results, visualizations, and narrative text. For more information about \textit{Panda} read this article \footnote{\url{https://realpython.com/python-csv/}}.
 \vspace{5mm}
 
 Matplotlib is another open-source Python library for 2D graphs based on the famous math library NumPy. Matplotlib has a lot of documentation on the web and it pretty simple to make graphs (I used this library to make all images that represents cities and paths).
 Provides object-oriented APIs that allow you to insert graphics into applications using the generic GUI toolkit, so is possible to re-use the graphs for other implementations \footnote{\url{https://matplotlib.org/}}.
-\subsection{Testing}
-I realized two files for \textit{testing in the small} the code, using simple terminal output; one is for the monocriteria algorithms and the other is for the bicriterias. This two files have a lot of commented code, used for show different information, like the number of results, backtracking, time, graphs and so on. For a global test and for a good visualization of data I used matplotlib to generate tables (like the one in figure \ref{fig:monoCriteriaOutput}) and graphs, but also the library \textit{xlsxwriter} to make a rapid visualization table on a spreadsheet (\ref{fig:worstCaseLabelSetting2}).
+\section{Testing}
+I realized two files for \textit{testing in the small} the code, using simple terminal output; one is for the monocriteria algorithms and the other is for the bicriterias. This two files have a lot of commented code, used for showing different information, like the number of results, backtracking, time, graphs and so on. For a global test and for a good visualization of data I used matplotlib to generate tables (like the one in figure \ref{fig:monoCriteriaOutput}) and graphs, but also the library \textit{xlsxwriter} to make a rapid visualization table on a spreadsheet (\ref{fig:worstCaseLabelSetting2}).
 
 \chapter{Personal considerations}
 I have developed this project during my Erasmus period, I have hocked spirit and time in order to best meet the requested objective. It was the first time that I did a study of this kind.
 
-\subsection{Other possible solution}
-\subsubsection*{Genetic algorithm}
+\section{Other possible solution}
+\subsection*{Genetic algorithm}
 \textit{The following is a personal and unimplemented possible solution, maybe interesting to see and with a possible application or study for the future.
 It has to be taken only like a conjecture made for pure passion and self-interest.}
 \vspace{10mm}\\
-This conjecture will try to find a solution in not-polynomial time.
+This conjecture will try to find a solution in a not-polynomial time.
 
 The \textbf{first population}, generated with random genes, will travel, starting from the source node, trough the graph guided by the genes. Not all genotype will get to the target, but the ones which arrived at the destination have accumulated a value for the distance and for the danger.
-We can store the solution that are arrived to the target, but, unlike what has been done so far, we don't have to remove the dominated solution; in this way we are able to avoid \textit{local optima} (a set of solutions that seems to be optimal only within a set of neighbors), it will be the task of the \textit{\textbf{fitness functions}} and the \textit{selection} to "clean" solutions. 
-We could therefor implement two \textit{fitness functions}, one for valuate the distance and one for the danger, associating to all the remaining solution some parameters, based on the results of the fitness and the travel time.
-Anyway it is not granted that from two good solutions a third one is good too and neither that from two solutions with a certain fitness values a it is generated a third one with the same fitness values. To solve these problems generally is used some criteria to chose a set from all the solution and use that for the crossover phase.
-For example I saw many selection that attribute a "probability of extraction", based on the fitness function, to some result and then select some of them considering the probability.
-For time reasons I prefer to chose two or more solution based only on the best fitness, pay attention to chose the shortest and the safest paths.
+The solution that are arrived to the target must be stored, but, unlike what has been done so far, the dominated solutions don't have to be removed. In this way it is possible to avoid \textit{local optima} (a set of solutions that seems to be optimal only within a set of neighbors), it will be the task of the \textit{\textbf{fitness functions}} and the \textit{selection} to "clean" solutions. 
+Therefore it is possible to implement two \textit{fitness functions}, one for valuate the distance and one for the danger, associating to all the remaining solution some parameters, based on the results of the fitness and the travel time.
+Anyway it is not granted that from two good solutions a third one is good too and neither that from two solutions with a certain fitness values it is generated a third one with the same fitness values. To solve these problems generally is used some criteria to chose a set from all the solution and use that for the \textbf{crossover phase}.
+For example it is often used a selection that attribute a ``probability of extraction", based on the fitness function, to some result and then select some of them considering the probability.
+For time reasons is preferred to chose two or more solution based only on the best fitness, paying attention to chose the shortest and the safest paths.
 Using methods of \textbf{\textit{crossovers}} and \textbf{\textit{mutation}} (random changes inside the genotype, useful to improve the fitness function or to improve the research; usually a mutation has a probability value with which it can happen) a new population (generation 2) is generated; now is possible to restart the algorithm with the new population. 
 
 Going over with this method, after some iteration, is possible to get a certain number of optimal solutions, which will compose a sort of \textit{Pareto front}.\\
-For terminate the process is possible to put some condition, for example:
+For terminate the process is possible to put some condition; for example:
 \begin{itemize}
 	\item Reached a certain number of solution that satisfied a minimum criteria (e.g. a set of solution reach a certain fitness value).
 	\item Reached a certain number of generations (useful to limit the time consuming).
@@ -452,16 +462,26 @@ For terminate the process is possible to put some condition, for example:
 \end{itemize}
 
 
-for further information \cite{GAWikipedia} and \cite{GAArticle}. 
+for further information see the bibliography.
 
-\subsection{Other possible application}
-It would be interesting to see also the same algorithm used to study a path that 
+\section{Other possible application}
+It would be interesting to see also the same algorithm used to study a path that uses, instead of danger, a factor of pollution or energy consumption, to find a set of ``eco-paths''.
 
 
-\subsection{Difficulties encountered}
-The main difficulties encountered were, not so much the implementations, but the optimizations of the algorithms to obtain better performance. As well the study behind the developing of the label-setting algorithm, in particular to implement it in order to obtain an efficient backtraking. 
+\section{Difficulties encountered}
+The main difficulties encountered were, not so much the implementations, but the optimizations of the algorithms to obtain better performance. As well the study behind the developing of the label-setting algorithm, in particular to implement it in order to obtain an efficient backtracking. 
 
-\subsection*{Computer info}
+
+\section{All not-standard python's libraries used:}
+\begin{itemize}
+	\item[$-$] pandas
+	\item[$-$] matplotlib
+	\item[$-$] tkinter
+	\item[$-$] xlsxwriter
+\end{itemize}
+\nocite{*}
+
+\section{Computer info}
 All tests were performed on a PC with the following characteristics:\\
 \textbf{-- CPU\\}
 product:\hspace{17mm}        Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz - 2.90GHz\\
@@ -469,15 +489,6 @@ Architecture:\hspace{9mm}   x86\_64\\
 CPU op-mode(s):\hspace{2mm}  32-bit, 64-bit\\
 Byte Order:\hspace{11mm}     Little Endian\\
 CPU(s):\hspace{18mm}         4\\
-
-\subsection*{All not-standard python's libraries used:}
-\begin{itemize}
-	\item pandas
-	\item matplotlib
-	\item tkinter
-	\item xlsxwriter
-\end{itemize}
-
 
 
 \bibliographystyle{abbrv}
