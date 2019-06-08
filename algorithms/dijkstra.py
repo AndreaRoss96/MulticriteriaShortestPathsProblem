@@ -59,10 +59,3 @@ def dijkstraListOfCandidate(source, target):
     if not target.visited:  # if the target is not been visited, it means that it wasn't in the set
         print("ERROR! impossible to reach the target")
     # print("loops:", counter)
-
-
-""" 
-Ho deciso di utilizzare la libreria di heapq, la quale implementa un classico binary heap, 
-invece di implementare una Fibonacci heap, perché nell'estrazione del minore 
---> https://github.com/danielborowski/fibonacci-heap-python
-"""

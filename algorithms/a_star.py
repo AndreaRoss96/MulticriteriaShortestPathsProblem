@@ -1,11 +1,13 @@
 """
-The A* algorithm is similar to dijkstra algorithm
-but it enjoys a better performance and accuracy.
-In fact this algort
-
-***
-Guarda nell'agenda, quello da scrivere è perfettamente riportato
-
+The A Star algorithm (or ‘A*’) can be considered an extension of Dijkstra’s
+algorithm, because it achieves better performance and accuracy by using
+heuristics. A*, to determinate how to extend its paths to the target, needs
+to minimizes this equation:
+    f(n) = g(n)+h(n)
+    
+• n is the next path’s node
+• g(n) is path’s cost from the beginning to n
+• h(n) is the heuristic function
 """
 import math
 from PriorityQueue import PriorityQueue
@@ -46,4 +48,4 @@ def euclideanDistance(source, destination) :
     res = math.sqrt(sum(dist))
     return res
 
-    #la prestazione è stata cacolata da https://stackoverflow.com/questions/37794849/efficient-and-precise-calculation-of-the-euclidean-distance#
+    #performance calculated https://stackoverflow.com/questions/37794849/efficient-and-precise-calculation-of-the-euclidean-distance#

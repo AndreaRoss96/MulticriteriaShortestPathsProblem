@@ -1,6 +1,16 @@
 import matplotlib.pyplot as plt
 
-def plotGraph(graph, nodes, title, source, target) :
+def plotGraph(graph, path, title, source, target) :
+    """
+    This function allows to plot graph and a path for monocriteria algorithm.
+
+    @param
+        graph: list of all node.
+        path: node of the path that has to be shown.
+        title: title of the graph.
+        source: source node.
+        target: target node.
+    """
     
     xdata = []
     ydata = []
@@ -17,7 +27,7 @@ def plotGraph(graph, nodes, title, source, target) :
             xdata.append(node.latitude)
             ydata.append(node.longitude)
     
-    for node in nodes :
+    for node in path :
         pxdata.append(node.latitude)
         pydata.append(node.longitude)
     
@@ -35,7 +45,17 @@ def plotGraph(graph, nodes, title, source, target) :
     plt.show()
 
 def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
-    
+    """
+    This function allows to plot graph and a paths for bicriteria algorithm.
+
+    @param
+        graph: list of all node.
+        resultsList: list of paths that has to be shown.
+        title: title of the graph.
+        source: source node.
+        target: target node.
+    """
+
     xdata = []
     ydata = []
     vxdata = []
@@ -75,6 +95,9 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
     plt.show()
 
 def paretoGraph(result) :
+    """
+    This function allows to plot the Pareto front of the result of an algoritm.
+    """
 
     distList = []
     dangList = []
@@ -89,6 +112,9 @@ def paretoGraph(result) :
     plt.show()
 
 def doubleParetoGraph(resultA, resultB) :
+    """
+    This function allows to plot the Pareto front of the results of two algoritms.
+    """
 
     distListA = []
     dangListA = []

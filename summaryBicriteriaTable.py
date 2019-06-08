@@ -1,7 +1,7 @@
 import sys
 import time
 
-sys.path.append("algorithms/")
+sys.path.append("algorithms/") 
 
 import pandas as pds
 import xlsxwriter as xls 
@@ -12,7 +12,9 @@ from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-
+"""
+This file allows to write statics the three bicriteria algoeithms on a spreadsheet.
+"""
 
 dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)

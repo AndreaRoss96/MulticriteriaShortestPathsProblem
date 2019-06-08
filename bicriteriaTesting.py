@@ -32,7 +32,7 @@ precision = 0.05
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    # infoList = dijkstraBiCrIteration(graph, source, target, precision)
+    infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -58,7 +58,7 @@ tmp_list= []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    # infoList = binarySearchDijkBiCr(graph, source, target)
+    infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -102,7 +102,7 @@ tmp_list= []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    labelSettingAlgorithm(source, target)
+    labelSettingAlgorithm(source, target) # algorithm
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -130,25 +130,25 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 ########################
 ##### BACKTRACKING #####
 ########################
-graphList = []
-for label in target.labelList :
-    printList = []
-    nodeList = [label[2]]
-    while label[3] != None :
-        node = label[3]
-        nodeList.append(node)
-        lenList = len(node.labelList)
-        index = label[5] if label[5] < lenList else lenList - 1
-        label = node.labelList[index]
-        printList.append(node.index)
-    graphList.append(nodeList)
+# graphList = []
+# for label in target.labelList :
+#     printList = []
+#     nodeList = [label[2]]
+#     while label[3] != None :
+#         node = label[3]
+#         nodeList.append(node)
+#         lenList = len(node.labelList)
+#         index = label[5] if label[5] < lenList else lenList - 1
+#         label = node.labelList[index]
+#         printList.append(node.index)
+#     graphList.append(nodeList)
 # print(*printList, sep="<-")
 
 ###################
 ### MAP'S GRAPH ###
 ###################
-from graphPlotter import bicriteriaPlotGraph
-bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+# from graphPlotter import bicriteriaPlotGraph
+# bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 #########################################################################################
 #########################################################################################
@@ -162,7 +162,6 @@ for n in range (0, 1):
     initSingleNode(graph, source)
     dijkstraBiCrit(source, target, 1) # shortest path => "
 
-
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -173,7 +172,7 @@ tmp_list= []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    lowerBoundImprovement(graph, source, target)
+    lowerBoundImprovement(graph, source, target) # algorithm
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
@@ -190,22 +189,22 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 ########################
 ##### BACKTRACKING #####
 ########################
-graphList = []
-for label in target.labelList :
-    printList = []
-    nodeList = [label[2]]
-    while label[3] != None :
-        node = label[3]
-        nodeList.append(node)
-        lenList = len(node.labelList)
-        index = label[5] if label[5] < lenList else lenList - 1
-        label = node.labelList[index]
-        printList.append(node.index)
-    graphList.append(nodeList)
+# graphList = []
+# for label in target.labelList :
+#     printList = []
+#     nodeList = [label[2]]
+#     while label[3] != None :
+#         node = label[3]
+#         nodeList.append(node)
+#         lenList = len(node.labelList)
+#         index = label[5] if label[5] < lenList else lenList - 1
+#         label = node.labelList[index]
+#         printList.append(node.index)
+#     graphList.append(nodeList)
 # print(*printList, sep="<-")
 
 ###################
 ### MAP'S GRAPH ###
 ###################
-from graphPlotter import bicriteriaPlotGraph
-bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+# from graphPlotter import bicriteriaPlotGraph
+# bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)

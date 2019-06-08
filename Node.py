@@ -65,7 +65,7 @@ class Node(object):
             self.bestLabel = [None, None]
 
     """
-    the nexts functions are useless
+    the nexts functions are unused
     """
 
     def addShortestPath(self, destination, totalWeight) :

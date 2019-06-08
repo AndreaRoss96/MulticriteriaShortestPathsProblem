@@ -40,7 +40,7 @@ print("*"*40, "ONE TO ALL", "*"*40)
 initSingleNode(graph, source)
 
 start = time.time()
-dijkstraOneToAll(source)
+dijkstraOneToAll(source) # algorithm
 end = time.time()
 
 print("time:", end-start)
@@ -65,7 +65,7 @@ print("*"*40, "ONE TO ONE", "*"*40)
 initSingleNode(graph, source)
 
 start = time.time()
-# dijkstraOneToOne(graph, source, target)
+# dijkstraOneToOne(graph, source, target) # algorithm
 end = time.time()
 
 print("time:", end-start)
@@ -89,7 +89,7 @@ print("*"*40, "LIST OF CANDIDATE", "*"*40)
 initSingleNode(graph, source)
 
 start = time.time()
-dijkstraListOfCandidate(source, target)
+dijkstraListOfCandidate(source, target) # algorithm
 end = time.time()
 
 print("time:", end-start)
@@ -122,7 +122,7 @@ print("*"*40, "A STAR", "*"*40)
 initSingleNode(graph, source)
 
 start = time.time()
-a_star(source, target)
+a_star(source, target) # algorithm
 end = time.time()
 
 print("time:", end-start)
