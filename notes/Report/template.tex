@@ -43,7 +43,7 @@ In this paper a \textit{pathfinding} problem is analyzed starting from a classic
 
 As well known, Dijkstra's algorithm is the most widely used to solve routing problems; in fact is very easy to create an implementation that attempts to find the best path in a classical weighted graph. So the paper will focus on the operations of optimization.
 %
-The main part of the paper is the one that analyzes the paths of a graph with two weights for each arc, one value represent the distance (also present in the mono-criteria problem) and the other represent the danger of that arc. So the implementation will not only find the shortest and safest path, but also all the paths (not dominated) that take intermediate values.
+The main part of the paper is the one that analyzes the paths of a graph with two weights for each arc, one value represents the distance (also present in the mono-criteria problem) and the other represents the danger of that arc. So the implementation will not only find the shortest and safest path, but also all the paths (not dominated) that take intermediate values.
 \end{abstract}
 
 \tableofcontents
@@ -101,7 +101,7 @@ The analysis focuses on the evolution and optimization of the Dijkstra's algorit
 \section{Dijkstra's algorithms}
 
 Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arcs with positive weights.\\
-Different implementation of this algorithm are present in this paper. In the follows explained.
+Different implementation of this algorithm are present in this paper. In the following a brief explanation of the implementations referred in this paper.
 
 \begin{figure}[h]
 	\centering
@@ -138,7 +138,7 @@ Where:
 Heuristic, in this case, is the shortest distance from $n$ to the goal, so a \textit{straight-line} or better the \textbf{euclidean distance} to the target.
 According with \footnote{\url{https://en.wikipedia.org/wiki/A*_search_algorithm}} the time complexity is related to $h$ and the number of nodes explored is exponential in the depth of the shortest path solution.
 So the worst case is $O(|N|) \equiv O(b^d)$ where $b$ is the average number of successors per node and $d$ the depth of the solution.
-\subsubsection*{implementation's details}
+\subsubsection*{Implementation's details}
 At each iteration:
 \begin{enumerate}
 	\item The node with the lowest $f(n)$ is popped by the queue (implemented as a priority queue).
@@ -147,6 +147,15 @@ At each iteration:
 \end{enumerate}
 The Euclidean distance between two points is: $$\sqrt{(i_x - t_x)^2 + (i_y - t_y)^2}$$
 where $i$ is a node of the graph and $t$ the target, $x$ and $y$ are latitude and longitude, converted to Cartesian coordinates.
+
+To calculate the square root like this is very expensive, in term of time, so it is necessary to find a way for make this operation only one time per node (in this implementation the value of Euclidean distance is stored in an node's attribute).
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{img/A_StarPseudocode.png}
+	\caption{Pseudocode - A* algorithm}
+	\label{fig:aStarAlgorithm}
+\end{figure}
+
 
 
 \section{Analysis of the results}
@@ -159,7 +168,7 @@ In the figure \ref{fig:monoCriteriaOutput} are shown some results, from 15 diffe
 	\caption{Performance of the mono-criteria algorithms (generate with tkinter library)}
 	\label{fig:monoCriteriaOutput}
 \end{figure}
-From the table it's possible to recognize that the first column, '\textit{one to all}', has a pretty much constant elaboration time (it comprehends the algorithm's work completion and the research in target node's attribute the distance from source). From the data of \textit{one to one} algorithm is easily to recognize that of the implementation without a priority queue is unsustainably slow, especially in the longest paths. Comparing the total average times of the latest two algorithm is possible to see that the \textit{A Star}'s implementation is 3 times more faster than the \textit{List of candidate}'s implementation.
+From the table it's possible to recognize that the first column, '\textit{one to all}', has a pretty much constant elaboration time (it comprehends the algorithm's work completion and the research in target node's attribute the distance from source). From the data of \textit{one to one} algorithm is easily to recognize that the implementation without a priority queue is too slow, especially in the longest paths. Comparing the total average times of the latest two algorithm is possible to see that the \textit{A Star}'s implementation is 3 times more faster than the \textit{List of candidate}'s implementation.
 \textit{Dijkstra's List of candidate}, in average, is near to be five times more performing than the \textit{one to all} implementation.
 
 \subsection{Node visited}
@@ -374,7 +383,7 @@ Is possible to note that the nodes used for the execution are the same used in m
 	
 	\centering
 	\includegraphics[width=\textwidth, trim=0.2mm 0 0 0.1mm, clip]{img/biCriteriaExcelOutput2.png}
-	\caption{Output of all relevant algorithms in terms of number of solution and time spent (excel table generated with \textit{xlsxwriter} library)}
+	\caption{Output of all relevant algorithms in terms of number of solution and time spent (excel table generated with \textit{xlsxwriter} library).}
 	\label{fig:worstCaseLabelSetting2}
 	\textit{\begin{center}
 			{\small The tables have been slightly modified to make reading easier, but the values are original}
@@ -424,7 +433,21 @@ I've decide to choose this language (also because recommended by the professor) 
 Theoretically the best implementation of Dijkstra's algorithm is with a \textit{Fibonacci heap} ($O(|N|\log_2|N|+|A|)$), but according with \footnote{\url{https://dnshane.wordpress.com/2017/02/14/benchmarking-python-heaps/}} and after some verification I noticed that using a priority queue, implemented thanks to the \textit{heapq} included in the python standard library, was faster in the extractions and insertions; this because it uses C implementations.
 
 \section{Nodes as objects}
-I decided to use the object paradigm for the nodes of the graph, because, due to the nature of the study, it was more convenient to add and remove attributes or functions to the object ``node" and simplified my work. Also because it generates a clearer and more readable code.
+I decided to use the object paradigm for the nodes of the graph, because, due to the nature of the study, it was more convenient to add and remove attributes or functions to the object ``node" and simplified my work. Also because it generates a clearer and more readable code.\\
+This implementation use the following attribute in the "object node":
+\begin{itemize}
+	\item[$-$] \textbf{index}: Indicates the index of the node.
+	\item[$-$] \textbf{longitude \& latitude}.
+	\item[$-$] \textbf{x \& y}: Cartesian coordinates of longitude and latitude.
+	\item[$-$] \textbf{neighbors}: A list with all information about the neighbors (distance and node).
+	\item[$-$] \textbf{visited}: Indicates if the node is visited or not.
+	\item[$-$] \textbf{predecessor}: the node predecessor this node.
+	\item[$-$] \textbf{minWeight}: the total weight from the source node.
+	\item[$-$] \textbf{shortestPaths}: stores information about all the nodes from the source to this node. (Used only in \textit{one to all} implementation)
+	\item[$-$] \textbf{euclidean}: stores the euclidean distance from this node to target. (Used only in \textit{A*} implementation)
+	\item[$-$] \textbf{distance \& danger}: store the values from the source so far. (Used only in bicriteria algorithm).
+	\item[$-$] \textbf{labelList}: A list of all label of this node. (Used only in \textit{label-setting} algorithm).
+\end{itemize}
 \section{Pandas \& Matplotlib}
 For parsing the ``.CSV" files I decided to use \textit{Pandas} library. It is not the only library that can interact with CSV files, but it is very recommended for deal with a large amount of data.
 Pandas is an open-source Python library that provides high performance data analysis tools and easy to use data structures. It is also a key part of the Anaconda distribution and works extremely well in Jupyter notebooks to share data, code, analysis results, visualizations, and narrative text. For more information about \textit{Panda} read this article \footnote{\url{https://realpython.com/python-csv/}}.

@@ -147,7 +147,7 @@ def lowerBoundImprovement(graph, source, target) :
 
 def lowerBoundImprovementTry(graph, source, target) :
     """
-    Use the label setting algorithm to find the paths, but with a dijkstra preprocessing
+    Uses the label setting algorithm to find the paths, but with a dijkstra preprocessing
     """
     preprocessing = binarySearchDijkBiCr(graph, source, target)
     initSingleNode(graph, source)
