@@ -130,25 +130,25 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 ########################
 ##### BACKTRACKING #####
 ########################
-# graphList = []
-# for label in target.labelList :
-#     printList = []
-#     nodeList = [label[2]]
-#     while label[3] != None :
-#         node = label[3]
-#         nodeList.append(node)
-#         lenList = len(node.labelList)
-#         index = label[5] if label[5] < lenList else lenList - 1
-#         label = node.labelList[index]
-#         printList.append(node.index)
-#     graphList.append(nodeList)
+graphList = []
+for label in target.labelList :
+    printList = []
+    nodeList = [label[2]]
+    while label[3] != None :
+        node = label[3]
+        nodeList.append(node)
+        lenList = len(node.labelList)
+        index = label[5] if label[5] < lenList else lenList - 1
+        label = node.labelList[index]
+        printList.append(node.index)
+    graphList.append(nodeList)
 # print(*printList, sep="<-")
 
 ###################
 ### MAP'S GRAPH ###
 ###################
-# from graphPlotter import bicriteriaPlotGraph
-# bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+from graphPlotter import bicriteriaPlotGraph
+bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 #########################################################################################
 #########################################################################################

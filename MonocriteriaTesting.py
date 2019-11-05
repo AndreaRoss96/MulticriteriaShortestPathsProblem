@@ -31,8 +31,8 @@ for the right test start := 2000, target := 2689 the solution are like:
 """
 #default = 2000->2689
 
-source = graph[1000]
-target = graph[1510]
+source = graph[2000]
+target = graph[2689]
 
 
 ########## ONE -> ALL ##########
@@ -98,22 +98,22 @@ print("from",source.index, "to", target.index, "the weight of the path is:", tar
 ######################
 #### BACKTRACKING ####
 ######################
-# dbgList = []
-# graphList = []
-# pointer = target
-# while pointer != source :
-#     dbgList.append(pointer.index)
-#     graphList.append(pointer)
-#     pointer = pointer.predecessor
-# dbgList.append(pointer.index)
-# dbgList = reversed(dbgList)
-# print(*dbgList, sep="->") # Print all path from source to target
+dbgList = []
+graphList = []
+pointer = target
+while pointer != source :
+    dbgList.append(pointer.index)
+    graphList.append(pointer)
+    pointer = pointer.predecessor
+dbgList.append(pointer.index)
+dbgList = reversed(dbgList)
+print(*dbgList, sep="->") # Print all path from source to target
 
 #####################
 #### MAP'S GRAPH ####
 #####################
 ## Need graphList in BACKTRACKING ^ ##
-# plotGraph(graph, reversed(graphList), "list of candidate", source, target)
+plotGraph(graph, reversed(graphList), "list of candidate", source, target)
 
 
 ############################
@@ -131,19 +131,19 @@ print("from",source.index, "to", target.index, "the weight of the path is:", tar
 ######################
 #### BACKTRACKING ####
 ######################
-# dbgList = []
-# graphList = []
-# pointer = target
-# while pointer != source :
-#     dbgList.append(pointer.index)
-#     graphList.append(pointer)
-#     pointer = pointer.predecessor
-# dbgList.append(pointer.index)
-# dbgList = reversed(dbgList)
-# print(*dbgList, sep="->") # Print all path from source to target
+dbgList = []
+graphList = []
+pointer = target
+while pointer != source :
+    dbgList.append(pointer.index)
+    graphList.append(pointer)
+    pointer = pointer.predecessor
+dbgList.append(pointer.index)
+dbgList = reversed(dbgList)
+print(*dbgList, sep="->") # Print all path from source to target
 
 #####################
 #### MAP'S GRAPH ####
 #####################
 ## Need graphList in BACKTRACKING ^ ##
-# plotGraph(graph, reversed(graphList), "A_Star", source, target)
+plotGraph(graph, reversed(graphList), "A_Star", source, target)

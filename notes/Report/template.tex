@@ -1,5 +1,4 @@
 \documentclass[a4paper,11pt]{report}
-
 \usepackage{alltt, fancyvrb, url}
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -17,7 +16,12 @@
 % Remove option to use English naming
 \usepackage[english]{cleveref}
 \graphicspath{ {img/} }
-
+%COSE DA SCRIVERE:
+%Spiegare come sono fatti i nodi
+%dire che da nodo a nodo sono presenti più archi
+% guarda pagina 5 di "Speeding up martin's algorithm.."
+% bicriteria figo perché puoi fare threading
+% aggiungi references
 \usepackage{amsmath}
 
 \newcommand{\RN}[1]{%
@@ -234,7 +238,7 @@ Keeping in mind the mathematical explanation made in the introduction, it is pos
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \begin{definition}{Feasible solution}\\
-	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. It is said that $x$ \emph{dominates} $y$ if and only if $c^k(x) \leq c^k(y)$ $\forall$ $k \in [1,2]$.
+	Let $x, y$ be two distinct feasible path from a source $s$ to a target $t$. It is said that $x$ \emph{dominates} $y$ if and only if $c^k(x) \leq c^k(y)$ $\forall$ $k \in \{1,2\}$.
 \end{definition}
 
 \theoremstyle{definition}
@@ -244,7 +248,7 @@ Keeping in mind the mathematical explanation made in the introduction, it is pos
 	\alpha*c^1 + (1-\alpha) c^2 = k
 	\end{equation}
 	\begin{center}
-		where $k$ is constant and $\alpha \in [0, 1]$.\\
+		where $k$ is constant and $\alpha \in \{0, 1\}$.\\
 		and $c^1$ is the \textit{distance} and $c^2$ the \textit{danger}.
 	\end{center}
 \end{definition}

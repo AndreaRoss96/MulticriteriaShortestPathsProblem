@@ -32,7 +32,7 @@ def labelSettingAlgorithm(source, target) :
     sourceLabel = (0, 0, source, None, 0, None)
     source.labelList.append(sourceLabel)
     labelQueue.put(sourceLabel, sourceLabel[0])
-    ending = False  # become True when a "nextNode" is equal to the target
+    ending = False  # become True when a "nighNode" is equal to the target
     counter = 0
     while not labelQueue.empty() :
         counter += 1
@@ -42,23 +42,23 @@ def labelSettingAlgorithm(source, target) :
         actualNode = actualLabel[2]
         parentIndex = actualLabel[4]
         
-        for nextNode, weight in actualNode.neighbors :
+        for nighNode, weight in actualNode.neighbors :
             distance, danger = weight
-            ownIndex = len(nextNode.labelList)
-            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, ownIndex, parentIndex) # creating of a new label
+            ownIndex = len(nighNode.labelList)
+            newLabel = (distSoFar + distance, dangSoFar + danger, nighNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
 
-            if ending :
+            if ending : # stop condition
                 if __isDominated(newLabel, target.labelList) :
                     continue # restart for loop if the new label is dominated
 
-            for label in nextNode.labelList :
-                if not __usableLabel(newLabel, label, nextNode.labelList) :
+            for label in nighNode.labelList :
+                if not __usableLabel(newLabel, label, nighNode.labelList) :
                     useLabel = False
                     break # if a value is useless (1st case) the loop - label in labelList - is interrupt, to jump some loops
             if useLabel :
-                nextNode.labelList.append(newLabel)
-                if nextNode != target :
+                nighNode.labelList.append(newLabel)
+                if nighNode != target :
                     labelQueue.put(newLabel, newLabel[0])
                 else :
                     ending = True
@@ -114,15 +114,15 @@ def lowerBoundImprovement(graph, source, target) :
         actualNode = actualLabel[2]
         parentIndex = actualLabel[4]
         
-        for nextNode, weight in actualNode.neighbors :
+        for nighNode, weight in actualNode.neighbors :
             distance, danger = weight
-            ownIndex = len(nextNode.labelList)
-            newLabel = (distSoFar + distance, dangSoFar + danger, nextNode, actualNode, ownIndex, parentIndex) # creating of a new label
+            ownIndex = len(nighNode.labelList)
+            newLabel = (distSoFar + distance, dangSoFar + danger, nighNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
 
-            if nextNode.bestLabel[0] is not None and nextNode.bestLabel[1] is not None :    # if the best label is present, enter
-                checkDistance = bestDistance - nextNode.bestLabel[0]
-                checkDanger = bestDanger - nextNode.bestLabel[1]
+            if nighNode.bestLabel[0] is not None and nighNode.bestLabel[1] is not None :    # if the best label is present, enter
+                checkDistance = bestDistance - nighNode.bestLabel[0]
+                checkDanger = bestDanger - nighNode.bestLabel[1]
                 if checkDanger > 0 and checkDistance > 0 :  # if the values are negative is useless to check
                     checkLabel = (newLabel[0] + checkDistance, newLabel[1] + checkDanger)
                 else :
@@ -131,15 +131,15 @@ def lowerBoundImprovement(graph, source, target) :
                 checkLabel = newLabel
 
             if __isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on                
-                continue # restart 'for' loop with another nextNode
+                continue # restart 'for' loop with another nighNode
             
-            for label in nextNode.labelList :
-                if not __usableLabel(newLabel, label, nextNode.labelList) :
+            for label in nighNode.labelList :
+                if not __usableLabel(newLabel, label, nighNode.labelList) :
                     useLabel = False
                     break # if a value is useless (1st case) the loop - label in labelList - is interrupt, to jump some loops
             if useLabel :
-                nextNode.labelList.append(newLabel)
-                if nextNode != target :
+                nighNode.labelList.append(newLabel)
+                if nighNode != target :
                     labelQueue.put(newLabel, newLabel[0])
     return counter
 

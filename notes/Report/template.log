@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  9 JUN 2019 20:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  5 NOV 2019 19:27
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**template.tex
-(./template.tex
+**/home/andreaross/Desktop/proj_Tours/notes/Report/template.tex
+(/home/andreaross/Desktop/proj_Tours/notes/Report/template.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -23,15 +24,11 @@ File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
-)
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
-
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix <2008/02/07> (tvz) (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
@@ -44,28 +41,22 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 ) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
-)
-(/usr/share/texmf/tex/latex/subfigure/subfigure.sty
+) (/usr/share/texmf/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip43
 \subfigcapskip=\skip44
@@ -84,44 +75,38 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 (/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
 \subfig@top=\skip47
 \subfig@bottom=\skip48
-)
-(/usr/share/texmf/tex/latex/wrapfig/wrapfig.sty
+) (/usr/share/texmf/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen107
 \WF@size=\dimen108
 \c@WF@wrappedlines=\count95
 \WF@box=\box27
 \WF@everypar=\toks15
 Package: wrapfig 2003/01/31  v 3.6
-)
-(/usr/share/texmf/tex/latex/float/float.sty
+) (/usr/share/texmf/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count96
 \float@exts=\toks16
 \float@box=\box28
 \@float@everytoks=\toks17
 \@floatcapt=\box29
-)
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip49
 \enit@outerparindent=\dimen109
 \enit@toks=\toks18
 \enit@inbox=\box30
 \enitdp@description=\count97
-)
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks19
 \inpenc@posthook=\toks20
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+ (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -361,8 +346,7 @@ File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 )
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -402,8 +386,7 @@ File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 )
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -426,11 +409,9 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2017/10/31 v2.20.4
 \thm@style=\toks21
 \thm@bodyfont=\toks22
@@ -441,46 +422,37 @@ Package: amsthm 2017/10/31 v2.20.4
 \thm@postskip=\skip51
 \thm@headsep=\skip52
 \dth@everypar=\toks26
-)
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2018/02/14 3.18 The Babel package
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
 File: switch.def 2018/02/14 3.18 Babel switching mechanism
-)
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+) (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2018/02/14 3.18 Babel common definitions
 \babel@savecnt=\count98
 \U@D=\dimen110
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@dirlevel=\count99
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
-))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip53
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks27
 \ex@=\dimen111
-))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen112
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count100
@@ -520,11 +492,9 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \mathdisplay@stack=\toks31
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
-
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count112
 \calc@Bcount=\count113
@@ -536,8 +506,7 @@ LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count114
 \calc@Cskip=\skip58
-)
-(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
@@ -553,37 +522,33 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_below_intertext_sep=\dimen126
 \l_MT_above_shortintertext_sep=\dimen127
 \l_MT_below_shortintertext_sep=\dimen128
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/share/texmf/tex/latex/cleveref/cleveref.sty
+)) (/usr/share/texmf/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
 Package cleveref Info: `amsthm' support loaded on input line 3026.
-) (./template.aux)
+) (/home/andreaross/Desktop/proj_Tours/notes/Report/template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count116
 \scratchdimen=\dimen129
@@ -598,29 +563,21 @@ LaTeX Font Info:    ... okay on input line 37.
 \everyMPtoPDFconversion=\toks33
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+))) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -628,12 +585,9 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-)))
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+))) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
@@ -641,46 +595,39 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 39.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 39.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 <img/univToursLogo.png, id=1, 135.3858pt x 93.951pt>
 File: img/univToursLogo.png Graphic file (type png)
 <use img/univToursLogo.png>
-Package pdftex.def Info: img/univToursLogo.png  used on input line 39.
+Package pdftex.def Info: img/univToursLogo.png  used on input line 43.
 (pdftex.def)             Requested size: 121.84608pt x 84.55511pt.
 <img/uniboLogo.png, id=3, 376.40625pt x 196.48407pt>
 File: img/uniboLogo.png Graphic file (type png)
 <use img/uniboLogo.png>
-Package pdftex.def Info: img/uniboLogo.png  used on input line 39.
+Package pdftex.def Info: img/uniboLogo.png  used on input line 43.
 (pdftex.def)             Requested size: 225.84547pt x 104.23392pt.
 
-Overfull \hbox (3.60818pt too wide) in paragraph at lines 39--39
+Overfull \hbox (3.60818pt too wide) in paragraph at lines 43--43
  [][] 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./img/uniboLogo.png> <./im
-g/univToursLogo.png>] [1] (./template.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/andreaross/Desktop/proj_Tours/notes/Report/img/uniboLogo.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/univToursLogo.png>] [1] (/home/andreaross/Desktop/proj_Tours/notes/Report/template.toc
 Package cleveref Info: loaded `english' language definitions on input line 1.
  [1
 
@@ -693,100 +640,89 @@ Chapter 1.
 <img/exampleGraph1.png, id=28, 393.47pt x 228.855pt>
 File: img/exampleGraph1.png Graphic file (type png)
 <use img/exampleGraph1.png>
-Package pdftex.def Info: img/exampleGraph1.png  used on input line 59.
+Package pdftex.def Info: img/exampleGraph1.png  used on input line 63.
 (pdftex.def)             Requested size: 360.0pt x 209.38629pt.
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 85--90
+Underfull \hbox (badness 10000) in paragraph at lines 89--94
 
  []
 
-[4 <./img/exampleGraph1.png>] [5]
+[4 </home/andreaross/Desktop/proj_Tours/notes/Report/img/exampleGraph1.png>] [5]
 Chapter 2.
 <img/dijkstraLoC.png, id=45, 724.7075pt x 286.06876pt>
 File: img/dijkstraLoC.png Graphic file (type png)
 <use img/dijkstraLoC.png>
-Package pdftex.def Info: img/dijkstraLoC.png  used on input line 108.
+Package pdftex.def Info: img/dijkstraLoC.png  used on input line 112.
 (pdftex.def)             Requested size: 360.0pt x 142.10863pt.
 [6
 
- <./img/dijkstraLoC.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 134.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ </home/andreaross/Desktop/proj_Tours/notes/Report/img/dijkstraLoC.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 138.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 134.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
  [7]
 <img/A_StarPseudocode.png, id=54, 657.45625pt x 324.21124pt>
 File: img/A_StarPseudocode.png Graphic file (type png)
 <use img/A_StarPseudocode.png>
-Package pdftex.def Info: img/A_StarPseudocode.png  used on input line 154.
+Package pdftex.def Info: img/A_StarPseudocode.png  used on input line 158.
 (pdftex.def)             Requested size: 360.0pt x 177.53015pt.
- [8 <./img/A_StarPseudocode.png>]
+ [8 </home/andreaross/Desktop/proj_Tours/notes/Report/img/A_StarPseudocode.png>]
 <img/monoCriteriaOutput.png, id=58, 1059.96pt x 549.55313pt>
 File: img/monoCriteriaOutput.png Graphic file (type png)
 <use img/monoCriteriaOutput.png>
-Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 167.
+Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 171.
 (pdftex.def)             Requested size: 360.0pt x 186.64433pt.
- [9 <./img/monoCriteriaOutput.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 178--180
+ [9 </home/andreaross/Desktop/proj_Tours/notes/Report/img/monoCriteriaOutput.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 182--184
 
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 184.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 188.
 <img/mapOutput/2070-15426LoC.png, id=62, 1452.42625pt x 848.16875pt>
 File: img/mapOutput/2070-15426LoC.png Graphic file (type png)
 <use img/mapOutput/2070-15426LoC.png>
-Package pdftex.def Info: img/mapOutput/2070-15426LoC.png  used on input line 19
-2.
+Package pdftex.def Info: img/mapOutput/2070-15426LoC.png  used on input line 196.
 (pdftex.def)             Requested size: 360.0pt x 210.22978pt.
 <img/mapOutput/2070-15426A_Star.png, id=63, 1422.31375pt x 865.2325pt>
 File: img/mapOutput/2070-15426A_Star.png Graphic file (type png)
 <use img/mapOutput/2070-15426A_Star.png>
-Package pdftex.def Info: img/mapOutput/2070-15426A_Star.png  used on input line
- 197.
+Package pdftex.def Info: img/mapOutput/2070-15426A_Star.png  used on input line 201.
 (pdftex.def)             Requested size: 360.0pt x 219.00087pt.
 <img/mapOutput/2000-2689LoC.png, id=64, 1426.32875pt x 850.17625pt>
 File: img/mapOutput/2000-2689LoC.png Graphic file (type png)
 <use img/mapOutput/2000-2689LoC.png>
-Package pdftex.def Info: img/mapOutput/2000-2689LoC.png  used on input line 205
-.
+Package pdftex.def Info: img/mapOutput/2000-2689LoC.png  used on input line 209.
 (pdftex.def)             Requested size: 360.0pt x 214.58025pt.
 <img/mapOutput/2000-2689A_Star.png, id=65, 1423.3175pt x 859.21pt>
 File: img/mapOutput/2000-2689A_Star.png Graphic file (type png)
 <use img/mapOutput/2000-2689A_Star.png>
-Package pdftex.def Info: img/mapOutput/2000-2689A_Star.png  used on input line 
-210.
+Package pdftex.def Info: img/mapOutput/2000-2689A_Star.png  used on input line 214.
 (pdftex.def)             Requested size: 360.0pt x 217.31918pt.
 [10]
 Overfull \vbox (1.56374pt too high) has occurred while \output is active []
 
-
-[11 <./img/mapOutput/2070-15426LoC.png> <./img/mapOutput/2070-15426A_Star.png>]
+ [11 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2070-15426LoC.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2070-15426A_Star.png>]
 <img/mapOutput/1000-1510BerlinLoC.png, id=74, 1415.2875pt x 855.195pt>
 File: img/mapOutput/1000-1510BerlinLoC.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinLoC.png>
-Package pdftex.def Info: img/mapOutput/1000-1510BerlinLoC.png  used on input li
-ne 218.
+Package pdftex.def Info: img/mapOutput/1000-1510BerlinLoC.png  used on input line 222.
 (pdftex.def)             Requested size: 360.0pt x 217.5303pt.
 <img/mapOutput/1000-1510BerlinA_Star.png, id=75, 1419.3025pt x 850.17625pt>
 File: img/mapOutput/1000-1510BerlinA_Star.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinA_Star.png>
-Package pdftex.def Info: img/mapOutput/1000-1510BerlinA_Star.png  used on input
- line 223.
+Package pdftex.def Info: img/mapOutput/1000-1510BerlinA_Star.png  used on input line 227.
 (pdftex.def)             Requested size: 360.0pt x 215.644pt.
-[12 <./img/mapOutput/2000-2689LoC.png> <./img/mapOutput/2000-2689A_Star.png>]
-[13 <./img/mapOutput/1000-1510BerlinLoC.png> <./img/mapOutput/1000-1510BerlinA_
-Star.png>]
+ [12 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2000-2689LoC.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2000-2689A_Star.png>] [13 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/1000-1510BerlinLoC.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/1000-1510BerlinA_Star.png>]
 Chapter 3.
 \c@definition=\count122
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
 
@@ -796,81 +732,69 @@ Underfull \hbox (badness 10000) in paragraph at lines 259--260
 <img/bicriteriaDijkstra.png, id=85, 722.7pt x 307.1475pt>
 File: img/bicriteriaDijkstra.png Graphic file (type png)
 <use img/bicriteriaDijkstra.png>
-Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 269.
+Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 273.
 (pdftex.def)             Requested size: 360.0pt x 153.00159pt.
- [15 <./img/bicriteriaDijkstra.png>]
+ [15 </home/andreaross/Desktop/proj_Tours/notes/Report/img/bicriteriaDijkstra.png>]
 <img/biCriteriaOutput.png, id=89, 505.89pt x 507.8975pt>
 File: img/biCriteriaOutput.png Graphic file (type png)
 <use img/biCriteriaOutput.png>
-Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 289.
+Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 293.
 (pdftex.def)             Requested size: 360.0pt x 361.43124pt.
 <img/graphDijkstraBicrit.png, id=90, 462.528pt x 346.896pt>
 File: img/graphDijkstraBicrit.png Graphic file (type png)
 <use img/graphDijkstraBicrit.png>
-Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 299.
+Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 303.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 <img/graphLabelsetting.png, id=92, 462.528pt x 346.896pt>
 File: img/graphLabelsetting.png Graphic file (type png)
 <use img/graphLabelsetting.png>
-Package pdftex.def Info: img/graphLabelsetting.png  used on input line 305.
+Package pdftex.def Info: img/graphLabelsetting.png  used on input line 309.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 
-Underfull \hbox (badness 1888) in paragraph at lines 306--306
+Underfull \hbox (badness 1888) in paragraph at lines 310--310
 []\OT1/cmr/m/n/10.95 Figure 3.4: Graph gen-er-ated by
  []
 
-[16 <./img/biCriteriaOutput.png>] [17 <./img/graphDijkstraBicrit.png> <./img/gr
-aphLabelsetting.png>] [18]
+[16 </home/andreaross/Desktop/proj_Tours/notes/Report/img/biCriteriaOutput.png>] [17 </home/andreaross/Desktop/proj_Tours/notes/Report/img/graphDijkstraBicrit.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/graphLabelsetting.png>] [18]
 <img/labelSettingComplexity.png, id=109, 581.17125pt x 224.84pt>
 File: img/labelSettingComplexity.png Graphic file (type png)
 <use img/labelSettingComplexity.png>
-Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 367
-.
+Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 371.
 (pdftex.def)             Requested size: 360.0pt x 139.27585pt.
  [19]
 <img/biCriteriaExcelOutput1.png, id=113, 379.4175pt x 382.42876pt>
 File: img/biCriteriaExcelOutput1.png Graphic file (type png)
 <use img/biCriteriaExcelOutput1.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 379
-.
+Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 383.
 (pdftex.def)             Requested size: 227.31082pt x 229.45901pt.
 <img/biCriteriaExcelOutput2.png, id=115, 942.52126pt x 398.48875pt>
 File: img/biCriteriaExcelOutput2.png Graphic file (type png)
 <use img/biCriteriaExcelOutput2.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 385
-.
+Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 389.
 (pdftex.def)             Requested size: 360.0pt x 152.18805pt.
- [20 <./img/labelSettingComplexity.png>]
-[21 <./img/biCriteriaExcelOutput1.png> <./img/biCriteriaExcelOutput2.png>]
+ [20 </home/andreaross/Desktop/proj_Tours/notes/Report/img/labelSettingComplexity.png>] [21 </home/andreaross/Desktop/proj_Tours/notes/Report/img/biCriteriaExcelOutput1.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/biCriteriaExcelOutput2.png>]
 <img/mapOutput/2070-15426Bicriteria.png, id=125, 1604.99625pt x 891.33pt>
 File: img/mapOutput/2070-15426Bicriteria.png Graphic file (type png)
 <use img/mapOutput/2070-15426Bicriteria.png>
-Package pdftex.def Info: img/mapOutput/2070-15426Bicriteria.png  used on input 
-line 399.
+Package pdftex.def Info: img/mapOutput/2070-15426Bicriteria.png  used on input line 403.
 (pdftex.def)             Requested size: 360.0pt x 199.91496pt.
 <img/mapOutput/2000-2689Bicriteria.png, id=126, 1444.39626pt x 865.2325pt>
 File: img/mapOutput/2000-2689Bicriteria.png Graphic file (type png)
 <use img/mapOutput/2000-2689Bicriteria.png>
-Package pdftex.def Info: img/mapOutput/2000-2689Bicriteria.png  used on input l
-ine 408.
+Package pdftex.def Info: img/mapOutput/2000-2689Bicriteria.png  used on input line 412.
 (pdftex.def)             Requested size: 360.0pt x 215.64748pt.
-<img/mapOutput/1000-1510BerlinBicriteria.png, id=127, 1165.35374pt x 645.41125p
-t>
+<img/mapOutput/1000-1510BerlinBicriteria.png, id=127, 1165.35374pt x 645.41125pt>
 File: img/mapOutput/1000-1510BerlinBicriteria.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinBicriteria.png>
-Package pdftex.def Info: img/mapOutput/1000-1510BerlinBicriteria.png  used on i
-nput line 417.
+Package pdftex.def Info: img/mapOutput/1000-1510BerlinBicriteria.png  used on input line 421.
 (pdftex.def)             Requested size: 360.0pt x 199.3762pt.
-
-[22 <./img/mapOutput/2070-15426Bicriteria.png>] [23 <./img/mapOutput/2000-2689B
-icriteria.png> <./img/mapOutput/1000-1510BerlinBicriteria.png>]
+ [22 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2070-15426Bicriteria.png>] [23 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2000-2689Bicriteria.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/1000-1510BerlinBicriteria.png>]
 Chapter 4.
 [24
 
 ]
-Overfull \hbox (1.49896pt too wide) in paragraph at lines 446--447
-[]\OT1/cmr/bx/n/10.95 shortestPaths\OT1/cmr/m/n/10.95 : stores in-for-ma-tion a
-bout all the nodes from the source
+Overfull \hbox (1.49896pt too wide) in paragraph at lines 450--451
+[]\OT1/cmr/bx/n/10.95 shortestPaths\OT1/cmr/m/n/10.95 : stores in-for-ma-tion about all the nodes from the source
  []
 
 [25] [26]
@@ -878,39 +802,25 @@ Chapter 5.
 [27
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 508--515
+Underfull \hbox (badness 10000) in paragraph at lines 512--519
 
  []
 
-[28] (./template.bbl [29]) [30
+[28] (/home/andreaross/Desktop/proj_Tours/notes/Report/template.bbl [29]) [30
 
-] (./template.aux
+] (/home/andreaross/Desktop/proj_Tours/notes/Report/template.aux
 Package cleveref Info: loaded `english' language definitions on input line 2.
 ) ) 
 Here is how much of TeX's memory you used:
- 6899 strings out of 492982
- 111595 string characters out of 6134896
+ 6900 strings out of 492982
+ 112222 string characters out of 6134896
  207924 words of memory out of 5000000
  10310 multiletter control sequences out of 15000+600000
  16629 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,26p,708b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on template.pdf (32 pages, 2254871 bytes).
+ 41i,12n,26p,757b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on /home/andreaross/Desktop/proj_Tours/notes/Report/template.pdf (32 pages, 2255760 bytes).
 PDF statistics:
  209 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams
