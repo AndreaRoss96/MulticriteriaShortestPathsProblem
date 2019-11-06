@@ -22,7 +22,8 @@ class Node(object):
     danger : total danger from the source
 
     || Label setting algorithm uses
-    labelList : a list of all labels (not dominated), used to store information duringi the building of the paths [(dist, danger, owner, predecessor, listPosition, predListPos), (di, da, ow, pr, lp, plp), .... , (...)]
+    labelList : a list of all labels (not dominated), used to store information during the building of the paths [(dist, danger, owner, predecessor, listPosition, predListPos), (di, da, ow, pr, lp, plp), .... , (...)]
+    --> all nodes will have a list of similar label with different predecessor, index ecc... 
     """
 
     def __init__(self, index, longitude, latitude):

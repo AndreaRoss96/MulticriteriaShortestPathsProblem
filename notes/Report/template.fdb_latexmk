@@ -1,16 +1,16 @@
 # Fdb version 3
-["bibtex template"] 1572978409 "template.aux" "template.bbl" "template" 1572978482
+["bibtex template"] 1572978409 "template.aux" "template.bbl" "template" 1573064243
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/abbrv.bst" 1480098433 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "template.aux" 1572978482 7598 ab3cf572a44faf4fd33665a06fe7faa0 ""
+  "template.aux" 1573064243 7598 ab3cf572a44faf4fd33665a06fe7faa0 ""
   "template.bcf" 0 -1 0 ""
   "template.bib" 1559857592 2467 607252e12fc528db5ea5dc8167ebaaab ""
   (generated)
   "template.bbl"
   "template.blg"
-["pdflatex"] 1572978478 "/home/andreaross/Desktop/proj_Tours/notes/Report/template.tex" "/home/andreaross/Desktop/proj_Tours/notes/Report/template.pdf" "template" 1572978482
+["pdflatex"] 1573064237 "/home/andreaross/Desktop/proj_Tours/notes/Report/template.tex" "/home/andreaross/Desktop/proj_Tours/notes/Report/template.pdf" "template" 1573064243
   "/etc/texmf/web2c/texmf.cnf" 1557817983 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/andreaross/Desktop/proj_Tours/notes/Report/template.aux" 1572978482 7598 ab3cf572a44faf4fd33665a06fe7faa0 ""
-  "/home/andreaross/Desktop/proj_Tours/notes/Report/template.tex" 1572978477 36187 a88ecc14e4cae8fe8aa8858bbfc05a8c ""
+  "/home/andreaross/Desktop/proj_Tours/notes/Report/template.aux" 1573064243 7598 ab3cf572a44faf4fd33665a06fe7faa0 ""
+  "/home/andreaross/Desktop/proj_Tours/notes/Report/template.tex" 1573064237 36209 0e4014f123a7bcd409355327b1e82832 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -140,14 +140,14 @@
   "img/monoCriteriaOutput.png" 1558934140 98969 56ef026b1a617bff3a1dfd26a4ff3c16 ""
   "img/uniboLogo.png" 1559486293 38813 3b9cfd735f47f069f6090184d1dc07b6 ""
   "img/univToursLogo.png" 1559486488 5843 b17535026c5085d1447b5ba2a8ab122d ""
-  "template.aux" 1572978482 7598 ab3cf572a44faf4fd33665a06fe7faa0 ""
+  "template.aux" 1573064243 7598 ab3cf572a44faf4fd33665a06fe7faa0 ""
   "template.bbl" 1572978410 1413 289767ce2c0ffa6ec3252710c58c3e7f "bibtex template"
-  "template.tex" 1572978477 36187 a88ecc14e4cae8fe8aa8858bbfc05a8c ""
-  "template.toc" 1572978482 2390 87aec91bf83f466dad5eebaaf2fbb09a ""
+  "template.tex" 1573064237 36209 0e4014f123a7bcd409355327b1e82832 ""
+  "template.toc" 1573064243 2390 87aec91bf83f466dad5eebaaf2fbb09a ""
   (generated)
   "/home/andreaross/Desktop/proj_Tours/notes/Report/template.pdf"
   "/home/andreaross/Desktop/proj_Tours/notes/Report/template.log"
-  "template.toc"
   "template.log"
-  "template.aux"
+  "template.toc"
   "template.pdf"
+  "template.aux"

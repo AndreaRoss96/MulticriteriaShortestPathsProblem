@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  5 NOV 2019 19:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  6 NOV 2019 19:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -536,18 +536,18 @@ Package cleveref Info: `amsthm' support loaded on input line 3026.
 ) (/home/andreaross/Desktop/proj_Tours/notes/Report/template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count116
@@ -602,26 +602,26 @@ Package grfext Info: Graphics extension search list:
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+LaTeX Font Info:    Try loading font information for U+msa on input line 44.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 44.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 <img/univToursLogo.png, id=1, 135.3858pt x 93.951pt>
 File: img/univToursLogo.png Graphic file (type png)
 <use img/univToursLogo.png>
-Package pdftex.def Info: img/univToursLogo.png  used on input line 43.
+Package pdftex.def Info: img/univToursLogo.png  used on input line 44.
 (pdftex.def)             Requested size: 121.84608pt x 84.55511pt.
 <img/uniboLogo.png, id=3, 376.40625pt x 196.48407pt>
 File: img/uniboLogo.png Graphic file (type png)
 <use img/uniboLogo.png>
-Package pdftex.def Info: img/uniboLogo.png  used on input line 43.
+Package pdftex.def Info: img/uniboLogo.png  used on input line 44.
 (pdftex.def)             Requested size: 225.84547pt x 104.23392pt.
 
-Overfull \hbox (3.60818pt too wide) in paragraph at lines 43--43
+Overfull \hbox (3.60818pt too wide) in paragraph at lines 44--44
  [][] 
  []
 
@@ -640,12 +640,12 @@ Chapter 1.
 <img/exampleGraph1.png, id=28, 393.47pt x 228.855pt>
 File: img/exampleGraph1.png Graphic file (type png)
 <use img/exampleGraph1.png>
-Package pdftex.def Info: img/exampleGraph1.png  used on input line 63.
+Package pdftex.def Info: img/exampleGraph1.png  used on input line 64.
 (pdftex.def)             Requested size: 360.0pt x 209.38629pt.
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 89--94
+Underfull \hbox (badness 10000) in paragraph at lines 90--95
 
  []
 
@@ -654,55 +654,55 @@ Chapter 2.
 <img/dijkstraLoC.png, id=45, 724.7075pt x 286.06876pt>
 File: img/dijkstraLoC.png Graphic file (type png)
 <use img/dijkstraLoC.png>
-Package pdftex.def Info: img/dijkstraLoC.png  used on input line 112.
+Package pdftex.def Info: img/dijkstraLoC.png  used on input line 113.
 (pdftex.def)             Requested size: 360.0pt x 142.10863pt.
 [6
 
  </home/andreaross/Desktop/proj_Tours/notes/Report/img/dijkstraLoC.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 138.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 139.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 139.
  [7]
 <img/A_StarPseudocode.png, id=54, 657.45625pt x 324.21124pt>
 File: img/A_StarPseudocode.png Graphic file (type png)
 <use img/A_StarPseudocode.png>
-Package pdftex.def Info: img/A_StarPseudocode.png  used on input line 158.
+Package pdftex.def Info: img/A_StarPseudocode.png  used on input line 159.
 (pdftex.def)             Requested size: 360.0pt x 177.53015pt.
  [8 </home/andreaross/Desktop/proj_Tours/notes/Report/img/A_StarPseudocode.png>]
 <img/monoCriteriaOutput.png, id=58, 1059.96pt x 549.55313pt>
 File: img/monoCriteriaOutput.png Graphic file (type png)
 <use img/monoCriteriaOutput.png>
-Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 171.
+Package pdftex.def Info: img/monoCriteriaOutput.png  used on input line 172.
 (pdftex.def)             Requested size: 360.0pt x 186.64433pt.
  [9 </home/andreaross/Desktop/proj_Tours/notes/Report/img/monoCriteriaOutput.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 182--184
+Underfull \hbox (badness 10000) in paragraph at lines 183--185
 
  []
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 188.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 189.
 <img/mapOutput/2070-15426LoC.png, id=62, 1452.42625pt x 848.16875pt>
 File: img/mapOutput/2070-15426LoC.png Graphic file (type png)
 <use img/mapOutput/2070-15426LoC.png>
-Package pdftex.def Info: img/mapOutput/2070-15426LoC.png  used on input line 196.
+Package pdftex.def Info: img/mapOutput/2070-15426LoC.png  used on input line 197.
 (pdftex.def)             Requested size: 360.0pt x 210.22978pt.
 <img/mapOutput/2070-15426A_Star.png, id=63, 1422.31375pt x 865.2325pt>
 File: img/mapOutput/2070-15426A_Star.png Graphic file (type png)
 <use img/mapOutput/2070-15426A_Star.png>
-Package pdftex.def Info: img/mapOutput/2070-15426A_Star.png  used on input line 201.
+Package pdftex.def Info: img/mapOutput/2070-15426A_Star.png  used on input line 202.
 (pdftex.def)             Requested size: 360.0pt x 219.00087pt.
 <img/mapOutput/2000-2689LoC.png, id=64, 1426.32875pt x 850.17625pt>
 File: img/mapOutput/2000-2689LoC.png Graphic file (type png)
 <use img/mapOutput/2000-2689LoC.png>
-Package pdftex.def Info: img/mapOutput/2000-2689LoC.png  used on input line 209.
+Package pdftex.def Info: img/mapOutput/2000-2689LoC.png  used on input line 210.
 (pdftex.def)             Requested size: 360.0pt x 214.58025pt.
 <img/mapOutput/2000-2689A_Star.png, id=65, 1423.3175pt x 859.21pt>
 File: img/mapOutput/2000-2689A_Star.png Graphic file (type png)
 <use img/mapOutput/2000-2689A_Star.png>
-Package pdftex.def Info: img/mapOutput/2000-2689A_Star.png  used on input line 214.
+Package pdftex.def Info: img/mapOutput/2000-2689A_Star.png  used on input line 215.
 (pdftex.def)             Requested size: 360.0pt x 217.31918pt.
 [10]
 Overfull \vbox (1.56374pt too high) has occurred while \output is active []
@@ -711,18 +711,18 @@ Overfull \vbox (1.56374pt too high) has occurred while \output is active []
 <img/mapOutput/1000-1510BerlinLoC.png, id=74, 1415.2875pt x 855.195pt>
 File: img/mapOutput/1000-1510BerlinLoC.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinLoC.png>
-Package pdftex.def Info: img/mapOutput/1000-1510BerlinLoC.png  used on input line 222.
+Package pdftex.def Info: img/mapOutput/1000-1510BerlinLoC.png  used on input line 223.
 (pdftex.def)             Requested size: 360.0pt x 217.5303pt.
 <img/mapOutput/1000-1510BerlinA_Star.png, id=75, 1419.3025pt x 850.17625pt>
 File: img/mapOutput/1000-1510BerlinA_Star.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinA_Star.png>
-Package pdftex.def Info: img/mapOutput/1000-1510BerlinA_Star.png  used on input line 227.
+Package pdftex.def Info: img/mapOutput/1000-1510BerlinA_Star.png  used on input line 228.
 (pdftex.def)             Requested size: 360.0pt x 215.644pt.
  [12 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2000-2689LoC.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2000-2689A_Star.png>] [13 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/1000-1510BerlinLoC.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/1000-1510BerlinA_Star.png>]
 Chapter 3.
 \c@definition=\count122
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--264
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
@@ -732,26 +732,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 263--264
 <img/bicriteriaDijkstra.png, id=85, 722.7pt x 307.1475pt>
 File: img/bicriteriaDijkstra.png Graphic file (type png)
 <use img/bicriteriaDijkstra.png>
-Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 273.
+Package pdftex.def Info: img/bicriteriaDijkstra.png  used on input line 274.
 (pdftex.def)             Requested size: 360.0pt x 153.00159pt.
  [15 </home/andreaross/Desktop/proj_Tours/notes/Report/img/bicriteriaDijkstra.png>]
 <img/biCriteriaOutput.png, id=89, 505.89pt x 507.8975pt>
 File: img/biCriteriaOutput.png Graphic file (type png)
 <use img/biCriteriaOutput.png>
-Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 293.
+Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 294.
 (pdftex.def)             Requested size: 360.0pt x 361.43124pt.
 <img/graphDijkstraBicrit.png, id=90, 462.528pt x 346.896pt>
 File: img/graphDijkstraBicrit.png Graphic file (type png)
 <use img/graphDijkstraBicrit.png>
-Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 303.
+Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 304.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 <img/graphLabelsetting.png, id=92, 462.528pt x 346.896pt>
 File: img/graphLabelsetting.png Graphic file (type png)
 <use img/graphLabelsetting.png>
-Package pdftex.def Info: img/graphLabelsetting.png  used on input line 309.
+Package pdftex.def Info: img/graphLabelsetting.png  used on input line 310.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
 
-Underfull \hbox (badness 1888) in paragraph at lines 310--310
+Underfull \hbox (badness 1888) in paragraph at lines 311--311
 []\OT1/cmr/m/n/10.95 Figure 3.4: Graph gen-er-ated by
  []
 
@@ -759,41 +759,41 @@ Underfull \hbox (badness 1888) in paragraph at lines 310--310
 <img/labelSettingComplexity.png, id=109, 581.17125pt x 224.84pt>
 File: img/labelSettingComplexity.png Graphic file (type png)
 <use img/labelSettingComplexity.png>
-Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 371.
+Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 372.
 (pdftex.def)             Requested size: 360.0pt x 139.27585pt.
  [19]
 <img/biCriteriaExcelOutput1.png, id=113, 379.4175pt x 382.42876pt>
 File: img/biCriteriaExcelOutput1.png Graphic file (type png)
 <use img/biCriteriaExcelOutput1.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 383.
+Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 384.
 (pdftex.def)             Requested size: 227.31082pt x 229.45901pt.
 <img/biCriteriaExcelOutput2.png, id=115, 942.52126pt x 398.48875pt>
 File: img/biCriteriaExcelOutput2.png Graphic file (type png)
 <use img/biCriteriaExcelOutput2.png>
-Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 389.
+Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 390.
 (pdftex.def)             Requested size: 360.0pt x 152.18805pt.
  [20 </home/andreaross/Desktop/proj_Tours/notes/Report/img/labelSettingComplexity.png>] [21 </home/andreaross/Desktop/proj_Tours/notes/Report/img/biCriteriaExcelOutput1.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/biCriteriaExcelOutput2.png>]
 <img/mapOutput/2070-15426Bicriteria.png, id=125, 1604.99625pt x 891.33pt>
 File: img/mapOutput/2070-15426Bicriteria.png Graphic file (type png)
 <use img/mapOutput/2070-15426Bicriteria.png>
-Package pdftex.def Info: img/mapOutput/2070-15426Bicriteria.png  used on input line 403.
+Package pdftex.def Info: img/mapOutput/2070-15426Bicriteria.png  used on input line 404.
 (pdftex.def)             Requested size: 360.0pt x 199.91496pt.
 <img/mapOutput/2000-2689Bicriteria.png, id=126, 1444.39626pt x 865.2325pt>
 File: img/mapOutput/2000-2689Bicriteria.png Graphic file (type png)
 <use img/mapOutput/2000-2689Bicriteria.png>
-Package pdftex.def Info: img/mapOutput/2000-2689Bicriteria.png  used on input line 412.
+Package pdftex.def Info: img/mapOutput/2000-2689Bicriteria.png  used on input line 413.
 (pdftex.def)             Requested size: 360.0pt x 215.64748pt.
 <img/mapOutput/1000-1510BerlinBicriteria.png, id=127, 1165.35374pt x 645.41125pt>
 File: img/mapOutput/1000-1510BerlinBicriteria.png Graphic file (type png)
 <use img/mapOutput/1000-1510BerlinBicriteria.png>
-Package pdftex.def Info: img/mapOutput/1000-1510BerlinBicriteria.png  used on input line 421.
+Package pdftex.def Info: img/mapOutput/1000-1510BerlinBicriteria.png  used on input line 422.
 (pdftex.def)             Requested size: 360.0pt x 199.3762pt.
  [22 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2070-15426Bicriteria.png>] [23 </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/2000-2689Bicriteria.png> </home/andreaross/Desktop/proj_Tours/notes/Report/img/mapOutput/1000-1510BerlinBicriteria.png>]
 Chapter 4.
 [24
 
 ]
-Overfull \hbox (1.49896pt too wide) in paragraph at lines 450--451
+Overfull \hbox (1.49896pt too wide) in paragraph at lines 451--452
 []\OT1/cmr/bx/n/10.95 shortestPaths\OT1/cmr/m/n/10.95 : stores in-for-ma-tion about all the nodes from the source
  []
 
@@ -802,7 +802,7 @@ Chapter 5.
 [27
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 512--519
+Underfull \hbox (badness 10000) in paragraph at lines 513--520
 
  []
 
@@ -820,7 +820,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  41i,12n,26p,757b,509s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on /home/andreaross/Desktop/proj_Tours/notes/Report/template.pdf (32 pages, 2255760 bytes).
+Output written on /home/andreaross/Desktop/proj_Tours/notes/Report/template.pdf (32 pages, 2255726 bytes).
 PDF statistics:
  209 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams

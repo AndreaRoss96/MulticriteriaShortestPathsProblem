@@ -11,13 +11,15 @@ from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/example_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/example_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[2000]
-target = graph[2689] #5142 or 2886
+# source = graph[2000]
+# target = graph[2689] #5142 or 2886
+source = graph[0]
+target = graph[6]
 
 # print("s:", source.index, "-> t:", target.index)
 
@@ -142,7 +144,7 @@ for label in target.labelList :
         label = node.labelList[index]
         printList.append(node.index)
     graphList.append(nodeList)
-# print(*printList, sep="<-")
+print(*printList, sep="<-")
 
 ###################
 ### MAP'S GRAPH ###
@@ -207,4 +209,4 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 ### MAP'S GRAPH ###
 ###################
 # from graphPlotter import bicriteriaPlotGraph
-# bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+# bicriteriaPlotGraph(graph, graphList,labelList

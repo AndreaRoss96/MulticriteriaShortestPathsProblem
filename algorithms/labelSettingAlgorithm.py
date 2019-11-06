@@ -7,6 +7,9 @@ def labelSettingAlgorithm(source, target) :
     """
     label = (dist, danger, owner, predecessor, ownerListPos, predListPos)
               [0]    [1]    [2]       [3]           [4]          [5]
+
+              [ownerListPos] : is the position on the own label list
+              [predListPos] : is the postion in the labelList of the predecessor label
     
     Step 0 :
         create first label (0, 0, source, null, 0, null)
@@ -34,6 +37,7 @@ def labelSettingAlgorithm(source, target) :
     labelQueue.put(sourceLabel, sourceLabel[0])
     ending = False  # become True when a "nighNode" is equal to the target
     counter = 0
+    print(source.neighbors)
     while not labelQueue.empty() :
         counter += 1
         actualLabel = labelQueue.getMin()
@@ -41,12 +45,19 @@ def labelSettingAlgorithm(source, target) :
         dangSoFar = actualLabel[1]
         actualNode = actualLabel[2]
         parentIndex = actualLabel[4]
+
+        print("Actual Label:\n", labelToString(actualLabel))
+        print("Actual label list:")
+        for label in actualLabel[2].labelList :
+            print(labelToString(label))
         
+        print("neighbors analisys")
         for nighNode, weight in actualNode.neighbors :
             distance, danger = weight
             ownIndex = len(nighNode.labelList)
             newLabel = (distSoFar + distance, dangSoFar + danger, nighNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
+            print(labelToString(newLabel))
 
             if ending : # stop condition
                 if __isDominated(newLabel, target.labelList) :
@@ -82,6 +93,11 @@ def __isDominated(newLabel, labelList) :
             return True
     return False
 
+
+###########################
+# LOWER BOUND IMPROVEMENT #
+###########################
+
 def lowerBoundImprovement(graph, source, target) :
     """
     Evolution of the normal label-setting algorithm, with a preprocessing that uses
@@ -95,8 +111,8 @@ def lowerBoundImprovement(graph, source, target) :
     
     for v in visitedNodes:
         v.resetValue(True)  # reset the value of predecessor, visited and minWeight of all nodes
-    source.minWeight = 0
-    source.visited = True
+    # source.minWeight = 0 # ma a che servono ??
+    # source.visited = True
 
     dijkstraBiCrit(source, target, 1) # shortest path
     bestDistance = target.distance
@@ -158,4 +174,8 @@ def lowerBoundImprovementTry(graph, source, target) :
         target.labelList.pop(0)
     
 
-
+def labelToString(label) :
+    if label[3] != None :
+        return ("dist:", label[0], " dang:", label[1], " own:", label[2].index, "pred:", label[3].index, "listIndex:", label[4], "predIndexPos:", label[5])
+    else :
+        return ("dist:", label[0], " dang:", label[1], " own:", label[2].index, "pred: None listIndex:", label[4], "predIndexPos: None")
