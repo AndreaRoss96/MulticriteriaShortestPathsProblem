@@ -44,3 +44,9 @@ def initSingleNode(graph, source):
     source.minWeight = 0
     source.visited = True
     return graph
+
+def labelToString(label) :
+    if label[3] is not None :
+        return ("dist:", label[0], " dang:", label[1], " own:", label[2].index, "pred:", label[3].index, "listIndex:", label[4], "predIndexPos:", label[5])
+    else :
+        return ("dist:", label[0], " dang:", label[1], " own:", label[2].index, "pred: None listIndex:", label[4], "predIndexPos: None")

@@ -7,7 +7,7 @@ from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr,
                                            dijkstraBiCrit,
                                            dijkstraBiCrIteration)
 from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundImprovement
-from Node import Node
+from node.Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 

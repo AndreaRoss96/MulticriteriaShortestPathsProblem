@@ -13,7 +13,7 @@ def graphBuilder(nodes, arches):
     """
     graph = []
     for node in nodes :
-        graph.append(Node(*node))
+        graph.append(Node(*node)) 
 
     arches.sort(key = lambda arch : arch[0])  # sorting arches by ascending starting node's index -> speed up the creation of the graph
 

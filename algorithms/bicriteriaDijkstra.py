@@ -16,7 +16,7 @@ def dijkstraBiCrit(source, target, alpha) :
 
     listOfCandidate = PriorityQueue()
     listOfCandidate.put(source, 0)
-    while not listOfCandidate.empty() :
+    while not listOfCandidate.isEmpty() :
         actualNode = listOfCandidate.getMin()
         actualNode.visited = True
         visitedNodes.append(actualNode)

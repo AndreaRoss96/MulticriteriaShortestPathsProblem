@@ -4,7 +4,7 @@ def dijkstraOneToAll(source):
     nodeSet = PriorityQueue()
     nodeSet.put(source, 0)
     # counter = 0
-    while not nodeSet.empty() :
+    while not nodeSet.isEmpty() :
         actualNode = nodeSet.getMin()
         # counter = counter + 1
         for nextNode, distance in actualNode.neighbors :
@@ -42,7 +42,7 @@ def dijkstraOneToOne(graph, source, target):
 def dijkstraListOfCandidate(source, target):
     listOfCand = PriorityQueue()
     listOfCand.put(source, 0)
-    while not listOfCand.empty() :
+    while not listOfCand.isEmpty() :
         actualNode = listOfCand.getMin()
         actualNode.visited = True
 

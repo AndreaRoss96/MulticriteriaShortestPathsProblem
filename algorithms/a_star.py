@@ -18,7 +18,7 @@ def a_star(source, target) :
 
     counter = 0
 
-    while not listOfCand.empty() :
+    while not listOfCand.isEmpty() :
         actualNode = listOfCand.getMin()
         counter = counter + 1
         actualNode.visited = True

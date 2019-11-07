@@ -45,6 +45,13 @@ class Node(object):
         self.labelList = []
 
         self.bestLabel = [None, None]
+
+        fwLabelList = [] # forward labelList
+        bwLabelList = [] # backward labelList
+        self.directedLabelList = {
+            True : fwLabelList,
+            False : bwLabelList
+        }
            
     def resetValue(self, needBestLabel) :
         """
