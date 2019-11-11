@@ -7,19 +7,19 @@ from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr,
                                            dijkstraBiCrit,
                                            dijkstraBiCrIteration)
 from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundImprovement
-from node.Node import Node
+from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-dataN = pds.read_csv('graphs/example_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/example_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/200thousand2Nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/200thousand2Arches.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-# source = graph[2000]
-# target = graph[2689] #5142 or 2886
-source = graph[0]
-target = graph[6]
+source = graph[0]#23755]#2000]#
+target = graph[10]#27268]#2689]# #5142 or 2886
+#source = graph[0]
+#target = graph[6]
 
 # print("s:", source.index, "-> t:", target.index)
 
@@ -65,6 +65,7 @@ for n in range (0, 1):
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
+#print(target.labelList)
 #####################
 #####  RESULTS  #####
 #####################
@@ -109,6 +110,9 @@ for n in range (0, 1):
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
+# for label in target.labelList :
+#     print((label[0], label[1]))
+
 #####################
 #####  RESULTS  #####
 #####################
@@ -144,13 +148,14 @@ for label in target.labelList :
         label = node.labelList[index]
         printList.append(node.index)
     graphList.append(nodeList)
-print(*printList, sep="<-")
+    # print(*printList, sep="<-")
+print(len(target.labelList))
 
 ###################
 ### MAP'S GRAPH ###
 ###################
 from graphPlotter import bicriteriaPlotGraph
-bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+#bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 #########################################################################################
 #########################################################################################

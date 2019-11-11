@@ -37,7 +37,6 @@ def labelSettingAlgorithm(source, target) :
     labelQueue.put(sourceLabel, sourceLabel[0])
     ending = False  # become True when a "nearNode" is equal to the target
     counter = 0
-    print(source.neighbors)
     while not labelQueue.isEmpty() :
         counter += 1
         actualLabel = labelQueue.getMin()
@@ -46,18 +45,11 @@ def labelSettingAlgorithm(source, target) :
         actualNode = actualLabel[2]
         parentIndex = actualLabel[4]
 
-        print("Actual Label:\n", labelToString(actualLabel))
-        print("Actual label list:")
-        for label in actualLabel[2].labelList :
-            print(labelToString(label))
-        
-        print("neighbors analisys")
         for nearNode, weight in actualNode.neighbors :
             distance, danger = weight
             ownIndex = len(nearNode.labelList)
             newLabel = (distSoFar + distance, dangSoFar + danger, nearNode, actualNode, ownIndex, parentIndex) # creating of a new label
             useLabel = True
-            print(labelToString(newLabel))
 
             if ending : # stop condition
                 if __isDominated(newLabel, target.labelList) :
