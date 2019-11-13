@@ -38,7 +38,7 @@ def dijkstraBiCrit(source, target, alpha) :
                     if nextNode.bestLabel[1] is None or nextNode.bestLabel[1] > nextNode.danger :
                         nextNode.bestLabel[1] = nextNode.danger
                 elif alpha == 1 :
-                    if nextNode.bestLabel[0] is None or nextNode.bestLabel[0] > nextNode.danger :
+                    if nextNode.bestLabel[0] is None or nextNode.bestLabel[0] > nextNode.distance :
                         nextNode.bestLabel[0] = nextNode.distance
     return visitedNodes
 

@@ -1,9 +1,9 @@
 import pandas as pd
 from random import uniform, randint, shuffle
 
-fileNode = "graphs/200thousand2Nodes.csv"
-fileArches = "graphs/200thousand2Arches.csv"
-nodeNumber = 200000
+fileNode = "graphs/5thousand2Nodes.csv"
+fileArches = "graphs/5thousand2Arches.csv"
+nodeNumber = 5000
 arcsPerNodes = 2
 
 nodeList = []

@@ -17,14 +17,14 @@ dataA = pds.read_csv('graphs/200thousand2Arches.csv', sep='\t', header=None)
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
 source = graph[0]#23755]#2000]#
-target = graph[10]#27268]#2689]# #5142 or 2886
+target = graph[100]#27268]#2689]# #5142 or 2886
 #source = graph[0]
 #target = graph[6]
 
 # print("s:", source.index, "-> t:", target.index)
 
-initSingleNode(graph, source)
-dijkstraBiCrit(source, target, 1)
+# initSingleNode(graph, source)
+# dijkstraBiCrit(source, target, 1)
 
 print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
 initSingleNode(graph, source)

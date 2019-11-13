@@ -103,12 +103,13 @@ def __combine(newLabel, nearLabelList):
 
         # created paretoLabel
         result = (dist, dang, newLabel[2], fwInfo, bwInfo)
-        #print("result:", result[0], result[1])
-        # for paretoLabel in paretoList:
-            # if __isDominated(paretoLabel, [result]):
-            #     print("Via dai balle")
-            #     paretoList.remove(paretoLabel)
-        paretoList.append(result)
+        if not __isDominated(result, paretoList) :
+            print("result:", result[0], result[1])
+            for paretoLabel in paretoList:
+                if __isDominated(paretoLabel, [result]):
+                #     print("Via dai balle")
+                    paretoList.remove(paretoLabel)
+            paretoList.append(result)
 
 
 def __getDirection(direction):
