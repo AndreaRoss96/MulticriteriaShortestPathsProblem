@@ -52,6 +52,8 @@ class Node(object):
             True : fwLabelList,
             False : bwLabelList
         }
+
+        self.bests = []
            
     def resetValue(self, needBestLabel) :
         """
@@ -68,9 +70,19 @@ class Node(object):
         self.distance = 0
         self.danger = 0
         self.labelList = []
+        self.shortestPaths = {} 
+
+        self.bests = []
 
         if not needBestLabel :
             self.bestLabel = [None, None]
+        
+        fwLabelList = [] # forward labelList
+        bwLabelList = [] # backward labelList
+        self.directedLabelList = {
+            True : fwLabelList,
+            False : bwLabelList
+        }
 
     """
     the nexts functions are unused

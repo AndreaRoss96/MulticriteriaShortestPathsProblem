@@ -14,8 +14,7 @@ dataA = pds.read_csv('graphs/5thousand2Arches.csv', sep='\t', header=None)
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
 source = graph[2000]#23755]#2000]#
-target = graph[2689]#27268]#2689]# #5142 or 2886
-
+target = graph[2010]#27268]#2689]# #5142 or 2886
 
 
 print("\n", "*"*40, "bidirection ALGORITHM", "*"*40)

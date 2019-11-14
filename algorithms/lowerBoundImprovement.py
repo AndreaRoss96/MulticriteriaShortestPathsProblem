@@ -3,54 +3,59 @@ from bicriteriaDijkstra import binarySearchDijkBiCr
 from bicriteriaDijkstra import dijkstraBiCrit
 from utilities import initSingleNode, labelToString
 
-# def dijkstraBiCrit(source, target, alpha) :
-#     """
-#     With the bicriteria algorithm I decided to use the attribute "distance"
-#     of the node, because "minWeight" is used has comparator.
-#     Also in normal dijkstra is calcolated the weight, in this specific case we know
-#     that the "weights" are distance and danger 
+def __dijkstraBiCrit(source, target, alpha) :
+    """
+    With the bicriteria algorithm I decided to use the attribute "distance"
+    of the node, because "minWeight" is used has comparator.
+    Also in normal dijkstra is calcolated the weight, in this specific case we know
+    that the "weights" are distance and danger 
 
-#     alpha : to varying of this variable the algorithm can find different results
-#                 more α is near to 0, will be found the safest path
-#                 more α is near to 1, will be found the shortest path
-#     """
-#     visitedNodes = []
+    alpha : to varying of this variable the algorithm can find different results
+                more α is near to 0, will be found the safest path
+                more α is near to 1, will be found the shortest path
+    """
+    visitedNodes = []
 
-#     listOfCandidate = PriorityQueue()
-#     listOfCandidate.put(source, 0)
-#     while not listOfCandidate.isEmpty() :
-#         actualNode = listOfCandidate.getMin()
-#         actualNode.visited = True
-#         visitedNodes.append(actualNode)
+    listOfCandidate = PriorityQueue()
+    listOfCandidate.put(source, 0)
+    while not listOfCandidate.isEmpty() :
+        actualNode = listOfCandidate.getMin()
+        actualNode.visited = True
+        visitedNodes.append(actualNode)
 
-#         if target.visited :
-#             break
+        if target.visited :
+            break
 
-#         for nextNode, weight in actualNode.neighbors : 
-#             distance, danger = weight
-#             weightResult = alpha*distance + (1-alpha)*danger
-#             newWeight = actualNode.minWeight + weightResult
-#             if newWeight < nextNode.minWeight :
-#                 nextNode.minWeight = newWeight
-#                 nextNode.distance = actualNode.distance + distance
-#                 nextNode.danger = actualNode.danger + danger
-#                 nextNode.predecessor = actualNode
-#                 listOfCandidate.put(nextNode, newWeight)
-#                 if alpha == 0 :         # Those ifs are useful only with the lowerBound Algorithm ()
-#                     if nextNode.bestLabel[1] is None or nextNode.bestLabel[1] > nextNode.danger :
-#                         nextNode.bestLabel[1] = nextNode.danger
-#                 elif alpha == 1 :
-#                     if nextNode.bestLabel[0] is None or nextNode.bestLabel[0] > nextNode.distance :
-#                         nextNode.bestLabel[0] = nextNode.distance
-#     return visitedNodes
+        for nextNode, weight in actualNode.neighbors : 
+            distance, danger = weight
+            weightResult = alpha*distance + (1-alpha)*danger
+            newWeight = actualNode.minWeight + weightResult
+            if newWeight < nextNode.minWeight :
+                nextNode.minWeight = newWeight
+                nextNode.distance = actualNode.distance + distance
+                nextNode.danger = actualNode.danger + danger
+                nextNode.predecessor = actualNode
+                listOfCandidate.put(nextNode, newWeight)
+                if not __isDominated((nextNode.distance, nextNode.danger), nextNode.bests) :
+                    for label in nextNode.bests :
+                        if label[0] > nextNode.distance and label[1] >= nextNode.danger :
+                            nextNode.bests.remove(label)
+                    nextNode.bests.append((nextNode.distance, nextNode.danger))
+                if alpha == 0 :         # Those ifs are useful only with the lowerBound Algorithm ()
+                    if nextNode.bestLabel[1] is None or nextNode.bestLabel[1] > nextNode.danger :
+                        nextNode.bestLabel[1] = nextNode.danger
+                elif alpha == 1 :
+                    if nextNode.bestLabel[0] is None or nextNode.bestLabel[0] > nextNode.distance :
+                        nextNode.bestLabel[0] = nextNode.distance
+    return visitedNodes
 
 
 def lowerBoundImprovementReversed(source, target) :
-    visitedNodes = dijkstraBiCrit(target, source, 0) # safest path
+    visitedNodes = __dijkstraBiCrit(source, target, 0) # safest path
     bestDanger = target.danger
     for v in visitedNodes:
         v.resetValue(True)
-    dijkstraBiCrit(target, source, 1) # shortest path
+    __dijkstraBiCrit(source, target, 1) # shortest path
     bestDistance = target.distance
 
     labelQueue = PriorityQueue()
@@ -71,6 +76,9 @@ def lowerBoundImprovementReversed(source, target) :
             ownIndex = len(nearNode.labelList)
             newLabel = (distSoFar + distance, dangSoFar + danger, nearNode, actualNode, ownIndex, parentIndex) # creating of a new label
             # useLabel = True
+
+            if __isDominated(newLabel, nearNode.bests) :
+                continue
 
             if nearNode.bestLabel[0] is not None and nearNode.bestLabel[1] is not None :    # if the best label is present, enter
                 checkDistance = newLabel[0] + nearNode.bestLabel[0]

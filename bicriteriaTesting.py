@@ -11,13 +11,13 @@ from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-dataN = pds.read_csv('graphs/200thousand2Nodes.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/200thousand2Arches.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[0]#23755]#2000]#
-target = graph[100]#27268]#2689]# #5142 or 2886
+source = graph[2000]#23755]#2000]#
+target = graph[2689]#27268]#2689]# #5142 or 2886
 #source = graph[0]
 #target = graph[6]
 
@@ -109,7 +109,20 @@ for n in range (0, 1):
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
+print(len(target.labelList))
+# for label in target.labelList :
+#     print((label[0], label[1]))
 
+tmp_list= []
+for n in range (0, 1):
+    initSingleNode(graph, target)
+    initSingleNode(graph, source)
+    start = time.time()
+    labelSettingAlgorithm(target, source) # algorithm
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
+print(len(source.labelList))
 # for label in target.labelList :
 #     print((label[0], label[1]))
 
