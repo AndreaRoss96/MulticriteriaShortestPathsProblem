@@ -50,3 +50,15 @@ def labelToString(label) :
         return ("dist:", label[0], " dang:", label[1], " own:", label[2].index, "pred:", label[3].index, "listIndex:", label[4], "predIndexPos:", label[5])
     else :
         return ("dist:", label[0], " dang:", label[1], " own:", label[2].index, "pred: None listIndex:", label[4], "predIndexPos: None")
+
+def isDominated(label, dominatorLabelList):
+    """
+    If the label is already dominated by a label in the labelList
+    return True
+    else
+    return False
+    """
+    for dominatorLabel in dominatorLabelList:
+        if label[0] >= dominatorLabel[0] and label[1] >= dominatorLabel[1]:
+            return True
+    return False

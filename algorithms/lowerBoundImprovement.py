@@ -1,7 +1,7 @@
 from PriorityQueue import PriorityQueue
 from bicriteriaDijkstra import binarySearchDijkBiCr
 from bicriteriaDijkstra import dijkstraBiCrit
-from utilities import initSingleNode, labelToString
+from utilities import initSingleNode, labelToString, isDominated
 
 def __dijkstraBiCrit(source, target, alpha) :
     """
@@ -36,7 +36,7 @@ def __dijkstraBiCrit(source, target, alpha) :
                 nextNode.danger = actualNode.danger + danger
                 nextNode.predecessor = actualNode
                 listOfCandidate.put(nextNode, newWeight)
-                if not __isDominated((nextNode.distance, nextNode.danger), nextNode.bests) :
+                if not isDominated((nextNode.distance, nextNode.danger), nextNode.bests) :
                     for label in nextNode.bests :
                         if label[0] > nextNode.distance and label[1] >= nextNode.danger :
                             nextNode.bests.remove(label)
@@ -77,7 +77,7 @@ def lowerBoundImprovementReversed(source, target) :
             newLabel = (distSoFar + distance, dangSoFar + danger, nearNode, actualNode, ownIndex, parentIndex) # creating of a new label
             # useLabel = True
 
-            if __isDominated(newLabel, nearNode.bests) :
+            if isDominated(newLabel, nearNode.bests) :
                 continue
 
             if nearNode.bestLabel[0] is not None and nearNode.bestLabel[1] is not None :    # if the best label is present, enter
@@ -90,7 +90,7 @@ def lowerBoundImprovementReversed(source, target) :
             else :
                 checkLabel = newLabel
 
-            if __isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on                
+            if isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on                
                 continue # restart 'for' loop with another nearNode
             ####NEW PART####
             # else :
@@ -100,7 +100,7 @@ def lowerBoundImprovementReversed(source, target) :
 
             useLabel = True
             for label in nearNode.labelList :
-                if __isDominated(newLabel, [label]) :
+                if isDominated(newLabel, [label]) :
                     useLabel = False
                     break
             if useLabel :
@@ -110,14 +110,14 @@ def lowerBoundImprovementReversed(source, target) :
     return counter
 
 
-def __isDominated(newLabel, labelList) :
-    """
-    If the label is already dominated by a label in the labelList
-    return True
-    else
-    return False
-    """
-    for oldLabel in labelList :
-        if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
-            return True
-    return False
+# def __isDominated(newLabel, labelList) :
+#     """
+#     If the label is already dominated by a label in the labelList
+#     return True
+#     else
+#     return False
+#     """
+#     for oldLabel in labelList :
+#         if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
+#             return True
+#     return False

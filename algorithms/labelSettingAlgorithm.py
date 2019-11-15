@@ -1,7 +1,7 @@
 from PriorityQueue import PriorityQueue
 from bicriteriaDijkstra import binarySearchDijkBiCr
 from bicriteriaDijkstra import dijkstraBiCrit
-from utilities import initSingleNode, labelToString
+from utilities import initSingleNode, labelToString, isDominated
 
 def labelSettingAlgorithm(source, target) :
     """
@@ -52,7 +52,7 @@ def labelSettingAlgorithm(source, target) :
             useLabel = True
 
             if ending : # stop condition
-                if __isDominated(newLabel, target.labelList) :
+                if isDominated(newLabel, target.labelList) :
                     continue # restart for loop if the new label is dominated
 
             for label in nearNode.labelList :
@@ -73,17 +73,17 @@ def __usableLabel(newLabel, oldLabel, labelsList) :
         return False
     return True                                                     # 3rd case, this label can't/isn't dominate/d
 
-def __isDominated(newLabel, labelList) :
-    """
-    If the label is already dominated by a label in the labelList
-    return True
-    else
-    return False
-    """
-    for oldLabel in labelList :
-        if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
-            return True
-    return False
+# def __isDominated(newLabel, labelList) :
+#     """
+#     If the label is already dominated by a label in the labelList
+#     return True
+#     else
+#     return False
+#     """
+#     for oldLabel in labelList :
+#         if newLabel[0] >= oldLabel[0] and newLabel[1] >= oldLabel[1] :
+#             return True
+#     return False
 
 
 ###########################
@@ -138,7 +138,7 @@ def lowerBoundImprovement(graph, source, target) :
             else :
                 checkLabel = newLabel
 
-            if __isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on                
+            if isDominated(checkLabel, target.labelList) : # if the newlabel + bestLabel is dominated is useless go on                
                 continue # restart 'for' loop with another nearNode
             
             for label in nearNode.labelList :

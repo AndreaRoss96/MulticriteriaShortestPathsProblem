@@ -1,10 +1,9 @@
 from PriorityQueue import PriorityQueue
-from utilities import labelToString
+from utilities import labelToString, isDominated
 
 # directions
 fw = True
 bw = False
-paretoList = []
 
 
 def bidirectionalBicriteriaAlgorithm(source, target):
@@ -35,7 +34,7 @@ def bidirectionalBicriteriaAlgorithm(source, target):
     backwardQueue.put(targetLabel, targetLabel[0])
     counter = 0
     # min(fw) + min(bw) have to be not dominated ## not __isDominated(*
-    while __checkLoop(forwardQueue, backwardQueue):
+    while __checkLoop(forwardQueue, backwardQueue, paretoList):
     #while forwardQueue or backwardQueue :
         counter += 1
         # print("count:", counter)
@@ -52,39 +51,39 @@ def bidirectionalBicriteriaAlgorithm(source, target):
             newLabel = (distSoFar + distance, dangSoFar + danger,
                         nearNode, actualNode, ownIndex, parentIndex)
 
-            if not __isDominated(newLabel, nearNode.directedLabelList[dir]):
+            if not isDominated(newLabel, nearNode.directedLabelList[dir]):
                 nearNode.directedLabelList[dir].append(newLabel)
                 queueContainer[dir].put(newLabel, newLabel[0])#__getLexicographicMin(newLabel))
                 # when a list is empty = FALSE
                 if nearNode.directedLabelList[not dir]:
-                    __combine(newLabel, nearNode.directedLabelList[not dir])
+                    paretoList = __combine(newLabel, nearNode.directedLabelList[not dir], paretoList)
     return paretoList
 
 
-def __checkLoop(fwQueue, bwQueue):
+def __checkLoop(fwQueue, bwQueue, paretoList):
     tmpLabel = (fwQueue.minValue()[0] + bwQueue.minValue()[0], fwQueue.minValue()[1] + bwQueue.minValue()[1])
     # print("On checkloop:", paretoList)
-    return not __isDominated(tmpLabel, paretoList)
+    return not isDominated(tmpLabel, paretoList)
 
 
-def __isDominated(label, dominatorLabelList):
-    # print("check on is dominated")
-    # print(label)
-    # print(dominatorLabelList)
-    # if the list is empty step into  (empty = False)
-    # if not dominatorLabelList:
-    #     return False
-    for dominatorLabel in dominatorLabelList:
-        # print(dominatorLabel, dominatorLabel[0])
-        # print(label, label[0], label[1])
-        if label[0] >= dominatorLabel[0] and label[1] >= dominatorLabel[1]:
-            return True
-        # elif label[0] < dominatorLabel[0] and label[1] < dominatorLabel[1] :
-        #     dominatorLabelList.remove(dominatorLabel)
-    return False
+# def __isDominated(label, dominatorLabelList):
+#     # print("check on is dominated")
+#     # print(label)
+#     # print(dominatorLabelList)
+#     # if the list is empty step into  (empty = False)
+#     # if not dominatorLabelList:
+#     #     return False
+#     for dominatorLabel in dominatorLabelList:
+#         # print(dominatorLabel, dominatorLabel[0])
+#         # print(label, label[0], label[1])
+#         if label[0] >= dominatorLabel[0] and label[1] >= dominatorLabel[1]:
+#             return True
+#         # elif label[0] < dominatorLabel[0] and label[1] < dominatorLabel[1] :
+#         #     dominatorLabelList.remove(dominatorLabel)
+#     return False
 
 
-def __combine(newLabel, nearLabelList):
+def __combine(newLabel, nearLabelList, paretoList):
     """
     combine forward and backward to create a paretoLabel
 
@@ -104,13 +103,14 @@ def __combine(newLabel, nearLabelList):
 
         # created paretoLabel
         result = (dist, dang, newLabel[2], fwInfo, bwInfo)
-        if not __isDominated(result, paretoList) :
+        if not isDominated(result, paretoList) :
             # print("result:", result[0], result[1])
             for paretoLabel in paretoList:
-                if __isDominated(paretoLabel, [result]):
+                if isDominated(paretoLabel, [result]):
                     # print("Via dai balle")
                     paretoList.remove(paretoLabel)
             paretoList.append(result)
+    return paretoList
 
 
 def __getDirection(direction):

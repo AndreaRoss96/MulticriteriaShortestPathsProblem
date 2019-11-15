@@ -1,8 +1,8 @@
 import pandas as pd
 from random import uniform, randint, shuffle
 
-fileNode = "graphs/5thousand2NodesMode.csv"
-fileArches = "graphs/5thousand2ArchesMode.csv"
+fileNode = "graphs/5thousand2Nodes.csv"
+fileArches = "graphs/5thousand2Arches.csv"
 nodeNumber = 5000
 arcsPerNodes = 2
 
@@ -15,7 +15,7 @@ for i in range(0, nodeNumber+1) :
 
 # shuffle(nodeList)
 
-for a in range(0, arcsPerNodes):
+for a in range(1, arcsPerNodes+1):
     print(a)
     for i in range(0, nodeNumber+1) :
         randOne = randint(1, 801)
