@@ -35,8 +35,6 @@
                                         %   particolari ad esempio
                                         %   \textsc{}
 \usepackage{newlfont}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%librerie matematiche
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{latexsym}
@@ -48,6 +46,14 @@
 \usepackage{float}
 \usepackage{enumitem}
 \usepackage{amsmath}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{algorithm,algpseudocode}
+
+\usepackage{imakeidx}
+
+\usepackage{blindtext}
+
 \graphicspath{ {Report/img/} }
 %
 \oddsidemargin=30pt \evensidemargin=20pt%impostano i margini
@@ -69,6 +75,8 @@
 \linespread{1.3}                        %comando per impostare l'interlinea
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%definisce nuovi comandi
 %
+
+
 
 \begin{document}
 	
@@ -130,6 +138,7 @@ INDICE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
+
 \chapter{Introduzione}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
@@ -160,11 +169,11 @@ In generale non c'è una sola soluzione ottimale, bensì un insieme di possibili s
 \end{table}
 
 La fig.\ref{fig:graphExample} mostra un esempio di grafo a due criteri. Ogni nodo è numerato $\{1,2,\dots,6\}$ ed i pesi presenti sugli archi sono rappresentati come una coppia di valori $(a,b)$. Se considerassimo il primo peso la distanza e il secondo peso, ad esempio, il pericolo, avremo i percorsi $p1$ e $p3$ come il più corto ed il più sicuro rispettivamente, differentemente $p2$ è una soluzione definita ``non dominata", infatti comprende un percorso più lungo rispetto a $p1$, ma al contempo più sicuro, mentre percorre un cammino più pericoloss, ma più corto rispetto a ``p3". $p4$ infine segue un percorso che non risulta vantaggioso ne per il primo valore ne per il secondo, in quanto non porta nessun vantaggio rispetto a $p2$ (la definizione formale di ``soluzione dominata" sarà formulata nel cap.3).
+
 \section{Formulazione Matematica}                 %crea la sezione
-Sia definita $G(N,A)$ un grafo orientato composto da un insieme finito di nodi (o vertici) $N = \{0,1,\dots,n\}$ e $A \subseteq N\times N $ di archi direzionati. Ogni arco può essere rappresentato come una coppia ordinata $(i,j)$, dove $i\in N$, $j \in N$ ed entrambi due nodi differenti ($i\neq j$) in $G(N,A)$.\\
+Sia definita $G(N,A)$ un grafo orientato composto da un insieme finito di nodi (o vertici) $N = \{0,1,\dots,n\}$ e $A \subseteq N\times N $ di archi direzionati. Ogni arco può essere rappresentato come una coppia ordinata $(i,j)$, dove $i\in N$, $j \in N$ ed entrambi due nodi differenti ($i\neq j$) in $G(N,A)$.
+
 Sia dunque definito $c^k_{i,j}$ dove $(i,j)\in A$ e $1\leq k \leq 2$ (dato che si tratta di un grafo con due pesi ad ogni arco) che rappresentano i costi relativi ad ogni arco. Considerando quindi due nodi del grafo, chiamati $s$ e $t$, dove $s,t\in N$, i quali rappresentano rispettivamente il nodo da cui iniziano i percorsi che cerchiamo (\textit{source}) ed il nodo terminale (\textit{target}).
-            
-%dei quali noi vogliamo trovare uno o più percorsi
 Un cammino $p_{s,t}$ può essere rappresentato come una sequenza di nodi e archi, avente la seguente forma: $p_{s,t} = \{s, (s, i_1), i_1, \dots, i_{l}, (i_l,t), t\}$.\\
 \'E dunque possibile affermare che ogni $c^k_{i,j}$ rappresenta il costo di uno dei $k$ pesi di ogni arco $(i,j)$, quindi il costo totale dell'intero cammino è rappresentato nel modo seguente:\\
 
@@ -173,11 +182,87 @@ Un cammino $p_{s,t}$ può essere rappresentato come una sequenza di nodi e archi,
 \begin{gather}c^2(p_{s,t})=\sum_{(i,j)\in p}c^2_{i,j}\end{gather}
 Il nostro scopo è quello di \textbf{minimizzare} la ($1.2$) o la ($1.3$) e dunque ottenere lo ``spettro" di soluzioni che  è presente tra le due. Ad esempio considerando il caso succitato dove il primo peso rappresenta la lunghezza ed il secondo il pericolo, minimizzando la ($1.2$) otterremmo il percorso più breve, altrimenti il più sicuro.
 
-\begin{verbatim}
-include stocazzo.h
-\end{verbatim}
+\chapter{Algoritmi `Mono-criteria'}
+In questo capitolo sono trattati esclusivamente i gli algoritmi che riguardano la ricerca di cammini minimi con un solo criterio di peso su ogni arco. L'analisi si concentra sull'implementazione e l'ottimizzazione dell'algoritmo di Dijkstra, spiegando alcune scelte implementative, e su di un altro celebre algoritmo in questo campo, l'\textit{A-star}
 
+\section{Algoritmo di Dijkstra}
+L'algoritmo di Dijkstra è molto celebre in letteratura e e tra chiunque abbia una conoscenza anche basica di algoritmi; è infatti molto usato per la ricerca dei cammini minimi in grafi connessi con archi aventi pesi positivi. Di seguito sono presenti brevi analisi di alcune interessanti implementazioni.
 
+\begin{figure}
+\begin{BVerbatim}
+function DijkstraAlgorithm(source, target):
+	dist[source] := 0
+	create priorityQueue Q
+	while Q is not empty do
+	    n := Q.extract_min()
+	    for each neighbor in v of n do
+	        alt := dist[n] + lenght(n, v)
+	        if alt < dist[v]:
+	            dist[v] := alt
+	            prev[v] := n
+	            Q.decrease_priority(v, alt)
+	return dist, prev
+\end{BVerbatim}
+\caption{Pseudocodice dell'Algoritmo di Dijkstra (list of candidate)}
+\label{fig:dijkstraLoC}
+\end{figure}
+
+\subsection{One to All}
+Questa implementazione è utile in caso si volessero trovare tutti i percorsi brevi da un nodo sorgente $s\in N$ ad ogni altro nodo del grafo, dunque non si ferma finché ogni nodo del grafo (raggiungibile da $s$) non vien visitato. A livello implementativo il nodo sorgente è realizzato in modo da contenere un dizionario contenente ogni nodo raggiunto, utilizzando come chiave l'indice del nodo e come valore la distanza (ovvero la somma dei pesi degli archi) minima che ha da $s$.
+
+Implementando una coda di priorità si raggiunge una complessità di $O((|N|+|A|)\log_2(|N|))$ dove $N$ è il numero dei vertici del grafo, mentre $A$ è il numero degli archi. Il caso peggiore, dove $A>>N$, raggiunge una complessità di $O(|A|\log_2(|N|))$.
+
+\subsection{One to One}
+A differenza della precedente, questa implementazione si concentra sul classico algoritmo di Dijkstra; non va quindi a visitare ogni singolo nodo del grafo bensì si fermerà quanto avrà raggiunto un nodo specifico $t \in N$. Non implementando una coda di priorità, andrà ad interrogare ogni nodo non visitato del grafo ad ogni ciclo, costruendo così il percorso nodo per nodo. Questo procedimento è indubbiamente esoso, infatti la sua complessità computazionale è $O(|N^2|)$.
+
+\subsection{List of Candidate}
+Questa ultima versione dell'algoritmo di Dijkstra (di cui è possibile leggere lo pseudocodice in fig.\ref{fig:dijkstraLoC}) utilizza una coda di priorità particolare: gli elementi di questa coda infatti vengono aggiornati ad ogni ciclo. Considerano i nodi vicini di ogni nodo che viene visitato ed utilizza la loro distanza come valore di priorità; ogni volta che un nodo viene visitato viene anche rimosso dalla coda. Questa implementazione interroga molti meno nodi rispetto alle precedenti versioni, ma nonostante questo ha lo stesso caso peggiore di complessità dell'algoritmo `\textit{One to All}': $O((|N|+|A|)\log_2(|N|))$
+
+\section{``A Star''}
+L'algoritmo \textit{A star} (conosciuto anche come A*) può essere considerata un'estensione dell'algoritmo di Dijkstra,poiché riesce ad ottenere una migliore performance ed accuratezza usando l'euristica \footnote{\url{https://en.wikipedia.org/wiki/Heuristic_(computer_science)}}. Per determinare in che modo A* deve estendere i suoi percorsi, necessita di minimizzare la seguente equazione:
+
+$$ f(n) = g(n) + h(n)$$   
+Dove:
+\begin{itemize}
+	\item $n$ è il prossimo nodo del cammino
+	\item $g(n)$ è il costo che ha accumulato il percorso dall'inizio (nodo $s$) fino al nodo $n$
+	\item $h(n)$ è la funzione euristica
+\end{itemize}
+La funzione euristica, in questo caso, è la distanza più breve tra $n$ ed il nodo finale ($t$) dunque \textit{la linea retta} o meglio la \textbf{distanza euclidea} che lo separa dal `target'. In questo caso la complessità computazionale è relazionata ad $h$ ed al numero di nodi esplorati per la costruzione del cammino minimo.
+Dunque il caso peggiore è $O(|N|) \equiv O(b^d)$ dove $b$ è il numero medio dei successori per nodo e $d$ i nodi esplorati per trovare la soluzione.
+\subsubsection*{dettagli implementativi}
+Ad ogni iterazione:
+\begin{enumerate}
+	\item Il nodo con il valore minore di $f(n)$ è estratto dalla coda (implementata come una coda di priorità)
+	\item Aggiorna i valori dei nodi vicini e li aggiunge alla coda in base alla priorità
+	\item L'algoritmo prosegue finché non viene raggiunto l'obbiettivo
+\end{enumerate}
+La \textbf{Distanza Euclidea} tra due punti è: $$\sqrt{(i_x - t_x)^2 + (i_y - t_y)^2}$$
+Dove $i$ è un nodo del grafo e $t$ è il nodo che vogliamo raggiungere, $x$ e $y$ rappresentano le coordinate Cartesiane (nei grafi di esempio utilizzati, dato che rappresentano delle città, vengono convertiti da latitudine e longitudine dei vari punti).
+
+Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è necessario trovare un modo per evitare di ripetere questa operazione in caso un singolo nodo venga visitato più volte (nell'implementazione utilizzata viene salvato nel nodo e quindi non viene più ricalcolato).
+
+\begin{figure}
+	\begin{BVerbatim}
+function DijkstraAlgorithm(source, target):
+    score[source] := 0
+    create priorityQueue Q
+    while Q is not empty do
+        n := Q.extract_min()
+        for each neighbor in v of n do
+            if v not visited do
+                tmpScore := score[n] + lenght(v, n)
+                if tmpScore < score[v] do
+                    if euclidean[v] is None do
+                        euclidean[v] := calcEuclidean(v, target)
+                score[v] := tmpScore
+                prev[v] := n
+                Q.decrease_priority(v, tmpScore)
+    return score, prev
+	\end{BVerbatim}
+	\caption{Pseudocodice dell'Algoritmo A*}
+	\label{fig:Astar}
+\end{figure}
 \section{Seconda Sezione}
 Ora vediamo un elenco puntato:
 \begin{itemize}                         %crea un elenco puntato
@@ -283,3 +368,27 @@ alto.
 Qui possiamo ringraziare il mondo intero!!!!!!!!!!\\
 Ovviamente solo se uno vuole, non \`e obbligatorio.
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliografia bonus:
+%P. E. Hart, N. J. Nilsson, B. Raphael: A Formal Basis for the Heuristic Determination of Minimum Cost Paths, IEEE Transactions on Systems Science and Cybernetics SSC4 (2), pp. 100?107, 1968.
+% P. E. Hart, N. J. Nilsson, B. Raphael: Correction to "A Formal Basis for the Heuristic Determination of Minimum Cost Paths", SIGART  Newsletter, 37, pp. 28?29, 1972.
+% N. J. Nilsson, Principles of Artificial Intelligence, Tioga Publishing Company, Palo Alto, California, 1980.
