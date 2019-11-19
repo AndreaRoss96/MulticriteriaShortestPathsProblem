@@ -197,7 +197,7 @@ function DijkstraAlgorithm(source, target):
 	    n := Q.extract_min()
 	    for each neighbor in v of n do
 	        alt := dist[n] + lenght(n, v)
-	        if alt < dist[v]:
+	        if alt < dist[v] do
 	            dist[v] := alt
 	            prev[v] := n
 	            Q.decrease_priority(v, alt)
@@ -245,7 +245,7 @@ Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è 
 \begin{figure}
 	\begin{BVerbatim}
 function DijkstraAlgorithm(source, target):
-    score[source] := 0
+%    score[source] := 0
     create priorityQueue Q
     while Q is not empty do
         n := Q.extract_min()
@@ -263,12 +263,13 @@ function DijkstraAlgorithm(source, target):
 	\caption{Pseudocodice dell'Algoritmo A*}
 	\label{fig:Astar}
 \end{figure}
-\section{Seconda Sezione}
+\section{Analisi dei Risultati}
 Ora vediamo un elenco puntato:
-\begin{itemize}                         %crea un elenco puntato
-\item primo oggetto
-\item secondo oggetto
-\end{itemize}
+\subsection{Performance a Confronto}
+\subsection{Nodi Visitati}
+
+\chapter{Algoritmi Bi-criteria}
+
 
 \section{Altra Sezione}
 Vediamo un elenco descrittivo:

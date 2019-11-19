@@ -1,5 +1,6 @@
 import sys
 import time
+import random
 
 import pandas as pds
 sys.path.append("algorithms/") # Has to be here to import the module in algorithms/
@@ -11,15 +12,28 @@ from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-dataN = pds.read_csv('graphs/berlin_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/berlin_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/bologna/PrBologna_nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/bologna/bolgna_arcs_directed.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[2000]#23755]#2000]#
-target = graph[2689]#27268]#2689]# #5142 or 2886
-#source = graph[0]
-#target = graph[6]
+source = graph[0]#23755]#2000]#
+target = graph[1]#27268]#2689]# #5142 or 2886
+
+# counter = 0
+# while counter < 10 :
+#     initSingleNode(graph, source)
+#     s, t = random.randint(1, 40033), random.randint(1, 40033)
+#     if s == t :
+#         continue
+#     source = graph[s]#23755]#2000]#
+#     target = graph[t]
+#     labelSettingAlgorithm(source, target)
+#     if len(target.labelList) > 1 :
+#         counter += 1
+#         print("source:", s, " target:", t)
+
+# print("source:", s, " target:", t)
 
 # print("s:", source.index, "-> t:", target.index)
 
@@ -113,18 +127,6 @@ print(len(target.labelList))
 # for label in target.labelList :
 #     print((label[0], label[1]))
 
-tmp_list= []
-for n in range (0, 1):
-    initSingleNode(graph, target)
-    initSingleNode(graph, source)
-    start = time.time()
-    labelSettingAlgorithm(target, source) # algorithm
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
-print(len(source.labelList))
-# for label in target.labelList :
-#     print((label[0], label[1]))
 
 #####################
 #####  RESULTS  #####
@@ -149,26 +151,49 @@ print(len(source.labelList))
 ########################
 ##### BACKTRACKING #####
 ########################
-graphList = []
-for label in target.labelList :
-    printList = []
-    nodeList = [label[2]]
-    while label[3] != None :
-        node = label[3]
-        nodeList.append(node)
-        lenList = len(node.labelList)
-        index = label[5] if label[5] < lenList else lenList - 1
-        label = node.labelList[index]
-        printList.append(node.index)
-    graphList.append(nodeList)
-    # print(*printList, sep="<-")
-print(len(target.labelList))
+
+lista = [#(24844, 20539),
+# (37461, 26131),
+# (11802, 27410),
+# (1298, 23289),
+(37029, 32144),
+(28953, 25778),
+(18826, 37718),
+(31381, 32126),
+(1681, 31184),
+(2202, 25952)]
+from graphPlotter import bicriteriaPlotGraph
+for elem in lista:
+    s, t = elem[0], elem[1]
+    print("source:", s, "target:", t)
+    source = graph[s]
+    target = graph[t]
+    initSingleNode(graph, source)
+    labelSettingAlgorithm(source, target) # algorithm
+
+    graphList = []
+    for label in target.labelList :
+        printList = []
+        nodeList = [label[2]]
+        while label[3] != None :
+            node = label[3]
+            nodeList.append(node)
+            lenList = len(node.labelList)
+            index = label[5] if label[5] < lenList else lenList - 1
+            label = node.labelList[index]
+            printList.append(node.index)
+        graphList.append(nodeList)
+        # print(*printList, sep="<-")
+    print(len(target.labelList))
+    
+    bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+
 
 ###################
 ### MAP'S GRAPH ###
 ###################
 from graphPlotter import bicriteriaPlotGraph
-#bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 #########################################################################################
 #########################################################################################
