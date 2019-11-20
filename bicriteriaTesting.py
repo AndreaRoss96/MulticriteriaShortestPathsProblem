@@ -12,13 +12,13 @@ from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
 
-dataN = pds.read_csv('graphs/bologna/PrBologna_nodes.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/bologna/bolgna_arcs_directed.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[0]#23755]#2000]#
-target = graph[1]#27268]#2689]# #5142 or 2886
+source = graph[2000]#23755]#2000]#
+target = graph[2689]#27268]#2689]# #5142 or 2886
 
 # counter = 0
 # while counter < 10 :
@@ -44,6 +44,31 @@ print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5
 initSingleNode(graph, source)
 
 tmp_list= []
+precision = 0.2
+for n in range (0, 1):
+    initSingleNode(graph, source)
+    start = time.time()
+    infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
+
+#################
+#### RESULTS ####
+#################
+print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
+toPrint = []
+toGraph = []
+for distDang, alpha in infoList.items() :
+    print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
+    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+    toPrint.append(stringa)
+    toGraph.append((distDang[0], distDang[1]))
+
+    tmp_list= []
+
+
+    
 precision = 0.05
 for n in range (0, 1):
     initSingleNode(graph, source)
@@ -56,14 +81,14 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #################
 #### RESULTS ####
 #################
-# print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
-# toPrint = []
-# toGraph = []
-# for distDang, alpha in infoList.items() :
-#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
-    # stringa = "({0}, {1}),".format(distDang[0], distDang[1])
-    # toPrint.append(stringa)
-    # toGraph.append((distDang[0], distDang[1]))
+print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
+toPrint = []
+toGraph = []
+for distDang, alpha in infoList.items() :
+    print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
+    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+    toPrint.append(stringa)
+    toGraph.append((distDang[0], distDang[1]))
 
 ##########################################################################################
 ##########################################################################################
@@ -83,16 +108,16 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 #####################
 #####  RESULTS  #####
 #####################
-# print("From {0.index} to {1.index} the solutions are:".format(source, target))
-# toPrint = []
-# toGraph = []
-# for distDang, alpha in infoList.items() :
-#     print("With α =", alpha, "=> distance:", distDang[0], "and danger: ", distDang[1])
-    # stringa = "({0}, {1}),".format(distDang[0], distDang[1])
-    # toPrint.append(stringa)
-    # toGraph.append((distDang[0], distDang[1]))
-# print("time:", end - start) # Print time
-# print(*toPrint) # Print all the final results
+print("From {0.index} to {1.index} the solutions are:".format(source, target))
+toPrint = []
+toGraph = []
+for distDang, alpha in infoList.items() :
+    print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
+    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+    toPrint.append(stringa)
+    toGraph.append((distDang[0], distDang[1]))
+print("time:", end - start) # Print time
+print(*toPrint) # Print all the final results
 
 # from graphPlotter import paretoGraph
 # paretoGraph(toGraph)

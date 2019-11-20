@@ -164,7 +164,7 @@ In generale non c'è una sola soluzione ottimale, bensì un insieme di possibili s
 		$p3$ & $1\to3\to5\to6$ & (21, 6)  \\ \hline
 		$p4$ & $1\to3\to4\to6$ & (13, 18)  \\ \hline
 	\end{tabular}
-	\caption{Soluzione del grafo}
+	\caption{Soluzione del grafo di esempio}
 	\label{tab:graphExample}
 \end{table}
 
@@ -177,7 +177,10 @@ Sia dunque definito $c^k_{i,j}$ dove $(i,j)\in A$ e $1\leq k \leq 2$ (dato che s
 Un cammino $p_{s,t}$ può essere rappresentato come una sequenza di nodi e archi, avente la seguente forma: $p_{s,t} = \{s, (s, i_1), i_1, \dots, i_{l}, (i_l,t), t\}$.\\
 \'E dunque possibile affermare che ogni $c^k_{i,j}$ rappresenta il costo di uno dei $k$ pesi di ogni arco $(i,j)$, quindi il costo totale dell'intero cammino è rappresentato nel modo seguente:\\
 
-\begin{gather}(c^1(p_{s,t}), c^2(p_{s,t}))\end{gather}
+\begin{gather}P = (c^1(p_{s,t}), c^2(p_{s,t}))\end{gather}
+\begin{center}
+	\textit{Dove $P$ è una soluzione}
+\end{center}
 \begin{gather}c^1(p_{s,t})=\sum_{(i,j)\in p}c^1_{i,j}\end{gather}
 \begin{gather}c^2(p_{s,t})=\sum_{(i,j)\in p}c^2_{i,j}\end{gather}
 Il nostro scopo è quello di \textbf{minimizzare} la ($1.2$) o la ($1.3$) e dunque ottenere lo ``spettro" di soluzioni che  è presente tra le due. Ad esempio considerando il caso succitato dove il primo peso rappresenta la lunghezza ed il secondo il pericolo, minimizzando la ($1.2$) otterremmo il percorso più breve, altrimenti il più sicuro.
@@ -193,6 +196,7 @@ L'algoritmo di Dijkstra è molto celebre in letteratura e e tra chiunque abbia un
 function DijkstraAlgorithm(source, target):
 	dist[source] := 0
 	create priorityQueue Q
+	q.put(source, dist[source])
 	while Q is not empty do
 	    n := Q.extract_min()
 	    for each neighbor in v of n do
@@ -200,7 +204,7 @@ function DijkstraAlgorithm(source, target):
 	        if alt < dist[v] do
 	            dist[v] := alt
 	            prev[v] := n
-	            Q.decrease_priority(v, alt)
+	            Q.put(v, alt)
 	return dist, prev
 \end{BVerbatim}
 \caption{Pseudocodice dell'Algoritmo di Dijkstra (list of candidate)}
@@ -245,11 +249,12 @@ Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è 
 \begin{figure}
 	\begin{BVerbatim}
 function DijkstraAlgorithm(source, target):
-%    score[source] := 0
+    score[source] := 0
     create priorityQueue Q
+    q.put(source, score[source])
     while Q is not empty do
         n := Q.extract_min()
-        for each neighbor in v of n do
+        for each neighbor v of n do
             if v not visited do
                 tmpScore := score[n] + lenght(v, n)
                 if tmpScore < score[v] do
@@ -257,7 +262,7 @@ function DijkstraAlgorithm(source, target):
                         euclidean[v] := calcEuclidean(v, target)
                 score[v] := tmpScore
                 prev[v] := n
-                Q.decrease_priority(v, tmpScore)
+                Q.put(v, tmpScore)
     return score, prev
 	\end{BVerbatim}
 	\caption{Pseudocodice dell'Algoritmo A*}
@@ -269,44 +274,181 @@ Ora vediamo un elenco puntato:
 \subsection{Nodi Visitati}
 
 \chapter{Algoritmi Bi-criteria}
+In questo capitolo si andrà più nello specifico ad analizzare il problema ed a studiare alcune soluzioni; per poi valutarle in base ai risultati ottenuti. Tenendo in mente le espressioni matematiche formulate nel capitolo precedente possiamo soffermarci su alcune definizioni importanti:
 
+\theoremstyle{definition}
+\newtheorem{definition}{Definizione}
+\begin{definition}{Concetto di Dominanza}\\
+	Siano $X=(c^1(p_{s,t}),c^2(p_{s,t}))$, $Y=(c'^1(p_{s,t}),c'^2(p_{s,t}))$ due possibili cammini distinti da un nodo $s \in N $ ad un nodo $t \in N$. Si dice che $X$ \emph{domina} $Y$ se e solo se $c^1(p_{s,t}) < c'^1(p_{s,t}) \wedge c^2(p_{s,t}) < c'^2(p_{s,t})$.\\
+	In questo caso X è detta \textbf{soluzione accettabile} (al contrario Y non verrebbe in alcun caso presa in considerazione).
+\end{definition}
 
-\section{Altra Sezione}
-Vediamo un elenco descrittivo:
-\begin{description}                     %crea un elenco descrittivo
-  \item[OGGETTO1] prima descrizione;
-  \item[OGGETTO2] seconda descrizione;
-  \item[OGGETTO3] terza descrizione.
-\end{description}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea una sottosezione
-\subsection{Altra SottoSezione}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%crea una sottosottosezione
-\subsubsection{SottoSottoSezione}Questa sottosottosezione non viene
-numerata, ma \`e solo scritta in grassetto.
-\section{Altra Sezione}                 %crea una sottosezione
-Vediamo la creazione di una tabella; la tabella \ref{tab:uno}
-(richiamo il nome della tabella utilizzando la label che ho messo sotto):
-la facciamo di tre righe e tre colonne, la prima colonna
-``incolonnata'' a destra (r) e le altre centrate (c):\\
-\begin{table}[h]                        %ambiente tabella
-                                        %(serve per avere la legenda)
-\begin{center}                          %centra nella pagina la tabella
-\begin{tabular}{r|c|c}                  %tre colonne con righe verticali
-                                        %   prodotte con |
-\hline \hline                           %inserisce due righe orizzontali
-$(1,1)$ & $(1,2)$ & $(1,3)$\\           %& separa le colonne e con
-\hline                                  %inserisce una riga orizzontale
-$(2,1)$ & $(2,2)$ & $(2,3)$\\           %  \\ va a capo
-\hline                                  %inserisce una riga orizzontale
-$(3,1)$ & $(3,2)$ & $(3,3)$\\
-\hline \hline                           %inserisce due righe orizzontali
+\theoremstyle{definition}
+\begin{definition}{Inviluppo Convesso delle soluzioni}\\
+	Sia $S$ un inseme di soluzioni accettabili, l'inviluppo convesso (conosciuto anche come \textit{Convex hull}) di $X$ è il più piccolo insieme convesso contenente X. Dato che consideriamo due dimensioni per il calcolo del percorso, ci troviamo in uno spazio euclideo a due dimensioni. L' inviluppo convesso può quindi essere definito dalla seguente equazione:
+	\begin{equation}\label{eq:convex hull}
+		\alpha*c^1_{(p_{s,t})} + (1-\alpha) c^2_{(p_{s,t})} = k
+	\end{equation}
+	\begin{center}
+		Dove $k$ è una costante e $\alpha \in \{0, 1\}$.\\
+	\end{center}
+\end{definition}
+
+\theoremstyle{definition}
+\begin{definition}{Fronte di Pareto}\\
+	Il fronte di Pareto è l'insieme delle soluzioni ottimali, ovvero l'insieme di tutti i cammini \textit{non-dominati}. Una soluzione può far parte del fronte di Pareto senza dominare altre soluzioni e senza essere compreso all'interno dell'inviluppo convesso delle soluzioni.
+	
+\end{definition}
+
+\section{Dijkstra applicato ad un problema Bi-criteria}
+Partendo dalla definizione classica di \textit{grafo} è possibile fare un'astrazione e scrivere $G = (N,V, C)$, dove $C$ è l'insieme dei costi. La suddetta definizione, quindi, +possibile estenderla ad un ``grafo bi-critera" come $G = (N,V, C^1, C^2)$, dove $C^1$ e $C^2$ sono gli insiemi dei soliti due pesi, ma in questo modo l'algoritmo di Dijkstra non è applicabile. Utilizzando la \ref{eq:convex hull} è possibile ridurre questa nuova definizione come  a $G = (N,V, \alpha*C^1_i + (1-\alpha)C^2_i)$ e, considerando che la \ref{eq:convex hull} ha come risultato un elemento costante, sarà possibile un approccio simile agli algoritmi affrontati nel precedente capitolo.\\
+L'algoritmo di Dijkstra `\textit{list of candidate}'è il più vantaggioso, dato che non è possibile, in questo caso generico, individuare un funzione euristica che risolva in maniera ottimale l'equazione.
+\\
+
+\'E facilmente comprensibile che utilizzando la \ref{eq:convex hull}, in base al valore dato ad $\alpha$ otterremo un cammino che minimizza più un peso piuttosto che l'altro. Per esempio, ponendo il primo peso come \textit{tempo di latenza} ed il secondo come \textit{consumo energetico}, più il valore di $\alpha$ so avvicina a $0$ più troveremo un percorso con una grande latenza ma un basso consumo energetico, mentre se questo valore si avvicina a $1$ allora il percorso avrà meno latenza ma un consumo energetico inferiore.
+\\
+La complessità computazionale è la stessa dell'algoritmo di Dijkstra mostrato precedentemente. Di seguito è riportato il codice che descrive questo ragionamento.
+
+\begin{figure}
+	\begin{BVerbatim}
+function DijkstraAlgorithm(source, target, alpha):
+	score[source] := 0
+	create priorityQueue Q
+	Q.put(source, score[source])
+	while Q is not empty do
+	    n := Q.extract_min()
+	    for each neighbor v of n do
+	        alt := alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)
+	        alt := alt + score[u]
+	        if alt < score[v] do
+	            score[v] := alt
+	            prev[v] :=n
+	            Q.put(v, tmpScore)
+	return score, prev
+	\end{BVerbatim}
+	\caption{Pseudocodice dell'Algoritmo di Dijkstra utilizzato con due criteri}
+	\label{fig:Dijkstra Bicrit}
+\end{figure}
+
+Poiché questo algoritmo ha alla base la formula dell'inviluppo convesso, significa che i suoi risultati andranno a creare la curva che ne concettualizza il significato. Vediamo di seguito.
+
+\subsection{Implementazione dell'algoritmo di Dijkstra con due criteri}
+Per utilizzare l'algoritmo sopracitato ed ottenere un numero soddisfacente di risultati è necessario richiamarlo ogni volta con un diverso valore di $\alpha$.
+
+\subsubsection{Iterazione Dijkstra bi-criteria}
+Questa è un implementazione piuttosto basilare, si basa semplicemente sul richiamare l'algoritmo partendo con $\alpha$ uguale a $0$, per poi aumentarne il valore di un numero arbitrario chiamato \textbf{precisione}; se il risultato è differente da quello precedente allora il cammino viene salvato ed il valore di $\alpha$ dimezzato, altrimenti si prosegue, fino a che non si raggiunge $\alpha = 1$.
+\\
+Questa soluzione richiede un tempo di elaborazione in relazione alla precisione utilizzata, infatti più questa è piccola, più volte verrà richiamata la funzione, dunque si otterranno differenti risultati (\textit{soluzioni accettabili}); ma ciò significa anche che la funzione spesso darà dei risultati inutili, sprecando cicli preziosi.
+
+\subsubsection{Dijkstra bi-criteria con ricerca binaria}
+Questa è una versione un po' meno grezza della precedente, dato che utilizza un algoritmo di ricerca binaria. Viene eseguita la funzione almeno due volte, una con $\alpha = 0$, poi una con $\alpha = 0$; se generano risultati differenti allora il valore di $\alpha$ viene dimezzato, e così via finché non si trovano più soluzioni. Seppur più efficiente rispetto ad un'iterazione con alta precisione, in termini di tempo e di risultati trovati non risulta essere perfetto.
+\\
+
+Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell'iterazione dell'algoritmo bi-criteria di Dijkstra, con differenti precisioni, e l'implementazione con la ricerca binaria.\\
+
+\begin{table}                    %ambiente tabella
+\centering                         %(serve per avere la legenda)
+\textit{{\tiny Questi risultati sono stati calcolati sulla mappa di Parigi (vd. risorse), considerando come partenza il nodo avente indice 2000 e come nodo terminale quello di 2689}}
+\begin{tabular}{ |p{4cm}||m{3cm}|p{3cm}|  }
+	\hline
+	Valore di $\alpha$ & PESO 1 & PESO 2 \\
+	\hline
+	\multicolumn{3}{|c|}{Iterazione con \textbf{precisione} = 0.2} \\
+	\hline
+	
+	 $\alpha$ = 0   & 9231    &12827\\
+	 $\alpha$ = 0.2 &   7153  & 12884\\
+	 $\alpha$ = 0.7 & 6091 &  14230\\
+	 $\alpha$ = 0.55 & 6317 &  13754\\
+	 $\alpha$ = 0.875 &   5944  & 14824\\
+	 $\alpha$ = 1 & 5840 & 16763 \\
+	\hline
+	\multicolumn{3}{|c|}{AVGtime: 2.112018585205078} \\ 
+	\hline\hline
+		\multicolumn{3}{|c|}{Iterazione con \textbf{precisione} = 0.05} \\
+	\hline
+	 $\alpha$ = 0   & 9231    &12827\\
+	 $\alpha$ = 0.05 &   7153  & 12884\\
+	 $\alpha$ = 0.525 & 6317 &  13754\\
+	 $\alpha$ = 0.7125000000001 & 6091 &  14230\\
+	 $\alpha$ = 0.8062500000004 &   6030  & 14430\\
+	 $\alpha$ = 0.8531250000005  & 5944 & 14824 \\
+	 $\alpha$ = 0.9265625000006  & 5874 & 15649 \\
+	 $\alpha$ = 1  & 5840 & 16763 \\	
+	\hline
+		\multicolumn{3}{|c|}{AVGtime: 7.837886095046997} \\  
+	\hline\hline
+		\multicolumn{3}{|c|}{Dijkstra con ricerca binaria} \\
+	\hline
+  $\alpha$ = 1 & 5840  &  16763\\
+  $\alpha$ = 0 & 9231  &  12827\\
+  $\alpha$ = 0.5 & 7153  &  12884\\
+  $\alpha$ = 0.75 & 6091  &  14230\\
+  $\alpha$ = 0.625 & 6317  &  13754\\
+  $\alpha$ = 0.875 & 5944  &  14824\\
+  $\alpha$ = 0.812 & 6030  &  14430\\
+  $\alpha$ = 0.937 & 5874  &  15649\\
+  $\alpha$ = 0.9680000000001 & 5855  &  16199\\
+  $\alpha$ = 0.9660000000001 & 5863  &  15959\\
+  $\alpha$ = 0.9740000000001 & 5847  &  16493\\
+	\hline
+	\multicolumn{3}{|c|}{AVGtime: 4.851694107055664} \\ 
+	\hline
 \end{tabular}
-\caption[legenda elenco tabelle]{legenda tabella}\label{tab:uno}
-\end{center}
+\caption{Output dei due algoritmi di Dijkstra bi-criteria a confronto}
+\label{table:dijkstra bicrit}
 \end{table}
-\section{Altra Sezione}\label{sec:prova}%posso mettere le label anche
-                                        %   alle section
-\subsection{Listati dei programmi}
+Da questi risultati è infatti possibile notare come una bassa precisione permette di avere un determinato insieme di risultati in tempi ragionevolmente bassi, differentemente si può dire dell'iterazione con precisione alta. Con la ricerca binaria è possibile ottenere un range abbastanza ragionevole di risultati in tempi discreti.
+
+
+\section{Algoritmo di Label-setting}
+Come precedentemente scritto, l'algoritmo di Dijkstra applicato a due criteri non è in grado di trovare tutte le soluzioni possibili (con qualsiasi livello di precisione), bensì solo quelle che compongono l'inviluppo convesso. Dunque se noi volessimo trovare un più amplio insieme di soluzioni non dominate, dunque se volessimo trovare il \textit{Fronte di Pareto} dobbiamo affidarci ad un algrotimo di Label-setting. Di seguito è presente un'esempio  di quanto detto, dove vengono messi a confronto le soluzioni trovate da Dijkstra applicato a due criteri e l'algoritmo trattato in questo capitolo. Nell'esempio vengono utilizzati la distanza ed il pericolo come valori che contraddistinguono i due pesi in questione. 
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth, trim= 0 0 15mm 14mm, clip]{graphDijkstraBicrit.png}
+		\caption{Soluzioni trovate da \textit{Dijkstra bi-criteria con ricerca binaria}}
+		\label{fig:graphBiDi}
+	\end{minipage}
+	%\hfill
+	\begin{minipage}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth, trim= 0 0 15mm 14mm, clip]{graphLabelsetting.png}
+		\caption{Soluzioni trovate dall'algoritmo \textit{Label-setting}}
+		\label{fig:graphLabSet}
+	\end{minipage}
+	\textit{{\tiny Questo esempio è stato calcolato utilizzando la mappa di Parigi, coprendo il tragitto che va dal nodo 2000 al nodo 2689.}}
+\end{figure}
+
+Nel grafo in figura \ref{fig:graphLabSet} sono presenti solo alcuni punti appartenenti alla \textit{convex hull} (quadrati rossi), mentre nel grafico affianco snono presenti tutte le soluzioni ottenute con l'algoritmo di label-setting (punti gialli). Infatti, come è anche possibile vedere, nel grafico a destra alcuni punti gialli trovano corrispondenza in tutti i punti trovati nel grafico a sinistra. Le soluzioni trovate quindi dall'algoritmo di label-setting sono tutte accettabili, dunque il suo insieme di soluzioni è più completo.
+
+\subsection{Implementazione}
+Questo algoritmo è basato, da come si può intuire dal nome, sul creare e salvare appunto dei `\textit{label}' dove sono contenute le informazioni sul percorso che si affronta per andare da un nodo ad un altro del grafo. I label sono strutturati in questo modo: $$(peso1, peso2, proprietario, predecessore, indiceDelPossessore, indiceDelPredecessore)$$
+I primi due parametri rappresentano i costi del cammino dal nodo sorgente, il terzo ed il quarto sono rispettivamente il nodo possessore del label ed il suo predecessore (o vero il nodo antecedente, da dove ``arriva" il cammino), gli ultimi due valori invece, utilizzati per il `\textit{backtracking}' del percorso, indicano la posizione del label in corrispondenza del loro nodo possessore e del loro predecessore.
+\\
+
+\begin{verbatim}
+function DijkstraAlgorithm(source, target):
+    originLabel := (0, 0, source, Null, 0, Null)
+    source.add(originLabel)
+    create priorityQueue Q
+    Q.put(orginLabel, priority())
+    while Q is not empty do
+        actualLabel := Q.extract_min()
+        owner := actualLabel[2]
+        for each neighbor v of owner do
+            firstW = weightOne(owner, v) + actualLabl[0]
+            secondW = weightTwo(owner, v) + actualLabel[1]
+            vIndex = v.labelIndex()
+            predIndex = owner.labelIndex()
+            label = (firstW, secondW, v, owner, vIndex, predIndex)
+            if label is not dominated by v.labels() do
+                v.labelsAdd(label)
+                if v is not target do
+                    Q.put(label, priority())
+\end{verbatim}
+\\
+Spiega i tre casi del label dominato, poi il fatto che non ha ritorno, l'implementazione per risparmiare qualche ciclo, il fatto che sia molto simele a dijkstra perché da lui è ispirato
+
 \subsubsection{Primo Listato}
 \begin{verbatim}
         In questo ambiente     posso scrivere      come voglio,

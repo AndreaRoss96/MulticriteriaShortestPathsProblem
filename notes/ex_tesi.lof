@@ -6,5 +6,8 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Pseudocodice dell'Algoritmo di Dijkstra (list of candidate)}}{6}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Pseudocodice dell'Algoritmo A*}}{9}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Pseudocodice dell'Algoritmo di Dijkstra utilizzato con due criteri}}{13}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Soluzioni trovate da \textit {Dijkstra bi-criteria con ricerca binaria}}}{16}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Soluzioni trovate dall'algoritmo \textit {Label-setting}}}{16}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
