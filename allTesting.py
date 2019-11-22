@@ -44,36 +44,40 @@ print("-" * 40, "1", "-"*40)
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# labelSettingAlgorithm(source, target) # algorithm
+# count = labelSettingAlgorithm(source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
 
 # print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovement(graph, source, target) # algorithm
+# count = lowerBoundImprovement(graph, source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
 # print("\n", "*"*40, "lower bound reversed", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovementReversed(source, target)
+# count = lowerBoundImprovementReversed(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 # print("\n", "*"*40, "bidirection", "*"*40)
 # initSingleNode(graph, source)
@@ -81,7 +85,8 @@ print("AVGtime:", end-start)
 # pareto = bidirectionalBicriteriaAlgorithm(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
-# print(len(pareto))
+# print(len(pareto[0]))
+# print("loops:", pareto[1])
 
 ###############################################################################################################################
 
@@ -109,36 +114,42 @@ print("-" * 40, "10", "-"*40)
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# labelSettingAlgorithm(source, target) # algorithm
+# count = labelSettingAlgorithm(source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
+
 
 # print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovement(graph, source, target) # algorithm
+# count = lowerBoundImprovement(graph, source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 # print("\n", "*"*40, "lower bound reversed", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovementReversed(source, target)
+# count = lowerBoundImprovementReversed(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 
 # print("\n", "*"*40, "bidirection", "*"*40)
@@ -147,7 +158,8 @@ print("AVGtime:", end-start)
 # pareto = bidirectionalBicriteriaAlgorithm(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
-# print(len(pareto))
+# print(len(pareto[0]))
+# print("loops:", pareto[1])
 
 ###############################################################################################################################
 
@@ -175,36 +187,42 @@ print("-" * 40, "100", "-"*40)
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# labelSettingAlgorithm(source, target) # algorithm
+# count = labelSettingAlgorithm(source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+# # for label in target.labelList :
+# #     print((label[0], label[1]))
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
 
 # print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovement(graph, source, target) # algorithm
+# count = lowerBoundImprovement(graph, source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 # print("\n", "*"*40, "lower bound reversed", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovementReversed(source, target)
+# count = lowerBoundImprovementReversed(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
 
 # print("\n", "*"*40, "bidirection", "*"*40)
@@ -213,7 +231,10 @@ print("AVGtime:", end-start)
 # pareto = bidirectionalBicriteriaAlgorithm(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
-# print(len(pareto))
+# print(len(pareto[0]))
+# print("loops:", pareto[1])
+# # for label in pareto[0] :
+# #     print((label[0], label[1]))
 
 ###############################################################################################################################
 
@@ -241,36 +262,41 @@ print("-" * 40, "300", "-"*40)
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# labelSettingAlgorithm(source, target) # algorithm
+# count = labelSettingAlgorithm(source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
 
 # print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovement(graph, source, target) # algorithm
+# count = lowerBoundImprovement(graph, source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 # print("\n", "*"*40, "lower bound reversed", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovementReversed(source, target)
+# count = lowerBoundImprovementReversed(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 
 # print("\n", "*"*40, "bidirection", "*"*40)
@@ -279,7 +305,8 @@ print("AVGtime:", end-start)
 # pareto = bidirectionalBicriteriaAlgorithm(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
-# print(len(pareto))
+# print(len(pareto[0]))
+# print("loops:", pareto[1])
 
 ###############################################################################################################################
 
@@ -307,36 +334,41 @@ print("-" * 40, "400", "-"*40)
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# labelSettingAlgorithm(source, target) # algorithm
+# count = labelSettingAlgorithm(source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
 
 # print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovement(graph, source, target) # algorithm
+# count = lowerBoundImprovement(graph, source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 # print("\n", "*"*40, "lower bound reversed", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# lowerBoundImprovementReversed(source, target)
+# count = lowerBoundImprovementReversed(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
+
 
 # print("\n", "*"*40, "bidirection", "*"*40)
 # initSingleNode(graph, source)
@@ -344,7 +376,8 @@ print("AVGtime:", end-start)
 # pareto = bidirectionalBicriteriaAlgorithm(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
-# print(len(pareto))
+# print(len(pareto[0]))
+# print("loops:", pareto[1])
 
 ###############################################################################################################################
 
@@ -372,20 +405,21 @@ print("-" * 40, "500", "-"*40)
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
 # start = time.time()
-# labelSettingAlgorithm(source, target) # algorithm
+# count = labelSettingAlgorithm(source, target) # algorithm
 # end = time.time()
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
+# print("loops:", count)
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
 
 # print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
 # initSingleNode(graph, source)
@@ -409,64 +443,66 @@ print("AVGtime:", end-start)
 # pareto = bidirectionalBicriteriaAlgorithm(source, target)
 # end = time.time()
 # print("AVGtime:", end-start)
-# print(len(pareto))
+# print(len(pareto[0]))
+# print("loops:", pareto[1])
 
 ###############################################################################################à
 
-target = graph[1000]
+target = graph[5000]
 
-print("-" * 40, "1000", "-"*40)
+print("-" * 40, "5000", "-"*40)
 
-print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
-initSingleNode(graph, source)
-precision = 0.05
-start = time.time()
-infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
-end = time.time()
-print("AVGtime:", end-start)
-print(len(infoList))
+# print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
+# initSingleNode(graph, source)
+# precision = 0.05
+# start = time.time()
+# infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
+# end = time.time()
+# print("AVGtime:", end-start)
+# print(len(infoList))
 
-print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
-initSingleNode(graph, source)
-start = time.time()
-infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
-end = time.time()
-print("AVGtime:", end-start)
-print(len(infoList))
+# print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
+# initSingleNode(graph, source)
+# start = time.time()
+# infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
+# end = time.time()
+# print("AVGtime:", end-start)
+# print(len(infoList))
 
-print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
-initSingleNode(graph, source)
-start = time.time()
-labelSettingAlgorithm(source, target) # algorithm
-end = time.time()
-print("AVGtime:", end-start)
-print(len(target.labelList))
+# print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
+# initSingleNode(graph, source)
+# start = time.time()
+# count = labelSettingAlgorithm(source, target) # algorithm
+# end = time.time()
+# print("AVGtime:", end-start)
+# print(len(target.labelList))
+# print("loops:", count)
 
-print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
-initSingleNode(graph, source)
-start = time.time()
-visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
-for v in visitedNodes:
-    v.resetValue(True) 
-dijkstraBiCrit(source, target, 1)
-end = time.time()
-print("AVGtime:", end-start)
+# print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
+# initSingleNode(graph, source)
+# start = time.time()
+# visitedNodes = dijkstraBiCrit(source, target, 0) # safest path
+# for v in visitedNodes:
+#     v.resetValue(True) 
+# dijkstraBiCrit(source, target, 1)
+# end = time.time()
+# print("AVGtime:", end-start)
 
-print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
-initSingleNode(graph, source)
-start = time.time()
-lowerBoundImprovement(graph, source, target) # algorithm
-end = time.time()
-print("AVGtime:", end-start)
-print(len(target.labelList))
+# print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND IMPROVEMENT", "*"*25)
+# initSingleNode(graph, source)
+# start = time.time()
+# lowerBoundImprovement(graph, source, target) # algorithm
+# end = time.time()
+# print("AVGtime:", end-start)
+# print(len(target.labelList))
 
-print("\n", "*"*40, "lower bound reversed", "*"*40)
-initSingleNode(graph, source)
-start = time.time()
-lowerBoundImprovementReversed(source, target)
-end = time.time()
-print("AVGtime:", end-start)
-print(len(target.labelList))
+# print("\n", "*"*40, "lower bound reversed", "*"*40)
+# initSingleNode(graph, source)
+# start = time.time()
+# lowerBoundImprovementReversed(source, target)
+# end = time.time()
+# print("AVGtime:", end-start)
+# print(len(target.labelList))
 
 print("\n", "*"*40, "bidirection", "*"*40)
 initSingleNode(graph, source)
@@ -474,4 +510,5 @@ start = time.time()
 pareto = bidirectionalBicriteriaAlgorithm(source, target)
 end = time.time()
 print("AVGtime:", end-start)
-print(len(pareto))
+print(len(pareto[0]))
+print("loops:", pareto[1])

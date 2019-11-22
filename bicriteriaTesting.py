@@ -7,6 +7,7 @@ sys.path.append("algorithms/") # Has to be here to import the module in algorith
 from algorithms.bicriteriaDijkstra import (binarySearchDijkBiCr,
                                            dijkstraBiCrit,
                                            dijkstraBiCrIteration)
+from algorithms.lowerBoundImprovement import lowerBoundImprovementReversed                                           
 from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundImprovement
 from Node import Node
 from setup import graphBuilder
@@ -40,84 +41,84 @@ target = graph[2689]#27268]#2689]# #5142 or 2886
 # initSingleNode(graph, source)
 # dijkstraBiCrit(source, target, 1)
 
-print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
-initSingleNode(graph, source)
+# print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
+# initSingleNode(graph, source)
 
-tmp_list= []
-precision = 0.2
-for n in range (0, 1):
-    initSingleNode(graph, source)
-    start = time.time()
-    infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
+# tmp_list= []
+# precision = 0.2
+# for n in range (0, 1):
+#     initSingleNode(graph, source)
+#     start = time.time()
+#     infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
+#     end = time.time()
+#     tmp_list.append(end-start)
+# print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 #################
 #### RESULTS ####
 #################
-print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
-toPrint = []
-toGraph = []
-for distDang, alpha in infoList.items() :
-    print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
-    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
-    toPrint.append(stringa)
-    toGraph.append((distDang[0], distDang[1]))
+# print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
+# toPrint = []
+# toGraph = []
+# for distDang, alpha in infoList.items() :
+#     print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
+#     stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+#     toPrint.append(stringa)
+#     toGraph.append((distDang[0], distDang[1]))
 
-    tmp_list= []
+#     tmp_list= []
 
 
     
-precision = 0.05
-for n in range (0, 1):
-    initSingleNode(graph, source)
-    start = time.time()
-    infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
+# precision = 0.05
+# for n in range (0, 1):
+#     initSingleNode(graph, source)
+#     start = time.time()
+#     infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
+#     end = time.time()
+#     tmp_list.append(end-start)
+# print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 #################
 #### RESULTS ####
 #################
-print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
-toPrint = []
-toGraph = []
-for distDang, alpha in infoList.items() :
-    print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
-    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
-    toPrint.append(stringa)
-    toGraph.append((distDang[0], distDang[1]))
+# print("Using a precision of {2}: From {0.index} to {1.index} the solutions are:".format(source, target, precision))
+# toPrint = []
+# toGraph = []
+# for distDang, alpha in infoList.items() :
+#     print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
+#     stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+#     toPrint.append(stringa)
+#     toGraph.append((distDang[0], distDang[1]))
 
 ##########################################################################################
 ##########################################################################################
-print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
-initSingleNode(graph, source)
+# print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
+# initSingleNode(graph, source)
 
-tmp_list= []
-for n in range (0, 1):
-    initSingleNode(graph, source)
-    start = time.time()
-    infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
-    end = time.time()
-    tmp_list.append(end-start)
-print("AVGtime:", sum(tmp_list) / len(tmp_list))
+# tmp_list= []
+# for n in range (0, 1):
+#     initSingleNode(graph, source)
+#     start = time.time()
+#     infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
+#     end = time.time()
+#     tmp_list.append(end-start)
+# print("AVGtime:", sum(tmp_list) / len(tmp_list))
 
 #print(target.labelList)
 #####################
 #####  RESULTS  #####
 #####################
-print("From {0.index} to {1.index} the solutions are:".format(source, target))
-toPrint = []
-toGraph = []
-for distDang, alpha in infoList.items() :
-    print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
-    stringa = "({0}, {1}),".format(distDang[0], distDang[1])
-    toPrint.append(stringa)
-    toGraph.append((distDang[0], distDang[1]))
-print("time:", end - start) # Print time
-print(*toPrint) # Print all the final results
+# print("From {0.index} to {1.index} the solutions are:".format(source, target))
+# toPrint = []
+# toGraph = []
+# for distDang, alpha in infoList.items() :
+#     print("With α =", alpha, "=> peso_1:", distDang[0], " peso_2: ", distDang[1])
+#     stringa = "({0}, {1}),".format(distDang[0], distDang[1])
+#     toPrint.append(stringa)
+#     toGraph.append((distDang[0], distDang[1]))
+# print("time:", end - start) # Print time
+# print(*toPrint) # Print all the final results
 
 # from graphPlotter import paretoGraph
 # paretoGraph(toGraph)
@@ -144,11 +145,12 @@ tmp_list= []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    labelSettingAlgorithm(source, target) # algorithm
+    count = labelSettingAlgorithm(source, target) # algorithm
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
 print(len(target.labelList))
+print("loops:", count)
 # for label in target.labelList :
 #     print((label[0], label[1]))
 
@@ -177,48 +179,48 @@ print(len(target.labelList))
 ##### BACKTRACKING #####
 ########################
 
-lista = [#(24844, 20539),
-# (37461, 26131),
-# (11802, 27410),
-# (1298, 23289),
-(37029, 32144),
-(28953, 25778),
-(18826, 37718),
-(31381, 32126),
-(1681, 31184),
-(2202, 25952)]
-from graphPlotter import bicriteriaPlotGraph
-for elem in lista:
-    s, t = elem[0], elem[1]
-    print("source:", s, "target:", t)
-    source = graph[s]
-    target = graph[t]
-    initSingleNode(graph, source)
-    labelSettingAlgorithm(source, target) # algorithm
+# lista = [#(24844, 20539),
+# # (37461, 26131),
+# # (11802, 27410),
+# # (1298, 23289),
+# (37029, 32144),
+# (28953, 25778),
+# (18826, 37718),
+# (31381, 32126),
+# (1681, 31184),
+# (2202, 25952)]
+# from graphPlotter import bicriteriaPlotGraph
+# for elem in lista:
+#     s, t = elem[0], elem[1]
+#     print("source:", s, "target:", t)
+#     source = graph[s]
+#     target = graph[t]
+#     initSingleNode(graph, source)
+#     labelSettingAlgorithm(source, target) # algorithm
 
-    graphList = []
-    for label in target.labelList :
-        printList = []
-        nodeList = [label[2]]
-        while label[3] != None :
-            node = label[3]
-            nodeList.append(node)
-            lenList = len(node.labelList)
-            index = label[5] if label[5] < lenList else lenList - 1
-            label = node.labelList[index]
-            printList.append(node.index)
-        graphList.append(nodeList)
-        # print(*printList, sep="<-")
-    print(len(target.labelList))
+#     graphList = []
+#     for label in target.labelList :
+#         printList = []
+#         nodeList = [label[2]]
+#         while label[3] != None :
+#             node = label[3]
+#             nodeList.append(node)
+#             lenList = len(node.labelList)
+#             index = label[5] if label[5] < lenList else lenList - 1
+#             label = node.labelList[index]
+#             printList.append(node.index)
+#         graphList.append(nodeList)
+#         # print(*printList, sep="<-")
+#     print(len(target.labelList))
     
-    bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+#     bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 
 ###################
 ### MAP'S GRAPH ###
 ###################
-from graphPlotter import bicriteriaPlotGraph
-bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+# from graphPlotter import bicriteriaPlotGraph
+# bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 #########################################################################################
 #########################################################################################
@@ -242,10 +244,13 @@ tmp_list= []
 for n in range (0, 1):
     initSingleNode(graph, source)
     start = time.time()
-    lowerBoundImprovement(graph, source, target) # algorithm
+    count = lowerBoundImprovement(graph, source, target) # algorithm
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
+print("loops:", count)
+# for label in target.labelList :
+#     print((label[0], label[1]))
 
 #####################
 #####  RESULTS  #####
@@ -278,3 +283,17 @@ print("AVGtime:", sum(tmp_list) / len(tmp_list))
 ###################
 # from graphPlotter import bicriteriaPlotGraph
 # bicriteriaPlotGraph(graph, graphList,labelList
+
+
+print("\n", "*"*25, "LABEL SETTING ALGORITHM LOWER BOUND refversed", "*"*25)
+
+tmp_list= []
+for n in range (0, 1):
+    initSingleNode(graph, source)
+    start = time.time()
+    lowerBoundImprovementReversed(source, target) # algorithm
+    end = time.time()
+    tmp_list.append(end-start)
+print("AVGtime:", sum(tmp_list) / len(tmp_list))
+# for label in target.labelList :
+#     print((label[0], label[1]))

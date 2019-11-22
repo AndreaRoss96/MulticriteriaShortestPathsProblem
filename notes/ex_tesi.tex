@@ -49,6 +49,8 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage{algorithm,algpseudocode}
+\usepackage{lipsum}
+\usepackage{xparse}
 
 \usepackage{imakeidx}
 
@@ -76,6 +78,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%definisce nuovi comandi
 %
 
+\newsavebox{\fminipagebox}
+\NewDocumentEnvironment{fminipage}{m O{\fboxsep}}
+{\par\kern#2\noindent\begin{lrbox}{\fminipagebox}
+		\begin{minipage}{#1}\ignorespaces}
+		{\end{minipage}\end{lrbox}%
+	\makebox[#1]{%
+		\kern\dimexpr-\fboxsep-\fboxrule\relax
+		\fbox{\usebox{\fminipagebox}}%
+		\kern\dimexpr-\fboxsep-\fboxrule\relax
+	}\par\kern#2
+}
 
 
 \begin{document}
@@ -191,22 +204,24 @@ In questo capitolo sono trattati esclusivamente i gli algoritmi che riguardano l
 \section{Algoritmo di Dijkstra}
 L'algoritmo di Dijkstra è molto celebre in letteratura e e tra chiunque abbia una conoscenza anche basica di algoritmi; è infatti molto usato per la ricerca dei cammini minimi in grafi connessi con archi aventi pesi positivi. Di seguito sono presenti brevi analisi di alcune interessanti implementazioni.
 
+
 \begin{figure}
-\begin{BVerbatim}
-function DijkstraAlgorithm(source, target):
-	dist[source] := 0
-	create priorityQueue Q
-	q.put(source, dist[source])
-	while Q is not empty do
-	    n := Q.extract_min()
-	    for each neighbor in v of n do
-	        alt := dist[n] + lenght(n, v)
-	        if alt < dist[v] do
-	            dist[v] := alt
-	            prev[v] := n
-	            Q.put(v, alt)
-	return dist, prev
-\end{BVerbatim}
+%\begin{BVerbatim}
+	\verb|function DijkstraAlgorithm(source, target):|\\
+	\verb|	    dist[source]| $\leftarrow$ 0\\
+	\verb|	    create priorityQueue Q|\\
+	\verb|	    q.put(source, dist[source])|\\
+	\verb|	    while Q is not empty do|\\
+	\verb|	        n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|	        for each neighbor in v of n do|\\
+	\verb|	            alt| $\leftarrow$ \verb|dist[n] + lenght(n, v)|\\
+	\verb|	            if alt < dist[v] do|\\
+	\verb|	                dist[v]| $\leftarrow$ \verb|alt|\\
+	\verb|	                prev[v]| $\leftarrow$ \verb|n|\\
+	\verb|	                Q.put(v, alt)|\\
+	\verb|	    return dist, prev|\\
+%\end{BVerbatim}
+
 \caption{Pseudocodice dell'Algoritmo di Dijkstra (list of candidate)}
 \label{fig:dijkstraLoC}
 \end{figure}
@@ -246,25 +261,24 @@ Dove $i$ è un nodo del grafo e $t$ è il nodo che vogliamo raggiungere, $x$ e $y$
 
 Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è necessario trovare un modo per evitare di ripetere questa operazione in caso un singolo nodo venga visitato più volte (nell'implementazione utilizzata viene salvato nel nodo e quindi non viene più ricalcolato).
 
+
 \begin{figure}
-	\begin{BVerbatim}
-function DijkstraAlgorithm(source, target):
-    score[source] := 0
-    create priorityQueue Q
-    q.put(source, score[source])
-    while Q is not empty do
-        n := Q.extract_min()
-        for each neighbor v of n do
-            if v not visited do
-                tmpScore := score[n] + lenght(v, n)
-                if tmpScore < score[v] do
-                    if euclidean[v] is None do
-                        euclidean[v] := calcEuclidean(v, target)
-                score[v] := tmpScore
-                prev[v] := n
-                Q.put(v, tmpScore)
-    return score, prev
-	\end{BVerbatim}
+\verb|function DijkstraAlgorithm(source, target):|\\
+\verb|    score[source]| $\leftarrow 0$\\
+\verb|    create priorityQueue Q|\\
+\verb|    q.put(source, score[source])|\\
+\verb|    while Q is not empty do|\\
+\verb|        n| $\leftarrow$ \verb|Q.extract_min()|\\
+\verb|        for each neighbor v of n do|\\
+\verb|            if v not visited do|\\
+\verb|                tmpScore| $\leftarrow$ \verb|score[n] + lenght(v, n)|\\
+\verb|                if tmpScore < score[v] do|\\
+\verb|                    if euclidean[v] is None do||
+\verb|                        euclidean[v]| $\leftarrow$ \verb|calcEuclidean(v, target)|\\
+\verb|                score[v]| $\leftarrow$ \verb|tmpScore|
+\verb|                prev[v]| $\leftarrow$ \verb|n|
+\verb|                Q.put(v, tmpScore)|
+\verb|    return score, prev|
 	\caption{Pseudocodice dell'Algoritmo A*}
 	\label{fig:Astar}
 \end{figure}
@@ -273,7 +287,7 @@ Ora vediamo un elenco puntato:
 \subsection{Performance a Confronto}
 \subsection{Nodi Visitati}
 
-\chapter{Algoritmi Bi-criteria}
+\chapter{Algoritmi `Bi-criteria'}
 In questo capitolo si andrà più nello specifico ad analizzare il problema ed a studiare alcune soluzioni; per poi valutarle in base ai risultati ottenuti. Tenendo in mente le espressioni matematiche formulate nel capitolo precedente possiamo soffermarci su alcune definizioni importanti:
 
 \theoremstyle{definition}
@@ -287,7 +301,7 @@ In questo capitolo si andrà più nello specifico ad analizzare il problema ed a s
 \begin{definition}{Inviluppo Convesso delle soluzioni}\\
 	Sia $S$ un inseme di soluzioni accettabili, l'inviluppo convesso (conosciuto anche come \textit{Convex hull}) di $X$ è il più piccolo insieme convesso contenente X. Dato che consideriamo due dimensioni per il calcolo del percorso, ci troviamo in uno spazio euclideo a due dimensioni. L' inviluppo convesso può quindi essere definito dalla seguente equazione:
 	\begin{equation}\label{eq:convex hull}
-		\alpha*c^1_{(p_{s,t})} + (1-\alpha) c^2_{(p_{s,t})} = k
+		\alpha \cdot c^1_{(p_{s,t})} + (1-\alpha)\cdot c^2_{(p_{s,t})} = k
 	\end{equation}
 	\begin{center}
 		Dove $k$ è una costante e $\alpha \in \{0, 1\}$.\\
@@ -310,29 +324,29 @@ L'algoritmo di Dijkstra `\textit{list of candidate}'è il più vantaggioso, dato c
 La complessità computazionale è la stessa dell'algoritmo di Dijkstra mostrato precedentemente. Di seguito è riportato il codice che descrive questo ragionamento.
 
 \begin{figure}
-	\begin{BVerbatim}
-function DijkstraAlgorithm(source, target, alpha):
-	score[source] := 0
-	create priorityQueue Q
-	Q.put(source, score[source])
-	while Q is not empty do
-	    n := Q.extract_min()
-	    for each neighbor v of n do
-	        alt := alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)
-	        alt := alt + score[u]
-	        if alt < score[v] do
-	            score[v] := alt
-	            prev[v] :=n
-	            Q.put(v, tmpScore)
-	return score, prev
-	\end{BVerbatim}
+%	\begin{BVerbatim}
+\verb|function DijkstraAlgorithm(source, target, alpha):|\\
+\verb|	score[source]| $\leftarrow 0$\\
+\verb|	create priorityQueue Q|\\
+\verb|	Q.put(source, score[source])|\\
+\verb|	while Q is not empty do|\\
+\verb|	    n| $\leftarrow$ \verb|Q.extract_min()|\\
+\verb|	    for each neighbor v of n do|\\
+\verb|	        alt| $\leftarrow$ \verb|alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)|\\
+\verb|	        alt| $\leftarrow$ \verb|alt + score[u]|\\
+\verb|	        if alt < score[v] do|\\
+\verb|	            score[v]| $\leftarrow$ \verb|alt|\\
+\verb|	            prev[v]| $\leftarrow$ \verb|n|\\
+\verb|	            Q.put(v, tmpScore)|\\
+\verb|	return score, prev|\\
+%	\end{BVerbatim}
 	\caption{Pseudocodice dell'Algoritmo di Dijkstra utilizzato con due criteri}
 	\label{fig:Dijkstra Bicrit}
 \end{figure}
 
 Poiché questo algoritmo ha alla base la formula dell'inviluppo convesso, significa che i suoi risultati andranno a creare la curva che ne concettualizza il significato. Vediamo di seguito.
 
-\subsection{Implementazione dell'algoritmo di Dijkstra con due criteri}
+\subsection{Implementazioni dell'algoritmo di Dijkstra con due criteri}
 Per utilizzare l'algoritmo sopracitato ed ottenere un numero soddisfacente di risultati è necessario richiamarlo ogni volta con un diverso valore di $\alpha$.
 
 \subsubsection{Iterazione Dijkstra bi-criteria}
@@ -346,7 +360,7 @@ Questa è una versione un po' meno grezza della precedente, dato che utilizza un 
 
 Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell'iterazione dell'algoritmo bi-criteria di Dijkstra, con differenti precisioni, e l'implementazione con la ricerca binaria.\\
 
-\begin{table}                    %ambiente tabella
+\begin{table}                   %ambiente tabella
 \centering                         %(serve per avere la legenda)
 \textit{{\tiny Questi risultati sono stati calcolati sulla mappa di Parigi (vd. risorse), considerando come partenza il nodo avente indice 2000 e come nodo terminale quello di 2689}}
 \begin{tabular}{ |p{4cm}||m{3cm}|p{3cm}|  }
@@ -422,44 +436,169 @@ Come precedentemente scritto, l'algoritmo di Dijkstra applicato a due criteri no
 Nel grafo in figura \ref{fig:graphLabSet} sono presenti solo alcuni punti appartenenti alla \textit{convex hull} (quadrati rossi), mentre nel grafico affianco snono presenti tutte le soluzioni ottenute con l'algoritmo di label-setting (punti gialli). Infatti, come è anche possibile vedere, nel grafico a destra alcuni punti gialli trovano corrispondenza in tutti i punti trovati nel grafico a sinistra. Le soluzioni trovate quindi dall'algoritmo di label-setting sono tutte accettabili, dunque il suo insieme di soluzioni è più completo.
 
 \subsection{Implementazione}
-Questo algoritmo è basato, da come si può intuire dal nome, sul creare e salvare appunto dei `\textit{label}' dove sono contenute le informazioni sul percorso che si affronta per andare da un nodo ad un altro del grafo. I label sono strutturati in questo modo: $$(peso1, peso2, proprietario, predecessore, indiceDelPossessore, indiceDelPredecessore)$$
+Questo algoritmo è basato, da come si può intuire dal nome, sul creare e salvare appunto dei `\textit{label}' dove sono contenute le informazioni sul percorso che si affronta per andare da un nodo ad un altro del grafo. I label sono strutturati in questo modo: $$(peso1, peso2, propriet, pred, indicePropriet, indicePred)$$
 I primi due parametri rappresentano i costi del cammino dal nodo sorgente, il terzo ed il quarto sono rispettivamente il nodo possessore del label ed il suo predecessore (o vero il nodo antecedente, da dove ``arriva" il cammino), gli ultimi due valori invece, utilizzati per il `\textit{backtracking}' del percorso, indicano la posizione del label in corrispondenza del loro nodo possessore e del loro predecessore.
 \\
 
-\begin{verbatim}
-function DijkstraAlgorithm(source, target):
-    originLabel := (0, 0, source, Null, 0, Null)
-    source.add(originLabel)
-    create priorityQueue Q
-    Q.put(orginLabel, priority())
-    while Q is not empty do
-        actualLabel := Q.extract_min()
-        owner := actualLabel[2]
-        for each neighbor v of owner do
-            firstW = weightOne(owner, v) + actualLabl[0]
-            secondW = weightTwo(owner, v) + actualLabel[1]
-            vIndex = v.labelIndex()
-            predIndex = owner.labelIndex()
-            label = (firstW, secondW, v, owner, vIndex, predIndex)
-            if label is not dominated by v.labels() do
-                v.labelsAdd(label)
-                if v is not target do
-                    Q.put(label, priority())
-\end{verbatim}
-\\
-Spiega i tre casi del label dominato, poi il fatto che non ha ritorno, l'implementazione per risparmiare qualche ciclo, il fatto che sia molto simele a dijkstra perché da lui è ispirato
+\begin{figure}[h]
+%\begin{verbatim}
+\verb|function DijkstraAlgorithm(source, target):|\\
+\verb|    originLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+\verb|    source.add(originLabel)|\\
+\verb|    create priorityQueue Q|\\
+\verb|    Q.put(orginLabel, priority())|\\
+\verb|    while Q is not empty do|\\
+\verb|        actualLabel| $\leftarrow$ \verb|Q.extract_min()|\\
+\verb|        owner| $\leftarrow$ \verb|actualLabel[2]|\\
+\verb|        for each neighbor v of owner do|\\
+\verb|            firstW| $\leftarrow$ \verb|weightOne(owner, v) + actualLabl[0]|\\
+\verb|            secondW| $\leftarrow$ \verb|weightTwo(owner, v) + actualLabel[1]|\\
+\verb|            vIndex| $\leftarrow$ \verb|v.labelIndex()|\\
+\verb|            predIndex| $\leftarrow$ \verb|owner.labelIndex()|\\
+\verb|            label| $\leftarrow$ \verb|(firstW, secondW, v, owner, vIndex, predIndex)|\\
+\verb|            if label is not dominated by v.labels() do			|	\\
+\verb|                v.labelsAdd(label)    //rimuove i label dominati|\\
+\verb|                if v is not target do|\\
+\verb|                    Q.put(label, priority())|\\
+%\end{verbatim}
+	\caption{Pseudocodice dell'Algoritmo Label-setting}
+\label{fig:LabelSetting}
+\end{figure}
 
-\subsubsection{Primo Listato}
-\begin{verbatim}
-        In questo ambiente     posso scrivere      come voglio,
-lasciare gli spazi che voglio e non % commentare quando voglio
-e ci sarà scritto tutto.
-Quando lo uso è meglio che disattivi il Wrap del WinEdt
-\end{verbatim}
+
+Come si può notare dalla prima parte dello pseudocodice, l'algoritmo subisce una grande influenza da parte dell'algoritmo di Dijkstra data la somiglianza. Ogni volta che un label viene calcolato si vano in contro a tre differenti casi:
+\begin{enumerate}[label=\roman*.]
+	\item Il label calcolato è dominato, dunque l'algoritmo lo scarta.
+	\item Il label calcolato domina altri label, quindi lui viene aggiunto alla lista dei label mentre i dominati rimossi.
+	\item Il label calcolato non domina e non viene dominato da nessuno, dunque viene aggiunto alla lista dei label.
+\end{enumerate}
+
+\subsubsection*{Example:}
+\'E possibile fare un esempio di esecuzione dell'algoritmo osservando la figura \ref{fig:graphExample} patendo dal nodo 1. Come prima cosa verrà creato il label avente i seguenti valori: $(0,\ 0,\ 1,\ null,\ 0,\ null)$, poi, per ogni vicino (2 e 3), i label: $(3,\ 4,\ 2,\ 1,\ 0,\ 0)$ e $(5,\ 3,\ 3,\ 1,\ 0,\ 0)$ e inseriti all'interno della coda. Viene di seguito estratto il label che ha come possessore il nodo 2 e poi continua in questo modo fino ad arrivare al nodo 6. Ogni nuovo label trovato viene quindi studiato per capire se domina, è dominato o semplicemente è una soluzione accettabile.
+
+\subsubsection{Complessità computazionale}
+Il caso peggiore che potrebbe essere incontrato dall'algoritmo è esplicato dalla figura \ref{fig:worstCaseLabelSetting}, ovvero la remota possibilità di trovare una soluzione accettabile e non dominante ad ogni iterazione, dunque dove il primo peso è zero ed il secondo è più grande del corrispettivo peso che lo precede:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{labelSettingComplexity.png}
+	\caption{Caso peggiore dell'algoritmo di label-setting}
+	\label{fig:worstCaseLabelSetting}
+\end{figure}
+
+\'E possibile dunque affermare che la complessità di questo algoritmo è $O(2^{n-1})$ dove $n$ è il numero di nodi. 
+
+\section{Algoritmo di Label-setting con minoranti pregressi}
+Volendo migliorare i tempi di esecuzione dell'algoritmo di label-setting si può pensare di affiancare alla sua computazione una fase di \textit{pre-elaborazione}. Questa fase può essere effettuata sfruttando l'algoritmo di Dijkstra, applicato a due criteri, visto precedentemente. Il vantaggio risiederebbe nella possibilità di conoscere alcuni dei label più vantaggiosi di diversi nodi sparsi lungo il percorso, in questo modo sarà possibile, per l'algoritmo di label-setting, eliminare in anticipo i cammini che risultano avere una proiezione dominata.\\
+Dunque, per svolgere il ragionamento sopracitato si prendono due nodi, come sempre $s$ e $t$ entrambi in $\in N$, e si esegue l'algoritmo di Dijkstra bi-criteria due volte, la prima con $\alpha = 0$, al seconda con $\alpha = 1$, minimizzando così entrambi i pesi. Al termine di ciò siamo a conoscenza del label, appartenente a $t$ con il primo peso più piccolo ed il secondo peso più grande e del label con il peso numero due più piccolo ed il primo più grande; ma non solo, in questo modo troviamo anche tutti i label che appartengono al percorso che porta ai label di $t$; presupponendo che questi appartengano ai `fronti di pareto' dei nodi del percorso, l'algoritmo può capire se i label in cui si va incontro durante la computazione dell'algoritmo di label-setting sono dominati oppure no
+
+\subsection{Algoritmo di label-setting con minoranti pregressi invertito}
+\'E possibile realizzare un'altra implementazione, che comprende una fase di \textit{pre-elaborazione}, simile alla precedente. Considerando sempre $s$ e $t$, come nodi rispettivamente di partenza e di arrivo, si esegue l'algoritmo di Dijkstra bi-criteria al contrario, ovvero da $t$ a $s$, sempre con $\alpha = 0$ e $\alpha = 1$. Similmente al caso precedente si ricavano alcuni dei label non dominati per ogni nodo del cammino, ma questa volta a partire dal fondo. Dunque sommando il valore di uno dei pesi trovato nella fase di pre-elaborazione con il corrispettivo valore calcolato dall'algoritmo in esecuzione, si può trovare la sua proiezione e dedurre se questa sarà dominata o meno.\\
+Il concetto, molto complesso a parole, ma in realtà basilare nel ragionamento, può essere riassunto e semplificato in questo modo:
+\begin{itemize}
+	\item[-] $pp=$ miglior ``peso 1" del percorso (calcolato nella pre-elaborazione).
+	\item[-] $pn =$ miglior ``peso 1" del nodo ( `` ).
+	\item[-] $ap =$ valore \textit{attuale} del ``peso 1" calcolato fino a quel momento dall'algoritmo.
+	\item[-] $res =$ proiezione del peso da quello specifico nodo.
+\end{itemize}
+$$res = pd - nd  + ad$$
+
+Poiché siamo a conoscenza delle due soluzioni (sia con $\alpha = 0$ che $ = 1$) calcolate con Dijkstra, è possibile constatare se la proiezione dei label per ogni peso.\\
+Questa implementazione funziona però unicamente su grafi non orientati, al contrario della versione ``non invertita".
+
+\section{Algoritmo Bidirezionale Bi-criteria}%cita
+In letteratura gli algoritmi bidirezionali sono molto elogiati per la loro capacità di accelerare la ricerca all'interno di una rete, questa sezione si concentrerà dunque sull'analisi di un algoritmo bidirezionale in grado di calcolare il fronte di Pareto. L'idea alla base di questo algoritmo è di alternare una ricerca normale, quindi dal nodo di partenza al nodo finale, ad una invertita, ovvero dal nodo finale a quello iniziale. \'E facile dedurre che anche questo algoritmo è efficace unicamente in grafi non orientati, altrimenti troverebbe dei cammini non percorribili, inoltre le sue performance sono dipendenti anche dalla configurazione del grafo preso in considerazione: poiché il livello di accelerazione della ricerca potrebbe variare in base a caratteri quantitativi e qualitativi della rete; i grafi presi in considerazione per i test sono piuttosto uniformi ed equilibrati, dunque si avrà una discreta accelerazione.\\
+L'alternanza tra la ricerca all'avanti e quella all'indietro può essere implementata in diversi modi, in questa ricerca, per semplicità, vengono equamente alternati uno alla volta, ma sono possibili diverse soluzioni, come ad esempio considerare il label più piccolo (a livello lessicografico) indifferentemente dalla sua direzione di ricerca. Differenti scelte potrebbe avere un impatto sulle performance, ma sarebbero comunque irrilevanti rispetto al guadagno,in termini di tempo, che si andrebbe ad ottenere.\\
+Abbiamo detto che la ricerca viene effettuata in due direzioni, l'andamento di queste due ricerche separate è simile a quello di un algorito unidirezionale, quindi nuovi label vengono calcolati a partire dai vicini di un nodo ed aggiunti al set dei label di questi. Si avranno due set, uno per ogni direzione, dove i label dominati vengono rimossi per far posto a quelli dominanti. Quando si va ad investigare un nodo in cui sono presenti dei label ``provenienti" dalla direzione opposta allora si combinano i due percorsi e si effettuano le dovute valutazioni di dominanza, in caso il cammino trovato risulta essere una soluzione accettabile viene aggiunto alla lista delle soluzioni. Ogni qual volta vengano combinati dei percorsi che portano ad una soluzione accettabile, tutte le eventuali soluzioni dominate da quest'ultima vengono rimosse dalla lista che contiene i risultati (ovvero quelli che andranno a comporre il fronte di Pareto).
+
+\subsection{Implementazione}
+Come già detto l'algoritmo riprende dei concetti ormai appurati, come ad esempio la struttura dei label, che rimangono invariati rispetto agli algoritmi precedenti, e l'andamento dell'algoritmo in relazione alla singola direzione.\\
+
+La caratteristica più rilevante riguarda la \textbf{condizione di stop}: mentre in tutte le implementazioni viste fin'ora gli algoritmi terminavano nel momento in cui la lista contenente tutti i label temporanei si svuotava, qui il \textit{loop} si interrompe quando la somma dei label più piccoli delle liste (in entrambe le direzioni) risulta un valore dominato da almeno un elemento contenuto nella lista dei risultati; in poche parole:\\
+L'algoritmo termina quando $[\min_i(Q_f) + \min_i(Q_b)]$ è dominato da un qualsiasi $R\in L_{results}$, dove $f$ e $b$ abbreviano \textit{forward} e \textit{backward}.\\
+L'immagine \ref{fig:bidirectional} mostra lo pseudocodice relativo.
+
+\begin{figure}[h]
+	%\begin{verbatim}
+	\verb|function BidirectionAlgorithm(source, target):|\\
+	\verb|    create priorityQueue Q[f]|\\
+	\verb|    create priorityQueue Q[b]|\\
+	\verb|    create list L|$_{result}$\\
+	\verb|    originLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+	\verb|    source.add(originLabel)|\\
+	\verb|    Q[f].put(originLabel)|\\
+	\verb|    targetLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+	\verb|    source.add(targetLabel)|\\
+	\verb|    Q[b].put(targetLabel)|\\
+	\verb|    while [min|$_i$\verb|(Q[f]) + min|$_i$\verb|(Q[b])]|\\\verb|                        is not dominated by any| R$\in L_{results}$ \verb|do|\\
+	\verb|        d| $\leftarrow$ \verb|getDirection()    //forward o backward|\\
+	\verb|        actualLabel| $\leftarrow$ \verb|Q[d].extract_min()|\\
+	\verb|        owner| $\leftarrow$ \verb|actualLabel[2]|\\
+	\verb|        for each neighbor v of owner do|\\
+	\verb|            firstW| $\leftarrow$ \verb|weightOne(owner, v) + actualLabl[0]|\\
+	\verb|            secondW| $\leftarrow$ \verb|weightTwo(owner, v) + actualLabel[1]|\\
+	\verb|            vIndex| $\leftarrow$ \verb|v.labelIndex()|\\
+	\verb|            predIndex| $\leftarrow$ \verb|owner.labelIndex()|\\
+	\verb|            label| $\leftarrow$ \verb|(firstW, secondW, v, owner, vIndex, predIndex)|\\
+	\verb|            if label is not dominated by v.labels(d) do			|	\\
+	\verb|                v.labelsAdd(label, d)   //rimuove i label dominati|\\
+	\verb|                Q[d].put(label)|\\
+	\verb|                if v.labels(!d) is not empty do   //!d = direzione opposta|\\
+	\verb|                    result| $\leftarrow$ \verb|combine(label, v.labels(!d))|\\
+	\verb|                    L|$_{results}$\verb|.addResults(results)|
+	%\end{verbatim}
+	\caption{Pseudocodice dell'Algoritmo bidirezionale}
+	\label{fig:bidirectional}
+\end{figure}
+
+\subsubsection{Caso particolare della condizione di stop}
+Considerando $C_i$ un cammino (ricongiunto nel nodo $i$) che risulta essere una soluzione accettabile del percorso, ma che non è stato ancora trovato, implica che $C_i$ nonè dominato da nessuna soluzione $R \in L_{result}$, quindi anche da nessun $r_i$ (relativo a quello specifico nodo). Per la condizione di stop $r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$ allora:
+
+$$	\exists i: C_i = c^f_i+c^b_i < r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$$
+
+Dunque
+	\begin{equation}\label{eq:bidirectional}
+\exists i:c^f_i+c^b_i < [\min_i(Q_f) + \min_i(Q_b)]
+\end{equation}
+Dato che $C_i$ non è ancora stato trovato, significa che $\forall i:c^f_i\geq \min_i(Q_f) \lor c^b_i \geq \min_i(Q_b)$ , ma è impossibile che accadano entrambi contemporaneamente, altrimenti il cammino sarebbe dominato ed andrebbe contro la (\ref{eq:bidirectional}). Dunque $\exists i:c^f_i\geq \min_i(Q_f) \land (c^b_i < \min_i(Q_b) \lor c^b_i = \min_i(Q_b)) \ \lor \ ( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$
+\\
+
+Considerando solo uno dei due casi, poiché l'altro deducibile allo stesso modo, si assume che
+$$\exists i:( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$$
+Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentre quello che parte dal sorgente sì, di conseguenza sono stati calcolati anche i label dei suoi vicini (altrimenti non sarebbe $< \min_i(Q_f)$). Sia $C^b$ il label che andrà a comporre sul nodo $i$ il cammino finale, consideriamo il predecessore e chiamiamolo $C'^b$. Al contempo sia $C^f$ il label sul nodo $i$ proveniente dall'origine, quindi il nodo che possiede $C^f$ è lo stesso che possederebbe $C^b$. $C^f$ è un label che è stato calcolato e visitato (il che significa che è \textit{permanente}), considero dunque $C'^f$ un label calcolato \textbf{a partire} da $C^f$, quindi appartenente ad un nodo vicino; quest'ultimo label può essere sia un label permanente, che \textbf{temporaneo}, ovvero solamente calcolato, ma non ancora visitato. Al contrario il label $C'^b$, non essendo ancora stato neanche calcolato $C^b$, può essere temporaneo o non ancora calcolato. Analizzando le varie possibilità si ricade in quattro diversi casi:
+
+\begin{description}
+	\item[$C'^f$ è permanente e $C'^b$ è temporaneo:]  Il cammino viene trovato dall'algoritmo e la soluzione aggiunta al fronte di Pareto.
+	\item[$C'^f$ è permanente e $C'^b$ non calcolato:] Ci riconduce alla situazione iniziale dove $\exists i:( c'^f_i < \min_i(Q_f) \lor c'^f_i = \min_i(Q_f)) \land c'^b_i \geq \min_i(Q_b)$.
+	\item[$C'^f$ e $C'^b$ sono temporanei:] Il cammino non è ancora stato trovato, ma entrambi i label sono stati calcolati, ci si riconduce quindi ad un caso simile al primo.
+	\item[$C'^f$ è temporaneo e $C'^b$ non calcolato:] Essendo il label all'interno della coda, significa che $C'^f \geq min_i(Q_f)$, allo stesso modo $C'^b \geq min_i(Q_b)$ poiché non è stato neanche calcolato. Quest'ultimo caso va contro all'equazione \ref{eq:bidirectional}, quindi non esiste una soluzione che può far parte del fronte di Pareto.
+\end{description}
+
+ 
+\section{Analisi dei risultati}
+
+\chapter{Considerazioni Personali}
+Nel seguente capitolo parlerò dei miei pensieri e delle esperienze personali riscontrate durante la stesura di questa tesi triennale.
+\section{Idee Scartate}
+\subsubsection*{Algoritmo Genetico}
+L'idea iniziale era di trovare una soluzione in un tempo non polinomiale ad un problema polinomiale. L'idea è stata scartata, anche sotto suggerimento del relatore, poiché ci si sarebbe approcciati al problema in una maniera eccessivamente ed inutilmente complessa,inoltre è stato dimostrato in 
+%citazione.
+non essere una soluzione molto performante.
+\subsubsection*{Algoritmo bidirezionale con l'utilizzo di thread}
+Seppur di semplice implementazione ho scartato questa idea poiché 
+\section{Possibili Applicazioni}
+Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del ``\textit{decision making''}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.
+\section{Difficoltà incontrate}
+Le difficoltà principali sono state riscontrate soprattutto nella stesura degli algoritmi in relazione con le mappe che mi sono state fornite (vd. ch5). Inoltre l'implementazione degli algoritmi con minoranti sono stati piuttosto macchinosi e non immediati, seppur il ragionamento dietro il loro sviluppo sia basilare. Nonostante nelle mappe di Parigi e di Berlino conoscessi già alcuni cammini minimi (poiché mi sono stati forniti insieme alle mappe), testare gli algoritmi che lavorano unicamente su grafi non orientati (bidirezionale e minorante invertito) è stato piuttosto complesso. Per verificarli ed effettuare i primi ragionamenti, prima di iniziare a scrivere il codice, ho dovuto fare diverse congetture e ragionamenti su carta, che mi hanno impegnato non poco tempo.
+\section{Conclusioni}
+\section{Sviluppi futuri}
+
+
+\chapter{Dettagli implementativi}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%per fare le conclusioni
-\chapter*{Conclusioni}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \rhead[\fancyplain{}{\bfseries
 CONCLUSIONI}]{\fancyplain{}{\bfseries\thepage}}

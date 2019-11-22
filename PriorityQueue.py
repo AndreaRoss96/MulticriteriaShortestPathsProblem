@@ -17,10 +17,10 @@ class PriorityQueue:
                   heappop(thisQueue) >> (1, "example")
         """      
 
-    def minValue(self): # return the first label WITHOUT REMOVE IT
+    def minValue(self): # return the first element WITHOUT REMOVE IT
         return self.elements[0][1]
     
-    def getMin(self): # pop the first label 
+    def getMin(self): # pop the first element 
         return heapq.heappop(self.elements)[1]
 
     def print(self):

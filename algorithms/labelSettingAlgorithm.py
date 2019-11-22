@@ -115,7 +115,6 @@ def lowerBoundImprovement(graph, source, target) :
     labelQueue.put(sourceLabel, sourceLabel[0])
     counter = 0
     while not labelQueue.isEmpty() :
-        counter += 1
         actualLabel = labelQueue.getMin()
         distSoFar = actualLabel[0]
         dangSoFar = actualLabel[1]
@@ -149,6 +148,7 @@ def lowerBoundImprovement(graph, source, target) :
                 nearNode.labelList.append(newLabel)
                 if nearNode != target :
                     labelQueue.put(newLabel, newLabel[0])
+            counter += 1
     return counter
 
 
