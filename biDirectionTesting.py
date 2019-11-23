@@ -7,14 +7,15 @@ from algorithms.bidirectional.bidirectionalBicriteria import bidirectionalBicrit
 from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
+from graphPlotter import bidirectionPlotGraph
 
-dataN = pds.read_csv('graphs/5thousand2Nodes.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/5thousand2Arches.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/bologna/PrBologna_nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/bologna/bologna_arcs_bidir.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[2000]#23755]#2000]#
-target = graph[2010]#27268]#2689]# #5142 or 2886
+source = graph[1681]#23755]#2000]#
+target = graph[31184]#27268]#2689]# #5142 or 2886
 
 
 print("\n", "*"*40, "bidirection ALGORITHM", "*"*40)
@@ -28,7 +29,7 @@ for n in range (0, 1): # increase the second value to make an average
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
-print(len(paretoList))
+print(len(paretoList[0]))
 
 ########################
 ##### BACKTRACKING #####
@@ -36,16 +37,21 @@ print(len(paretoList))
 """
 paretoLabel = (dist, dang, owner, (fwPred, fwOwnerListPost, fwpredListPos), (bwPred, bwOwnerListPost, bwpredListPos))
 """
-for elem in paretoList[0] :
-    print(elem[0], elem[1])
+# for elem in paretoList[0] :
+#     print(elem[0], elem[1])
 
+ownerSet = set()
 for paretoLabel in paretoList[0] :
-    # print("ParetoLabel:", paretoLabel)
-    # print(paretoLabel[2].directedLabelList[True])
-    print("owner:", paretoLabel[2].index)
-    fwLabel = paretoLabel[3][0]
-    for label in fwLabel.directedLabelList[True] :
-        printListFw = []
+    ownerSet.add(paretoLabel[2])
+
+toPrint = []
+graphList = []
+for owner in ownerSet :
+    # print("owner:", owner.index)
+    tmpPrintFw = []
+    graphFw = []
+    for label in owner.directedLabelList[True] :
+        printListFw = [label[2].index]
         nodeList = [label[2]]
         while label[3] != None :
             node = label[3]
@@ -54,10 +60,13 @@ for paretoLabel in paretoList[0] :
             index = label[5] if label[5] < lenList else lenList - 1
             label = node.directedLabelList[True][index]
             printListFw.append(node.index)
-        print(*printListFw, sep="<-")
-    print("FINITO FW")
-    bwLabel = paretoLabel[4][0]
-    for label in bwLabel.directedLabelList[False] :
+        graphFw.append(nodeList)
+        # print(*printListFw, sep="<-")
+        tmpPrintFw.append(printListFw)
+    # print("FINITO FW")
+    tmpPrintBw = []
+    graphBw = []
+    for label in owner.directedLabelList[False] :
         printListBw = []
         nodeList = [label[2]]
         while label[3] != None :
@@ -67,8 +76,60 @@ for paretoLabel in paretoList[0] :
             index = label[5] if label[5] < lenList else lenList - 1
             label = node.directedLabelList[False][index]
             printListBw.append(node.index)
-        print(*printListBw, sep="<-")
-    print("FINITO BW")
+        graphBw.append(nodeList)
+        # print(*printListBw, sep="->")
+        tmpPrintBw.append(printListBw)
+    # print("FINITO BW")
+    for fwElem in tmpPrintFw :
+        for bwElem in tmpPrintBw :
+            fwElem.reverse()
+            toPrint.append(fwElem + bwElem)
+            fwElem.reverse()
+
+    for fw in graphFw : 
+        for bw in graphBw :
+            fw.reverse()
+            graphList.append(fw + bw)
+            fw.reverse()
+
+        
+
+printSet = set(tuple(i) for i in toPrint)
+# for elem in printSet :
+#     print(*elem, sep='->')
+
+graphSet = set(tuple(i) for i in graphList)
+bidirectionPlotGraph(graph, graphSet, source, target)
+
+    # print("ParetoLabel:", paretoLabel)
+    # print(paretoLabel[2].directedLabelList[True])
+    # print("owner:", paretoLabel[2].index)
+    # fwLabel = paretoLabel[3][0]
+    # for label in fwLabel.directedLabelList[True] :
+    #     printListFw = []
+    #     nodeList = [label[2]]
+    #     while label[3] != None :
+    #         node = label[3]
+    #         nodeList.append(node)
+    #         lenList = len(node.directedLabelList[True])
+    #         index = label[5] if label[5] < lenList else lenList - 1
+    #         label = node.directedLabelList[True][index]
+    #         printListFw.append(node.index)
+    #     print(*printListFw, sep="<-")
+    # print("FINITO FW")
+    # bwLabel = paretoLabel[4][0]
+    # for label in bwLabel.directedLabelList[False] :
+    #     printListBw = []
+    #     nodeList = [label[2]]
+    #     while label[3] != None :
+    #         node = label[3]
+    #         nodeList.append(node)
+    #         lenList = len(node.directedLabelList[False])
+    #         index = label[5] if label[5] < lenList else lenList - 1
+    #         label = node.directedLabelList[False][index]
+    #         printListBw.append(node.index)
+    #     print(*printListBw, sep="<-")
+    # print("FINITO BW")
 
     
 

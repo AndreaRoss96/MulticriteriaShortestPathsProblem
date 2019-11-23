@@ -327,9 +327,77 @@ Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è 
 	\label{fig:Astar}
 \end{figure}
 \section{Analisi dei Risultati}
-Ora vediamo un elenco puntato:
+Di seguito sono presenti tabelle e figure che mostrano le caratteristiche degli algoritmi trattati nel capitolo. Le informazioni riguardo ad i grafi utilizzati per i test possono essere trovate nel capitolo 5, dedicato ai dettagli implementativi.
 \subsection{Performance a Confronto}
+
+\begin{table}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{monoCriteriaOutput1di2.png}		
+	\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{monoCriteriaOutput2di2.png}		
+\end{figure}
+		\caption{Performance of the mono-criteria algorithms (generate with tkinter library)}
+		\label{tab:monoCriteriaOutput}
+\end{table}
+La tabella \ref{tab:monoCriteriaOutput} mostra alcune performance degli algoritmi trattati sulla mappa di Parigi, prendendo differenti punti di partenza e di arrivo, classificandoli in base al numero di nodi visitati (\textit{small, medium, big}).Ovviamente il tempo di esecuzione dell'algoritmo \textit{one to all} è costante, poiché comunque visita tutti i nodi del grafo, ma è interessante vedere come rimanga più veloce dell'algoritmo \textit{one to one}. Riguardo a gli altri due algoritmi (lista dei candidati e A*), il secondo è indubbiamente più vantaggioso del primo, ma la sua velocità di esecuzione è legata alla funzione euristica, quindi al calcolo della distanza euclidea, in un altro ambiente potrebbe non risultare egualmente vantaggioso.
+
 \subsection{Nodi Visitati}
+
+I vari algoritmi trattati visitano i nodi in maniera differenti: ovviamente l'algoritmo \textit{one to all} visiterà, come già detto, tutti nodi raggiungibili, l'algoritmo \textit{one to one} e \textit{list of candidate} visitano li stessi nodi, il secondo lo fa semplicemente molto più velocemente; l'algoritmo \textit{A*} invece visita i nodi in una maniera particolare (ovviamente dipendente dalla funzione euristica utilizzata). Questo infatti esplora un minor numero di nodi, che si traduce in un modesto risparmio di tempo di ricerca.
+\\
+Nelle seguenti immagini si possono vedere le differenze, a livello di ricerca, dei due algoritmi. L'algoritmo di Dijkstra nel visitare i nodi crea una specie di circonferenza attorno al nodo iniziale, al contrario dell'A-star il quale sembra quasi seguire il cammino minimo, creando una sorta di forma ovaleggiante, tra il nodo sorgente e destinazione, attraversata dal cammino minimo.
+
+\begin{figure}[H]
+	\textbf{\textit{Legend}:}
+	\begin{itemize}
+		{\small 		\item \textbf{Blu}: Nodi del grafo.
+			\item \textbf{Giallo}: Nodi visitati.
+			\item \textbf{Verde}: Nodo sorgente.
+			\item \textbf{Nero}: Nodo terminale.
+			\item \textbf{Linea rossa}: Cammino minimo.}
+	\end{itemize}
+	\centering
+	%	\begin{minipage}[b]{\textwidth}
+	\includegraphics[width=\textwidth]{mapOutput/2070-15426LoC.png}
+	\label{fig:ListOfCandidate1}
+	%	\end{minipage}
+	%	\hfill
+	%	\begin{minipage}[b]{\textwidth}
+	\includegraphics[width=\textwidth]{mapOutput/2070-15426A_Star.png}
+	\label{fig:A_Start1}
+	%	\end{minipage}
+	Source: 2070 $\to$ Target: 15426\\Map: Paris
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{mapOutput/2000-2689LoC.png}
+		\label{fig:ListOfCandidate2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{mapOutput/2000-2689A_Star.png}
+		\label{fig:A_Start2}
+	\end{minipage}
+	Source: 2000 $\to$ Target: 2689\\Map: Paris
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{mapOutput/1000-1510BerlinLoC.png}
+		\label{fig:ListOfCandidate3}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{mapOutput/1000-1510BerlinA_Star.png}
+		\label{fig:A_Start3}
+	\end{minipage}
+	Source: 1000 $\to$ Target: 1510\\Map: Berlin
+\end{figure}
+
 
 \chapter{Algoritmi `Bi-criteria'}
 In questo capitolo si andrà più nello specifico ad analizzare il problema ed a studiare alcune soluzioni; per poi valutarle in base ai risultati ottenuti. Tenendo in mente le espressioni matematiche formulate nel capitolo precedente possiamo soffermarci su alcune definizioni importanti:
@@ -524,7 +592,7 @@ Come si può notare dalla prima parte dello pseudocodice, l'algoritmo subisce una
 	\item Il label calcolato non domina e non viene dominato da nessuno, dunque viene aggiunto alla lista dei label.
 \end{enumerate}
 
-\subsubsection*{Example:}
+\subsubsection*{Esempio:}
 \'E possibile fare un esempio di esecuzione dell'algoritmo osservando la figura \ref{fig:graphExample} patendo dal nodo 1. Come prima cosa verrà creato il label avente i seguenti valori: $(0,\ 0,\ 1,\ null,\ 0,\ null)$, poi, per ogni vicino (2 e 3), i label: $(3,\ 4,\ 2,\ 1,\ 0,\ 0)$ e $(5,\ 3,\ 3,\ 1,\ 0,\ 0)$ e inseriti all'interno della coda. Viene di seguito estratto il label che ha come possessore il nodo 2 e poi continua in questo modo fino ad arrivare al nodo 6. Ogni nuovo label trovato viene quindi studiato per capire se domina, è dominato o semplicemente è una soluzione accettabile.
 
 \subsubsection{Complessità computazionale}
@@ -678,12 +746,20 @@ Nonostante avessi già implementato l'algoritmo bidrezionale, ho scartato questa 
 Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del ``\textit{decision making''}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.
 \section{Difficoltà incontrate}
 Le difficoltà principali sono state riscontrate soprattutto nella stesura degli algoritmi in relazione con le mappe che mi sono state fornite (vd. ch5). Inoltre l'implementazione degli algoritmi con minoranti sono stati piuttosto macchinosi e non immediati, seppur il ragionamento dietro il loro sviluppo sia basilare. Nonostante nelle mappe di Parigi e di Berlino conoscessi già alcuni cammini minimi (poiché mi sono stati forniti insieme alle mappe), testare gli algoritmi che lavorano unicamente su grafi non orientati (bidirezionale e minorante invertito) è stato piuttosto complesso. Per verificarli ed effettuare i primi ragionamenti, prima di iniziare a scrivere il codice, ho dovuto fare diverse congetture e ragionamenti su carta, che mi hanno impegnato non poco tempo.
+
 \section{Sviluppi futuri}
+Sarebbe interessante approfondire l'argomento considerando algoritmi che studiano i cammini minimi in grafi con più di due criteri, i cosiddetti ``\textit{Multi Objective Shortest Path Problems}" molto studiati in letteratura. Le basi in realtà ci sono già, poiché l'algoritmo di Label-setting può essere facilmente esteso per lo studio in differenti criteri, stesso discorso vale per l'algoritmo bidirezionale. Per quanto riguarda l'algoritmo di Dijkstra applicato a più criteri il discorso cambia, poiché la formula applicabile diverrebbe piuttosto complessa all'aumentare dei criteri per i cammini.
 
 
 \chapter{Dettagli implementativi}
+Immagini, codice sorgente e mappe (nodi e archi) possono essere liberamente recuperate dal repository \footnote{\url{https://bitbucket.org/AndreaRossolini/bicriteria-algorithm/}}.
 
-
+\section{Informazioni sui grafi}
+I grafi delle mappe di Parigi e di Berlino mi sono state gentilmente fornite dal direttore dell'università ``Polytech Tours" (Univeristé de Tours, Francia). I punti delle mappe sono numerati e sono su sistema di riferimento spaziale WGS84 (EPGS:4326 - lo stesso utilizzato da Google Maps), mentre gli archi direzionati hanno dei valori casuali.\\
+La mappa della provincia di Bologna e del comune di Cesena sono state invece fornite dall'azienda Optit, che opera a Cesena. Queste mappe sono il risultato di un ritaglio fatto da parte dell'azienda e poi inviatomi tramite diversi file in formato `.shp' (3 file per mappa, un file conteneva gli id degli archi e la loro lunghezza, uno i punti di arrivo, di partenza e se la strada è a senso unico o meno, l'ultimo file conteneva i punti nella mappa, con riferimento spaziale EPSG:32632). Il formato è stato convertito e le coordinate ritradotte per avere lo stesso riferimento con Parigi e Berlino.\\
+Inoltre per effettuare alcuni test sono state generate casualmente dei grafi, è possibile consultare il file `.py' che le gestiva.
+La mappa di Parigi è composta da $\sim 30000$ nodi e $\sim 64500$ archi, quella di Berlino da $\sim 60000$ nodi e $\sim 150000$ archi, la provincia di Bologna $\sim 40000$ nodi e $\sim 100000$ archi, Cesena invece possiede $\sim6000$ nodi e $\sim 16000$ archi.\\
+I grafi generati in maniera `randomica' vengono descritti dal testo o dalle didascalie quando utilizzati nei test. 
 
 \begin{thebibliography}{90}             %crea l'ambiente bibliografia
 \rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries

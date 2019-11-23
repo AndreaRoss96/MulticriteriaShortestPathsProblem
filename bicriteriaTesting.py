@@ -14,13 +14,13 @@ from setup import graphBuilder
 from utilities import initSingleNode
 from graphPlotter import *
 
-dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/bologna/PrBologna_nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/bologna/bologna_arcs_bidir.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[2000]#23755]#2000]#
-target = graph[2689]#27268]#2689]# #5142 or 2886
+source = graph[1681]#23755]#2000]#
+target = graph[31184]#27268]#2689]# #5142 or 2886
 
 # counter = 0
 # while counter < 10 :

@@ -6,11 +6,11 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Pseudocodice dell'Algoritmo di Dijkstra (list of candidate)}}{6}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Pseudocodice dell'Algoritmo A*}}{9}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Pseudocodice dell'Algoritmo di Dijkstra utilizzato con due criteri}}{13}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Soluzioni trovate da \textit {Dijkstra bi-criteria con ricerca binaria}}}{17}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Soluzioni trovate dall'algoritmo \textit {Label-setting}}}{17}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Pseudocodice dell'Algoritmo Label-setting}}{18}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Caso peggiore dell'algoritmo di label-setting}}{20}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Pseudocodice dell'Algoritmo bidirezionale}}{26}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Pseudocodice dell'Algoritmo di Dijkstra utilizzato con due criteri}}{17}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Soluzioni trovate da \textit {Dijkstra bi-criteria con ricerca binaria}}}{21}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Soluzioni trovate dall'algoritmo \textit {Label-setting}}}{21}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Pseudocodice dell'Algoritmo Label-setting}}{22}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Caso peggiore dell'algoritmo di label-setting}}{24}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Pseudocodice dell'Algoritmo bidirezionale}}{30}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -195,6 +195,19 @@ print("loops:", count)
 # for label in target.labelList :
 #     print((label[0], label[1]))
 
+
+for label in graph[2010].labelList :
+    printList = []
+    nodeList = [label[2]]
+    while label[3] != None :
+        node = label[3]
+        nodeList.append(node)
+        lenList = len(node.labelList)
+        index = label[5] if label[5] < lenList else lenList - 1
+        label = node.labelList[index]
+        printList.append(node.index)
+    print(*printList, sep="<-")
+
 # print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
 # initSingleNode(graph, source)
 # start = time.time()

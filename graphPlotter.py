@@ -100,6 +100,64 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
 
     plt.show()
 
+
+def bidirectionPlotGraph(graph, resultsList, source, target) :
+    """
+    This function allows to plot graph and a paths for bicriteria algorithm.
+
+    @param
+        graph: list of all node.
+        resultsList: list of paths that has to be shown.
+        title: title of the graph.
+        source: source node.
+        target: target node.
+    """
+
+    xdata = []
+    ydata = []
+    vxdata = []
+    vydata = []
+    pxdata = []
+    pydata = []
+
+    for node in graph :
+        if len(node.directedLabelList[False]) != 0 or len(node.directedLabelList[True]) != 0 : # if labelList == 0 they are not
+            vxdata.append(node.latitude)
+            vydata.append(node.longitude)
+        else :
+            xdata.append(node.latitude)
+            ydata.append(node.longitude)
+    
+    print(len(vxdata))
+    totpxData = []
+    totpyData = []
+    for nodeList in resultsList :
+        #new
+        pxdata = []
+        pydata = []
+        #fine new
+        for node in nodeList :
+            pxdata.append(node.latitude)
+            pydata.append(node.longitude)
+        totpxData.append(pxdata)
+        totpyData.append(pydata)
+    
+    plt.plot(vydata, vxdata, 'y.', markersize=2)
+    plt.plot(ydata, xdata, '.', markersize=2)
+
+    #plt.plot(pydata, pxdata, 'r-')
+    for i in range(0, len(totpxData)) :
+        plt.plot(totpyData[i], totpxData[i], 'r-')
+    
+    plt.plot(source.longitude, source.latitude, 'go')
+    plt.plot(target.longitude, target.latitude, 'ko')
+    plt.title("Bidirectional", fontsize=15)
+    plt.xlabel('Latitude', fontsize=15)
+    plt.ylabel('Longitude', fontsize=15)
+
+    plt.show()
+
+
 def paretoGraph(result) :
     """
     This function allows to plot the Pareto front of the result of an algoritm.
