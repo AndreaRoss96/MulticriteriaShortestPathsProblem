@@ -92,7 +92,6 @@ def __combine(newLabel, nearLabelList, paretoList):
             # print("result:", result[0], result[1])
             for paretoLabel in paretoList:
                 if isDominated(paretoLabel, [result]):
-                    # print("Via dai balle")
                     paretoList.remove(paretoLabel)
             paretoList.append(result)
     return paretoList

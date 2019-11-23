@@ -64,7 +64,7 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
     pydata = []
 
     for node in graph :
-        if not(len(node.labelList) == 0) :
+        if not(len(node.labelList) == 0) : # if labelList == 0 they are not
             vxdata.append(node.latitude)
             vydata.append(node.longitude)
         else :
@@ -75,6 +75,10 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
     totpxData = []
     totpyData = []
     for nodeList in resultsList :
+        #new
+        pxdata = []
+        pydata = []
+        #fine new
         for node in nodeList :
             pxdata.append(node.latitude)
             pydata.append(node.longitude)
@@ -84,7 +88,9 @@ def bicriteriaPlotGraph(graph, resultsList, title, source, target) :
     plt.plot(vydata, vxdata, 'y.', markersize=2)
     plt.plot(ydata, xdata, '.', markersize=2)
 
-    plt.plot(pydata, pxdata, 'r-')
+    #plt.plot(pydata, pxdata, 'r-')
+    for i in range(0, len(totpxData)) :
+        plt.plot(totpyData[i], totpxData[i], 'r-')
     
     plt.plot(source.longitude, source.latitude, 'go')
     plt.plot(target.longitude, target.latitude, 'ko')

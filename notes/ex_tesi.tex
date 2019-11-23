@@ -51,6 +51,7 @@
 \usepackage{algorithm,algpseudocode}
 \usepackage{lipsum}
 \usepackage{xparse}
+\usepackage{multirow}
 
 \usepackage{imakeidx}
 
@@ -90,8 +91,51 @@
 	}\par\kern#2
 }
 
-
 \begin{document}
+	
+	\begin{titlepage}
+		\begin{center}
+			{{\large{\textsc{Alma Mater Studiorum $\cdot$ Universit\`a di
+							Bologna\\Campus di Cesena}}}} \rule[0.2cm]{15.8cm}{0.2mm}
+			\rule[0.5cm]{15.8cm}{0.6mm}
+{\small 			{{\bf DIPARTIMENTO DI INFORMATICA - SCIENZA E INGEGNERIA\\
+					CORSO DI LAUREA IN INGEGNERIA E SCIENZE INFORMATICHE
+			}}}
+		\end{center}
+		\vspace{5mm}
+		\begin{center}
+			%{\LARGE{\bf TITOLO DELL'ELABORATO}}\\
+			%\vspace{5mm}
+			{\LARGE{\bf Analysis and Implementation of Algorithms for Bicriteria Shortest Paths Problems}}\\
+			\vspace{3mm}
+		\end{center}
+		\vspace{3mm}
+		\begin{center}
+			\large{Elaborato in\\
+				RICERCA OPERATIVA}
+		\end{center}
+		\vspace{30mm}
+		\par
+		\noindent
+		\begin{minipage}[t]{0.47\textwidth}
+			{\large{\bf Relatore:\\
+					VIGO DANIELE}}
+		\end{minipage}
+		\vspace{5mm}
+		\begin{minipage}[t]{0.47\textwidth}\raggedleft
+			{\large{\bf Presentata da:\\
+					ROSSOLINI ANDREA}}
+		\end{minipage}\\
+		\begin{minipage}[t]{1.5\textwidth}\raggedright
+			{\large{\bf Corelatore:\\
+					N\'ERON EMMANUEL}}
+		\end{minipage}
+		\hfill
+		\vspace{20mm}
+		\begin{center}
+			{\large{\bf Anno Accademico: 2018/2019\\III sessione di laurea}}%inserire l'anno accademico a cui si è iscritti
+		\end{center}
+	\end{titlepage}
 	
 	\begin{abstract}
 		Questa tesi si pone l'obbiettivo di affrontare ed analizzare un problema di \textit{pathfinding} partendo da uno studio su di alcuni algoritmi per la ricerca del percorso più breve su classici grafi, per poi, dopo alcune ottimizzazioni, lavorare con grafi che utilizzano due pesi per ogni arco, considerando l'insieme di soluzioni più soddisfacenti.
@@ -115,8 +159,8 @@
 \em                                     %emfatizza (corsivo) il carattere
 Dedico questo mio modesto lavoro a tutti coloro\\
 Che mi sono stati vicini e mi hanno sostenuto\\
-In questa piccola parte di un ancora lungo e faticoso cammino\\
-In particolare alla mia famiglia \ldots                      %\ldots lascia tre puntini
+In questa piccola parte di un ancora faticoso cammino\\
+In particolare alla mia famiglia che non ha mai smesso di credere in me \ldots                      %\ldots lascia tre puntini
 \newpage                                %va in una pagina nuova
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,12 +317,12 @@ Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è 
 \verb|            if v not visited do|\\
 \verb|                tmpScore| $\leftarrow$ \verb|score[n] + lenght(v, n)|\\
 \verb|                if tmpScore < score[v] do|\\
-\verb|                    if euclidean[v] is None do||
+\verb|                    if euclidean[v] is None do|\\
 \verb|                        euclidean[v]| $\leftarrow$ \verb|calcEuclidean(v, target)|\\
-\verb|                score[v]| $\leftarrow$ \verb|tmpScore|
-\verb|                prev[v]| $\leftarrow$ \verb|n|
-\verb|                Q.put(v, tmpScore)|
-\verb|    return score, prev|
+\verb|                score[v]| $\leftarrow$ \verb|tmpScore|\\
+\verb|                prev[v]| $\leftarrow$ \verb|n|\\
+\verb|                Q.put(v, tmpScore)|\\
+\verb|    return score, prev|\\
 	\caption{Pseudocodice dell'Algoritmo A*}
 	\label{fig:Astar}
 \end{figure}
@@ -311,7 +355,6 @@ In questo capitolo si andrà più nello specifico ad analizzare il problema ed a s
 \theoremstyle{definition}
 \begin{definition}{Fronte di Pareto}\\
 	Il fronte di Pareto è l'insieme delle soluzioni ottimali, ovvero l'insieme di tutti i cammini \textit{non-dominati}. Una soluzione può far parte del fronte di Pareto senza dominare altre soluzioni e senza essere compreso all'interno dell'inviluppo convesso delle soluzioni.
-	
 \end{definition}
 
 \section{Dijkstra applicato ad un problema Bi-criteria}
@@ -360,7 +403,7 @@ Questa è una versione un po' meno grezza della precedente, dato che utilizza un 
 
 Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell'iterazione dell'algoritmo bi-criteria di Dijkstra, con differenti precisioni, e l'implementazione con la ricerca binaria.\\
 
-\begin{table}                   %ambiente tabella
+\begin{table}[h]                  %ambiente tabella
 \centering                         %(serve per avere la legenda)
 \textit{{\tiny Questi risultati sono stati calcolati sulla mappa di Parigi (vd. risorse), considerando come partenza il nodo avente indice 2000 e come nodo terminale quello di 2689}}
 \begin{tabular}{ |p{4cm}||m{3cm}|p{3cm}|  }
@@ -391,7 +434,15 @@ Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell
 	 $\alpha$ = 1  & 5840 & 16763 \\	
 	\hline
 		\multicolumn{3}{|c|}{AVGtime: 7.837886095046997} \\  
-	\hline\hline
+	\hline
+\end{tabular}
+\end{table}
+\begin{table} [H]                  %ambiente tabella
+	\centering
+\begin{tabular}{ |p{4cm}||m{3cm}|p{3cm}|  }
+	\hline
+	Valore di $\alpha$ & PESO 1 & PESO 2 \\
+	\hline
 		\multicolumn{3}{|c|}{Dijkstra con ricerca binaria} \\
 	\hline
   $\alpha$ = 1 & 5840  &  16763\\
@@ -518,7 +569,32 @@ La caratteristica più rilevante riguarda la \textbf{condizione di stop}: mentre 
 L'algoritmo termina quando $[\min_i(Q_f) + \min_i(Q_b)]$ è dominato da un qualsiasi $R\in L_{results}$, dove $f$ e $b$ abbreviano \textit{forward} e \textit{backward}.\\
 L'immagine \ref{fig:bidirectional} mostra lo pseudocodice relativo.
 
-\begin{figure}[h]
+
+
+\subsubsection{Caso particolare della condizione di stop}
+Considerando $C_i$ un cammino (ricongiunto nel nodo $i$) che risulta essere una soluzione accettabile del percorso, ma che non è stato ancora trovato, implica che $C_i$ nonè dominato da nessuna soluzione $R \in L_{result}$, quindi anche da nessun $r_i$ (relativo a quello specifico nodo). Per la condizione di stop $r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$ allora:
+
+$$	\exists i: C_i = c^f_i+c^b_i < r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$$
+
+Dunque
+	\begin{equation}\label{eq:bidirectional}
+\exists i:c^f_i+c^b_i < [\min_i(Q_f) + \min_i(Q_b)]
+\end{equation}
+Dato che $C_i$ non è ancora stato trovato, significa che $\forall i:c^f_i\geq \min_i(Q_f) \lor c^b_i \geq \min_i(Q_b)$ , ma è impossibile che accadano entrambi contemporaneamente, altrimenti il cammino sarebbe dominato ed andrebbe contro la (\ref{eq:bidirectional}). Dunque $\exists i:c^f_i\geq \min_i(Q_f) \land (c^b_i < \min_i(Q_b) \lor c^b_i = \min_i(Q_b)) \ \lor \ ( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$
+\\
+
+Considerando solo uno dei due casi, poiché l'altro deducibile allo stesso modo, si assume che
+$$\exists i:( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$$
+Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentre quello che parte dal sorgente sì, di conseguenza sono stati calcolati anche i label dei suoi vicini (altrimenti non sarebbe $< \min_i(Q_f)$). Sia $C^b$ il label che andrà a comporre sul nodo $i$ il cammino finale, consideriamo il predecessore e chiamiamolo $C'^b$. Al contempo sia $C^f$ il label sul nodo $i$ proveniente dall'origine, quindi il nodo che possiede $C^f$ è lo stesso che possederebbe $C^b$. $C^f$ è un label che è stato calcolato e visitato (il che significa che è \textit{permanente}), considero dunque $C'^f$ un label calcolato \textbf{a partire} da $C^f$, quindi appartenente ad un nodo vicino; quest'ultimo label può essere sia un label permanente, che \textbf{temporaneo}, ovvero solamente calcolato, ma non ancora visitato. Al contrario il label $C'^b$, non essendo ancora stato neanche calcolato $C^b$, può essere temporaneo o non ancora calcolato. Analizzando le varie possibilità si ricade in quattro diversi casi:
+
+\begin{description}
+	\item[$C'^f$ è permanente e $C'^b$ è temporaneo:]  Il cammino viene trovato dall'algoritmo e la soluzione aggiunta al fronte di Pareto.
+	\item[$C'^f$ è permanente e $C'^b$ non calcolato:] Ci riconduce alla situazione iniziale dove $\exists i:( c'^f_i < \min_i(Q_f) \lor c'^f_i = \min_i(Q_f)) \land c'^b_i \geq \min_i(Q_b)$.
+	\item[$C'^f$ e $C'^b$ sono temporanei:] Il cammino non è ancora stato trovato, ma entrambi i label sono stati calcolati, ci si riconduce quindi ad un caso simile al primo.
+	\item[$C'^f$ è temporaneo e $C'^b$ non calcolato:] Essendo il label all'interno della coda, significa che $C'^f \geq min_i(Q_f)$, allo stesso modo $C'^b \geq min_i(Q_b)$ poiché non è stato neanche calcolato. Quest'ultimo caso va contro all'equazione \ref{eq:bidirectional}, quindi non esiste una soluzione che può far parte del fronte di Pareto.
+\end{description}
+
+\begin{figure}[H]
 	%\begin{verbatim}
 	\verb|function BidirectionAlgorithm(source, target):|\\
 	\verb|    create priorityQueue Q[f]|\\
@@ -550,32 +626,44 @@ L'immagine \ref{fig:bidirectional} mostra lo pseudocodice relativo.
 	\caption{Pseudocodice dell'Algoritmo bidirezionale}
 	\label{fig:bidirectional}
 \end{figure}
-
-\subsubsection{Caso particolare della condizione di stop}
-Considerando $C_i$ un cammino (ricongiunto nel nodo $i$) che risulta essere una soluzione accettabile del percorso, ma che non è stato ancora trovato, implica che $C_i$ nonè dominato da nessuna soluzione $R \in L_{result}$, quindi anche da nessun $r_i$ (relativo a quello specifico nodo). Per la condizione di stop $r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$ allora:
-
-$$	\exists i: C_i = c^f_i+c^b_i < r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$$
-
-Dunque
-	\begin{equation}\label{eq:bidirectional}
-\exists i:c^f_i+c^b_i < [\min_i(Q_f) + \min_i(Q_b)]
-\end{equation}
-Dato che $C_i$ non è ancora stato trovato, significa che $\forall i:c^f_i\geq \min_i(Q_f) \lor c^b_i \geq \min_i(Q_b)$ , ma è impossibile che accadano entrambi contemporaneamente, altrimenti il cammino sarebbe dominato ed andrebbe contro la (\ref{eq:bidirectional}). Dunque $\exists i:c^f_i\geq \min_i(Q_f) \land (c^b_i < \min_i(Q_b) \lor c^b_i = \min_i(Q_b)) \ \lor \ ( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$
-\\
-
-Considerando solo uno dei due casi, poiché l'altro deducibile allo stesso modo, si assume che
-$$\exists i:( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$$
-Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentre quello che parte dal sorgente sì, di conseguenza sono stati calcolati anche i label dei suoi vicini (altrimenti non sarebbe $< \min_i(Q_f)$). Sia $C^b$ il label che andrà a comporre sul nodo $i$ il cammino finale, consideriamo il predecessore e chiamiamolo $C'^b$. Al contempo sia $C^f$ il label sul nodo $i$ proveniente dall'origine, quindi il nodo che possiede $C^f$ è lo stesso che possederebbe $C^b$. $C^f$ è un label che è stato calcolato e visitato (il che significa che è \textit{permanente}), considero dunque $C'^f$ un label calcolato \textbf{a partire} da $C^f$, quindi appartenente ad un nodo vicino; quest'ultimo label può essere sia un label permanente, che \textbf{temporaneo}, ovvero solamente calcolato, ma non ancora visitato. Al contrario il label $C'^b$, non essendo ancora stato neanche calcolato $C^b$, può essere temporaneo o non ancora calcolato. Analizzando le varie possibilità si ricade in quattro diversi casi:
-
-\begin{description}
-	\item[$C'^f$ è permanente e $C'^b$ è temporaneo:]  Il cammino viene trovato dall'algoritmo e la soluzione aggiunta al fronte di Pareto.
-	\item[$C'^f$ è permanente e $C'^b$ non calcolato:] Ci riconduce alla situazione iniziale dove $\exists i:( c'^f_i < \min_i(Q_f) \lor c'^f_i = \min_i(Q_f)) \land c'^b_i \geq \min_i(Q_b)$.
-	\item[$C'^f$ e $C'^b$ sono temporanei:] Il cammino non è ancora stato trovato, ma entrambi i label sono stati calcolati, ci si riconduce quindi ad un caso simile al primo.
-	\item[$C'^f$ è temporaneo e $C'^b$ non calcolato:] Essendo il label all'interno della coda, significa che $C'^f \geq min_i(Q_f)$, allo stesso modo $C'^b \geq min_i(Q_b)$ poiché non è stato neanche calcolato. Quest'ultimo caso va contro all'equazione \ref{eq:bidirectional}, quindi non esiste una soluzione che può far parte del fronte di Pareto.
-\end{description}
-
  
 \section{Analisi dei risultati}
+Di seguito vengono effettuati dei test degli algoritmi trattati nel capitolo su grafi di diverso tipo e dimensioni.
+
+\begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}|  }
+	\hline
+	Nodo di arrivo & Soluzioni trovate & tempo impiegato (sec) & Soluzioni trovate & tempo impiegato (sec) \\
+	\hline
+	 & \multicolumn{2}{|c|}{Dijkstra Iter. \textbf{prec.} = 0.05} &
+	\multicolumn{2}{|c|}{Dijkstra binary search} \\
+	\hline
+	
+	10 & 5 & 10.06989 & 5 & 6.02213\\
+	100 & 23 & 32.07635  & 12 & 11.89208\\
+	500 & 84 & 96.60857 & 23 & 82.71155\\
+	700 & 123 & 210.80490 & 27 & 23.74903\\
+	5000 & 593 & 664.78488 & 46 & 23.74327\\	
+	\hline
+	
+\end{tabular}
+\\
+\\
+
+\begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}|  }
+	\hline
+	Nodo di arrivo & Soluzioni trovate & tempo impiegato (sec) & Soluzioni trovate & tempo impiegato (sec) \\
+	\hline
+	&\multicolumn{2}{|c|}{Label-setting} &  \multicolumn{2}{|c|}{bidirectional algorithm} \\
+	\hline
+	10 & 10 & 0.00040 & 10 & 0.00053 \\
+	100  & 116 & 1.05214 & 78 & 0.12738 \\
+	300  & 663 & 70.93244 & 227 & 2.4432 \\
+	500 & 1867 & 925.68206 & 167 & 29.14023 \\
+	700 & 3278 & 4795.59632 & 429 & 141.73064\\
+	
+	\hline
+	
+\end{tabular}
 
 \chapter{Considerazioni Personali}
 Nel seguente capitolo parlerò dei miei pensieri e delle esperienze personali riscontrate durante la stesura di questa tesi triennale.
@@ -585,51 +673,18 @@ L'idea iniziale era di trovare una soluzione in un tempo non polinomiale ad un p
 %citazione.
 non essere una soluzione molto performante.
 \subsubsection*{Algoritmo bidirezionale con l'utilizzo di thread}
-Seppur di semplice implementazione ho scartato questa idea poiché 
+Nonostante avessi già implementato l'algoritmo bidrezionale, ho scartato questa idea poiché sarebbe stato inutile paragonarla agli altri algoritmi.
 \section{Possibili Applicazioni}
 Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del ``\textit{decision making''}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.
 \section{Difficoltà incontrate}
 Le difficoltà principali sono state riscontrate soprattutto nella stesura degli algoritmi in relazione con le mappe che mi sono state fornite (vd. ch5). Inoltre l'implementazione degli algoritmi con minoranti sono stati piuttosto macchinosi e non immediati, seppur il ragionamento dietro il loro sviluppo sia basilare. Nonostante nelle mappe di Parigi e di Berlino conoscessi già alcuni cammini minimi (poiché mi sono stati forniti insieme alle mappe), testare gli algoritmi che lavorano unicamente su grafi non orientati (bidirezionale e minorante invertito) è stato piuttosto complesso. Per verificarli ed effettuare i primi ragionamenti, prima di iniziare a scrivere il codice, ho dovuto fare diverse congetture e ragionamenti su carta, che mi hanno impegnato non poco tempo.
-\section{Conclusioni}
 \section{Sviluppi futuri}
 
 
 \chapter{Dettagli implementativi}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
-\clearpage{\pagestyle{empty}\cleardoublepage}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\rhead[\fancyplain{}{\bfseries
-CONCLUSIONI}]{\fancyplain{}{\bfseries\thepage}}
-\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries
-CONCLUSIONI}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Conclusioni
-                                        %   nell'indice
-\addcontentsline{toc}{chapter}{Conclusioni} Queste sono le
-conclusioni.\\
-In queste conclusioni voglio fare un riferimento alla
-bibliografia: questo \`e il mio riferimento \cite{K3,K4}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\renewcommand{\chaptermark}[1]{\markright{\thechapter \ #1}{}}
-\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
-\appendix                               %imposta le appendici
-\chapter{Prima Appendice}               %crea l'appendice
-In questa Appendice non si \`e utilizzato il comando:\\
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\verb"" è equivalente all'
-                                        %   ambiente verbatim,
-                                        %   ma si utilizza all'interno
-                                        %   di un discorso.
-\verb"\clearpage{\pagestyle{empty}\cleardoublepage}", ed infatti
-l'ultima pagina 8 ha l'intestazione con il numero di pagina in
-alto.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\rhead[\fancyplain{}{\bfseries \thechapter \:Prima Appendice}]
-{\fancyplain{}{\bfseries\thepage}}
-\chapter{Seconda Appendice}             %crea l'appendice
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
-\rhead[\fancyplain{}{\bfseries \thechapter \:Seconda Appendice}]
-{\fancyplain{}{\bfseries\thepage}}
+
 \begin{thebibliography}{90}             %crea l'ambiente bibliografia
 \rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries
 \thepage}}
@@ -650,19 +705,6 @@ alto.
 Qui possiamo ringraziare il mondo intero!!!!!!!!!!\\
 Ovviamente solo se uno vuole, non \`e obbligatorio.
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

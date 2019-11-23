@@ -14,8 +14,8 @@ from utilities import initSingleNode
 from algorithms.bidirectional.bidirectionalBicriteria import bidirectionalBicriteriaAlgorithm
 
 
-dataN = pds.read_csv('graphs/200thousand2Nodes.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/200thousand2Arches.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/5thousand2Nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/5thousand2Arches.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
@@ -184,16 +184,16 @@ print("-" * 40, "100", "-"*40)
 # print("AVGtime:", end-start)
 # print(len(infoList))
 
-# print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
-# initSingleNode(graph, source)
-# start = time.time()
-# count = labelSettingAlgorithm(source, target) # algorithm
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(target.labelList))
-# print("loops:", count)
-# # for label in target.labelList :
-# #     print((label[0], label[1]))
+print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
+initSingleNode(graph, graph[2000])
+start = time.time()
+count = labelSettingAlgorithm(graph[2000], graph[2010]) # algorithm
+end = time.time()
+print("AVGtime:", end-start)
+print(len(target.labelList))
+print("loops:", count)
+# for label in target.labelList :
+#     print((label[0], label[1]))
 
 # print("\n", "*"*30, "DIJKSTRA PREPROCESSING", "*"*30)
 # initSingleNode(graph, source)
@@ -225,16 +225,16 @@ print("-" * 40, "100", "-"*40)
 # print("loops:", count)
 
 
-# print("\n", "*"*40, "bidirection", "*"*40)
-# initSingleNode(graph, source)
-# start = time.time()
-# pareto = bidirectionalBicriteriaAlgorithm(source, target)
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(pareto[0]))
-# print("loops:", pareto[1])
-# # for label in pareto[0] :
-# #     print((label[0], label[1]))
+print("\n", "*"*40, "bidirection", "*"*40)
+initSingleNode(graph, source)
+start = time.time()
+pareto = bidirectionalBicriteriaAlgorithm(source, target)
+end = time.time()
+print("AVGtime:", end-start)
+print(len(pareto[0]))
+print("loops:", pareto[1])
+# for label in pareto[0] :
+#     print((label[0], label[1]))
 
 ###############################################################################################################################
 
@@ -314,22 +314,22 @@ target = graph[400]
 
 print("-" * 40, "400", "-"*40)
 
-# print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
-# initSingleNode(graph, source)
-# precision = 0.05
-# start = time.time()
-# infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(infoList))
+print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
+initSingleNode(graph, source)
+precision = 0.05
+start = time.time()
+infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
+end = time.time()
+print("AVGtime:", end-start)
+print(len(infoList))
 
-# print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
-# initSingleNode(graph, source)
-# start = time.time()
-# infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(infoList))
+print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
+initSingleNode(graph, source)
+start = time.time()
+infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
+end = time.time()
+print("AVGtime:", end-start)
+print(len(infoList))
 
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
@@ -381,26 +381,26 @@ print("-" * 40, "400", "-"*40)
 
 ###############################################################################################################################
 
-target = graph[500]
+target = graph[700]
 
-print("-" * 40, "500", "-"*40)
+print("-" * 40, "700", "-"*40)
 
-# print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
-# initSingleNode(graph, source)
-# precision = 0.05
-# start = time.time()
-# infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(infoList))
+print("\n", "*"*35, "DIJKSTRA BICRITERIA ITERATION", "*"*35) #(10,25),(20,12),(5, 60)
+initSingleNode(graph, source)
+precision = 0.05
+start = time.time()
+infoList = dijkstraBiCrIteration(graph, source, target, precision) # algorithm
+end = time.time()
+print("AVGtime:", end-start)
+print(len(infoList))
 
-# print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
-# initSingleNode(graph, source)
-# start = time.time()
-# infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(infoList))
+print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
+initSingleNode(graph, source)
+start = time.time()
+infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
+end = time.time()
+print("AVGtime:", end-start)
+print(len(infoList))
 
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
@@ -461,13 +461,13 @@ print("-" * 40, "5000", "-"*40)
 # print("AVGtime:", end-start)
 # print(len(infoList))
 
-# print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
-# initSingleNode(graph, source)
-# start = time.time()
-# infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
-# end = time.time()
-# print("AVGtime:", end-start)
-# print(len(infoList))
+print("\n", "*"*35, "DIJKSTRA BICRITERIA BINARY SEARCH", "*"*35)
+initSingleNode(graph, source)
+start = time.time()
+infoList = binarySearchDijkBiCr(graph, source, target) # algorithm
+end = time.time()
+print("AVGtime:", end-start)
+print(len(infoList))
 
 # print("\n", "*"*40, "LABEL SETTING ALGORITHM", "*"*40)
 # initSingleNode(graph, source)
@@ -504,11 +504,11 @@ print("-" * 40, "5000", "-"*40)
 # print("AVGtime:", end-start)
 # print(len(target.labelList))
 
-print("\n", "*"*40, "bidirection", "*"*40)
-initSingleNode(graph, source)
-start = time.time()
-pareto = bidirectionalBicriteriaAlgorithm(source, target)
-end = time.time()
-print("AVGtime:", end-start)
-print(len(pareto[0]))
-print("loops:", pareto[1])
+# print("\n", "*"*40, "bidirection", "*"*40)
+# initSingleNode(graph, source)
+# start = time.time()
+# pareto = bidirectionalBicriteriaAlgorithm(source, target)
+# end = time.time()
+# print("AVGtime:", end-start)
+# print(len(pareto[0]))
+# print("loops:", pareto[1])

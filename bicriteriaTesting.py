@@ -12,6 +12,7 @@ from algorithms.labelSettingAlgorithm import labelSettingAlgorithm, lowerBoundIm
 from Node import Node
 from setup import graphBuilder
 from utilities import initSingleNode
+from graphPlotter import *
 
 dataN = pds.read_csv('graphs/paris_noeuds.csv', sep='\t', header=None)
 dataA = pds.read_csv('graphs/paris_arcs.csv', sep='\t', header=None)
@@ -149,7 +150,7 @@ for n in range (0, 1):
     end = time.time()
     tmp_list.append(end-start)
 print("AVGtime:", sum(tmp_list) / len(tmp_list))
-print(len(target.labelList))
+print("len:", len(target.labelList))
 print("loops:", count)
 # for label in target.labelList :
 #     print((label[0], label[1]))
@@ -161,10 +162,10 @@ print("loops:", count)
 # toPrint = []
 # toParetoGrap = []
 # for label in target.labelList :
-    # print("distance:", label[0], "danger:", label[1], "predecessor:", label[3].index)
-    # stringa = "({0}, {1}),".format(label[0], label[1])
-    # toPrint.append(stringa)
-    # toParetoGrap.append((label[0], label[1]))
+#     print("distance:", label[0], "danger:", label[1], "predecessor:", label[3].index)
+#     stringa = "({0}, {1}),".format(label[0], label[1])
+#     toPrint.append(stringa)
+#     toParetoGrap.append((label[0], label[1]))
 # print("time:", end - start)  # Print time
 # print(*toPrint)              # Print all the final results
 # print(len(target.labelList)) # Length of the labelList 
@@ -198,22 +199,22 @@ print("loops:", count)
 #     initSingleNode(graph, source)
 #     labelSettingAlgorithm(source, target) # algorithm
 
-#     graphList = []
-#     for label in target.labelList :
-#         printList = []
-#         nodeList = [label[2]]
-#         while label[3] != None :
-#             node = label[3]
-#             nodeList.append(node)
-#             lenList = len(node.labelList)
-#             index = label[5] if label[5] < lenList else lenList - 1
-#             label = node.labelList[index]
-#             printList.append(node.index)
-#         graphList.append(nodeList)
-#         # print(*printList, sep="<-")
-#     print(len(target.labelList))
+graphList = []
+for label in target.labelList :
+    printList = []
+    nodeList = [label[2]]
+    while label[3] != None :
+        node = label[3]
+        nodeList.append(node)
+        lenList = len(node.labelList)
+        index = label[5] if label[5] < lenList else lenList - 1
+        label = node.labelList[index]
+        printList.append(node.index)
+    graphList.append(nodeList)
+    # print(*printList, sep="<-")
+print(len(target.labelList))
     
-#     bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
+bicriteriaPlotGraph(graph, graphList, "Bicriteria", source, target)
 
 
 ###################
