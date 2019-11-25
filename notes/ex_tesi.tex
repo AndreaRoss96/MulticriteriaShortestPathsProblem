@@ -329,20 +329,24 @@ Dato che il calcolo della radice quadrata è molto costoso in termini di tempo,è 
 \section{Analisi dei Risultati}
 Di seguito sono presenti tabelle e figure che mostrano le caratteristiche degli algoritmi trattati nel capitolo. Le informazioni riguardo ad i grafi utilizzati per i test possono essere trovate nel capitolo 5, dedicato ai dettagli implementativi.
 \subsection{Performance a Confronto}
+Di seguito delle tabelle per visionare le performance degli algoritmi trattati nel corso di questo capitolo.
 
-\begin{table}
-	\begin{figure}[H]
-		\centering
+\begin{table}[H]
+%	\begin{figure}
+		\begin{minipage}[b]{\textwidth}
 		\includegraphics[width=\linewidth]{monoCriteriaOutput1di2.png}		
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{monoCriteriaOutput2di2.png}		
-\end{figure}
-		\caption{Performance of the mono-criteria algorithms (generate with tkinter library)}
+		\end{minipage}
+\end{table}
+\begin{table}[H]
+%	\centering
+	\begin{minipage}[b]{\textwidth}
+	\includegraphics[width=\linewidth]{monoCriteriaOutputV2.png}		
+	\end{minipage}
+%\end{figure}
+		\caption{Performance degli algoritmi mono-criteria (tabella generata per comodità con la libreria tkinter)}
 		\label{tab:monoCriteriaOutput}
 \end{table}
-La tabella \ref{tab:monoCriteriaOutput} mostra alcune performance degli algoritmi trattati sulla mappa di Parigi, prendendo differenti punti di partenza e di arrivo, classificandoli in base al numero di nodi visitati (\textit{small, medium, big}).Ovviamente il tempo di esecuzione dell'algoritmo \textit{one to all} è costante, poiché comunque visita tutti i nodi del grafo, ma è interessante vedere come rimanga più veloce dell'algoritmo \textit{one to one}. Riguardo a gli altri due algoritmi (lista dei candidati e A*), il secondo è indubbiamente più vantaggioso del primo, ma la sua velocità di esecuzione è legata alla funzione euristica, quindi al calcolo della distanza euclidea, in un altro ambiente potrebbe non risultare egualmente vantaggioso.
+La tabella \ref{tab:monoCriteriaOutput} mostra le performance degli algoritmi trattati sulla mappa di Parigi, prendendo differenti punti di partenza e di arrivo e classificandoli in base al numero di nodi visitati (\textit{small, medium, big}).Ovviamente il tempo di esecuzione dell'algoritmo \textit{one to all} è costante, poiché visita tutti i nodi del grafo, ma è interessante vedere come rimanga più veloce dell'algoritmo \textit{one to one}. Riguardo a gli altri due algoritmi (lista dei candidati e A*), il secondo è indubbiamente più vantaggioso del primo. La sua velocità di esecuzione è legata alla funzione euristica, quindi al calcolo della distanza euclidea, in un altro ambiente potrebbe non risultare egualmente vantaggioso.
 
 \subsection{Nodi Visitati}
 
@@ -351,7 +355,7 @@ I vari algoritmi trattati visitano i nodi in maniera differenti: ovviamente l'al
 Nelle seguenti immagini si possono vedere le differenze, a livello di ricerca, dei due algoritmi. L'algoritmo di Dijkstra nel visitare i nodi crea una specie di circonferenza attorno al nodo iniziale, al contrario dell'A-star il quale sembra quasi seguire il cammino minimo, creando una sorta di forma ovaleggiante, tra il nodo sorgente e destinazione, attraversata dal cammino minimo.
 
 \begin{figure}[H]
-	\textbf{\textit{Legend}:}
+	\textbf{\textit{Legenda}:}
 	\begin{itemize}
 		{\small 		\item \textbf{Blu}: Nodi del grafo.
 			\item \textbf{Giallo}: Nodi visitati.
@@ -359,44 +363,60 @@ Nelle seguenti immagini si possono vedere le differenze, a livello di ricerca, d
 			\item \textbf{Nero}: Nodo terminale.
 			\item \textbf{Linea rossa}: Cammino minimo.}
 	\end{itemize}
+\end{figure}
+\begin{figure}[H]
 	\centering
 	%	\begin{minipage}[b]{\textwidth}
 	\includegraphics[width=\textwidth]{mapOutput/2070-15426LoC.png}
-	\label{fig:ListOfCandidate1}
+	\label{Candidate1}
 	%	\end{minipage}
 	%	\hfill
 	%	\begin{minipage}[b]{\textwidth}
 	\includegraphics[width=\textwidth]{mapOutput/2070-15426A_Star.png}
 	\label{fig:A_Start1}
 	%	\end{minipage}
-	Source: 2070 $\to$ Target: 15426\\Map: Paris
-\end{figure}
-\begin{figure}[H]
-	\centering
-	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{mapOutput/2000-2689LoC.png}
-		\label{fig:ListOfCandidate2}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[b]{\textwidth}
-		\includegraphics[width=\textwidth]{mapOutput/2000-2689A_Star.png}
-		\label{fig:A_Start2}
-	\end{minipage}
-	Source: 2000 $\to$ Target: 2689\\Map: Paris
+	Source: 2070 $\to$ Target: 15426\\Map: Parigi
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\begin{minipage}[b]{\textwidth}
 		\includegraphics[width=\textwidth]{mapOutput/1000-1510BerlinLoC.png}
-		\label{fig:ListOfCandidate3}
+		\label{fig:locBerlin}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[b]{\textwidth}
 		\includegraphics[width=\textwidth]{mapOutput/1000-1510BerlinA_Star.png}
-		\label{fig:A_Start3}
+		\label{fig:A_StartBerlin}
 	\end{minipage}
-	Source: 1000 $\to$ Target: 1510\\Map: Berlin
+	Source: 1000 $\to$ Target: 1510\\Map: Berlino
 \end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaLoC1298-23289Big.png}
+		\label{fig:locBologna}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaAstar1298-23289Big.png}
+		\label{fig:A_StarBologna}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/CesenaLoc5221-72.png}
+		\label{fig:locCesena}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/CesenaAstar5221-72.png}
+		\label{fig:A_StartCesena}
+	\end{minipage}
+	Source: 5221 $\to$ Target: 72\\Map: Cesena (Comune)
+\end{figure}
+
 
 
 \chapter{Algoritmi `Bi-criteria'}
@@ -451,11 +471,11 @@ La complessità computazionale è la stessa dell'algoritmo di Dijkstra mostrato pr
 \verb|	            Q.put(v, tmpScore)|\\
 \verb|	return score, prev|\\
 %	\end{BVerbatim}
-	\caption{Pseudocodice dell'Algoritmo di Dijkstra utilizzato con due criteri}
+	\caption{Pseudocodice dell'Algoritmo di Dijkstra con due criteri}
 	\label{fig:Dijkstra Bicrit}
 \end{figure}
 
-Poiché questo algoritmo ha alla base la formula dell'inviluppo convesso, significa che i suoi risultati andranno a creare la curva che ne concettualizza il significato. Vediamo di seguito.
+Poiché questo algoritmo ha alla base la formula dell'inviluppo convesso, significa che i risultati trovati andranno a creare la curva che rappresenta proprio l'inviluppo convesso.
 
 \subsection{Implementazioni dell'algoritmo di Dijkstra con due criteri}
 Per utilizzare l'algoritmo sopracitato ed ottenere un numero soddisfacente di risultati è necessario richiamarlo ogni volta con un diverso valore di $\alpha$.
@@ -665,8 +685,8 @@ Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentr
 \begin{figure}[H]
 	%\begin{verbatim}
 	\verb|function BidirectionAlgorithm(source, target):|\\
-	\verb|    create priorityQueue Q[f]|\\
-	\verb|    create priorityQueue Q[b]|\\
+	\verb|    create priorityQueue Q[f]   //forward|\\
+	\verb|    create priorityQueue Q[b]   //backward|\\
 	\verb|    create list L|$_{result}$\\
 	\verb|    originLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
 	\verb|    source.add(originLabel)|\\
@@ -696,11 +716,36 @@ Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentr
 \end{figure}
  
 \section{Analisi dei risultati}
-Di seguito vengono effettuati dei test degli algoritmi trattati nel capitolo su grafi di diverso tipo e dimensioni.
+Di seguito vengono effettuati dei test degli algoritmi trattati nel capitolo su grafi di diverso tipo e dimensioni.\\
+Dove possibile sono statiutilizzate le stesse mappe e gli stessi punti utilizzati nellanalisi dei risultati del capitolo precedente, in questo modo è possibile fare anche un confronto con gli algoritmi mono-criteria riguardo ai nodi visitati ed ai percorsi trovati.
 
+\subsection{Performance a confronto}
+In questa sezione vengono analizzati i risultati degli algoritmi trattati nel capitolo.
+\\
+\\
+Dalle tabelle \ref{tab:BidirectionalOriented} si riprendono i nodi utilizzati nelle \ref{tab:monoCriteriaOutput}, sempre utilizzando la mappa di Parigi. Essendo questa rappresentata tramite un grafo orientato sono stati applicati tutti gli algoritmi bicriteria possibili. Subito di seguito invece è presente un test Dove vengono misurate le performance di tutti gli algoritmi trattati in relazione ai cammini trovati ed al tempo impiegato.
+
+\begin{table}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6, trim=0.2mm 0 0 0, clip]{biCriteriaExcelOutput1v2.png}
+	\label{fig:worstCaseLabelSetting1}
+	
+	\vspace{3mm}
+	
+	\centering
+	\includegraphics[width=\textwidth, trim=0.2mm 0 0 0.1mm, clip]{biCriteriaExcelOutput2v2.png}
+
+	\label{fig:worstCaseLabelSetting2}
+\end{figure}
+		\caption{Risultati degli algoritmi applicabili a grafi orientati (I fogli excel sono stati generati per comodità tramite la libreria \textit{xlsxwriter}).}
+		\label{tab:BidirectionalOriented}
+\end{table}
+
+\begin{table}[H]
 \begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}|  }
 	\hline
-	Nodo di arrivo & Soluzioni trovate & tempo impiegato (sec) & Soluzioni trovate & tempo impiegato (sec) \\
+	Nodo di arrivo & Soluzioni trovate & Tempo impiegato (sec) & Soluzioni trovate & Tempo impiegato (sec) \\
 	\hline
 	 & \multicolumn{2}{|c|}{Dijkstra Iter. \textbf{prec.} = 0.05} &
 	\multicolumn{2}{|c|}{Dijkstra binary search} \\
@@ -719,19 +764,124 @@ Di seguito vengono effettuati dei test degli algoritmi trattati nel capitolo su 
 
 \begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}|  }
 	\hline
-	Nodo di arrivo & Soluzioni trovate & tempo impiegato (sec) & Soluzioni trovate & tempo impiegato (sec) \\
+	Nodo di arrivo & Soluzioni trovate & Tempo impiegato (sec) & Soluzioni trovate & Tempo impiegato (sec) \\
 	\hline
 	&\multicolumn{2}{|c|}{Label-setting} &  \multicolumn{2}{|c|}{bidirectional algorithm} \\
 	\hline
-	10 & 10 & 0.00040 & 10 & 0.00053 \\
-	100  & 116 & 1.05214 & 78 & 0.12738 \\
-	300  & 663 & 70.93244 & 227 & 2.4432 \\
-	500 & 1867 & 925.68206 & 167 & 29.14023 \\
+	10 & 10 & 0.00040 & 4 & 0.00019 \\
+	100  & 116 & 1.05214 & 66 & 0.12038 \\
+	300  & 663 & 98.73498 & 242 & 2.4432 \\
+	500 & 1867 & 925.68206 & 193 & 22.14023 \\
 	700 & 3278 & 4795.59632 & 429 & 141.73064\\
 	
 	\hline
 	
 \end{tabular}
+\\
+\\
+
+\begin{tabular}{ |p{2cm}||p{2cm}|p{2.5cm}|p{3cm}|p{2.5cm}|  }
+	\hline
+	Nodo di arrivo & Soluzioni trovate & \multicolumn{3}{|c|}{Tempo impiegato (sec)} \\
+	\hline
+	& & Dijkstra preprocessing &  lower bound improvement & lower bound reversed \\
+	\hline
+	10 & 10 & 0.00011 & 0.00050 & 0.00055 \\
+	100  & 116 & 0.00095 & 0.60899 & 0.69986 \\
+	300  & 663 & 0.00402 & 74.03828 & 87.22029 \\
+	500 & 1867 & 0.00486 & 930.81834 & 927.77959 \\
+	700 & 3278 & 0.05327& 4887.63521 & 4931.99105\\
+	
+	\hline
+	
+\end{tabular}
+\caption{Risultati degli algoritmi bicriteria in un grafo non orientato con 200000 nodi connessi a cascata tramite archi dai valori casuali (tutti i cammini partono da 0 e i nodi sono collegati ad altri 4 nodi, due antecedenti e due precedenti)}
+\label{tab:BidirectionalNotOriented}
+\end{table}
+
+\subsection{Nodi visitati}
+Come nel capitolo precedente le immagini mostrano i nodi ed i percorsi trovati dagli algoritmi in diversi grafici.
+\begin{figure}[H]
+	\textbf{\textit{Legenda}:}
+	\begin{itemize}
+		{\small 		\item \textbf{Blu}: Nodi del grafo.
+			\item \textbf{Giallo}: Nodi visitati.
+			\item \textbf{Verde}: Nodo sorgente.
+			\item \textbf{Nero}: Nodo terminale.
+			\item \textbf{Linea rossa}: Cammino minimo.}
+	\end{itemize}
+	\centering
+	%	\begin{minipage}[b]{\textwidth}
+	\includegraphics[width=\textwidth]{immaginiTest/Paris2070-15426Bicriteria.png}
+	\label{fig:BicriteriaParis}
+	%	\end{minipage}
+	%	\hfil
+	Source: 2070 $\to$ Target: 15426\\Map: Parigi
+	\caption{Algoritmo Label-setting su Parigi (mappa orientata).}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+	\includegraphics[width=\textwidth]{immaginiTest/1000-1510BerlinBicriteria.png}
+	\label{fig:BicriteriaBerlin}
+	\end{minipage}
+	Source: 1000 $\to$ Target: 1510\\Map: Berlino
+	\caption{Algoritmo Label-setting su Berlino (mappa orientata).}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBiC1298-23289Big.png}
+		\label{fig:BolognaBiC1298-23289Big}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBiC1298-23289.png}
+		\label{fig:BolognaBiC1298-23289}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)\\ particolare
+	\caption{Algoritmo Label-setting su Bologna (mappa non orientata).}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBidir1298-23289Big.png}
+		\label{fig:BolognaBidir1298-23289Big}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBidir1298-23289.png}
+		\label{fig:BolognaBidir1298-23289}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)\\ particolare
+	\caption{Algoritmo bidirezionale su Bologna (mappa non orientata).}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/Gmaps1298-23289.png}
+		\label{fig:Gmaps1298-23289}
+	\end{minipage}
+	\caption{Esempio del percorso su Bologna preso dal sito \textit{Google Maps}.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/CesenaBiC5221-72.png}
+		\label{fig:CesenaBiC5221-72}
+	\end{minipage}
+	Source: 5221 $\to$ Target: 72\\Map: Cesena (Comune)
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/CesenaBiDi5221-72.png}
+		\label{fig:CesenaBiDi5221-72}
+	\end{minipage}
+	Source: 5221 $\to$ Target: 72\\Map: Cesena (Comune) \\ particolare
+	\caption{Algoritmo Label-setting (sopra) e Bidirezionale (sotto) su Cesena (mappa non orientata).}
+\end{figure}
 
 \chapter{Considerazioni Personali}
 Nel seguente capitolo parlerò dei miei pensieri e delle esperienze personali riscontrate durante la stesura di questa tesi triennale.
@@ -750,45 +900,55 @@ Le difficoltà principali sono state riscontrate soprattutto nella stesura degli 
 \section{Sviluppi futuri}
 Sarebbe interessante approfondire l'argomento considerando algoritmi che studiano i cammini minimi in grafi con più di due criteri, i cosiddetti ``\textit{Multi Objective Shortest Path Problems}" molto studiati in letteratura. Le basi in realtà ci sono già, poiché l'algoritmo di Label-setting può essere facilmente esteso per lo studio in differenti criteri, stesso discorso vale per l'algoritmo bidirezionale. Per quanto riguarda l'algoritmo di Dijkstra applicato a più criteri il discorso cambia, poiché la formula applicabile diverrebbe piuttosto complessa all'aumentare dei criteri per i cammini.
 
+\chapter{Conclusioni}
+L'obbiettivo era di studiare, paragonare e migliorare alcuni algoritmi per lo studio di percorsi brevi in grafi con più criteri di peso, dopo diverse implementazioni e test è possibile trarre alcune conclusioni:
+L'algoritmo di Dijkstra applicato a due criteri (sezione 3.1) risulta assolutamente poco performante quando si analizzano piccole porzioni di grafo o grafi di dimensioni modeste, inoltre riescono ad individuare uno scarso numero di risultati. Il discorso cambia quando questo viene applicato ad ambienti di dimensioni più importanti; a questo punto il discorso si complica; tramite l'algoritmo di Dijkstra Iterativo si trovano diverse soluzioni, nonostante necessita di tempi di esecuzione abbastanza elevati, mentre con la ricerca binaria i tempi si accorciano notevolmente (figura \ref{tab:BidirectionalNotOriented}), ma anche il numero dei risultati diminuisce. L'algoritmo di Label-setting rimane piuttosto equilibrato, ma nel momento in cui si vanno analizzare molti nodi il tempo di elaborazione cresce esponenzialmente. I risultati trovati rispecchino sempre il fronte di Pareto delle soluzioni. Entrambe le ottimizzazioni realizzate con i minoranti pregressi non risultano troppo efficaci; infatti nonostante ammortizzino leggermente i tempi quando si trattano grafi di medie dimensioni, sembrano allinearsi, se non peggiorare, le prestazioni dell'algoritmo di label-setting.
+Ultimo ma non ultimo, l'algoritmo bidirezionale ha concluso tutti i test con tempi ottimi rispetto agli altri algoritmi, sia dove sono presenti pochi nodi da esplorare, sia quando questi aumentano, il tempo di esecuzione cresce infatti in maniera più lineare rispetto al Label-setting. Il problema dell'algoritmo Bidirezionale sono le soluzioni trovate, queste infatti risultano essere piuttosto scarse rispetto all'algoritmo di Label-setting, ma maggiori in confronto all'algoritmo di Dijkstra. 
+\\
+\\
+In sintesi l'algoritmo di Label-setting è il migliore in termini di rapporto tempo/soluzioni in grafi poco consistenti, mentre, quando si va in contro ad un leggermente più corposo numero di nodi, i tempi performati dalle ottimizzazioni con i minoranti risultano essere vantaggiose. Nel momento in cui bisogna trattare reti più importanti e con molti archi, l'algoritmo bidirezionale è un ottimo compromesso, come anche gli algoritmi di Dijkstra, che trovano comunque, in base alle necessità, un sufficiente `range' di soluzioni.
 
 \chapter{Dettagli implementativi}
 Immagini, codice sorgente e mappe (nodi e archi) possono essere liberamente recuperate dal repository \footnote{\url{https://bitbucket.org/AndreaRossolini/bicriteria-algorithm/}}.
+Il linguaggio utilizzato per implementare gli algoritmi è il \textbf{Python}. \'E stata fatta questa scelta per pura praticità; utilizzando altri linguaggi di programmazione di più basso livello (come ad esempio il linguaggio C) si sarebbero potute ottenere prestazioni migliori, ma dato che sono stati fatti dei confronti su diversi risultato la scelta del linguaggio non è stata rilevante.
 
 \section{Informazioni sui grafi}
 I grafi delle mappe di Parigi e di Berlino mi sono state gentilmente fornite dal direttore dell'università ``Polytech Tours" (Univeristé de Tours, Francia). I punti delle mappe sono numerati e sono su sistema di riferimento spaziale WGS84 (EPGS:4326 - lo stesso utilizzato da Google Maps), mentre gli archi direzionati hanno dei valori casuali.\\
 La mappa della provincia di Bologna e del comune di Cesena sono state invece fornite dall'azienda Optit, che opera a Cesena. Queste mappe sono il risultato di un ritaglio fatto da parte dell'azienda e poi inviatomi tramite diversi file in formato `.shp' (3 file per mappa, un file conteneva gli id degli archi e la loro lunghezza, uno i punti di arrivo, di partenza e se la strada è a senso unico o meno, l'ultimo file conteneva i punti nella mappa, con riferimento spaziale EPSG:32632). Il formato è stato convertito e le coordinate ritradotte per avere lo stesso riferimento con Parigi e Berlino.\\
 Inoltre per effettuare alcuni test sono state generate casualmente dei grafi, è possibile consultare il file `.py' che le gestiva.
-La mappa di Parigi è composta da $\sim 30000$ nodi e $\sim 64500$ archi, quella di Berlino da $\sim 60000$ nodi e $\sim 150000$ archi, la provincia di Bologna $\sim 40000$ nodi e $\sim 100000$ archi, Cesena invece possiede $\sim6000$ nodi e $\sim 16000$ archi.\\
-I grafi generati in maniera `randomica' vengono descritti dal testo o dalle didascalie quando utilizzati nei test. 
+La mappa di Parigi è orientata, composta da $\sim 30000$ nodi e $\sim 64500$ archi; quella di Berlino, anch'essa orientata, è composta da $\sim 60000$ nodi e $\sim 150000$ archi; la mappa della provincia di Bologna, invece, è presente sia con archi orientati che non, ed è formata da $\sim 40000$ nodi e $\sim 100000$ archi; Cesena, presente in due versioni come Bologna, possiede $\sim6000$ nodi e $\sim 16000$ archi.\\
+I grafi generati in maniera `randomica' vengono descritti dal testo o dalle didascalie quando utilizzati nei test.\nocite{*}
 
-\begin{thebibliography}{90}             %crea l'ambiente bibliografia
-\rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries
-\thepage}}
+
+\section{Informazioni sulla macchina utilizzata}
+Tutti i test sono stati effettuati su di una macchina con le seguenti caratteristiche:\\
+\textbf{-- CPU\\}
+product:\hspace{17mm}        Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz - 2.90GHz\\
+Architecture:\hspace{9mm}   x86\_64\\
+CPU op-mode(s):\hspace{2mm}  32-bit, 64-bit\\
+Byte Order:\hspace{11mm}     Little Endian\\
+CPU(s):\hspace{18mm}         4
+\\
+\\
+\textbf{-- Memoria\\}
+8192 MB , 2x 4 GB PC3-12800 DDR3L
+
+\bibliographystyle{abbrv}
+\bibliography{Report/template.bib}
+%\begin{thebibliography}{90}             %crea l'ambiente bibliografia
+%\rhead[\fancyplain{}{\bfseries \leftmark}]{\fancyplain{}{\bfseries
+%\thepage}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%aggiunge la voce Bibliografia
                                         %   nell'indice
-\addcontentsline{toc}{chapter}{Bibliografia}
+%\addcontentsline{toc}{chapter}{Bibliografia}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%provare anche questo comando:
 %%%%%%%%%%%\addcontentsline{toc}{chapter}{\numberline{}{Bibliografia}}
-\bibitem{K1} Primo oggetto bibliografia.
-\bibitem{K2} Secondo oggetto bibliografia.
-\bibitem{K3} Terzo oggetto bibliografia.
-\bibitem{K4} Quarto oggetto bibliografia.
-\end{thebibliography}
+%\bibitem{K1} Primo oggetto bibliografia.
+%\bibitem{K2} Secondo oggetto bibliografia.
+%\bibitem{K3} Terzo oggetto bibliografia.
+%\bibitem{K4} Quarto oggetto bibliografia.
+%\end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\chapter*{Ringraziamenti}
-\thispagestyle{empty}
-Qui possiamo ringraziare il mondo intero!!!!!!!!!!\\
-Ovviamente solo se uno vuole, non \`e obbligatorio.
 \end{document}
 
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliografia bonus:
-%P. E. Hart, N. J. Nilsson, B. Raphael: A Formal Basis for the Heuristic Determination of Minimum Cost Paths, IEEE Transactions on Systems Science and Cybernetics SSC4 (2), pp. 100?107, 1968.
-% P. E. Hart, N. J. Nilsson, B. Raphael: Correction to "A Formal Basis for the Heuristic Determination of Minimum Cost Paths", SIGART  Newsletter, 37, pp. 28?29, 1972.
-% N. J. Nilsson, Principles of Artificial Intelligence, Tioga Publishing Company, Palo Alto, California, 1980.

@@ -13,8 +13,8 @@ import time
 sys.path.append("algorithms/")
 
 
-dataN = pds.read_csv('graphs/2thousand2Nodes.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/2thousand2Arches.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/bologna/PrBologna_nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/bologna/bologna_arcs_directed.csv', sep='\t', header=None)
 
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
@@ -31,8 +31,8 @@ for the right test start := 2000, target := 2689 the solution are like:
 """
 # default = 2000->2689
 
-source = graph[27268]#2000]
-target = graph[2]#2689]
+source = graph[24844]#2000]
+target = graph[20539]#2689]
 
 
 ########## ONE -> ALL ##########
@@ -116,7 +116,7 @@ print(*dbgList, sep="->")  # Print all path from source to target
 #### MAP'S GRAPH ####
 #####################
 ## Need graphList in BACKTRACKING ^ ##
-#plotGraph(graph, reversed(graphList), "list of candidate", source, target)
+plotGraph(graph, reversed(graphList), "list of candidate", source, target)
 
 
 ############################
@@ -150,4 +150,4 @@ dbgList = reversed(dbgList)
 #### MAP'S GRAPH ####
 #####################
 ## Need graphList in BACKTRACKING ^ ##
-#plotGraph(graph, reversed(graphList), "A_Star", source, target)
+plotGraph(graph, reversed(graphList), "A_Star", source, target)

@@ -9,13 +9,13 @@ from setup import graphBuilder
 from utilities import initSingleNode
 from graphPlotter import bidirectionPlotGraph
 
-dataN = pds.read_csv('graphs/bologna/PrBologna_nodes.csv', sep='\t', header=None)
-dataA = pds.read_csv('graphs/bologna/bologna_arcs_bidir.csv', sep='\t', header=None)
+dataN = pds.read_csv('graphs/cesena/cesena_nodes.csv', sep='\t', header=None)
+dataA = pds.read_csv('graphs/cesena/cesena_arcs_bidir.csv', sep='\t', header=None)
 
 graph = graphBuilder(dataN.values.tolist(), dataA.values.tolist())
 
-source = graph[1681]#23755]#2000]#
-target = graph[31184]#27268]#2689]# #5142 or 2886
+source = graph[5221]#23755]#2000]#
+target = graph[72]#27268]#2689]# #5142 or 2886
 
 
 print("\n", "*"*40, "bidirection ALGORITHM", "*"*40)

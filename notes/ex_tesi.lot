@@ -3,8 +3,11 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {1.1}{\ignorespaces Soluzione del grafo di esempio}}{2}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Performance of the mono-criteria algorithms (generate with tkinter library)}}{11}
+\contentsline {table}{\numberline {2.1}{\ignorespaces Performance degli algoritmi mono-criteria (tabella generata per comodit\`a con la libreria tkinter)}}{11}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Output dei due algoritmi di Dijkstra bi-criteria a confronto}}{20}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Output dei due algoritmi di Dijkstra bi-criteria a confronto}}{22}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Risultati degli algoritmi applicabili a grafi orientati (I fogli excel sono stati generati per comodit\`a tramite la libreria \textit {xlsxwriter}).}}{34}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Risultati degli algoritmi bicriteria in un grafo non orientato con 200000 nodi connessi a cascata tramite archi dai valori casuali (tutti i cammini partono da 0 e i nodi sono collegati ad altri 4 nodi, due antecedenti e due precedenti)}}{35}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

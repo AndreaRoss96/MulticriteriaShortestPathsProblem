@@ -62,7 +62,7 @@ def bidirectionalBicriteriaAlgorithm(source, target):
 
 def __checkLoop(fwQueue, bwQueue, paretoList):
     fwLabel, bwLabel = fwQueue.minValue(), bwQueue.minValue()
-    if fwLabel[2] != bwLabel[3] :
+    if fwLabel[2] != bwLabel[2] :
         return True
     tmpLabel = (fwQueue.minValue()[0] + bwQueue.minValue()[0], fwQueue.minValue()[1] + bwQueue.minValue()[1])
     # print("On checkloop:", paretoList)
