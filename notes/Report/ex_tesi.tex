@@ -91,6 +91,7 @@
 	}\par\kern#2
 }
 
+\pagenumbering{roman}
 \begin{document}
 	
 	\begin{titlepage}
@@ -118,7 +119,7 @@
 		\par
 		\noindent
 		\begin{minipage}[t]{0.47\textwidth}
-			{\large{\bf Relatore:\\
+			{\large{\bf Relatore:\\Cha.mo Prof.\\
 					VIGO DANIELE}}
 		\end{minipage}
 		\vspace{5mm}
@@ -136,11 +137,16 @@
 			{\large{\bf Anno Accademico: 2018/2019\\III sessione di laurea}}%inserire l'anno accademico a cui si è iscritti
 		\end{center}
 	\end{titlepage}
+
+\begin{center}
+	English version available on: \url{https://bitbucket.org/AndreaRossolini/bicriteria-algorithm/src/master/notes/}
+	\clearpage{\pagestyle{empty}\cleardoublepage}
+\end{center}
+
 	
 	\begin{abstract}
-		Questa tesi si pone l'obbiettivo di affrontare ed analizzare un problema di \textit{pathfinding} partendo da uno studio su di alcuni algoritmi per la ricerca del percorso più breve su classici grafi, per poi, dopo alcune ottimizzazioni, lavorare con grafi che utilizzano due pesi per ogni arco, considerando l'insieme di soluzioni più soddisfacenti.
-		
-		Dato che, lo studio di algoritmi per la ricerca dei percorsi più brevi nei grafi è piuttosto celebre in letteratura, è ormai facile elaborare un'implementazione che permetta di risolvere questo problema, verrà effettuata quindi una rapida implementazione ed analisi. Differente è il discorso per agli algoritmi che lavorano in grafi con più pesi, per i quali è più difficile reperire implementazioni ed analisi. Inoltre, essendo un lavoro di ottimizzazione mi concentrerò sull'analisi di grafi con due pesi, seppur alcuni algoritmi siano applicabili anche a grafi con un più vasta moltitudine di valori.
+		Questa tesi si pone l'obbiettivo di affrontare ed analizzare un problema di \textit{pathfinding} partendo da un'analisi di alcuni algoritmi per la ricerca del percorso più breve su normali grafi, per poi ampliare lo studio e concentrarsi su algoritmi che calcolano molteplici percorsi su grafi che utilizzano due pesi per ogni arco. Gli algoritmi per i grafi `bicriteria' (appunto che considerano due pesi su ogni arco) verranno analizzati, implementati e le loro soluzioni confrontate con gli altri algoritmi, al fine di individuare i più efficienti in termini di tempo di elaborazione e quelli che riescono a minimizzare al meglio i pesi degli archi dei cammini trovati, quindi valutando quantità e qualità delle soluzioni.
+		Dato che, lo studio di algoritmi per la ricerca del percorso più breve in grafi classici è piuttosto celebre in letteratura, è ormai facile trovare implementazioni che permettano di risolvere questo problema. Verrà effettuata quindi una rapida implementazione ed analisi riguardante gli algoritmi `monocriteria'. Per agli algoritmi che lavorano in grafi con più pesi, per i quali è più difficile reperire implementazioni ed analisi, ci sarà una spiegazione più approfondita ed accurata, soffermandosi anche su casi particolari e indicando le scelte implementative fatte per ottimizzare al meglio le loro prestazioni. L'analisi dei risultati confronterà, come già detto, l'insieme delle soluzioni calcolate dai vari algoritmi ed i loro tempi di elaborazione. Inoltre i suddetti algoritmi verranno utilizzati su mappe di alcune città, prese come esempio, per poter fare un confronto visivo sui cammini minimi trovati ed i nodi visitati durante l'elaborazione degli algoritmi; in modo da semplificare e rendere più immediato il confronto tra le varie implementazioni.
 		%
 		
 	\end{abstract}
@@ -159,8 +165,8 @@
 \em                                     %emfatizza (corsivo) il carattere
 Dedico questo mio modesto lavoro a tutti coloro\\
 Che mi sono stati vicini e mi hanno sostenuto\\
-In questa piccola parte di un ancora faticoso cammino\\
-In particolare alla mia famiglia che non ha mai smesso di credere in me \ldots                      %\ldots lascia tre puntini
+In questa piccola parte di un ancora lungo cammino\\
+In particolare alla mia famiglia che non ha mai smesso di credere in me\ldots                      %\ldots lascia tre puntini
 \newpage                                %va in una pagina nuova
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -195,7 +201,7 @@ INDICE}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%non numera l'ultima pagina sinistra
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-
+\pagenumbering{roman}
 \chapter{Introduzione}                %crea il capitolo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%imposta l'intestazione di pagina
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
@@ -240,7 +246,7 @@ Un cammino $p_{s,t}$ può essere rappresentato come una sequenza di nodi e archi,
 \end{center}
 \begin{gather}c^1(p_{s,t})=\sum_{(i,j)\in p}c^1_{i,j}\end{gather}
 \begin{gather}c^2(p_{s,t})=\sum_{(i,j)\in p}c^2_{i,j}\end{gather}
-Il nostro scopo è quello di \textbf{minimizzare} la ($1.2$) o la ($1.3$) e dunque ottenere lo ``spettro" di soluzioni che  è presente tra le due. Ad esempio considerando il caso succitato dove il primo peso rappresenta la lunghezza ed il secondo il pericolo, minimizzando la ($1.2$) otterremmo il percorso più breve, altrimenti il più sicuro.
+Il nostro scopo è quello di \textbf{minimizzare} la ($1.2$) o la ($1.3$) e dunque ottenere lo ``spettro" di soluzioni che  è presente tra le due. Ad esempio considerando un grafo dove il primo peso rappresenta la lunghezza dell'arco ed il secondo il pericolo, minimizzando la ($1.2$) otterremmo il percorso più breve, altrimenti il più sicuro.
 
 \chapter{Algoritmi `Mono-criteria'}
 In questo capitolo sono trattati esclusivamente i gli algoritmi che riguardano la ricerca di cammini minimi con un solo criterio di peso su ogni arco. L'analisi si concentra sull'implementazione e l'ottimizzazione dell'algoritmo di Dijkstra, spiegando alcune scelte implementative, e su di un altro celebre algoritmo in questo campo, l'\textit{A-star}
@@ -420,7 +426,7 @@ Nelle seguenti immagini si possono vedere le differenze, a livello di ricerca, d
 
 
 \chapter{Algoritmi `Bi-criteria'}
-In questo capitolo si andrà più nello specifico ad analizzare il problema ed a studiare alcune soluzioni; per poi valutarle in base ai risultati ottenuti. Tenendo in mente le espressioni matematiche formulate nel capitolo precedente possiamo soffermarci su alcune definizioni importanti:
+In questo capitolo si andrà ad analizzare il problema dello studio dei percorsi brevi su grafi con più pesi, per poi studiare e confrontare gli algoritmi implementati, quindi valutarli a seconda dei risultati ottenuti. Tenendo in mente le espressioni matematiche formulate nel capitolo precedente possiamo soffermarci su alcune definizioni importanti:
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definizione}
@@ -431,69 +437,69 @@ In questo capitolo si andrà più nello specifico ad analizzare il problema ed a s
 
 \theoremstyle{definition}
 \begin{definition}{Inviluppo Convesso delle soluzioni}\\
-	Sia $S$ un inseme di soluzioni accettabili, l'inviluppo convesso (conosciuto anche come \textit{Convex hull}) di $X$ è il più piccolo insieme convesso contenente X. Dato che consideriamo due dimensioni per il calcolo del percorso, ci troviamo in uno spazio euclideo a due dimensioni. L' inviluppo convesso può quindi essere definito dalla seguente equazione:
+	Sia $S$ un inseme di soluzioni accettabili, l'inviluppo convesso (conosciuto anche come \textit{Convex hull}) di $X$ è il più piccolo insieme convesso contenente X. Dato che consideriamo due dimensioni per il calcolo del percorso, ci troviamo in uno spazio euclideo a due dimensioni. L'inviluppo convesso può quindi essere definito dalla seguente equazione:
 	\begin{equation}\label{eq:convex hull}
 		\alpha \cdot c^1_{(p_{s,t})} + (1-\alpha)\cdot c^2_{(p_{s,t})} = k
 	\end{equation}
 	\begin{center}
-		Dove $k$ è una costante e $\alpha \in \{0, 1\}$.\\
+		Dove $k$ è una costante e $\alpha \in [0, 1]$.\\
 	\end{center}
 \end{definition}
 
 \theoremstyle{definition}
 \begin{definition}{Fronte di Pareto}\\
-	Il fronte di Pareto è l'insieme delle soluzioni ottimali, ovvero l'insieme di tutti i cammini \textit{non-dominati}. Una soluzione può far parte del fronte di Pareto senza dominare altre soluzioni e senza essere compreso all'interno dell'inviluppo convesso delle soluzioni.
+Il fronte di Pareto è l'insieme delle soluzioni ottimali, ovvero l'insieme di tutti i cammini \textit{non-dominati}. Una soluzione può far parte del fronte di Pareto senza dominare altre soluzioni e senza far parte dell'inviluppo convesso delle soluzioni. \'E possibile vedere la differenza tra un fronte di Pareto e un inviluppo convesso delle soluzioni con le figure \ref{fig:graphBiDi} e \ref{fig:graphLabSet}
 \end{definition}
 
 \section{Dijkstra applicato ad un problema Bi-criteria}
-Partendo dalla definizione classica di \textit{grafo} è possibile fare un'astrazione e scrivere $G = (N,V, C)$, dove $C$ è l'insieme dei costi. La suddetta definizione, quindi, +possibile estenderla ad un ``grafo bi-critera" come $G = (N,V, C^1, C^2)$, dove $C^1$ e $C^2$ sono gli insiemi dei soliti due pesi, ma in questo modo l'algoritmo di Dijkstra non è applicabile. Utilizzando la \ref{eq:convex hull} è possibile ridurre questa nuova definizione come  a $G = (N,V, \alpha*C^1_i + (1-\alpha)C^2_i)$ e, considerando che la \ref{eq:convex hull} ha come risultato un elemento costante, sarà possibile un approccio simile agli algoritmi affrontati nel precedente capitolo.\\
-L'algoritmo di Dijkstra `\textit{list of candidate}'è il più vantaggioso, dato che non è possibile, in questo caso generico, individuare un funzione euristica che risolva in maniera ottimale l'equazione.
+Partendo dalla definizione classica di \textit{grafo} è possibile fare un'astrazione e scrivere $G = (N,V, C)$, dove $C$ è l'insieme dei costi. La suddetta definizione, quindi, è possibile estenderla ad un ``grafo bi-critera" come $G = (N,V, C^1, C^2)$, dove $C^1$ e $C^2$ sono gli insiemi dei due pesi; ma in questo modo l'algoritmo di Dijkstra non è applicabile. Utilizzando la \ref{eq:convex hull} è possibile ridurre questa nuova definizione come  a $G = (N,V, \alpha\cdot C^1_i + (1-\alpha)\cdot C^2_i)$ e, considerando che la \ref{eq:convex hull} ha come risultato un elemento costante, sarà possibile un approccio simile agli algoritmi affrontati nel precedente capitolo.\\
+L'algoritmo di Dijkstra `\textit{list of candidate}' è il più vantaggioso, dato che non è possibile, in questo caso generico, individuare un funzione euristica che risolva in maniera ottimale l'equazione \cite{eranki2002pathfinding}.
 \\
 
-\'E facilmente comprensibile che utilizzando la \ref{eq:convex hull}, in base al valore dato ad $\alpha$ otterremo un cammino che minimizza più un peso piuttosto che l'altro. Per esempio, ponendo il primo peso come \textit{tempo di latenza} ed il secondo come \textit{consumo energetico}, più il valore di $\alpha$ so avvicina a $0$ più troveremo un percorso con una grande latenza ma un basso consumo energetico, mentre se questo valore si avvicina a $1$ allora il percorso avrà meno latenza ma un consumo energetico inferiore.
+\'E facilmente comprensibile che utilizzando la \ref{eq:convex hull}, in base al valore dato ad $\alpha$, otterremo un cammino che minimizza più un peso piuttosto che l'altro. Per esempio, ponendo il primo peso come \textit{tempo di latenza} ed il secondo come \textit{consumo energetico}, più il valore di $\alpha$ so avvicina a $0$ più troveremo un percorso con una grande latenza ma un basso consumo energetico, mentre se questo valore si avvicina a $1$ allora il percorso avrà meno latenza ma un consumo energetico inferiore.
 \\
-La complessità computazionale è la stessa dell'algoritmo di Dijkstra mostrato precedentemente. Di seguito è riportato il codice che descrive questo ragionamento.
+La complessità computazionale è la stessa dell'algoritmo di Dijkstra mostrato precedentemente. 
 
-\begin{figure}
-%	\begin{BVerbatim}
-\verb|function DijkstraAlgorithm(source, target, alpha):|\\
-\verb|	score[source]| $\leftarrow 0$\\
-\verb|	create priorityQueue Q|\\
-\verb|	Q.put(source, score[source])|\\
-\verb|	while Q is not empty do|\\
-\verb|	    n| $\leftarrow$ \verb|Q.extract_min()|\\
-\verb|	    for each neighbor v of n do|\\
-\verb|	        alt| $\leftarrow$ \verb|alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)|\\
-\verb|	        alt| $\leftarrow$ \verb|alt + score[u]|\\
-\verb|	        if alt < score[v] do|\\
-\verb|	            score[v]| $\leftarrow$ \verb|alt|\\
-\verb|	            prev[v]| $\leftarrow$ \verb|n|\\
-\verb|	            Q.put(v, tmpScore)|\\
-\verb|	return score, prev|\\
-%	\end{BVerbatim}
+
+Poiché questo algoritmo ha alla base la formula dell'inviluppo convesso, significa che i risultati trovati andranno a creare la curva che rappresenta l'inviluppo convesso stesso.
+
+\subsection{Implementazioni dell'algoritmo di Dijkstra con due criteri}
+Nella figura \ref{fig:Dijkstra Bicrit} è riportato il codice che descrive il ragionamento della sezione precedente.
+\begin{figure}[h]
+	%	\begin{BVerbatim}
+	\verb|function DijkstraAlgorithm(source, target, alpha):|\\
+	\verb|	score[source]| $\leftarrow 0$\\
+	\verb|	create priorityQueue Q|\\
+	\verb|	Q.put(source, score[source])|\\
+	\verb|	while Q is not empty do|\\
+	\verb|	    n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|	    for each neighbor v of n do|\\
+	\verb|	        alt| $\leftarrow$ \verb|alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)|\\
+	\verb|	        alt| $\leftarrow$ \verb|alt + score[u]|\\
+	\verb|	        if alt < score[v] do|\\
+	\verb|	            score[v]| $\leftarrow$ \verb|alt|\\
+	\verb|	            prev[v]| $\leftarrow$ \verb|n|\\
+	\verb|	            Q.put(v, tmpScore)|\\
+	\verb|	return score, prev|\\
+	%	\end{BVerbatim}
 	\caption{Pseudocodice dell'Algoritmo di Dijkstra con due criteri}
 	\label{fig:Dijkstra Bicrit}
 \end{figure}
-
-Poiché questo algoritmo ha alla base la formula dell'inviluppo convesso, significa che i risultati trovati andranno a creare la curva che rappresenta proprio l'inviluppo convesso.
-
-\subsection{Implementazioni dell'algoritmo di Dijkstra con due criteri}
-Per utilizzare l'algoritmo sopracitato ed ottenere un numero soddisfacente di risultati è necessario richiamarlo ogni volta con un diverso valore di $\alpha$.
+Per utilizzare questo algoritmo ed ottenere un numero soddisfacente di risultati è necessario richiamarlo ogni volta con  diversi valori per $\alpha$, ricordando che è compreso in $[0,1]$. Sono stati quindi elaborati due processiper svolgere nella maniera più rapida e precisa questa operazione.
 
 \subsubsection{Iterazione Dijkstra bi-criteria}
-Questa è un implementazione piuttosto basilare, si basa semplicemente sul richiamare l'algoritmo partendo con $\alpha$ uguale a $0$, per poi aumentarne il valore di un numero arbitrario chiamato \textbf{precisione}; se il risultato è differente da quello precedente allora il cammino viene salvato ed il valore di $\alpha$ dimezzato, altrimenti si prosegue, fino a che non si raggiunge $\alpha = 1$.
+Questa è un implementazione piuttosto basilare, si basa semplicemente sul richiamare l'algoritmo partendo con un valore di $\alpha$ uguale a $0$, per poi aumentarne questo valore di un numero arbitrario chiamato \textbf{precisione}; se il risultato è differente da quello precedente allora il cammino viene salvato ed il valore di $\alpha$ dimezzato, altrimenti si prosegue, fino a che non si raggiunge $\alpha = 1$. La precisione assumerà un valore compreso tra 0 e 1, più laprecisione viene definita bassa, più significa che il suo valore si avvicina ad 1, più è alta, più si avvicina a 0; nelle tabelle (\ref{tab:dijkstra bicrit iter}) è possibile vedere l'algoritmo applicato con due differenti valori di precisione.
 \\
-Questa soluzione richiede un tempo di elaborazione in relazione alla precisione utilizzata, infatti più questa è piccola, più volte verrà richiamata la funzione, dunque si otterranno differenti risultati (\textit{soluzioni accettabili}); ma ciò significa anche che la funzione spesso darà dei risultati inutili, sprecando cicli preziosi.
+Questa soluzione richiede un tempo di elaborazione in relazione alla precisione utilizzata, infatti più questa è piccola, più volte verrà richiamata la funzione, dunque si otterranno differenti risultati (\textit{soluzioni accettabili}); ma ciò significa anche che la funzione spesso darà dei risultati già individuati, sprecando cicli preziosi.
 
 \subsubsection{Dijkstra bi-criteria con ricerca binaria}
-Questa è una versione un po' meno grezza della precedente, dato che utilizza un algoritmo di ricerca binaria. Viene eseguita la funzione almeno due volte, una con $\alpha = 0$, poi una con $\alpha = 0$; se generano risultati differenti allora il valore di $\alpha$ viene dimezzato, e così via finché non si trovano più soluzioni. Seppur più efficiente rispetto ad un'iterazione con alta precisione, in termini di tempo e di risultati trovati non risulta essere perfetto.
+Questa è una versione un po' meno grezza della precedente, dato che utilizza un algoritmo di ricerca binaria. Viene eseguita la funzione almeno due volte, una con $\alpha = 0$, poi una con $\alpha = 1$; se generano risultati differenti allora il valore di $\alpha$ viene dimezzato, e così via finché non si trovano più soluzioni. Seppur più efficiente rispetto ad un'iterazione con alta precisione, in termini di tempo e di risultati trovati non risulta essere perfetto.
 \\
 
-Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell'iterazione dell'algoritmo bi-criteria di Dijkstra, con differenti precisioni, e l'implementazione con la ricerca binaria.\\
+Di seguito sono presenti delle tabelle (\ref{tab:dijkstra bicrit iter}) che mostrano i risultati tra due esecuzioni dell'iterazione dell'algoritmo bi-criteria di Dijkstra, con differenti precisioni, ed i risultati dell'implementazione con ricerca binaria (\ref{tab:dijkstra bicrit binary}). Nella tabella  due algoritmi sono applicati sulla mappa di Parigi (vd. ch. 6), partendo dal nodo di indice $2000$ e terminare in $2689$.
 
-\begin{table}[h]                  %ambiente tabella
-\centering                         %(serve per avere la legenda)
-\textit{{\tiny Questi risultati sono stati calcolati sulla mappa di Parigi (vd. risorse), considerando come partenza il nodo avente indice 2000 e come nodo terminale quello di 2689}}
+\begin{table}[H]                  %ambiente tabella
+\centering                    
 \begin{tabular}{ |p{4cm}||m{3cm}|p{3cm}|  }
 	\hline
 	Valore di $\alpha$ & PESO 1 & PESO 2 \\
@@ -523,9 +529,12 @@ Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell
 	\hline
 		\multicolumn{3}{|c|}{AVGtime: 7.837886095046997} \\  
 	\hline
+
 \end{tabular}
+	\caption{Output dei due algoritmi di Dijkstra bi-criteria iterativi con differenti precisioni}
+\label{tab:dijkstra bicrit iter}
 \end{table}
-\begin{table} [H]                  %ambiente tabella
+\begin{table} [h!]                  %ambiente tabella
 	\centering
 \begin{tabular}{ |p{4cm}||m{3cm}|p{3cm}|  }
 	\hline
@@ -548,25 +557,25 @@ Di seguito è presente una tabella che mostra i risultati tra due esecuzioni dell
 	\multicolumn{3}{|c|}{AVGtime: 4.851694107055664} \\ 
 	\hline
 \end{tabular}
-\caption{Output dei due algoritmi di Dijkstra bi-criteria a confronto}
-\label{table:dijkstra bicrit}
+\caption{Output dei dell'algoritmo di Dijkstra bi-criteria con ricerca binaria}
+\label{tab:dijkstra bicrit binary}
 \end{table}
-Da questi risultati è infatti possibile notare come una bassa precisione permette di avere un determinato insieme di risultati in tempi ragionevolmente bassi, differentemente si può dire dell'iterazione con precisione alta. Con la ricerca binaria è possibile ottenere un range abbastanza ragionevole di risultati in tempi discreti.
+Da questi risultati è infatti possibile notare come una bassa precisione permette di avere un modesto insieme di risultati in tempi ragionevolmente bassi, differentemente si può dire dell'iterazione con alta precisione (ovvero la seconda tabella, dove il valore della precisione è di 0.05), infatti questo è in grado di trovare più soluzioni rispetto al precedente, ma al costo di un tempo di elaborazione maggiore. Con la ricerca binaria è possibile ottenere un ottimo rapporto tra ilnumero di soluzioni individuate ed il tempo di elaborazione, anzi, in questo caso trova addirittura più risultati rispetto all'algoritmo di Dijkstra bi-criteria con alta precisione, in tempi ridotti (ma pur sempre maggiori rispetto all'algoritmo che itera con una bassa precisione). Nel corso di questo studio vedremo che non sarà sempre così.
 
 
 \section{Algoritmo di Label-setting}
-Come precedentemente scritto, l'algoritmo di Dijkstra applicato a due criteri non è in grado di trovare tutte le soluzioni possibili (con qualsiasi livello di precisione), bensì solo quelle che compongono l'inviluppo convesso. Dunque se noi volessimo trovare un più amplio insieme di soluzioni non dominate, dunque se volessimo trovare il \textit{Fronte di Pareto} dobbiamo affidarci ad un algrotimo di Label-setting. Di seguito è presente un'esempio  di quanto detto, dove vengono messi a confronto le soluzioni trovate da Dijkstra applicato a due criteri e l'algoritmo trattato in questo capitolo. Nell'esempio vengono utilizzati la distanza ed il pericolo come valori che contraddistinguono i due pesi in questione. 
+Come precedentemente scritto, l'algoritmo di Dijkstra applicato a due criteri non è in grado di trovare tutte le soluzioni possibili (con qualsiasi livello di precisione), bensì solo quelle che compongono l'inviluppo convesso. Dunque se noi volessimo trovare un più amplio insieme di soluzioni non dominate, dunque se volessimo trovare il \textit{Fronte di Pareto}, dobbiamo affidarci ad un algrotimo di Label-setting \cite{martins1984multicriteria} \cite{skriver2000label}. Di seguito è presente un'esempio  di quanto detto, dove vengono messi a confronto le soluzioni trovate da Dijkstra applicato a due criteri e l'algoritmo trattato in questo capitolo. Nell'esempio vengono utilizzati la distanza ed il pericolo come valori che contraddistinguono i due pesi in questione. 
 \begin{figure}[H]
 	\centering
 	\begin{minipage}[b]{0.49\textwidth}
 		\includegraphics[width=\textwidth, trim= 0 0 15mm 14mm, clip]{graphDijkstraBicrit.png}
-		\caption{Soluzioni trovate da \textit{Dijkstra bi-criteria con ricerca binaria}}
+		\caption{Soluzioni trovate da Dijkstra bi-criteria con ricerca binaria}
 		\label{fig:graphBiDi}
 	\end{minipage}
 	%\hfill
 	\begin{minipage}[b]{0.49\textwidth}
 		\includegraphics[width=\textwidth, trim= 0 0 15mm 14mm, clip]{graphLabelsetting.png}
-		\caption{Soluzioni trovate dall'algoritmo \textit{Label-setting}}
+		\caption{Soluzioni trovate dall'algoritmo Label-setting}
 		\label{fig:graphLabSet}
 	\end{minipage}
 	\textit{{\tiny Questo esempio è stato calcolato utilizzando la mappa di Parigi, coprendo il tragitto che va dal nodo 2000 al nodo 2689.}}
@@ -621,7 +630,7 @@ Il caso peggiore che potrebbe essere incontrato dall'algoritmo è esplicato dalla
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{labelSettingComplexity.png}
-	\caption{Caso peggiore dell'algoritmo di label-setting}
+	\caption{Caso peggiore dell'algoritmo di Label-setting}
 	\label{fig:worstCaseLabelSetting}
 \end{figure}
 
@@ -632,8 +641,8 @@ Volendo migliorare i tempi di esecuzione dell'algoritmo di label-setting si può 
 Dunque, per svolgere il ragionamento sopracitato si prendono due nodi, come sempre $s$ e $t$ entrambi in $\in N$, e si esegue l'algoritmo di Dijkstra bi-criteria due volte, la prima con $\alpha = 0$, al seconda con $\alpha = 1$, minimizzando così entrambi i pesi. Al termine di ciò siamo a conoscenza del label, appartenente a $t$ con il primo peso più piccolo ed il secondo peso più grande e del label con il peso numero due più piccolo ed il primo più grande; ma non solo, in questo modo troviamo anche tutti i label che appartengono al percorso che porta ai label di $t$; presupponendo che questi appartengano ai `fronti di pareto' dei nodi del percorso, l'algoritmo può capire se i label in cui si va incontro durante la computazione dell'algoritmo di label-setting sono dominati oppure no
 
 \subsection{Algoritmo di label-setting con minoranti pregressi invertito}
-\'E possibile realizzare un'altra implementazione, che comprende una fase di \textit{pre-elaborazione}, simile alla precedente. Considerando sempre $s$ e $t$, come nodi rispettivamente di partenza e di arrivo, si esegue l'algoritmo di Dijkstra bi-criteria al contrario, ovvero da $t$ a $s$, sempre con $\alpha = 0$ e $\alpha = 1$. Similmente al caso precedente si ricavano alcuni dei label non dominati per ogni nodo del cammino, ma questa volta a partire dal fondo. Dunque sommando il valore di uno dei pesi trovato nella fase di pre-elaborazione con il corrispettivo valore calcolato dall'algoritmo in esecuzione, si può trovare la sua proiezione e dedurre se questa sarà dominata o meno.\\
-Il concetto, molto complesso a parole, ma in realtà basilare nel ragionamento, può essere riassunto e semplificato in questo modo:
+Similmente a come descritto subito sopra, si può realizzare un'altra implementazione, che comprende una fase di \textit{pre-elaborazione}, simile alla precedente. Considerando sempre $s$ e $t$, come nodi rispettivamente di partenza e di arrivo, si esegue l'algoritmo di Dijkstra bi-criteria al contrario, ovvero da $t$ a $s$, sempre con $\alpha = 0$ e $\alpha = 1$. Come descritto prima si ricavano alcuni dei label non dominati per ogni nodo del cammino, ma questa volta a partire, appunto, dal fondo. Dunque sommando il valore di uno dei pesi trovato nella fase di pre-elaborazione con il corrispettivo valore calcolato dall'algoritmo in esecuzione, si può trovare la sua proiezione e dedurre se questa sarà dominata o meno.\\
+Il concetto, molto complesso a parole, risulta, in realtà, basilare nel ragionamento; può essere riassunto e semplificato in questo modo:
 \begin{itemize}
 	\item[-] $pp=$ miglior ``peso 1" del percorso (calcolato nella pre-elaborazione).
 	\item[-] $pn =$ miglior ``peso 1" del nodo ( `` ).
@@ -645,10 +654,10 @@ $$res = pd - nd  + ad$$
 Poiché siamo a conoscenza delle due soluzioni (sia con $\alpha = 0$ che $ = 1$) calcolate con Dijkstra, è possibile constatare se la proiezione dei label per ogni peso.\\
 Questa implementazione funziona però unicamente su grafi non orientati, al contrario della versione ``non invertita".
 
-\section{Algoritmo Bidirezionale Bi-criteria}%cita
-In letteratura gli algoritmi bidirezionali sono molto elogiati per la loro capacità di accelerare la ricerca all'interno di una rete, questa sezione si concentrerà dunque sull'analisi di un algoritmo bidirezionale in grado di calcolare il fronte di Pareto. L'idea alla base di questo algoritmo è di alternare una ricerca normale, quindi dal nodo di partenza al nodo finale, ad una invertita, ovvero dal nodo finale a quello iniziale. \'E facile dedurre che anche questo algoritmo è efficace unicamente in grafi non orientati, altrimenti troverebbe dei cammini non percorribili, inoltre le sue performance sono dipendenti anche dalla configurazione del grafo preso in considerazione: poiché il livello di accelerazione della ricerca potrebbe variare in base a caratteri quantitativi e qualitativi della rete; i grafi presi in considerazione per i test sono piuttosto uniformi ed equilibrati, dunque si avrà una discreta accelerazione.\\
-L'alternanza tra la ricerca all'avanti e quella all'indietro può essere implementata in diversi modi, in questa ricerca, per semplicità, vengono equamente alternati uno alla volta, ma sono possibili diverse soluzioni, come ad esempio considerare il label più piccolo (a livello lessicografico) indifferentemente dalla sua direzione di ricerca. Differenti scelte potrebbe avere un impatto sulle performance, ma sarebbero comunque irrilevanti rispetto al guadagno,in termini di tempo, che si andrebbe ad ottenere.\\
-Abbiamo detto che la ricerca viene effettuata in due direzioni, l'andamento di queste due ricerche separate è simile a quello di un algorito unidirezionale, quindi nuovi label vengono calcolati a partire dai vicini di un nodo ed aggiunti al set dei label di questi. Si avranno due set, uno per ogni direzione, dove i label dominati vengono rimossi per far posto a quelli dominanti. Quando si va ad investigare un nodo in cui sono presenti dei label ``provenienti" dalla direzione opposta allora si combinano i due percorsi e si effettuano le dovute valutazioni di dominanza, in caso il cammino trovato risulta essere una soluzione accettabile viene aggiunto alla lista delle soluzioni. Ogni qual volta vengano combinati dei percorsi che portano ad una soluzione accettabile, tutte le eventuali soluzioni dominate da quest'ultima vengono rimosse dalla lista che contiene i risultati (ovvero quelli che andranno a comporre il fronte di Pareto).
+\section{Algoritmo Bidirezionale Bi-criteria}
+In letteratura gli algoritmi bidirezionali sono molto elogiati per la loro capacità di accelerare la ricerca all'interno di una rete \cite{ehrgott2000survey} \cite{stentz1997optimal}, questa sezione si concentrerà dunque sull'analisi di un algoritmo bidirezionale in grado di calcolare alcuni risultati del fronte di Pareto. L'idea alla base di questo algoritmo è di alternare una ricerca normale, quindi dal nodo di partenza al nodo finale, ad una invertita, ovvero dal nodo finale a quello iniziale. \'E facile dedurre che anche questo algoritmo è efficace unicamente in grafi non orientati, altrimenti troverebbe dei cammini non percorribili, inoltre le sue performance sono dipendenti anche dalla configurazione del grafo preso in considerazione. Infatti il livello di accelerazione della ricerca, rispetto ad una ricerca effettuata con altri algoritmi i.g. Label-setting, potrebbe variare in base a caratteri quantitativi e qualitativi della rete; i grafi presi in considerazione per i test sono piuttosto uniformi ed equilibrati, dunque si avrà una discreta accelerazione.\\
+L'alternanza tra la ricerca all'avanti e quella all'indietro può essere implementata in diversi modi, in questa ricerca, per semplicità, vengono equamente alternati uno alla volta, ma sono possibili diverse soluzioni, come ad esempio considerare il label più piccolo (a livello lessicografico) indifferentemente dalla sua direzione di ricerca. Differenti scelte potrebbero avere un impatto sulle performance, ma sarebbero comunque irrilevanti rispetto al guadagno, in termini di tempo, che si andrà comunque ad ottenere.\\
+Abbiamo detto che la ricerca viene effettuata in due direzioni, l'andamento di queste due ricerche separate è simile a quello di un algorito unidirezionale, quindi nuovi label vengono calcolati a partire dai vicini di un nodo ed aggiunti al set dei label di questi. Si avranno due set, uno per ogni direzione, per ogni nodo, dove i label dominati vengono rimossi per far posto a quelli dominanti. Quando si va ad investigare un nodo in cui sono presenti dei label ``provenienti" dalla direzione opposta, si combinano i due percorsi e si effettuano le dovute valutazioni di dominanza, in caso il cammino trovato risulta essere una soluzione accettabile viene aggiunto alla lista delle soluzioni. Ogni qual volta vengano combinati dei percorsi che portano ad una soluzione accettabile, tutte le eventuali soluzioni dominate da quest'ultima vengono rimosse dalla lista che contiene i risultati (i rimanenti andranno a comporre il fronte di Pareto).
 
 \subsection{Implementazione}
 Come già detto l'algoritmo riprende dei concetti ormai appurati, come ad esempio la struttura dei label, che rimangono invariati rispetto agli algoritmi precedenti, e l'andamento dell'algoritmo in relazione alla singola direzione.\\
@@ -660,7 +669,7 @@ L'immagine \ref{fig:bidirectional} mostra lo pseudocodice relativo.
 
 
 \subsubsection{Caso particolare della condizione di stop}
-Considerando $C_i$ un cammino (ricongiunto nel nodo $i$) che risulta essere una soluzione accettabile del percorso, ma che non è stato ancora trovato, implica che $C_i$ nonè dominato da nessuna soluzione $R \in L_{result}$, quindi anche da nessun $r_i$ (relativo a quello specifico nodo). Per la condizione di stop $r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$ allora:
+Considerando $C_i$ un cammino (ricongiunto nel nodo $i$) che risulta essere una soluzione accettabile del percorso, ma che non è stato ancora trovato, implica che $C_i$ non è dominato da nessuna soluzione $R \in L_{result}$, quindi anche da nessun $r_i$ (risultato che si congiunge nelnodo $i$). Per la condizione di stop $r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$ allora:
 
 $$	\exists i: C_i = c^f_i+c^b_i < r_i \leq [\min_i(Q_f) + \min_i(Q_b)]$$
 
@@ -673,7 +682,7 @@ Dato che $C_i$ non è ancora stato trovato, significa che $\forall i:c^f_i\geq \m
 
 Considerando solo uno dei due casi, poiché l'altro deducibile allo stesso modo, si assume che
 $$\exists i:( c^f_i < \min_i(Q_f) \lor c^f_i = \min_i(Q_f)) \land c^b_i \geq \min_i(Q_b)$$
-Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentre quello che parte dal sorgente sì, di conseguenza sono stati calcolati anche i label dei suoi vicini (altrimenti non sarebbe $< \min_i(Q_f)$). Sia $C^b$ il label che andrà a comporre sul nodo $i$ il cammino finale, consideriamo il predecessore e chiamiamolo $C'^b$. Al contempo sia $C^f$ il label sul nodo $i$ proveniente dall'origine, quindi il nodo che possiede $C^f$ è lo stesso che possederebbe $C^b$. $C^f$ è un label che è stato calcolato e visitato (il che significa che è \textit{permanente}), considero dunque $C'^f$ un label calcolato \textbf{a partire} da $C^f$, quindi appartenente ad un nodo vicino; quest'ultimo label può essere sia un label permanente, che \textbf{temporaneo}, ovvero solamente calcolato, ma non ancora visitato. Al contrario il label $C'^b$, non essendo ancora stato neanche calcolato $C^b$, può essere temporaneo o non ancora calcolato. Analizzando le varie possibilità si ricade in quattro diversi casi:
+Quindi il label sul nodo $i$ ricercato a partire dal nodo terminale non è stato ancora calcolato; mentre quello che parte dal sorgente sì, di conseguenza sono stati calcolati anche i label dei suoi vicini (altrimenti non sarebbe $< \min_i(Q_f)$). Sia $C^b$ il label che andrà a comporre sul nodo $i$ il cammino finale, consideriamo il predecessore e chiamiamolo $C'^b$. Al contempo sia $C^f$ il label sul nodo $i$ proveniente dall'origine, quindi il nodo che possiede $C^f$ è lo stesso che possederebbe $C^b$. $C^f$ è un label che è stato calcolato e visitato (il che significa che è \textbf{permanente}), considero dunque $C'^f$ un label calcolato \textbf{a partire} da $C^f$, quindi appartenente ad un nodo vicino; quest'ultimo label può essere sia un label permanente, che \textbf{temporaneo}, ovvero solamente calcolato, ma non ancora visitato. Al contrario il label $C'^b$, non essendo ancora stato neanche calcolato $C^b$, può essere temporaneo o non ancora calcolato. Analizzando le varie possibilità si ricade in quattro diversi casi:
 
 \begin{description}
 	\item[$C'^f$ è permanente e $C'^b$ è temporaneo:]  Il cammino viene trovato dall'algoritmo e la soluzione aggiunta al fronte di Pareto.
@@ -717,7 +726,7 @@ Quindi il label che parte dal nodo terminale non è stato ancora calcolato, mentr
  
 \section{Analisi dei risultati}
 Di seguito vengono effettuati dei test degli algoritmi trattati nel capitolo su grafi di diverso tipo e dimensioni.\\
-Dove possibile sono statiutilizzate le stesse mappe e gli stessi punti utilizzati nellanalisi dei risultati del capitolo precedente, in questo modo è possibile fare anche un confronto con gli algoritmi mono-criteria riguardo ai nodi visitati ed ai percorsi trovati.
+Dove possibile sono state utilizzate le stesse mappe e gli stessi punti utilizzati nell'analisi dei risultati del capitolo precedente, in questo modo è possibile fare anche un confronto con gli algoritmi mono-criteria riguardo ai nodi visitati ed ai percorsi trovati.
 
 \subsection{Performance a confronto}
 In questa sezione vengono analizzati i risultati degli algoritmi trattati nel capitolo.
@@ -855,7 +864,7 @@ Come nel capitolo precedente le immagini mostrano i nodi ed i percorsi trovati d
 		\includegraphics[width=\textwidth]{immaginiTest/BolognaBidir1298-23289.png}
 		\label{fig:BolognaBidir1298-23289}
 	\end{minipage}
-	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)\\ particolare
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Provincia)\\ dettaglio
 	\caption{Algoritmo bidirezionale su Bologna (mappa non orientata).}
 \end{figure}
 \begin{figure}[H]
@@ -879,7 +888,7 @@ Come nel capitolo precedente le immagini mostrano i nodi ed i percorsi trovati d
 		\includegraphics[width=\textwidth]{immaginiTest/CesenaBiDi5221-72.png}
 		\label{fig:CesenaBiDi5221-72}
 	\end{minipage}
-	Source: 5221 $\to$ Target: 72\\Map: Cesena (Comune) \\ particolare
+	Source: 5221 $\to$ Target: 72\\Map: Cesena (Comune) \\ dettaglio
 	\caption{Algoritmo Label-setting (sopra) e Bidirezionale (sotto) su Cesena (mappa non orientata).}
 \end{figure}
 
@@ -887,13 +896,12 @@ Come nel capitolo precedente le immagini mostrano i nodi ed i percorsi trovati d
 Nel seguente capitolo parlerò dei miei pensieri e delle esperienze personali riscontrate durante la stesura di questa tesi triennale.
 \section{Idee Scartate}
 \subsubsection*{Algoritmo Genetico}
-L'idea iniziale era di trovare una soluzione in un tempo non polinomiale ad un problema polinomiale. L'idea è stata scartata, anche sotto suggerimento del relatore, poiché ci si sarebbe approcciati al problema in una maniera eccessivamente ed inutilmente complessa,inoltre è stato dimostrato in 
-%citazione.
-non essere una soluzione molto performante.
+L'idea iniziale era di trovare una soluzione in un tempo non polinomiale ad un problema polinomiale. L'idea è stata scartata, anche sotto suggerimento del relatore, poiché ci si sarebbe approcciati al problema in una maniera eccessivamente ed inutilmente complessa, inoltre è stato dimostrato in \cite{chaogreen} che non risulta essere affatto vantaggioso, \cite{approximating} e \cite{samadi2013global} affermano invece che sì, risulterebbero vantaggiosi, ma soltanto in particolari situazioni.
 \subsubsection*{Algoritmo bidirezionale con l'utilizzo di thread}
 Nonostante avessi già implementato l'algoritmo bidrezionale, ho scartato questa idea poiché sarebbe stato inutile paragonarla agli altri algoritmi.
 \section{Possibili Applicazioni}
-Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del ``\textit{decision making''}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.
+Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del ``\textit{decision making''}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.\\
+Per approfondire questo aspetto sono consigliati \cite{GAArticle} \cite{abram1982some} \cite{meyer2003map}
 \section{Difficoltà incontrate}
 Le difficoltà principali sono state riscontrate soprattutto nella stesura degli algoritmi in relazione con le mappe che mi sono state fornite (vd. ch5). Inoltre l'implementazione degli algoritmi con minoranti sono stati piuttosto macchinosi e non immediati, seppur il ragionamento dietro il loro sviluppo sia basilare. Nonostante nelle mappe di Parigi e di Berlino conoscessi già alcuni cammini minimi (poiché mi sono stati forniti insieme alle mappe), testare gli algoritmi che lavorano unicamente su grafi non orientati (bidirezionale e minorante invertito) è stato piuttosto complesso. Per verificarli ed effettuare i primi ragionamenti, prima di iniziare a scrivere il codice, ho dovuto fare diverse congetture e ragionamenti su carta, che mi hanno impegnato non poco tempo.
 
@@ -910,13 +918,13 @@ In sintesi l'algoritmo di Label-setting è il migliore in termini di rapporto tem
 
 \chapter{Dettagli implementativi}
 Immagini, codice sorgente e mappe (nodi e archi) possono essere liberamente recuperate dal repository \footnote{\url{https://bitbucket.org/AndreaRossolini/bicriteria-algorithm/}}.
-Il linguaggio utilizzato per implementare gli algoritmi è il \textbf{Python}. \'E stata fatta questa scelta per pura praticità; utilizzando altri linguaggi di programmazione di più basso livello (come ad esempio il linguaggio C) si sarebbero potute ottenere prestazioni migliori, ma dato che sono stati fatti dei confronti su diversi risultato la scelta del linguaggio non è stata rilevante.
+Il linguaggio utilizzato per implementare gli algoritmi è il \textbf{Python}. \'E stata fatta questa scelta per pura praticità; utilizzando altri linguaggi di programmazione di più basso livello (come ad esempio il linguaggio C) si sarebbero potute ottenere prestazioni migliori, ma dato che sono stati fatti dei confronti su diversi risultati la scelta del linguaggio non è stata rilevante.
 
 \section{Informazioni sui grafi}
 I grafi delle mappe di Parigi e di Berlino mi sono state gentilmente fornite dal direttore dell'università ``Polytech Tours" (Univeristé de Tours, Francia). I punti delle mappe sono numerati e sono su sistema di riferimento spaziale WGS84 (EPGS:4326 - lo stesso utilizzato da Google Maps), mentre gli archi direzionati hanno dei valori casuali.\\
 La mappa della provincia di Bologna e del comune di Cesena sono state invece fornite dall'azienda Optit, che opera a Cesena. Queste mappe sono il risultato di un ritaglio fatto da parte dell'azienda e poi inviatomi tramite diversi file in formato `.shp' (3 file per mappa, un file conteneva gli id degli archi e la loro lunghezza, uno i punti di arrivo, di partenza e se la strada è a senso unico o meno, l'ultimo file conteneva i punti nella mappa, con riferimento spaziale EPSG:32632). Il formato è stato convertito e le coordinate ritradotte per avere lo stesso riferimento con Parigi e Berlino.\\
 Inoltre per effettuare alcuni test sono state generate casualmente dei grafi, è possibile consultare il file `.py' che le gestiva.
-La mappa di Parigi è orientata, composta da $\sim 30000$ nodi e $\sim 64500$ archi; quella di Berlino, anch'essa orientata, è composta da $\sim 60000$ nodi e $\sim 150000$ archi; la mappa della provincia di Bologna, invece, è presente sia con archi orientati che non, ed è formata da $\sim 40000$ nodi e $\sim 100000$ archi; Cesena, presente in due versioni come Bologna, possiede $\sim6000$ nodi e $\sim 16000$ archi.\\
+La mappa di Parigi è orientata, composta da $\sim 30000$ nodi e $\sim 64500$ archi; quella di Berlino, anch'essa orientata, è composta da $\sim 60000$ nodi e $\sim 150000$ archi; la mappa della provincia di Bologna, invece, è presente sia con archi orientati che non, ed è formata da $\sim 40000$ nodi e $\sim 100000$ archi; Cesena, presente in due versioni come Bologna, possiede $\sim6000$ nodi e $\sim 16000$ archi. Ringrazio dunque l'azienda Optit, che si è resa disponibile per permettermi di testare il mio codice sulle mappe da loro fornitomi.
 I grafi generati in maniera `randomica' vengono descritti dal testo o dalle didascalie quando utilizzati nei test.\nocite{*}
 
 

@@ -16,32 +16,56 @@
 % Remove option to use English naming
 \usepackage[english]{cleveref}
 \graphicspath{ {img/} }
-%COSE DA SCRIVERE:
-% Spiegare come sono fatti i nodi
-% dire che da nodo a nodo sono presenti più archi -> spiega i grafi
-% guarda pagina 5 di "Speeding up martin's algorithm.."
-% bicriteria figo perché puoi fare threading
-% aggiungi references
-%
+
 \usepackage{amsmath}
-
-\newcommand{\RN}[1]{%
-	\textup{\lowercase\expandafter{\romannumeral#1}}%
-}
-
-\title{Supervised Project ``Bicriteria Paths Problem''
-\\
-	}
- 
-\author{Andrea Rossolini\\
-	\includegraphics[scale=0.9]{img/univToursLogo.png}
-	\includegraphics[scale=0.6, trim= 0 8mm 0 0, clip]{img/uniboLogo.png}}
-\date{\today}
 
 
 \begin{document}
- 
-\maketitle+
+	
+	\begin{titlepage}
+		\begin{center}
+			{{\large{\textsc{Alma Mater Studiorum $\cdot$ Universit\`a di
+							Bologna\\Campus di Cesena}}}} \rule[0.2cm]{15.8cm}{0.2mm}
+			\rule[0.5cm]{15.8cm}{0.6mm}
+			{\small 			{{\bf SCIENCES AND ENGINEERING\\
+						THREE-YEAR DEGREE COURSE IN COMPUTER SCIENCE AND ENGINEERING
+			}}}
+		\end{center}
+		\vspace{5mm}
+		\begin{center}
+			%{\LARGE{\bf TITOLO DELL'ELABORATO}}\\
+			%\vspace{5mm}
+			{\LARGE{\bf Analysis and Implementation of Algorithms for Bicriteria Shortest Paths Problems}}\\
+			\vspace{3mm}
+		\end{center}
+		\vspace{3mm}
+		\begin{center}
+			\large{Elaborato in\\
+				RICERCA OPERATIVA}
+		\end{center}
+		\vspace{30mm}
+		\par
+		\noindent
+		\begin{minipage}[t]{0.47\textwidth}
+			{\large{\bf Relatore:\\Cha.mo Prof.\\
+					VIGO DANIELE}}
+		\end{minipage}
+		\vspace{5mm}
+		\begin{minipage}[t]{0.47\textwidth}\raggedleft
+			{\large{\bf Presentata da:\\
+					ROSSOLINI ANDREA}}
+		\end{minipage}\\
+		\begin{minipage}[t]{1.5\textwidth}\raggedright
+			{\large{\bf Corelatore:\\
+					N\'ERON EMMANUEL}}
+		\end{minipage}
+		\hfill
+		\vspace{20mm}
+		\begin{center}
+			{\large{\bf Anno Accademico: 2018/2019\\III sessione di laurea}}%inserire l'anno accademico a cui si è iscritti
+		\end{center}
+	\end{titlepage}
+
 
 \begin{abstract}
 In this paper a \textit{pathfinding} problem is analyzed starting from a classical shortest path problem and then, after several optimization, going to resolve a graph that utilizes two static weights on its arcs, considering the most full satisfying set of solutions.
@@ -108,10 +132,24 @@ The analysis focuses on the evolution and optimization of the Dijkstra's algorit
 Dijkstra's algorithm is a very famous algorithm used to find the shortest paths between nodes in a graph connected by arcs with positive weights.\\
 Different implementation of this algorithm are present in this paper. In the following a brief explanation of the implementations referred in this paper.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\linewidth]{img/dijkstraLoC.png}
-	\caption{Pseudocode - Dijkstra (List of Candidates)}
+\begin{figure}
+	%\begin{BVerbatim}
+	\verb|function DijkstraAlgorithm(source, target):|\\
+	\verb|	    dist[source]| $\leftarrow$ 0\\
+	\verb|	    create priorityQueue Q|\\
+	\verb|	    q.put(source, dist[source])|\\
+	\verb|	    while Q is not empty do|\\
+	\verb|	        n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|	        for each neighbor in v of n do|\\
+	\verb|	            alt| $\leftarrow$ \verb|dist[n] + lenght(n, v)|\\
+	\verb|	            if alt < dist[v] do|\\
+	\verb|	                dist[v]| $\leftarrow$ \verb|alt|\\
+	\verb|	                prev[v]| $\leftarrow$ \verb|n|\\
+	\verb|	                Q.put(v, alt)|\\
+	\verb|	    return dist, prev|\\
+	%\end{BVerbatim}
+	
+	\caption{Pseudocodice dell'Algoritmo di Dijkstra (list of candidate)}
 	\label{fig:dijkstraLoC}
 \end{figure}
 
@@ -154,11 +192,26 @@ The Euclidean distance between two points is: $$\sqrt{(i_x - t_x)^2 + (i_y - t_y
 where $i$ is a node of the graph and $t$ the target, $x$ and $y$ are latitude and longitude, converted to Cartesian coordinates.
 
 To calculate the square root like this is very expensive, in term of time, so it is necessary to find a way for make this operation only one time per node (in this implementation the value of Euclidean distance is stored in an node's attribute).
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\linewidth]{img/A_StarPseudocode.png}
-	\caption{Pseudocode - A* algorithm}
-	\label{fig:aStarAlgorithm}
+
+\begin{figure}
+	\verb|function DijkstraAlgorithm(source, target):|\\
+	\verb|    score[source]| $\leftarrow 0$\\
+	\verb|    create priorityQueue Q|\\
+	\verb|    q.put(source, score[source])|\\
+	\verb|    while Q is not empty do|\\
+	\verb|        n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|        for each neighbor v of n do|\\
+	\verb|            if v not visited do|\\
+	\verb|                tmpScore| $\leftarrow$ \verb|score[n] + lenght(v, n)|\\
+	\verb|                if tmpScore < score[v] do|\\
+	\verb|                    if euclidean[v] is None do|\\
+	\verb|                        euclidean[v]| $\leftarrow$ \verb|calcEuclidean(v, target)|\\
+	\verb|                score[v]| $\leftarrow$ \verb|tmpScore|\\
+	\verb|                prev[v]| $\leftarrow$ \verb|n|\\
+	\verb|                Q.put(v, tmpScore)|\\
+	\verb|    return score, prev|\\
+	\caption{Pseudocodice dell'Algoritmo A*}
+	\label{fig:Astar}
 \end{figure}
 
 
@@ -270,10 +323,24 @@ It is easy to deduce that the more value of $\alpha$ approaches $0$ the more it 
 The algorithm's implementation is similar to Dijkstra's list of candidate, but with the difference that this version needs in input, together with the source and the target, the value of $\alpha$; then, using \eqref{eq:convex hull}, the algorithm will choose the optimal path.
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=\linewidth]{img/bicriteriaDijkstra.png}
-	\caption{Pseudocode - Dijkstra with two criterion}
-	\label{fig:bicriteriaDijkstra}
+	%	\begin{BVerbatim}
+	\verb|function DijkstraAlgorithm(source, target, alpha):|\\
+	\verb|	score[source]| $\leftarrow 0$\\
+	\verb|	create priorityQueue Q|\\
+	\verb|	Q.put(source, score[source])|\\
+	\verb|	while Q is not empty do|\\
+	\verb|	    n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|	    for each neighbor v of n do|\\
+	\verb|	        alt| $\leftarrow$ \verb|alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)|\\
+	\verb|	        alt| $\leftarrow$ \verb|alt + score[u]|\\
+	\verb|	        if alt < score[v] do|\\
+	\verb|	            score[v]| $\leftarrow$ \verb|alt|\\
+	\verb|	            prev[v]| $\leftarrow$ \verb|n|\\
+	\verb|	            Q.put(v, tmpScore)|\\
+	\verb|	return score, prev|\\
+	%	\end{BVerbatim}
+	\caption{Pseudocodice dell'Algoritmo di Dijkstra con due criteri}
+	\label{fig:Dijkstra Bicrit}
 \end{figure}
 
 \subsection{Application of Bicriteria Dijkstra}
@@ -325,7 +392,7 @@ As always happens the algorithm uses a priority queue where labels are stored an
 
 \begin{enumerate}[label=\roman*.]
 	\item Create first label $(0,\ 0,\ s,\ null,\ 0,\ null)$ and put in the priority queue ($s$ represent the starting point).
-	\item If the queue is empty perform step (\RN{6}) otherwise get the label with smallest distance's value from the queue and calculate the label for all its owner's neighbors.
+	\item If the queue is empty perform step ({6}) otherwise get the label with smallest distance's value from the queue and calculate the label for all its owner's neighbors.
 	\item Check if the calculated label is or isn't a non-dominated label. There's can be three different solution: 
 	\begin{enumerate}
 		\item The calculated label is dominated, so the algorithm will discards it.
@@ -333,9 +400,35 @@ As always happens the algorithm uses a priority queue where labels are stored an
 		\item The calculated label doesn't dominate any other label, but it isn't dominated at all, so the algorithm will keep it.
 	\end{enumerate}
 	\item If the calculated label is feasible is put in the queue, using the distance as a criteria for its priority.
-	\item Return to step (\RN{2}).
+	\item Return to step ({2}).
 	\item End.
 \end{enumerate}
+
+\begin{figure}[h]
+	%\begin{verbatim}
+	\verb|function DijkstraAlgorithm(source, target):|\\
+	\verb|    originLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+	\verb|    source.add(originLabel)|\\
+	\verb|    create priorityQueue Q|\\
+	\verb|    Q.put(orginLabel, priority())|\\
+	\verb|    while Q is not empty do|\\
+	\verb|        actualLabel| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|        owner| $\leftarrow$ \verb|actualLabel[2]|\\
+	\verb|        for each neighbor v of owner do|\\
+	\verb|            firstW| $\leftarrow$ \verb|weightOne(owner, v) + actualLabl[0]|\\
+	\verb|            secondW| $\leftarrow$ \verb|weightTwo(owner, v) + actualLabel[1]|\\
+	\verb|            vIndex| $\leftarrow$ \verb|v.labelIndex()|\\
+	\verb|            predIndex| $\leftarrow$ \verb|owner.labelIndex()|\\
+	\verb|            label| $\leftarrow$ \verb|(firstW, secondW, v, owner, vIndex, predIndex)|\\
+	\verb|            if label is not dominated by v.labels() do			|	\\
+	\verb|                v.labelsAdd(label)    //rimuove i label dominati|\\
+	\verb|                if v is not target do|\\
+	\verb|                    Q.put(label, priority())|\\
+	%\end{verbatim}
+	\caption{Pseudocodice dell'Algoritmo Label-setting}
+	\label{fig:LabelSetting}
+\end{figure}
+
 \subsubsection*{Example:}
 Is possible to study the graph in figure \ref{fig:graphExample} starting from node 1, so this node will have the label $(0,\ 0,\ 1,\ null,\ 0,\ null)$ in its set. Then creating labels for its neighbors (2 and 3): $(3,\ 4,\ 2,\ 1,\ 0,\ 0)$ and $(5,\ 3,\ 3,\ 1,\ 0,\ 0)$ and put both in the queue. Extracting label owned by node 2 and do the same thing as before and so on, until the target node is reached. At any new label should be studied if it is feasible or not before putting it in the queue.
 
@@ -395,40 +488,170 @@ Is possible to note that the nodes used for the execution are the same used in m
 	\end{center}}
 \end{figure}
 
+\section{Bidirectional Bi-criteria Algorithm}
+\subsection{Implementation}
+\begin{figure}[H]
+	%\begin{verbatim}
+	\verb|function BidirectionAlgorithm(source, target):|\\
+	\verb|    create priorityQueue Q[f]   //forward|\\
+	\verb|    create priorityQueue Q[b]   //backward|\\
+	\verb|    create list L|$_{result}$\\
+	\verb|    originLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+	\verb|    source.add(originLabel)|\\
+	\verb|    Q[f].put(originLabel)|\\
+	\verb|    targetLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+	\verb|    source.add(targetLabel)|\\
+	\verb|    Q[b].put(targetLabel)|\\
+	\verb|    while [min|$_i$\verb|(Q[f]) + min|$_i$\verb|(Q[b])]|\\\verb|                        is not dominated by any| R$\in L_{results}$ \verb|do|\\
+	\verb|        d| $\leftarrow$ \verb|getDirection()    //forward o backward|\\
+	\verb|        actualLabel| $\leftarrow$ \verb|Q[d].extract_min()|\\
+	\verb|        owner| $\leftarrow$ \verb|actualLabel[2]|\\
+	\verb|        for each neighbor v of owner do|\\
+	\verb|            firstW| $\leftarrow$ \verb|weightOne(owner, v) + actualLabl[0]|\\
+	\verb|            secondW| $\leftarrow$ \verb|weightTwo(owner, v) + actualLabel[1]|\\
+	\verb|            vIndex| $\leftarrow$ \verb|v.labelIndex()|\\
+	\verb|            predIndex| $\leftarrow$ \verb|owner.labelIndex()|\\
+	\verb|            label| $\leftarrow$ \verb|(firstW, secondW, v, owner, vIndex, predIndex)|\\
+	\verb|            if label is not dominated by v.labels(d) do			|	\\
+	\verb|                v.labelsAdd(label, d)   //rimuove i label dominati|\\
+	\verb|                Q[d].put(label)|\\
+	\verb|                if v.labels(!d) is not empty do   //!d = direzione opposta|\\
+	\verb|                    result| $\leftarrow$ \verb|combine(label, v.labels(!d))|\\
+	\verb|                    L|$_{results}$\verb|.addResults(results)|
+	%\end{verbatim}
+	\caption{Pseudocodice dell'Algoritmo bidirezionale}
+	\label{fig:bidirectional}
+\end{figure}
+\subsubsection{Particular Stop Condition Case}
+
 \subsection{Performance comparison}
 Excluding bicriteria Dijkstra's algorithm, which is advantageous only with nodes very far from each other, at the expense of the number of solution; the other two label-setting implementations results to be very similar; in fact \textit{lower bound improvement} algorithm seems to be advantageous only with nodes in a medium-large distance from each other, in others case is pretty in line with the normal label setting algorithm. It is possible also to see that the \textit{lower bound improvement} makes less loops than the other algorithm, but this difference becomes increasingly irrelevant with the increasing distance between the nodes.
+
+\begin{table}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6, trim=0.2mm 0 0 0, clip]{biCriteriaExcelOutput1v2.png}
+		\label{fig:worstCaseLabelSetting1}
+		
+		\vspace{3mm}
+		
+		\centering
+		\includegraphics[width=\textwidth, trim=0.2mm 0 0 0.1mm, clip]{biCriteriaExcelOutput2v2.png}
+		
+		\label{fig:worstCaseLabelSetting2}
+	\end{figure}
+	\caption{Risultati degli algoritmi applicabili a grafi orientati (I fogli excel sono stati generati per comodità tramite la libreria \textit{xlsxwriter}).}
+	\label{tab:BidirectionalOriented}
+\end{table}
+
+\begin{table}[H]
+	\begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}|  }
+		\hline
+		Nodo di arrivo & Soluzioni trovate & Tempo impiegato (sec) & Soluzioni trovate & Tempo impiegato (sec) \\
+		\hline
+		& \multicolumn{2}{|c|}{Dijkstra Iter. \textbf{prec.} = 0.05} &
+		\multicolumn{2}{|c|}{Dijkstra binary search} \\
+		\hline
+		
+		10 & 5 & 10.06989 & 5 & 6.02213\\
+		100 & 23 & 32.07635  & 12 & 11.89208\\
+		500 & 84 & 96.60857 & 23 & 82.71155\\
+		700 & 123 & 210.80490 & 27 & 23.74903\\
+		5000 & 593 & 664.78488 & 46 & 23.74327\\	
+		\hline
+		
+	\end{tabular}
+	\\
+	\\
+	
+	\begin{tabular}{ |p{2cm}||p{2cm}|p{3cm}|p{2cm}|p{3cm}|  }
+		\hline
+		Nodo di arrivo & Soluzioni trovate & Tempo impiegato (sec) & Soluzioni trovate & Tempo impiegato (sec) \\
+		\hline
+		&\multicolumn{2}{|c|}{Label-setting} &  \multicolumn{2}{|c|}{bidirectional algorithm} \\
+		\hline
+		10 & 10 & 0.00040 & 4 & 0.00019 \\
+		100  & 116 & 1.05214 & 66 & 0.12038 \\
+		300  & 663 & 98.73498 & 242 & 2.4432 \\
+		500 & 1867 & 925.68206 & 193 & 22.14023 \\
+		700 & 3278 & 4795.59632 & 429 & 141.73064\\
+		
+		\hline
+		
+	\end{tabular}
+	\\
+	\\
+	
+	\begin{tabular}{ |p{2cm}||p{2cm}|p{2.5cm}|p{3cm}|p{2.5cm}|  }
+		\hline
+		Nodo di arrivo & Soluzioni trovate & \multicolumn{3}{|c|}{Tempo impiegato (sec)} \\
+		\hline
+		& & Dijkstra preprocessing &  lower bound improvement & lower bound reversed \\
+		\hline
+		10 & 10 & 0.00011 & 0.00050 & 0.00055 \\
+		100  & 116 & 0.00095 & 0.60899 & 0.69986 \\
+		300  & 663 & 0.00402 & 74.03828 & 87.22029 \\
+		500 & 1867 & 0.00486 & 930.81834 & 927.77959 \\
+		700 & 3278 & 0.05327& 4887.63521 & 4931.99105\\
+		
+		\hline
+		
+	\end{tabular}
+	\caption{Risultati degli algoritmi bicriteria in un grafo non orientato con 200000 nodi connessi a cascata tramite archi dai valori casuali (tutti i cammini partono da 0 e i nodi sono collegati ad altri 4 nodi, due antecedenti e due precedenti)}
+	\label{tab:BidirectionalNotOriented}
+\end{table}
+
 \subsection{Node visited}
 Despite the lower bound algorithm does less loops, the visited nodes are less but almost the same than the label-setting algorithm, so only one image is shown for both algorithms, since the difference is almost imperceptible.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/mapOutput/2070-15426Bicriteria.png}
-	\label{fig:Bicriteria1}
-	\hfill
-	\begin{center}
-		Source: 2070 $\to$ Target: 15426\\Map: Paris
-	\end{center}
+	%	\begin{minipage}[b]{\textwidth}
+	\includegraphics[width=\textwidth]{immaginiTest/Paris2070-15426Bicriteria.png}
+	\label{fig:BicriteriaParis}
+	%	\end{minipage}
+	%	\hfil
+	Source: 2070 $\to$ Target: 15426\\Map: Paris
+	\caption{Label-setting algorithm (Paris oriented map).}
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/mapOutput/2000-2689Bicriteria.png}
-	\label{fig:Bicriteria2}
-	\hfill
-	\begin{center}
-		Source: 2000 $\to$ Target: 2689\\Map: Paris
-	\end{center}
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/1000-1510BerlinBicriteria.png}
+		\label{fig:BicriteriaBerlin}
+	\end{minipage}
+	Source: 1000 $\to$ Target: 1510\\Map: Berlino
+	\caption{Label-setting algorithm (Berlin oriented map).}
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/mapOutput/1000-1510BerlinBicriteria.png}
-	\label{fig:Bicriteria3}
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBiC1298-23289Big.png}
+		\label{fig:BolognaBiC1298-23289Big}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Province)
 	\hfill
-	\begin{center}
-		Source: 1000 $\to$ Target: 1510\\Map: Berlin
-	\end{center}
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBiC1298-23289.png}
+		\label{fig:BolognaBiC1298-23289}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Province)\\ detail
+	\caption{Label-setting algorithm Bologna (not-oriented map).}
 \end{figure}
-\begin{flushleft}
-	{\tiny Note: \textit{There is a mistake in these pictures, in each of them is present a straight red line between the source and the target, it may not be a path, it could be generated by matplotlib. Anyway any other line is a possible path.}}
-\end{flushleft}
+\begin{figure}[H]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBidir1298-23289Big.png}
+		\label{fig:BolognaBidir1298-23289Big}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Province).
+	\hfill
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{immaginiTest/BolognaBidir1298-23289.png}
+		\label{fig:BolognaBidir1298-23289}
+	\end{minipage}
+	Source: 1298 $\to$ Target: 23289\\Map: Bologna (Province)\\ detail
+	\caption{Bidirectional algorithm Bologna (not-oriented map).}
+\end{figure}
 
 \chapter{Implementation details}
 This chapter explains some of the main implementation choices made during the development of the project.

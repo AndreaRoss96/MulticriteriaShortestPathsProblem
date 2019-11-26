@@ -1,4 +1,21 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{abram1982some}
+J.~Abram and I.~Rhodes.
+\newblock Some shortest path algorithms with decentralized information and
+  communication requirements.
+\newblock {\em IEEE Transactions on Automatic Control}, 27(3):570--582, 1982.
+
+\bibitem{azevedo69madeira}
+J.~A. Azevedo and M.~Costa.
+\newblock Madeira jjers, and martins eqv (1993) an algorithm from the ranking
+  of shortest paths.
+\newblock {\em European Journal of Operational Research}, 69:97--106.
+
+\bibitem{bellman1958routing}
+R.~Bellman.
+\newblock On a routing problem.
+\newblock {\em Quarterly of applied mathematics}, 16(1):87--90, 1958.
 
 \bibitem{GAArticle}
 O.~Castillo, L.~Trujillo, and P.~Melin.
@@ -6,10 +23,70 @@ O.~Castillo, L.~Trujillo, and P.~Melin.
   in autonomous mobile robots.
 \newblock {\em Soft Comput.}, 11:269--279, 02 2007.
 
+\bibitem{chaogreen}
+S.~Chao.
+\newblock Green routing: An investigation of bicriterion shortest path
+  problems.
+
+\bibitem{de2009tricriterion}
+L.~de~Lima~Pinto, C.~T. Bornstein, and N.~Maculan.
+\newblock The tricriterion shortest path problem with at least two bottleneck
+  objective functions.
+\newblock {\em European Journal of Operational Research}, 198(2):387--391,
+  2009.
+
+\bibitem{demeyer2008multimodal}
+S.~Demeyer, P.~Audenaert, B.~Slock, M.~Pickavet, and P.~Demeester.
+\newblock Multimodal transport planning in a dynamic environment.
+\newblock In {\em 2008 Intelligent Public Transport Systems (IPTS-2008)}, pages
+  155--167, 2008.
+
+\bibitem{dijkstra1959note}
+E.~W. Dijkstra.
+\newblock A note on two problems in connexion with graphs.
+\newblock {\em Numerische mathematik}, 1(1):269--271, 1959.
+
+\bibitem{disser2008multi}
+Y.~Disser, M.~M{\"u}ller-Hannemann, and M.~Schnee.
+\newblock Multi-criteria shortest paths in time-dependent train networks.
+\newblock In {\em International Workshop on Experimental and Efficient
+  Algorithms}, pages 347--361. Springer, 2008.
+
+\bibitem{ehrgott2000survey}
+M.~Ehrgott and X.~Gandibleux.
+\newblock A survey and annotated bibliography of multiobjective combinatorial
+  optimization.
+\newblock {\em OR-Spektrum}, 22(4):425--460, 2000.
+
 \bibitem{eranki2002pathfinding}
 R.~Eranki.
 \newblock Pathfinding using a*(a.
 \newblock {\em Star}, pages 1--5, 2002.
+
+\bibitem{gal1980note}
+T.~Gal.
+\newblock A note on size reduction of the objective functions matrix in vector
+  maximum problems.
+\newblock In {\em Multiple Criteria Decision Making Theory and Application},
+  pages 74--84. Springer, 1980.
+
+\bibitem{gandibleux2006multiple}
+X.~Gandibleux.
+\newblock {\em Multiple criteria optimization: state of the art annotated
+  bibliographic surveys}, volume~52.
+\newblock Springer Science \& Business Media, 2006.
+
+\bibitem{hart1968formal}
+P.~E. Hart, N.~J. Nilsson, and B.~Raphael.
+\newblock A formal basis for the heuristic determination of minimum cost paths.
+\newblock {\em IEEE transactions on Systems Science and Cybernetics},
+  4(2):100--107, 1968.
+
+\bibitem{hart1972correction}
+P.~E. Hart, N.~J. Nilsson, and B.~Raphael.
+\newblock Correction to a formal basis for the heuristic determination of
+  minimum cost paths.
+\newblock {\em ACM SIGART Bulletin}, (37):28--29, 1972.
 
 \bibitem{approximating}
 J.~Legriel, C.~Le~Guernic, S.~Cotton, and O.~Maler.
@@ -17,11 +94,45 @@ J.~Legriel, C.~Le~Guernic, S.~Cotton, and O.~Maler.
   problems.
 \newblock pages 69--83, 2010.
 
+\bibitem{martins1999labelling}
+E.~d. Q.~V. Martins and J.~Santos.
+\newblock The labelling algorithm for the multiobjective shortest path problem.
+\newblock {\em Departamento de Matematica, Universidade de Coimbra, Portugal,
+  Tech. Rep. TR-99/005}, 1999.
+
+\bibitem{martins1984multicriteria}
+E.~Q.~V. Martins.
+\newblock On a multicriteria shortest path problem.
+\newblock {\em European Journal of Operational Research}, 16(2):236--245, 1984.
+
 \bibitem{meyer2003map}
 J.-A. Meyer and D.~Filliat.
 \newblock Map-based navigation in mobile robots:: Ii. a review of map-learning
   and path-planning strategies.
 \newblock {\em Cognitive Systems Research}, 4(4):283--317, 2003.
+
+\bibitem{neron2006decomposition}
+E.~Neron, O.~Bellenguez-Morineau, and M.~Heurtebise.
+\newblock Decomposition method for solving multi-skill project scheduling
+  problem.
+\newblock 2006.
+
+\bibitem{nilsson1980principles}
+N.~J. Nilsson.
+\newblock Principles of artificial intelligence, tioga pub.
+\newblock {\em Co., Palo Alto, CA}, 476, 1980.
+
+\bibitem{pinto2010algorithms}
+L.~L. Pinto and M.~M. Pascoal.
+\newblock On algorithms for the tricriteria shortest path problem with two
+  bottleneck objective functions.
+\newblock {\em Computers \& Operations Research}, 37(10):1774--1779, 2010.
+
+\bibitem{raith2009comparison}
+A.~Raith and M.~Ehrgott.
+\newblock A comparison of solution strategies for biobjective shortest path
+  problems.
+\newblock {\em Computers \& Operations Research}, 36(4):1299--1331, 2009.
 
 \bibitem{samadi2013global}
 M.~Samadi and M.~F. Othman.
@@ -29,10 +140,39 @@ M.~Samadi and M.~F. Othman.
   algorithm.
 \newblock pages 726--730, 2013.
 
+\bibitem{sastry2003new}
+V.~Sastry, T.~Janakiraman, and S.~I. Mohideen.
+\newblock New algorithms for multi objective shortest path problem.
+\newblock {\em Opsearch}, 40(4):278--298, 2003.
+
+\bibitem{serafini1987some}
+P.~Serafini.
+\newblock Some considerations about computational complexity for multi
+  objective combinatorial problems.
+\newblock In {\em Recent advances and historical development of vector
+  optimization}, pages 222--232. Springer, 1987.
+
+\bibitem{skriver2000label}
+A.~J. Skriver and K.~A. Andersen.
+\newblock A label correcting approach for solving bicriterion shortest-path
+  problems.
+\newblock {\em Computers \& Operations Research}, 27(6):507--524, 2000.
+
+\bibitem{skriver2000classification}
+A.~J. Skriver et~al.
+\newblock A classification of bicriterion shortest path (bsp) algorithms.
+\newblock {\em Asia Pacific Journal of Operational Research}, 17(2):199--212,
+  2000.
+
 \bibitem{stentz1997optimal}
 A.~Stentz.
 \newblock Optimal and efficient path planning for partially known environments.
 \newblock pages 203--220, 1997.
+
+\bibitem{stewart1991multiobjective}
+B.~S. Stewart and C.~C. White~III.
+\newblock Multiobjective a.
+\newblock {\em Journal of the ACM (JACM)}, 38(4):775--814, 1991.
 
 \bibitem{Tarapata}
 Z.~Tarapata.
@@ -40,5 +180,10 @@ Z.~Tarapata.
   complexity, models and adaptation of standard algorithms.
 \newblock {\em International Journal of Applied Mathematics and Computer
   Science}, 17(2):269--287, June 2007.
+
+\bibitem{vincke1975problemes}
+P.~Vincke.
+\newblock Probl{\'e}mes multicrit{\`e}res.
+\newblock 1975.
 
 \end{thebibliography}
