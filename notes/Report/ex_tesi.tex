@@ -57,7 +57,7 @@
 
 \usepackage{blindtext}
 
-\graphicspath{ {Report/img/} }
+\graphicspath{ {img/} }
 %
 \oddsidemargin=30pt \evensidemargin=20pt%impostano i margini
 \hyphenation{sil-la-ba-zio-ne pa-ren-te-si}%serve per la sillabazione: tra parentesi 
@@ -128,7 +128,7 @@
 					ROSSOLINI ANDREA}}
 		\end{minipage}\\
 		\begin{minipage}[t]{1.5\textwidth}\raggedright
-			{\large{\bf Corelatore:\\
+			{\large{\bf Correlatore:\\
 					N\'ERON EMMANUEL}}
 		\end{minipage}
 		\hfill
@@ -263,6 +263,8 @@ L'algoritmo di Dijkstra è molto celebre in letteratura e e tra chiunque abbia un
 	\verb|	    q.put(source, dist[source])|\\
 	\verb|	    while Q is not empty do|\\
 	\verb|	        n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|         if n = target do|\\
+	\verb|              break|\\
 	\verb|	        for each neighbor in v of n do|\\
 	\verb|	            alt| $\leftarrow$ \verb|dist[n] + lenght(n, v)|\\
 	\verb|	            if alt < dist[v] do|\\
@@ -473,9 +475,11 @@ Nella figura \ref{fig:Dijkstra Bicrit} è riportato il codice che descrive il rag
 	\verb|	Q.put(source, score[source])|\\
 	\verb|	while Q is not empty do|\\
 	\verb|	    n| $\leftarrow$ \verb|Q.extract_min()|\\
+	\verb|     if n = target do|\\
+	\verb|         break|\\
 	\verb|	    for each neighbor v of n do|\\
 	\verb|	        alt| $\leftarrow$ \verb|alpha*firstW(n, v) + (1 - alpha)*secondW(n, v)|\\
-	\verb|	        alt| $\leftarrow$ \verb|alt + score[u]|\\
+	\verb|	        alt| $\leftarrow$ \verb|alt + score[n]|\\
 	\verb|	        if alt < score[v] do|\\
 	\verb|	            score[v]| $\leftarrow$ \verb|alt|\\
 	\verb|	            prev[v]| $\leftarrow$ \verb|n|\\
@@ -700,7 +704,7 @@ Quindi il label sul nodo $i$ ricercato a partire dal nodo terminale non è stato 
 	\verb|    originLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
 	\verb|    source.add(originLabel)|\\
 	\verb|    Q[f].put(originLabel)|\\
-	\verb|    targetLabel| $\leftarrow$ \verb|(0, 0, source, Null, 0, Null)|\\
+	\verb|    targetLabel| $\leftarrow$ \verb|(0, 0, target, Null, 0, Null)|\\
 	\verb|    source.add(targetLabel)|\\
 	\verb|    Q[b].put(targetLabel)|\\
 	\verb|    while [min|$_i$\verb|(Q[f]) + min|$_i$\verb|(Q[b])]|\\\verb|                        is not dominated by any| R$\in L_{results}$ \verb|do|\\
@@ -809,7 +813,7 @@ Dalle tabelle \ref{tab:BidirectionalOriented} si riprendono i nodi utilizzati ne
 \end{table}
 
 \subsection{Nodi visitati}
-Come nel capitolo precedente le immagini mostrano i nodi ed i percorsi trovati dagli algoritmi in diversi grafici.
+Come nel capitolo precedente le immagini mostrano i nodi ed i percorsi trovati dagli algoritmi in diversi grafi.
 \begin{figure}[H]
 	\textbf{\textit{Legenda}:}
 	\begin{itemize}
@@ -900,7 +904,7 @@ L'idea iniziale era di trovare una soluzione in un tempo non polinomiale ad un p
 \subsubsection*{Algoritmo bidirezionale con l'utilizzo di thread}
 Nonostante avessi già implementato l'algoritmo bidrezionale, ho scartato questa idea poiché sarebbe stato inutile paragonarla agli altri algoritmi.
 \section{Possibili Applicazioni}
-Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del ``\textit{decision making''}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.\\
+Molti esempi su come sia possibile applicare un algoritmo che lavora su grafi con due pesi sono già stati fatti nel testo, si è parlato di ``eco-path", ovvero la ricerca di cammini minimi in un ambiente dove è importante il risparmio di energia, oppure, si può calcolare un percorso stradale che come valori, invece di considerare la classica distanza e velocità media, considera il tempo medio di percorrenza e il consumo di carburante (e.g. una strada in salita, oppure una strada dove ci si ferma e si riparte molto spesso consuma più carburante di una più lineare, ma più lunga). O ancora, se considero il primo peso come la distanza o il tempo ed il secondo come la pericolosità di un pericolo potrei ottenere diversi percorsi montani con diversi livelli di difficoltà,dove una persona, in base alle sue conoscenze può decidere dove andare. Oltre a questi esempi di pura immediatezza, gli algoritmi analizzati possono essere utilizzati nel campo del `\textit{decision making'}, piuttosto che in algoritmi per l'intelligenza artificiale. Nel campo della ricerca operativi, quindi l'ottimizzazione, può essere applicato al problema dei trasporti. Le possibilità sono enormi.\\
 Per approfondire questo aspetto sono consigliati \cite{GAArticle} \cite{abram1982some} \cite{meyer2003map}
 \section{Difficoltà incontrate}
 Le difficoltà principali sono state riscontrate soprattutto nella stesura degli algoritmi in relazione con le mappe che mi sono state fornite (vd. ch5). Inoltre l'implementazione degli algoritmi con minoranti sono stati piuttosto macchinosi e non immediati, seppur il ragionamento dietro il loro sviluppo sia basilare. Nonostante nelle mappe di Parigi e di Berlino conoscessi già alcuni cammini minimi (poiché mi sono stati forniti insieme alle mappe), testare gli algoritmi che lavorano unicamente su grafi non orientati (bidirezionale e minorante invertito) è stato piuttosto complesso. Per verificarli ed effettuare i primi ragionamenti, prima di iniziare a scrivere il codice, ho dovuto fare diverse congetture e ragionamenti su carta, che mi hanno impegnato non poco tempo.
@@ -940,6 +944,12 @@ CPU(s):\hspace{18mm}         4
 \\
 \textbf{-- Memoria\\}
 8192 MB , 2x 4 GB PC3-12800 DDR3L
+
+\chapter*{Ringraziamenti}
+Prima di tutti ringrazio, ovviamente, i miei genitori che mi hanno, in origine, convinto a fare l'università e mi hanno sostenuto nonostante le mie reazioni emotive del tutto imprevedibili e tutte le necessità economiche del caso.\\
+Oltre a loro ringrazio l'enorme supporto datomi dai miei compagni di corso: dai miei fantastici vicini di casa (galde e coro), che mi hanno fatto ridere ed insieme a loro ho condiviso ansie e speranze; a tutti coloro i quali sono qui oggi per festeggiare con me questo primo traguardo, di una lunga serie.\\
+
+ In particolare ringrazio Filo che mi è stato vicino in questo ultimo periodo e mi ha aiutato a portare avanti un'importante serie di pessime scelte, insegnandomi che se hai diversi piani forse è meglio non farne nessuno. Un ringraziamento importante va anche fatto alle mie amiche di Ravenna che mi hanno fatto capire che se la società ti esclude, in realtà sei soltanto traslato in un'altra società parallela di esclusi. Ovviamente un ringraziamento particolare va a tutti i miei amici di Fano, che, nonostante il mio comportamento snob degli ultimi anni, sono rimasti degli Amici con la "a" maiuscola, sempre disponibili per ogni cosa, in particolare all'Elena, che ha "salvato" il 2019 dall'essere un degli anni più difficili da sopportare. Un ringraziamento particolare va a Edo, che mi ha sempre sostenuto e su cui posso sempre contare; a Franci, punto di riferimento personale e persona dalle mille risorse, all'Ari e all'Ila, che nonostante la loro presenza quasi sovrannaturale sono sempre disponibili.\\ Grazie babbo (anche se dicevi che non mi sarei riuscito a laureare) e grazie mamma, grazie ai nonni, mastri di vita, molto più utili di quello che magari credono di essere, che, ascoltandoli, mi hanno insegnato molte più cose di quelle che qualsiasi professore di questa università abbia fatto fin'ora.
 
 \bibliographystyle{abbrv}
 \bibliography{Report/template.bib}
