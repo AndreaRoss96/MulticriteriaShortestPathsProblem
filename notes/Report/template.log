@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  19 DEC 2019 12:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.22)  14 MAR 2020 11:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -812,17 +812,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 327--342
  []
 
 [15]
-<img/biCriteriaOutput.png, id=80, 505.89pt x 507.8975pt>
-File: img/biCriteriaOutput.png Graphic file (type png)
-<use img/biCriteriaOutput.png>
-Package pdftex.def Info: img/biCriteriaOutput.png  used on input line 361.
-(pdftex.def)             Requested size: 360.0pt x 361.43124pt.
-<img/graphDijkstraBicrit.png, id=81, 462.528pt x 346.896pt>
+
+LaTeX Warning: File `img/biCriteriaOutput.png' not found on input line 361.
+
+
+! Package pdftex.def Error: File `img/biCriteriaOutput.png' not found: using dr
+aft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.361 ...dth=\linewidth]{img/biCriteriaOutput.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+<img/graphDijkstraBicrit.png, id=80, 462.528pt x 346.896pt>
 File: img/graphDijkstraBicrit.png Graphic file (type png)
 <use img/graphDijkstraBicrit.png>
 Package pdftex.def Info: img/graphDijkstraBicrit.png  used on input line 371.
 (pdftex.def)             Requested size: 176.40198pt x 129.01207pt.
-<img/graphLabelsetting.png, id=84, 462.528pt x 346.896pt>
+<img/graphLabelsetting.png, id=83, 462.528pt x 346.896pt>
 File: img/graphLabelsetting.png Graphic file (type png)
 <use img/graphLabelsetting.png>
 Package pdftex.def Info: img/graphLabelsetting.png  used on input line 377.
@@ -832,8 +843,7 @@ Underfull \hbox (badness 1888) in paragraph at lines 378--378
 []\OT1/cmr/m/n/10.95 Figure 3.4: Graph gen-er-ated by
  []
 
-[16 <./img/biCriteriaOutput.png>] [17 <./img/graphDijkstraBicrit.png> <./img/gr
-aphLabelsetting.png>]
+[16] [17 <./img/graphDijkstraBicrit.png> <./img/graphLabelsetting.png>]
 Overfull \hbox (17.98402pt too wide) in paragraph at lines 409--428
 []            \OT1/cmtt/m/n/10.95 label $\OMS/cmsy/m/n/10.95  $ []\OT1/cmtt/m/n
 /10.95 (firstW, secondW, v, owner, vIndex, predIndex) 
@@ -851,25 +861,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 409--428
  []
 
 [18] [19]
-<img/labelSettingComplexity.png, id=104, 581.17125pt x 224.84pt>
-File: img/labelSettingComplexity.png Graphic file (type png)
-<use img/labelSettingComplexity.png>
-Package pdftex.def Info: img/labelSettingComplexity.png  used on input line 465
-.
-(pdftex.def)             Requested size: 360.0pt x 139.27585pt.
-<img/biCriteriaExcelOutput1.png, id=105, 379.4175pt x 382.42876pt>
+
+LaTeX Warning: File `img/labelSettingComplexity.png' not found on input line 46
+5.
+
+
+! Package pdftex.def Error: File `img/labelSettingComplexity.png' not found: us
+ing draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.465 ...inewidth]{img/labelSettingComplexity.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[20]
+<img/biCriteriaExcelOutput1.png, id=106, 379.4175pt x 382.42876pt>
 File: img/biCriteriaExcelOutput1.png Graphic file (type png)
 <use img/biCriteriaExcelOutput1.png>
 Package pdftex.def Info: img/biCriteriaExcelOutput1.png  used on input line 477
 .
 (pdftex.def)             Requested size: 227.31082pt x 229.45901pt.
-<img/biCriteriaExcelOutput2.png, id=107, 942.52126pt x 398.48875pt>
+<img/biCriteriaExcelOutput2.png, id=108, 942.52126pt x 398.48875pt>
 File: img/biCriteriaExcelOutput2.png Graphic file (type png)
 <use img/biCriteriaExcelOutput2.png>
 Package pdftex.def Info: img/biCriteriaExcelOutput2.png  used on input line 483
 .
 (pdftex.def)             Requested size: 360.0pt x 152.18805pt.
- [20 <./img/labelSettingComplexity.png>]
+ [21]
 Overfull \hbox (17.98402pt too wide) in paragraph at lines 495--522
 []            \OT1/cmtt/m/n/10.95 label $\OMS/cmsy/m/n/10.95  $ []\OT1/cmtt/m/n
 /10.95 (firstW, secondW, v, owner, vIndex, predIndex) 
@@ -887,15 +909,15 @@ Overfull \hbox (65.4029pt too wide) in paragraph at lines 495--522
 direzione opposta 
  []
 
-[21 <./img/biCriteriaExcelOutput1.png> <./img/biCriteriaExcelOutput2.png>]
-[22]
-<img/biCriteriaExcelOutput1v2.png, id=120, 350.30875pt x 393.47pt>
+[22 <./img/biCriteriaExcelOutput1.png> <./img/biCriteriaExcelOutput2.png>]
+[23]
+<img/biCriteriaExcelOutput1v2.png, id=122, 350.30875pt x 393.47pt>
 File: img/biCriteriaExcelOutput1v2.png Graphic file (type png)
 <use img/biCriteriaExcelOutput1v2.png>
 Package pdftex.def Info: img/biCriteriaExcelOutput1v2.png  used on input line 5
 33.
 (pdftex.def)             Requested size: 209.84544pt x 236.0838pt.
-<img/biCriteriaExcelOutput2v2.png, id=122, 729.72626pt x 393.47pt>
+<img/biCriteriaExcelOutput2v2.png, id=124, 729.72626pt x 393.47pt>
 File: img/biCriteriaExcelOutput2v2.png Graphic file (type png)
 <use img/biCriteriaExcelOutput2v2.png>
 Package pdftex.def Info: img/biCriteriaExcelOutput2v2.png  used on input line 5
@@ -971,56 +993,56 @@ Overfull \hbox (43.43303pt too wide) in paragraph at lines 585--600
 [][] 
  []
 
-<img/immaginiTest/Paris2070-15426Bicriteria.png, id=124, 1874.00125pt x 1025.83
+<img/immaginiTest/Paris2070-15426Bicriteria.png, id=126, 1874.00125pt x 1025.83
 25pt>
 File: img/immaginiTest/Paris2070-15426Bicriteria.png Graphic file (type png)
 <use img/immaginiTest/Paris2070-15426Bicriteria.png>
 Package pdftex.def Info: img/immaginiTest/Paris2070-15426Bicriteria.png  used o
 n input line 609.
 (pdftex.def)             Requested size: 360.0pt x 197.05466pt.
-<img/immaginiTest/1000-1510BerlinBicriteria.png, id=125, 1850.915pt x 1001.7425
+<img/immaginiTest/1000-1510BerlinBicriteria.png, id=127, 1850.915pt x 1001.7425
 pt>
 File: img/immaginiTest/1000-1510BerlinBicriteria.png Graphic file (type png)
 <use img/immaginiTest/1000-1510BerlinBicriteria.png>
 Package pdftex.def Info: img/immaginiTest/1000-1510BerlinBicriteria.png  used o
 n input line 619.
 (pdftex.def)             Requested size: 360.0pt x 194.82693pt.
-[23] [24 <./img/biCriteriaExcelOutput1v2.png> <./img/biCriteriaExcelOutput2v2.p
+[24] [25 <./img/biCriteriaExcelOutput1v2.png> <./img/biCriteriaExcelOutput2v2.p
 ng>]
-<img/immaginiTest/BolognaBiC1298-23289Big.png, id=135, 1907.125pt x 1024.82875p
+<img/immaginiTest/BolognaBiC1298-23289Big.png, id=136, 1907.125pt x 1024.82875p
 t>
 File: img/immaginiTest/BolognaBiC1298-23289Big.png Graphic file (type png)
 <use img/immaginiTest/BolognaBiC1298-23289Big.png>
 Package pdftex.def Info: img/immaginiTest/BolognaBiC1298-23289Big.png  used on 
 input line 628.
 (pdftex.def)             Requested size: 360.0pt x 193.45284pt.
-<img/immaginiTest/BolognaBiC1298-23289.png, id=136, 1637.11626pt x 886.31125pt>
+<img/immaginiTest/BolognaBiC1298-23289.png, id=137, 1637.11626pt x 886.31125pt>
 
 File: img/immaginiTest/BolognaBiC1298-23289.png Graphic file (type png)
 <use img/immaginiTest/BolognaBiC1298-23289.png>
 Package pdftex.def Info: img/immaginiTest/BolognaBiC1298-23289.png  used on inp
 ut line 634.
 (pdftex.def)             Requested size: 360.0pt x 194.89441pt.
-<img/immaginiTest/BolognaBidir1298-23289Big.png, id=137, 1897.0875pt x 1015.795
+<img/immaginiTest/BolognaBidir1298-23289Big.png, id=138, 1897.0875pt x 1015.795
 pt>
 File: img/immaginiTest/BolognaBidir1298-23289Big.png Graphic file (type png)
 <use img/immaginiTest/BolognaBidir1298-23289Big.png>
 Package pdftex.def Info: img/immaginiTest/BolognaBidir1298-23289Big.png  used o
 n input line 643.
 (pdftex.def)             Requested size: 360.0pt x 192.75505pt.
-<img/immaginiTest/BolognaBidir1298-23289.png, id=138, 1913.1475pt x 1015.795pt>
+<img/immaginiTest/BolognaBidir1298-23289.png, id=139, 1913.1475pt x 1015.795pt>
 
 File: img/immaginiTest/BolognaBidir1298-23289.png Graphic file (type png)
 <use img/immaginiTest/BolognaBidir1298-23289.png>
 Package pdftex.def Info: img/immaginiTest/BolognaBidir1298-23289.png  used on i
 nput line 649.
 (pdftex.def)             Requested size: 360.0pt x 191.14308pt.
- [25 <./img/immaginiTest/Paris2070-15426Bicriteria.png> <./img/immaginiTest/100
-0-1510BerlinBicriteria.png>] [26 <./img/immaginiTest/BolognaBiC1298-23289Big.pn
-g> <./img/immaginiTest/BolognaBiC1298-23289.png>] [27 <./img/immaginiTest/Bolog
+ [26 <./img/immaginiTest/Paris2070-15426Bicriteria.png> <./img/immaginiTest/100
+0-1510BerlinBicriteria.png>] [27 <./img/immaginiTest/BolognaBiC1298-23289Big.pn
+g> <./img/immaginiTest/BolognaBiC1298-23289.png>] [28 <./img/immaginiTest/Bolog
 naBidir1298-23289Big.png> <./img/immaginiTest/BolognaBidir1298-23289.png>]
 Chapter 4.
-[28
+[29
 
 ]
 Overfull \hbox (1.49896pt too wide) in paragraph at lines 674--675
@@ -1028,18 +1050,18 @@ Overfull \hbox (1.49896pt too wide) in paragraph at lines 674--675
 bout all the nodes from the source
  []
 
-[29] [30]
+[30] [31]
 Chapter 5.
-[31
+[32
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 736--743
 
  []
 
-[32] (./template.bbl [33] [34
+[33] (./template.bbl [34] [35
 
-] [35]) [36] (./template.aux
+] [36]) [37] (./template.aux
 Package cleveref Info: loaded `english' language definitions on input line 2.
 )
 
@@ -1047,10 +1069,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6949 strings out of 492982
- 113113 string characters out of 6134896
+ 6941 strings out of 492982
+ 112851 string characters out of 6134896
  217924 words of memory out of 5000000
- 10356 multiletter control sequences out of 15000+600000
+ 10348 multiletter control sequences out of 15000+600000
  17405 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,9n,26p,708b,505s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1070,10 +1092,10 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on template.pdf (38 pages, 2720674 bytes).
+Output written on template.pdf (39 pages, 2584722 bytes).
 PDF statistics:
- 234 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
+ 235 PDF objects out of 1000 (max. 8388607)
+ 147 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 147 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

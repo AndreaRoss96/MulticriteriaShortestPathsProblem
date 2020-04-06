@@ -19,21 +19,21 @@
 \contentsline {subsection}{\numberline {3.2.1}Implementation}{17}
 \contentsline {subsection}{\numberline {3.2.2}Lower bound improvement}{19}
 \contentsline {subsection}{\numberline {3.2.3}Complexity}{20}
-\contentsline {section}{\numberline {3.3}Analysis of results}{20}
-\contentsline {section}{\numberline {3.4}Bidirectional Bi-criteria Algorithm}{22}
-\contentsline {subsection}{\numberline {3.4.1}Implementation}{22}
-\contentsline {subsubsection}{Particular Stop Condition Case}{22}
-\contentsline {subsection}{\numberline {3.4.2}Performance comparison}{22}
-\contentsline {subsection}{\numberline {3.4.3}Node visited}{23}
-\contentsline {chapter}{\numberline {4}Implementation details}{28}
-\contentsline {section}{\numberline {4.1}Python}{28}
-\contentsline {subsection}{\numberline {4.1.1}Binary queue}{28}
-\contentsline {section}{\numberline {4.2}Nodes as objects}{28}
-\contentsline {section}{\numberline {4.3}Pandas \& Matplotlib}{29}
-\contentsline {section}{\numberline {4.4}Testing}{30}
-\contentsline {chapter}{\numberline {5}Personal considerations}{31}
-\contentsline {section}{\numberline {5.1}Other possible solution}{31}
-\contentsline {section}{\numberline {5.2}Other possible application}{32}
-\contentsline {section}{\numberline {5.3}Difficulties encountered}{32}
-\contentsline {section}{\numberline {5.4}All not-standard python's libraries used:}{32}
-\contentsline {section}{\numberline {5.5}Computer info}{33}
+\contentsline {section}{\numberline {3.3}Analysis of results}{21}
+\contentsline {section}{\numberline {3.4}Bidirectional Bi-criteria Algorithm}{23}
+\contentsline {subsection}{\numberline {3.4.1}Implementation}{23}
+\contentsline {subsubsection}{Particular Stop Condition Case}{23}
+\contentsline {subsection}{\numberline {3.4.2}Performance comparison}{23}
+\contentsline {subsection}{\numberline {3.4.3}Node visited}{24}
+\contentsline {chapter}{\numberline {4}Implementation details}{29}
+\contentsline {section}{\numberline {4.1}Python}{29}
+\contentsline {subsection}{\numberline {4.1.1}Binary queue}{29}
+\contentsline {section}{\numberline {4.2}Nodes as objects}{29}
+\contentsline {section}{\numberline {4.3}Pandas \& Matplotlib}{30}
+\contentsline {section}{\numberline {4.4}Testing}{31}
+\contentsline {chapter}{\numberline {5}Personal considerations}{32}
+\contentsline {section}{\numberline {5.1}Other possible solution}{32}
+\contentsline {section}{\numberline {5.2}Other possible application}{33}
+\contentsline {section}{\numberline {5.3}Difficulties encountered}{33}
+\contentsline {section}{\numberline {5.4}All not-standard python's libraries used:}{33}
+\contentsline {section}{\numberline {5.5}Computer info}{34}
